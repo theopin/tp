@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.storage;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
