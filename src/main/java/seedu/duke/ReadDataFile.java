@@ -1,4 +1,4 @@
-package seedu.duke.storage;
+package seedu.duke;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,23 +20,15 @@ public class ReadDataFile extends DataFile {
     /**
      * Converts the file contents into tasks that can be added into
      * the list of tasks. Also handles an exception arising
-     * from missing file and/or directory at the specified location.
+     * from missing directory at the specified location.
      */
     @Override
     public void executeFunction() {
-        insertStoredCheatSheets();
-    }
-
-    /**
-     * Creates a new  directory and file at the specified location
-     * if it currently does not exist.
-     *
-     * @throws IOException Thrown if errors arise when creating the directory
-     * and/or file.
-     */
-    private void createNewFile() throws IOException {
-        if(!Files.exists(DATA_DIR)) {
-            Files.createDirectories(DATA_DIR);
+        try {
+            insertStoredCheatSheets();
+        }
+        catch (NullPointerException e) {
+            createNewDirectory();
         }
     }
 
@@ -44,14 +36,29 @@ public class ReadDataFile extends DataFile {
      * Converts the data obtained from the /data folder into cheatsheets and adds
      * them to the application.
      *
+     * @throws NullPointerException Thrown if the /data folder is not found or is empty
      */
-    private void insertStoredCheatSheets() {
+    private void insertStoredCheatSheets() throws NullPointerException {
         // create a File for the given file path
         File[] cheatSheetFiles = new File(String.valueOf(DATA_DIR)).listFiles();
 
         assert cheatSheetFiles != null : "No files found! Loading Application!";
         for(File cheatSheetFile : cheatSheetFiles) {
             extractCheatSheet(cheatSheetFile);
+        }
+    }
+
+    /**
+     * Creates a new directory and file at the specified location
+     * if it currently does not exist.
+     */
+    private void createNewDirectory()  {
+        if(!Files.exists(DATA_DIR)) {
+            try {
+                Files.createDirectories(DATA_DIR);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
