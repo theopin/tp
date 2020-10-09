@@ -2,7 +2,7 @@ package cheatsheet;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CheatSheetListTest {
 
@@ -10,7 +10,7 @@ class CheatSheetListTest {
     @Test
     void getSize() {
         CheatSheetList cheatSheets = new CheatSheetList();
-        for(int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             cheatSheets.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         assertEquals(cheatSheets.getSize(), 10);
@@ -29,7 +29,7 @@ class CheatSheetListTest {
     @Test
     void add() {
         CheatSheetList cheatSheets = new CheatSheetList();
-        for(int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             cheatSheets.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         assertEquals(cheatSheets.getSize(), 10);
@@ -38,7 +38,7 @@ class CheatSheetListTest {
     @Test
     void remove() {
         CheatSheetList cheatSheets = new CheatSheetList();
-        for(int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             cheatSheets.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         cheatSheets.remove("Name1");
@@ -51,7 +51,7 @@ class CheatSheetListTest {
     void getCheatSheet() {
         CheatSheetList cheatSheets = new CheatSheetList();
         CheatSheet test = new CheatSheet("Name1", "Language1", "Details1");
-        for(int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             if (i == 1) {
                 cheatSheets.add(test);
             } else {

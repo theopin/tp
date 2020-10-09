@@ -9,7 +9,7 @@ public class CheatSheetList {
     }
 
     /**
-     * Gets the number of cheat sheet currently in the CheatSheetList
+     * Gets the number of cheat sheet currently in the CheatSheetList.
      *
      * @return size of cheatSheets
      */
@@ -18,7 +18,7 @@ public class CheatSheetList {
     }
 
     /**
-     * Gets all the cheat sheets in the cheatSheetList
+     * Gets all the cheat sheets in the cheatSheetList.
      *
      * @return cheatSheets The current list of cheat sheets
      */
@@ -27,7 +27,7 @@ public class CheatSheetList {
     }
 
     /**
-     * Prints the cheatSheetName attribute for each cheat sheet
+     * Prints the cheatSheetName attribute for each cheat sheet.
      */
     public void printCheatSheetNames() {
         // todo: replace with UI.printCheatSheetNames
@@ -38,15 +38,15 @@ public class CheatSheetList {
     }
 
     /**
-     * Adds a new cheat sheet to the list
+     * Adds a new cheat sheet to the list.
      */
     public void add(CheatSheet cheatSheet) {
         cheatSheets.add(cheatSheet);
     }
 
     /**
-     * Deletes a cheat sheet from the list
-     * Prints an error message if name is not found
+     * Deletes a cheat sheet from the list.
+     * Prints an error message if name is not found.
      *
      * @param name The name attribute of the desired cheat sheet
      */
@@ -69,7 +69,7 @@ public class CheatSheetList {
     }
 
     /**
-     * Retrieves a cheat sheet from the list using its index
+     * Retrieves a cheat sheet from the list using its index.
      *
      * @param index The index of desired cheat sheet
      * @return size of cheatSheets
