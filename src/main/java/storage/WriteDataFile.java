@@ -14,8 +14,8 @@ import static storage.ParseCheatSheetFile.PROGRAMMING_LANGUAGE;
 import static storage.ParseCheatSheetFile.DETAILS;
 
 /**
- * Allows the user to write data based on the tasks currently present in the
- * list of tasks into duke.txt.
+ * Allows the user to write data based on the cheatSheets currently present
+ * in the list of cheatSheets into individual .txt files.
  */
 public class WriteDataFile extends DataFile {
     private static final String FILE_EXTENSION = ".txt";
@@ -26,9 +26,9 @@ public class WriteDataFile extends DataFile {
     }
 
     /**
-     * Converts the tasks present in the list of tasks into
-     * a string. This string is then saved in a form of .txt file
-     * into documentTracker.txt.
+     * Converts the cheatSheets present in the list of cheatSheet into
+     * a string. This string is then saved in a form of .txt file, 1 file
+     * for each cheatSheet.
      */
     @Override
     public void executeFunction() {
@@ -36,7 +36,7 @@ public class WriteDataFile extends DataFile {
     }
 
     /**
-     * Converts the tasks present in the list of tasks into
+     * Converts the cheatSheets present in the list of cheatSheets into
      * a string.
      */
     private void storeCheatSheet() {
