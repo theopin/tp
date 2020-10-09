@@ -69,33 +69,13 @@ public class ReadDataFile extends DataFile {
      */
     private void extractCheatSheet(File cheatSheetDocument)  {
         try {
-            parseCheatSheet(cheatSheetDocument);
+            new ParseCheatSheetFile(cheatSheetDocument);
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    /**
-     * Parses the given cheatSheet file.
-     *
-     * @param cheatSheetDocument cheatSheet file to be parsed.
-     * @throws FileNotFoundException Thrown if the file is not found in
-     *                               the user directory.
-     */
-    private void parseCheatSheet(File cheatSheetDocument) throws FileNotFoundException {
-        Scanner componentScanner = new Scanner(cheatSheetDocument);
-        while (componentScanner.hasNextLine()) {
-            extractCheatSheetComponents(componentScanner.nextLine());
-        }
-    }
 
-    /**
-     * Extracts the contents of the cheatsheet from the specified file.
-     *
-     * @param cheatSheetFile Name of the .txt file
-     */
-    private void extractCheatSheetComponents(String cheatSheetFile) {
-    }
 
 
 }
