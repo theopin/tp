@@ -9,7 +9,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static storage.ParseCheatSheetFile.*;
+import static storage.ParseCheatSheetFile.NAME;
+import static storage.ParseCheatSheetFile.PROGRAMMING_LANGUAGE;
+import static storage.ParseCheatSheetFile.DETAILS;
 
 /**
  * Allows the user to write data based on the tasks currently present in the
@@ -41,7 +43,6 @@ public class WriteDataFile extends DataFile {
         /*for(CheatSheet cheatSheet : cheatSheets) {
             convertStringToFile(cheatSheet);
         }
-
         */
     }
 
@@ -55,19 +56,17 @@ public class WriteDataFile extends DataFile {
         StringBuilder cheatSheetFileBuild = new StringBuilder();
 
         // build cheatsheet content
-        //cheatSheet
         buildFileContents(cheatSheetFileBuild, cheatSheet);
 
         String fileName = cheatSheet.getCheatSheetName() + FILE_EXTENSION;
         Path textFileDirectory = Paths.get(USER_DIR, DATA, fileName);
 
         try {
-            if(!Files.exists(textFileDirectory)) {
+            if (!Files.exists(textFileDirectory)) {
                 Files.createFile(textFileDirectory);
             }
             writeToFile(String.valueOf(textFileDirectory), cheatSheetFileBuild.toString());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("\tSomething went wrong: " + e.getMessage());
         }
     }
