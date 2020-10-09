@@ -1,0 +1,12 @@
+package command;
+
+public enum CommandEnum {
+    ADDCHEATSHEET,
+    CLEARCHEETSHEET,
+    DELETECHEATHSHEET,
+    EXIT,
+    FINDCHEATSHEET,
+    HELP,
+    LISTCHEATSHEET,
+    VIEWCHEATSHEET;
+}
