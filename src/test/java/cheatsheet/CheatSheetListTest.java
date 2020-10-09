@@ -8,7 +8,7 @@ class CheatSheetListTest {
 
 
     @Test
-    void getSize() {
+    void testGetSize() {
         CheatSheetList cheatSheets = new CheatSheetList();
         for (int i = 0; i < 10; i++) {
             cheatSheets.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
@@ -17,17 +17,17 @@ class CheatSheetListTest {
     }
 
     @Test
-    void getCheatSheetList() {
+    void testGetCheatSheetList() {
         // to be added
     }
 
     @Test
-    void printCheatSheetNames() {
+    void testPrintCheatSheetNames() {
         // to be added
     }
 
     @Test
-    void add() {
+    void testAdd() {
         CheatSheetList cheatSheets = new CheatSheetList();
         for (int i = 0; i < 10; i++) {
             cheatSheets.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
@@ -36,7 +36,7 @@ class CheatSheetListTest {
     }
 
     @Test
-    void remove() {
+    void testRemove() {
         CheatSheetList cheatSheets = new CheatSheetList();
         for (int i = 0; i < 10; i++) {
             cheatSheets.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
@@ -48,7 +48,7 @@ class CheatSheetListTest {
     }
 
     @Test
-    void getCheatSheet() {
+    void testGetCheatSheet() {
         CheatSheetList cheatSheets = new CheatSheetList();
         CheatSheet test = new CheatSheet("Name1", "Language1", "Details1");
         for (int i = 0; i < 10; i++) {
