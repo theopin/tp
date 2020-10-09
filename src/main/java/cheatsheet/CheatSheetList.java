@@ -27,14 +27,17 @@ public class CheatSheetList {
     }
 
     /**
-     * Prints the cheatSheetName attribute for each cheat sheet.
+     * Converts the cheatSheetName attribute for each cheat sheet into a string.
+     * The string will be used by UI for printing
+     *
+     * @return printedByUI The string to be printed by UI
      */
-    public void printCheatSheetNames() {
-        // todo: replace with UI.printCheatSheetNames
-        System.out.println("Current list of cheat sheet:");
+    public String printCheatSheetNames() {
+        StringBuilder printedByUI = new StringBuilder("Current list of cheat sheet:");
         for (CheatSheet cs : cheatSheets) {
-            System.out.println(cs.getCheatSheetName());
+            printedByUI.append(cs.getCheatSheetName()).append("\n");
         }
+        return printedByUI.toString();
     }
 
     /**
@@ -50,7 +53,7 @@ public class CheatSheetList {
      *
      * @param name The name attribute of the desired cheat sheet
      */
-    public void remove(String name) {
+    public void remove(String name) throws IndexOutOfBoundsException {
         int index = 0;
         for (CheatSheet cs : cheatSheets) {
             if (cs.getCheatSheetName().equals(name)) {
@@ -62,8 +65,8 @@ public class CheatSheetList {
         try {
             cheatSheets.remove(index);
         } catch (IndexOutOfBoundsException e) {
-            // todo: replace with UI.indexOutOfBound
-            System.out.println("Index out of bound!");
+            // todo: add error message in UI
+            throw new IndexOutOfBoundsException();
         }
 
     }
@@ -74,15 +77,13 @@ public class CheatSheetList {
      * @param index The index of desired cheat sheet
      * @return size of cheatSheets
      */
-    public CheatSheet getCheatSheet(int index) {
+    public CheatSheet getCheatSheet(int index) throws IndexOutOfBoundsException {
         CheatSheet cheatSheet;
         try {
             cheatSheet = cheatSheets.get(index - 1);
         } catch (IndexOutOfBoundsException e) {
-            // todo: replace with UI.indexOutOfBound
-            System.out.println("Index out of bound");
-            // todo: replace this statement with throw instead
-            return null;
+            // todo: add error message in UI
+            throw new IndexOutOfBoundsException();
         }
         return cheatSheet;
     }
