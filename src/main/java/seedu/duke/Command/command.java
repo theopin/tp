@@ -1,11 +1,13 @@
-package seedu.duke.Command;
+package seedu.duke.command;
+
 /**
- * The base class for all commands
+ * The base class for all commands.
  */
+
 public abstract class Command {
     public boolean isExitCommand;
 
-    public Command(){
+    public Command() {
         isExitCommand = false;
     }
 
