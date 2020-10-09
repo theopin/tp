@@ -1,4 +1,4 @@
-package seedu.duke.command;
+package command;
 
 /**
  * The base class for all commands.
