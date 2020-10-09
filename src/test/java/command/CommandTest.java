@@ -13,4 +13,10 @@ class CommandTest {
     @Test
     void testExecute() {
     }
+
+    @Test
+    public void testCommand() {
+        // todo : implement this
+        assertTrue(true);
+    }
 }
