@@ -1,5 +1,8 @@
 package ui;
 
+import cheatsheet.CheatSheet;
+import cheatsheet.CheatSheetList;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -29,8 +32,9 @@ public class Ui {
     }
 
     public void printCheatSheet() {
-        int index = 0;
-        String cs = "";
-        System.out.println(index + ": " + cs);
+        CheatSheetList cheatSheetList = new CheatSheetList();
+        for (int i = 0; i < cheatSheetList.getSize(); i++) {
+            System.out.println(cheatSheetList.getCheatSheet(i));
+        }
     }
 }
