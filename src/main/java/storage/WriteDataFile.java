@@ -52,7 +52,6 @@ public class WriteDataFile extends DataFile {
      * @param cheatSheet The cheatSheet that is currently being converted into a file.
      */
     private void convertStringToFile(CheatSheet cheatSheet) {
-
         StringBuilder cheatSheetFileBuild = new StringBuilder();
 
         // build cheatsheet content
