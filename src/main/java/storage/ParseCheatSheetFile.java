@@ -10,7 +10,7 @@ public class ParseCheatSheetFile {
     private static final String DETAILS = "Details: ";
     private static final String EMPTY = "";
     private final StringBuilder cheatSheetDetails = new StringBuilder();
-    
+
     private String cheatSheetName;
     private String cheatSheetProgrammingLanguage;
 
@@ -33,7 +33,7 @@ public class ParseCheatSheetFile {
             extractCheatSheetComponents(componentScanner.nextLine());
         }
         //new CheatSheet(cheatSheetName, cheatSheetProgrammingLanguage,
-       //         cheatSheetDetails);
+        //         cheatSheetDetails);
     }
 
     /**
