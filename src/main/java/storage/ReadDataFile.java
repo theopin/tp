@@ -72,8 +72,4 @@ public class ReadDataFile extends DataFile {
             System.out.println(e.getMessage());
         }
     }
-
-
-
-
 }
