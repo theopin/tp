@@ -15,20 +15,20 @@ public class CheatSheet {
         return cheatSheetName;
     }
 
-    public String getCheatSheetProgrammingLanguage() {
-        return cheatSheetProgrammingLanguage;
-    }
-
-    public String getCheatSheetDetails() {
-        return cheatSheetDetails;
-    }
-
     public void setCheatSheetName(String cheatSheetName) {
         this.cheatSheetName = cheatSheetName;
     }
 
+    public String getCheatSheetProgrammingLanguage() {
+        return cheatSheetProgrammingLanguage;
+    }
+
     public void setCheatSheetProgrammingLanguage(String cheatSheetProgrammingLanguage) {
         this.cheatSheetProgrammingLanguage = cheatSheetProgrammingLanguage;
+    }
+
+    public String getCheatSheetDetails() {
+        return cheatSheetDetails;
     }
 
     public void setCheatSheetDetails(String cheatSheetDetails) {
@@ -37,11 +37,11 @@ public class CheatSheet {
 
     @Override
     public String toString() {
-        return "CheatSheet{" +
-                "cheatSheetName='" + cheatSheetName + '\'' +
-                ", cheatSheetProgrammingLanguage='" + cheatSheetProgrammingLanguage + '\'' +
-                ", cheatSheetDetails='" + cheatSheetDetails + '\'' +
-                '}';
+        return "CheatSheet{"
+                + "cheatSheetName='" + cheatSheetName + '\''
+                + ", cheatSheetProgrammingLanguage='" + cheatSheetProgrammingLanguage + '\''
+                + ", cheatSheetDetails='" + cheatSheetDetails + '\''
+                + '}';
     }
 }
 
