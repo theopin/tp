@@ -22,8 +22,4 @@ class UiTest {
     @Test
     void printCheatSheet() {
     }
-
-    @Test
-    void hello() {
-    }
 }
