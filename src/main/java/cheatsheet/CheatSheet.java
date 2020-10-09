@@ -1,4 +1,4 @@
-package CheatSheet;
+package cheatsheet;
 
 public class CheatSheet {
     private String cheatSheetName;
