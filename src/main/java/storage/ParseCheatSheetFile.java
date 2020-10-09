@@ -1,14 +1,16 @@
 package storage;
 
+import cheatsheet.CheatSheet;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class ParseCheatSheetFile {
-    private static final String NAME = "Name: ";
-    private static final String PROGRAMMING_LANGUAGE = "Programming Language: ";
-    private static final String DETAILS = "Details: ";
-    private static final String EMPTY = "";
+    protected static final String NAME = "Name: ";
+    protected static final String PROGRAMMING_LANGUAGE = "Programming Language: ";
+    protected static final String DETAILS = "Details: ";
+    protected static final String EMPTY = "";
     private final StringBuilder cheatSheetDetails = new StringBuilder();
 
     private String cheatSheetName;
@@ -32,8 +34,8 @@ public class ParseCheatSheetFile {
         while (componentScanner.hasNextLine()) {
             extractCheatSheetComponents(componentScanner.nextLine());
         }
-        //new CheatSheet(cheatSheetName, cheatSheetProgrammingLanguage,
-        //         cheatSheetDetails);
+        new CheatSheet(cheatSheetName, cheatSheetProgrammingLanguage,
+                 cheatSheetDetails.toString());
     }
 
     /**
