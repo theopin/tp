@@ -1,10 +1,9 @@
-package seedu.duke.storage;
+package storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Scanner;
 
 /**
  * Allows the user to read data from documentTracker.txt and use it

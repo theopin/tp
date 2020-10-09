@@ -1,4 +1,4 @@
-package seedu.duke.storage;
+package storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,11 +6,14 @@ import java.util.Scanner;
 
 public class ParseCheatSheetFile {
     private static final String NAME = "Name: ";
-    private static final String PROGRAMMNG_LANGUAGE = "Programming Language: ";
-
+    private static final String PROGRAMMING_LANGUAGE = "Programming Language: ";
+    private static final String DETAILS = "Details: ";
+    private static final String EMPTY = "";
+    private final StringBuilder cheatSheetDetails = new StringBuilder();
+    
     private String cheatSheetName;
     private String cheatSheetProgrammingLanguage;
-    private String cheatSheetDetails;
+
 
     public ParseCheatSheetFile(File cheatSheetDocument) throws FileNotFoundException {
         parseCheatSheet(cheatSheetDocument);
@@ -29,6 +32,8 @@ public class ParseCheatSheetFile {
         while (componentScanner.hasNextLine()) {
             extractCheatSheetComponents(componentScanner.nextLine());
         }
+        //new CheatSheet(cheatSheetName, cheatSheetProgrammingLanguage,
+       //         cheatSheetDetails);
     }
 
     /**
@@ -37,6 +42,18 @@ public class ParseCheatSheetFile {
      * @param cheatSheetLine Line of the file being analyzed
      */
     private void extractCheatSheetComponents(String cheatSheetLine) {
-
+        if (cheatSheetLine.startsWith(NAME)) {
+            this.cheatSheetName = cheatSheetLine.replace(NAME, EMPTY).trim();
+        } else if (cheatSheetLine.startsWith(PROGRAMMING_LANGUAGE)) {
+            this.cheatSheetProgrammingLanguage = cheatSheetLine.replace(PROGRAMMING_LANGUAGE,
+                    EMPTY).trim();
+        } else if (cheatSheetLine.startsWith(DETAILS)) {
+            this.cheatSheetDetails.append(cheatSheetLine.replace(DETAILS,
+                    EMPTY).trim());
+            this.cheatSheetDetails.append(System.lineSeparator());
+        } else {
+            this.cheatSheetDetails.append(cheatSheetLine.trim());
+            this.cheatSheetDetails.append(System.lineSeparator());
+        }
     }
 }
