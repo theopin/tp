@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class ParseCheatSheetFile {
-    private final static String NAME = "Name: ";
-    private final static String PROGRAMMNG_LANGUAGE = "Programming Language: ";
+    private static final String NAME = "Name: ";
+    private static final String PROGRAMMNG_LANGUAGE = "Programming Language: ";
 
     private String cheatSheetName;
     private String cheatSheetProgrammingLanguage;
@@ -37,6 +37,6 @@ public class ParseCheatSheetFile {
      * @param cheatSheetLine Line of the file being analyzed
      */
     private void extractCheatSheetComponents(String cheatSheetLine) {
-        
+
     }
 }

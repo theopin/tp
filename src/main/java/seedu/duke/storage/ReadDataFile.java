@@ -26,8 +26,7 @@ public class ReadDataFile extends DataFile {
     public void executeFunction() {
         try {
             insertStoredCheatSheets();
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             createNewDirectory();
         }
     }
@@ -43,7 +42,7 @@ public class ReadDataFile extends DataFile {
         File[] cheatSheetFiles = new File(String.valueOf(DATA_DIR)).listFiles();
 
         assert cheatSheetFiles != null : "No files found! Loading Application!";
-        for(File cheatSheetFile : cheatSheetFiles) {
+        for (File cheatSheetFile : cheatSheetFiles) {
             extractCheatSheet(cheatSheetFile);
         }
     }
@@ -53,7 +52,7 @@ public class ReadDataFile extends DataFile {
      * if it currently does not exist.
      */
     private void createNewDirectory()  {
-        if(!Files.exists(DATA_DIR)) {
+        if (!Files.exists(DATA_DIR)) {
             try {
                 Files.createDirectories(DATA_DIR);
             } catch (IOException e) {
