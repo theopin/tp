@@ -9,19 +9,19 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static storage.ParseCheatSheetFile.NAME;
-import static storage.ParseCheatSheetFile.PROGRAMMING_LANGUAGE;
-import static storage.ParseCheatSheetFile.DETAILS;
+import static storage.ParseDataFile.NAME;
+import static storage.ParseDataFile.PROGRAMMING_LANGUAGE;
+import static storage.ParseDataFile.DETAILS;
 
 /**
  * Allows the user to write data based on the cheatSheets currently present
  * in the list of cheatSheets into individual .txt files.
  */
-public class WriteDataFile extends DataFile {
+public class WriteDataFiles extends DataFile {
     private static final String FILE_EXTENSION = ".txt";
 
     // WriteDataFile Constructor
-    public WriteDataFile() {
+    public WriteDataFiles() {
         executeFunction();
     }
 

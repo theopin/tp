@@ -6,19 +6,23 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class ParseCheatSheetFile {
+public class ParseDataFile {
     protected static final String NAME = "Name: ";
     protected static final String PROGRAMMING_LANGUAGE = "Programming Language: ";
     protected static final String DETAILS = "Details: ";
     protected static final String EMPTY = "";
-    private final StringBuilder cheatSheetDetails = new StringBuilder();
+    protected CheatSheet convertedCheatSheet;
 
+    private final StringBuilder cheatSheetDetails = new StringBuilder();
     private String cheatSheetName;
     private String cheatSheetProgrammingLanguage;
 
-
-    public ParseCheatSheetFile(File cheatSheetDocument) throws FileNotFoundException {
-        parseCheatSheet(cheatSheetDocument);
+    public ParseDataFile(File cheatSheetDocument){
+        try {
+            parseCheatSheet(cheatSheetDocument);
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -34,8 +38,8 @@ public class ParseCheatSheetFile {
         while (componentScanner.hasNextLine()) {
             extractCheatSheetComponents(componentScanner.nextLine());
         }
-        new CheatSheet(cheatSheetName, cheatSheetProgrammingLanguage,
-                 cheatSheetDetails.toString());
+        this.convertedCheatSheet = new CheatSheet(cheatSheetName,
+                cheatSheetProgrammingLanguage, cheatSheetDetails.toString().trim());
     }
 
     /**
