@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * Allows the user to read data from documentTracker.txt and use it
+ * Allows the user to read data from the data directory and use it
  * to insert the cheatsheets present in the folder to the application.
  */
 public class ReadDataFiles extends DataFile {
@@ -20,11 +20,12 @@ public class ReadDataFiles extends DataFile {
     private String folderPath = String.valueOf(DATA_DIR);
     private Path dataFolder;
 
-    // ReadDataFile Constructor
+    // Main Constructor
     public ReadDataFiles() {
         executeFunction();
     }
 
+    // Constructor for debugging purposes
     public ReadDataFiles(String folderPath, Path dataFolder) {
         this.folderPath = folderPath;
         this.dataFolder = dataFolder;
@@ -54,7 +55,8 @@ public class ReadDataFiles extends DataFile {
      * @throws FileNotFoundException Thrown if the /data folder is not found
      * @throws DirectoryIsEmptyException Thrown if the /data folder is empty
      */
-    protected void insertStoredCheatSheets() throws FileNotFoundException, DirectoryIsEmptyException {
+    protected void insertStoredCheatSheets() throws FileNotFoundException,
+            DirectoryIsEmptyException {
         if (!Files.exists(dataFolder)) {
             throw new FileNotFoundException();
         }

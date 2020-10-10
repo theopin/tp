@@ -28,15 +28,15 @@ public class ParseDataFileTest {
     void parseDataLanguage_textFile1_success() {
         File textFile1 = new File(String.valueOf(textFile));
         ParseDataFile parseTest = new ParseDataFile(textFile1);
-        assertEquals(fileProgrammingLanguage, parseTest.convertedCheatSheet.
-                getCheatSheetProgrammingLanguage());
+        assertEquals(fileProgrammingLanguage, parseTest.convertedCheatSheet
+                .getCheatSheetProgrammingLanguage());
     }
 
     @Test
     void parseDataDetails_textFile1_success() {
         File textFile1 = new File(String.valueOf(textFile));
         ParseDataFile parseTest = new ParseDataFile(textFile1);
-        assertEquals(fileDetails, parseTest.convertedCheatSheet.
-                getCheatSheetDetails());
+        assertEquals(fileDetails, parseTest.convertedCheatSheet
+                .getCheatSheetDetails());
     }
 }

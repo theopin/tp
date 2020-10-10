@@ -17,7 +17,7 @@ public class ParseDataFile {
     private String cheatSheetName;
     private String cheatSheetProgrammingLanguage;
 
-    public ParseDataFile(File cheatSheetDocument){
+    public ParseDataFile(File cheatSheetDocument) {
         try {
             parseCheatSheet(cheatSheetDocument);
         } catch (FileNotFoundException e) {
@@ -45,7 +45,7 @@ public class ParseDataFile {
     /**
      * Extracts the contents of the cheatsheet from the specified file.
      *
-     * @param cheatSheetLine Line of the file being analyzed
+     * @param cheatSheetLine Line of the file being analyzed.
      */
     private void extractCheatSheetComponents(String cheatSheetLine) {
         if (cheatSheetLine.startsWith(NAME)) {

@@ -1,6 +1,7 @@
 package storage;
 
 import cheatsheet.CheatSheet;
+import cheatsheet.CheatSheetList;
 
 import java.io.IOException;
 import java.io.FileWriter;
@@ -8,6 +9,7 @@ import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import static storage.ParseDataFile.NAME;
 import static storage.ParseDataFile.PROGRAMMING_LANGUAGE;
@@ -15,19 +17,26 @@ import static storage.ParseDataFile.DETAILS;
 
 /**
  * Allows the user to write data based on the cheatSheets currently present
- * in the list of cheatSheets into individual .txt files.
+ * in the list of cheatSheets into individual files.
  */
 public class WriteDataFiles extends DataFile {
-    private static final String FILE_EXTENSION = ".txt";
+    private ArrayList<CheatSheet> cheatSheets;
+    private Path debugPath = null;
 
-    // WriteDataFile Constructor
+    // Main Constructor
     public WriteDataFiles() {
         executeFunction();
     }
 
+    // Constructor for debugging purposes
+    public WriteDataFiles(CheatSheetList debugCheatSheets, Path textFilePath) {
+        this.cheatSheets = debugCheatSheets.getCheatSheetList();
+        this.debugPath = textFilePath;
+    }
+
     /**
      * Converts the cheatSheets present in the list of cheatSheet into
-     * a string. This string is then saved in a form of .txt file, 1 file
+     * a string. This string is then saved in a file, 1 file
      * for each cheatSheet.
      */
     @Override
@@ -40,10 +49,9 @@ public class WriteDataFiles extends DataFile {
      * a string.
      */
     private void storeCheatSheet() {
-        /*for(CheatSheet cheatSheet : cheatSheets) {
+        for (CheatSheet cheatSheet : cheatSheets) {
             convertStringToFile(cheatSheet);
         }
-        */
     }
 
     /**
@@ -51,14 +59,15 @@ public class WriteDataFiles extends DataFile {
      *
      * @param cheatSheet The cheatSheet that is currently being converted into a file.
      */
-    private void convertStringToFile(CheatSheet cheatSheet) {
+    public void convertStringToFile(CheatSheet cheatSheet) {
+        Path textFileDirectory;
         StringBuilder cheatSheetFileBuild = new StringBuilder();
 
-        // build cheatsheet content
+        // Build cheatsheet content
         buildFileContents(cheatSheetFileBuild, cheatSheet);
 
-        String fileName = cheatSheet.getCheatSheetName() + FILE_EXTENSION;
-        Path textFileDirectory = Paths.get(USER_DIR, DATA, fileName);
+        String fileName = cheatSheet.getCheatSheetName();
+        textFileDirectory = (debugPath == null) ? Paths.get(USER_DIR, DATA, fileName) : debugPath;
 
         try {
             if (!Files.exists(textFileDirectory)) {
@@ -66,7 +75,7 @@ public class WriteDataFiles extends DataFile {
             }
             writeToFile(String.valueOf(textFileDirectory), cheatSheetFileBuild.toString());
         } catch (IOException e) {
-            System.out.println("\tSomething went wrong: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -89,12 +98,12 @@ public class WriteDataFiles extends DataFile {
     }
 
     /**
-     * Writes the values of textContent into duke.txt
+     * Writes the values of textContent into a File.
      *
-     * @param directory Name of the file
+     * @param directory Name of the file.
      * @param fileContents Contents of the file
      * @throws IOException Thrown if there are issues with writing the string
-     *                     into duke.txt
+     *                     into a file.
      */
     private void writeToFile(String directory, String fileContents) throws IOException {
         FileWriter fileEditor = new FileWriter(directory);

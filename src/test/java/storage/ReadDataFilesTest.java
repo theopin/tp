@@ -35,7 +35,7 @@ public class ReadDataFilesTest {
     }
 
     @Test
-    void readFile_missingFolder_exceptionThrown() {
+    void readDataFiles_missingFolder_exceptionThrown() {
         ReadDataFiles readTest = new ReadDataFiles(String.valueOf(testMissingFolder),
                 testMissingFolder);
         assertThrows(FileNotFoundException.class, readTest::insertStoredCheatSheets);
