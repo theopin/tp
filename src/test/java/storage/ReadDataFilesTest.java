@@ -32,13 +32,6 @@ public class ReadDataFilesTest {
     }
 
     @Test
-    void readDataFiles_emptyFolder_exceptionThrown() {
-        ReadDataFiles readTest = new ReadDataFiles(String.valueOf(testEmptyFolder),
-                testEmptyFolder);
-        assertThrows(DirectoryIsEmptyException.class, readTest::insertStoredCheatSheets);
-    }
-
-    @Test
     void readDataFiles_missingFolder_exceptionThrown() {
         ReadDataFiles readTest = new ReadDataFiles(String.valueOf(testMissingFolder),
                 testMissingFolder);
