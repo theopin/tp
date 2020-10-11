@@ -52,7 +52,7 @@ public class ParseDataFile {
 
             throw new InvalidFileDataException(cheatSheetDocument);
         }
-        System.out.println(1 + cheatSheetDetails.toString().trim() +1);
+
         this.convertedCheatSheet = new CheatSheet(cheatSheetName,
                 cheatSheetProgrammingLanguage, cheatSheetDetails.toString().trim());
     }
@@ -75,7 +75,7 @@ public class ParseDataFile {
             this.cheatSheetDetails
                     .append(detailsFirstLine)
                     .append(System.lineSeparator());
-        } else if (this.cheatSheetDetails.length() > 0){
+        } else if (this.cheatSheetDetails.length() > 0) {
             this.cheatSheetDetails
                     .append(cheatSheetLine.trim())
                     .append(System.lineSeparator());

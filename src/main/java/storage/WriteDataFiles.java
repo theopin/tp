@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import static storage.ParseDataFile.NAME;
 import static storage.ParseDataFile.PROGRAMMING_LANGUAGE;
 import static storage.ParseDataFile.DETAILS;
-import static storage.ParseDataFile.EMPTY;
 
 /**
  * Allows the user to write data based on the cheatSheets currently present
