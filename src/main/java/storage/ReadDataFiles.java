@@ -14,9 +14,6 @@ import java.nio.file.Path;
  * to insert the cheatsheets present in the folder to the application.
  */
 public class ReadDataFiles extends DataFile {
-
-    protected CheatSheetList storedCheatSheets = new CheatSheetList();
-
     private String folderPath = String.valueOf(DATA_DIR);
     private Path dataFolder;
 

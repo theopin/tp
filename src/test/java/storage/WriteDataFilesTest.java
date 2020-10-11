@@ -16,7 +16,7 @@ public class WriteDataFilesTest {
 
     final String fileName = "Sample1";
     final String fileProgrammingLanguage = "C++";
-    final String fileDetails = "Contents: Use case statements to check multiple conditions.";
+    final String fileDetails = "Use case statements to check multiple conditions.";
 
     Path textFile = Paths.get("src","test", "java", "storage",
             "data_present", "testFile1");
@@ -25,10 +25,10 @@ public class WriteDataFilesTest {
 
     @Test
     public void writeDataFiles_cheatSheetObject_success() {
+
         CheatSheetList.add(new CheatSheet(fileName, fileProgrammingLanguage,
                 fileDetails));
         new WriteDataFiles(textCompareFile);
-
         File createdFile = new File(String.valueOf(textCompareFile));
         createdFile.deleteOnExit();
 
@@ -37,7 +37,7 @@ public class WriteDataFilesTest {
             String actualFile = Files.readString(textCompareFile);
             assertEquals(referenceFile, actualFile);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println(222 + e.getMessage());
         }
     }
 }

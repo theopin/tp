@@ -11,9 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-import static storage.ParseDataFile.NAME;
-import static storage.ParseDataFile.PROGRAMMING_LANGUAGE;
-import static storage.ParseDataFile.DETAILS;
+import static storage.ParseDataFile.*;
 
 /**
  * Allows the user to write data based on the cheatSheets currently present
@@ -32,6 +30,7 @@ public class WriteDataFiles extends DataFile {
     public WriteDataFiles(Path textFilePath) {
         this.cheatSheets = CheatSheetList.getCheatSheetList();
         this.debugPath = textFilePath;
+        executeFunction();
     }
 
     /**
@@ -94,7 +93,8 @@ public class WriteDataFiles extends DataFile {
                 cheatSheet.getCheatSheetProgrammingLanguage());
         cheatSheetFileBuild.append(System.lineSeparator());
 
-        cheatSheetFileBuild.append(DETAILS).append(cheatSheet.getCheatSheetDetails());
+        cheatSheetFileBuild.append(DETAILS).append(WHITESPACE)
+                .append(cheatSheet.getCheatSheetDetails());
     }
 
     /**

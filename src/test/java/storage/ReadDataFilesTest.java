@@ -1,5 +1,6 @@
 package storage;
 
+import cheatsheet.CheatSheetList;
 import exception.DirectoryIsEmptyException;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,7 @@ public class ReadDataFilesTest {
         ReadDataFiles readTest = new ReadDataFiles(String.valueOf(testNonEmptyFolder),
                 testNonEmptyFolder);
         readTest.executeFunction();
-        assertEquals(1,readTest.storedCheatSheets.getSize());
+        assertEquals(1, CheatSheetList.getSize());
     }
 
     @Test
