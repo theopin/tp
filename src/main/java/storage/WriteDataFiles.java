@@ -29,8 +29,8 @@ public class WriteDataFiles extends DataFile {
     }
 
     // Constructor for debugging purposes
-    public WriteDataFiles(CheatSheetList debugCheatSheets, Path textFilePath) {
-        this.cheatSheets = debugCheatSheets.getCheatSheetList();
+    public WriteDataFiles(Path textFilePath) {
+        this.cheatSheets = CheatSheetList.getCheatSheetList();
         this.debugPath = textFilePath;
     }
 

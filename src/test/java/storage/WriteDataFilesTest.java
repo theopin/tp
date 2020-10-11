@@ -25,10 +25,9 @@ public class WriteDataFilesTest {
 
     @Test
     public void writeDataFiles_cheatSheetObject_success() {
-        CheatSheetList debugCheatSheets = new CheatSheetList();
-        debugCheatSheets.add(new CheatSheet(fileName, fileProgrammingLanguage,
+        CheatSheetList.add(new CheatSheet(fileName, fileProgrammingLanguage,
                 fileDetails));
-        new WriteDataFiles(debugCheatSheets, textCompareFile);
+        new WriteDataFiles(textCompareFile);
 
         File createdFile = new File(String.valueOf(textCompareFile));
         createdFile.deleteOnExit();

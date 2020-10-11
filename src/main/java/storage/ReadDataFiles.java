@@ -96,7 +96,7 @@ public class ReadDataFiles extends DataFile {
     private void extractCheatSheet(File cheatSheetDocument) {
         ParseDataFile parseExecution = new ParseDataFile(cheatSheetDocument);
         if (parseExecution.convertedCheatSheet != null) {
-            storedCheatSheets.add(parseExecution.convertedCheatSheet);
+            CheatSheetList.add(parseExecution.convertedCheatSheet);
         }
     }
 }
