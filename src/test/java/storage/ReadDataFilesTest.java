@@ -1,5 +1,6 @@
 package storage;
 
+import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import exception.DirectoryIsEmptyException;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static storage.ParseDataFile.NAME;
 
 public class ReadDataFilesTest {
     
@@ -25,7 +27,9 @@ public class ReadDataFilesTest {
         ReadDataFiles readTest = new ReadDataFiles(String.valueOf(testNonEmptyFolder),
                 testNonEmptyFolder);
         readTest.executeFunction();
-        assertEquals(1, CheatSheetList.getSize());
+        int cheatSheetIndex = CheatSheetList.getSize();
+        CheatSheet testCheatSheet = CheatSheetList.getCheatSheet(cheatSheetIndex);
+        assertEquals("Sample1", testCheatSheet.getCheatSheetName());
     }
 
     @Test
