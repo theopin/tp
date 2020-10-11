@@ -3,7 +3,7 @@ package cheatsheet;
 import java.util.ArrayList;
 
 public class CheatSheetList {
-    private ArrayList<CheatSheet> cheatSheets = new ArrayList<>();
+    private static ArrayList<CheatSheet> cheatSheets = new ArrayList<>();
 
     public CheatSheetList() {
     }
@@ -13,7 +13,7 @@ public class CheatSheetList {
      *
      * @return size of cheatSheets
      */
-    public int getSize() {
+    public static int getSize() {
         return cheatSheets.size();
     }
 
@@ -22,7 +22,7 @@ public class CheatSheetList {
      *
      * @return cheatSheets The current list of cheat sheets
      */
-    public ArrayList<CheatSheet> getCheatSheetList() {
+    public static ArrayList<CheatSheet> getCheatSheetList() {
         return cheatSheets;
     }
 
@@ -32,8 +32,8 @@ public class CheatSheetList {
      *
      * @return printedByUI The string to be printed by UI
      */
-    public String printCheatSheetNames() {
-        StringBuilder printedByUI = new StringBuilder("Current list of cheat sheet:");
+    public static String printCheatSheetNames() {
+        StringBuilder printedByUI = new StringBuilder("Current list of cheat sheet:\n");
         for (CheatSheet cs : cheatSheets) {
             printedByUI.append(cs.getCheatSheetName()).append("\n");
         }
@@ -43,7 +43,7 @@ public class CheatSheetList {
     /**
      * Adds a new cheat sheet to the list.
      */
-    public void add(CheatSheet cheatSheet) {
+    public static void add(CheatSheet cheatSheet) {
         cheatSheets.add(cheatSheet);
     }
 
@@ -53,7 +53,7 @@ public class CheatSheetList {
      *
      * @param name The name attribute of the desired cheat sheet
      */
-    public void remove(String name) throws IndexOutOfBoundsException {
+    public static void remove(String name) throws IndexOutOfBoundsException {
         int index = 0;
         for (CheatSheet cs : cheatSheets) {
             if (cs.getCheatSheetName().equals(name)) {
@@ -77,7 +77,7 @@ public class CheatSheetList {
      * @param index The index of desired cheat sheet
      * @return size of cheatSheets
      */
-    public CheatSheet getCheatSheet(int index) throws IndexOutOfBoundsException {
+    public static CheatSheet getCheatSheet(int index) throws IndexOutOfBoundsException {
         CheatSheet cheatSheet;
         try {
             cheatSheet = cheatSheets.get(index - 1);
