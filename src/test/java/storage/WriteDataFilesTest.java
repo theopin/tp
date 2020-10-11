@@ -30,7 +30,7 @@ public class WriteDataFilesTest {
                 fileDetails));
         new WriteDataFiles(textCompareFile);
         File createdFile = new File(String.valueOf(textCompareFile));
-        createdFile.deleteOnExit();
+
 
         try {
             String referenceFile = Files.readString(textFile);
@@ -38,6 +38,8 @@ public class WriteDataFilesTest {
             assertEquals(referenceFile, actualFile);
         } catch (IOException e) {
             System.out.println(222 + e.getMessage());
+        } finally {
+            createdFile.delete();
         }
     }
 }
