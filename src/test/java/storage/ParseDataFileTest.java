@@ -52,8 +52,7 @@ public class ParseDataFileTest {
     void parseEmptyDataName_textFile2_failure() {
         File textFile = new File(String.valueOf(this.textFile2));
         ParseDataFile parseTest = new ParseDataFile();
-        assertThrows(InvalidFileDataException.class, () ->
-        {
+        assertThrows(InvalidFileDataException.class, () -> {
             parseTest.parseCheatSheet(textFile);
         });
     }
@@ -62,8 +61,7 @@ public class ParseDataFileTest {
     void parseEmptyProgrammingLanguage_textFile3_failure() {
         File textFile = new File(String.valueOf(this.textFile3));
         ParseDataFile parseTest = new ParseDataFile();
-        assertThrows(InvalidFileDataException.class, () ->
-        {
+        assertThrows(InvalidFileDataException.class, () -> {
             parseTest.parseCheatSheet(textFile);
         });
     }
@@ -72,8 +70,7 @@ public class ParseDataFileTest {
     void parseEmptyDetails_textFile4_failure() {
         File textFile = new File(String.valueOf(this.textFile4));
         ParseDataFile parseTest = new ParseDataFile();
-        assertThrows(InvalidFileDataException.class, () ->
-        {
+        assertThrows(InvalidFileDataException.class, () -> {
             parseTest.parseCheatSheet(textFile);
         });
     }
