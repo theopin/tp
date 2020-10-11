@@ -9,11 +9,13 @@ class CheatSheetListTest {
 
     @Test
     void testGetSize() {
-        CheatSheetList cheatSheets = new CheatSheetList();
         for (int i = 0; i < 10; i++) {
-            cheatSheets.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
+            CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
-        assertEquals(cheatSheets.getSize(), 10);
+        assertEquals(10, CheatSheetList.getSize());
+        for (int i = 0; i < 10; i++) {
+            CheatSheetList.remove("Name" + i);
+        }
     }
 
     @Test
@@ -23,41 +25,58 @@ class CheatSheetListTest {
 
     @Test
     void testPrintCheatSheetNames() {
-        // to be added
+        StringBuilder print = new StringBuilder("Current list of cheat sheet:\n");
+        for (int i = 0; i < 10; i++) {
+            CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
+            print.append("Name").append(i).append("\n");
+        }
+        assertEquals(print.toString(), CheatSheetList.printCheatSheetNames());
+        for (int i = 0; i < 10; i++) {
+            CheatSheetList.remove("Name" + i);
+        }
     }
 
     @Test
     void testAdd() {
-        CheatSheetList cheatSheets = new CheatSheetList();
         for (int i = 0; i < 10; i++) {
-            cheatSheets.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
+            CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
-        assertEquals(cheatSheets.getSize(), 10);
+        assertEquals(10, CheatSheetList.getSize());
+        for (int i = 0; i < 10; i++) {
+            CheatSheetList.remove("Name" + i);
+        }
     }
 
     @Test
     void testRemove() {
-        CheatSheetList cheatSheets = new CheatSheetList();
         for (int i = 0; i < 10; i++) {
-            cheatSheets.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
+            CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
-        cheatSheets.remove("Name1");
-        cheatSheets.remove("Name3");
-        cheatSheets.remove("Name5");
-        assertEquals(cheatSheets.getSize(), 7);
+        CheatSheetList.remove("Name1");
+        CheatSheetList.remove("Name3");
+        CheatSheetList.remove("Name5");
+        assertEquals(7, CheatSheetList.getSize());
+        for (int i = 0; i < 10; i++) {
+            if (i == 1 || i == 3 || i == 5) {
+                continue;
+            }
+            CheatSheetList.remove("Name" + i);
+        }
     }
 
     @Test
     void testGetCheatSheet() {
-        CheatSheetList cheatSheets = new CheatSheetList();
         CheatSheet test = new CheatSheet("Name1", "Language1", "Details1");
         for (int i = 0; i < 10; i++) {
             if (i == 1) {
-                cheatSheets.add(test);
+                CheatSheetList.add(test);
             } else {
-                cheatSheets.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
+                CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
             }
         }
-        assertEquals(cheatSheets.getCheatSheet(2), test);
+        assertEquals(test, CheatSheetList.getCheatSheet(2));
+        for (int i = 0; i < 10; i++) {
+            CheatSheetList.remove("Name" + i);
+        }
     }
 }
