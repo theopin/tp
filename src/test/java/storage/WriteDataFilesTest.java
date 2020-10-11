@@ -37,7 +37,7 @@ public class WriteDataFilesTest {
             String actualFile = Files.readString(textCompareFile);
             assertEquals(referenceFile, actualFile);
         } catch (IOException e) {
-            System.out.println(222 + e.getMessage());
+            System.out.println(e.getMessage());
         } finally {
             createdFile.delete();
         }

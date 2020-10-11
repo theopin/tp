@@ -1,6 +1,5 @@
 package storage;
 
-import exception.DirectoryIsEmptyException;
 import exception.InvalidFileDataException;
 import org.junit.jupiter.api.Test;
 

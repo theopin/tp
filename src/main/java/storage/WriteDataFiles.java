@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import static storage.ParseDataFile.NAME;
 import static storage.ParseDataFile.PROGRAMMING_LANGUAGE;
 import static storage.ParseDataFile.DETAILS;
-import static storage.ParseDataFile.WHITESPACE;
+import static storage.ParseDataFile.EMPTY;
 
 /**
  * Allows the user to write data based on the cheatSheets currently present
@@ -88,15 +88,13 @@ public class WriteDataFiles extends DataFile {
      * @param cheatSheet The cheatSheet that is currently being converted into a file.
      */
     private void buildFileContents(StringBuilder cheatSheetFileBuild, CheatSheet cheatSheet) {
-        cheatSheetFileBuild.append(NAME).append(
-                cheatSheet.getCheatSheetName());
-        cheatSheetFileBuild.append(System.lineSeparator());
-
-        cheatSheetFileBuild.append(PROGRAMMING_LANGUAGE).append(
-                cheatSheet.getCheatSheetProgrammingLanguage());
-        cheatSheetFileBuild.append(System.lineSeparator());
-
-        cheatSheetFileBuild.append(DETAILS).append(WHITESPACE)
+        cheatSheetFileBuild.append(NAME)
+                .append(cheatSheet.getCheatSheetName())
+                .append(System.lineSeparator())
+                .append(PROGRAMMING_LANGUAGE)
+                .append(cheatSheet.getCheatSheetProgrammingLanguage())
+                .append(System.lineSeparator())
+                .append(DETAILS)
                 .append(cheatSheet.getCheatSheetDetails());
     }
 
