@@ -24,21 +24,21 @@ public class Parser {
             String parsedInput = userInput.split(" ")[0];
             switch (parsedInput) {
             case "/add":
-                return CommandEnum.ADDCHEATSHEET;
+                return CommandEnum.ADD;
             case "/clear":
-                return CommandEnum.CLEARCHEETSHEET;
+                return CommandEnum.CLEAR;
             case "/delete":
-                return CommandEnum.DELETECHEATSHEET;
+                return CommandEnum.DELETE;
             case "/exit":
                 return CommandEnum.EXIT;
             case "/find":
-                return CommandEnum.FINDCHEATSHEET;
+                return CommandEnum.FIND;
             case "/help":
                 return CommandEnum.HELP;
             case "/list":
-                return CommandEnum.LISTCHEATSHEET;
+                return CommandEnum.LIST;
             case "/view":
-                return CommandEnum.VIEWCHEATSHEET;
+                return CommandEnum.VIEW;
             default:
                 return CommandEnum.EXIT;
             }
@@ -67,16 +67,15 @@ public class Parser {
         descriptionMap = new HashMap<>();
         String[] details = userInput.split(" /[ndilk ]");
         for (int i = 1; i < details.length; i++) {
-            descriptionMap.put(argEnumSet.get(i - 1), details[i]);
+            descriptionMap.put(argEnumSet.get(i - 1), details[i].trim());
         }
-        System.out.println(descriptionMap);
         return descriptionMap;
     }
 
     private ArrayList<String> addMatchesToArgEnumSet(Matcher matcher) {
         ArrayList<String> argList = new ArrayList<>();
         while (matcher.find()) {
-                argList.add(matcher.group().trim());
+            argList.add(matcher.group().trim());
         }
         return argList;
     }

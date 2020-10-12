@@ -10,6 +10,8 @@ public class AddCommand extends Command {
         super(parser);
     }
 
+    // todo: need ask theo how to implement the storage, now only cr8 cheatsheet got no content
+
     @Override
     public void execute() {
         String name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);
@@ -18,5 +20,7 @@ public class AddCommand extends Command {
 
         CheatSheet cheatSheet = new CheatSheet(name, programmingLanguage, description);
         CheatSheetList.add(cheatSheet);
+        System.out.println(cheatSheet + " has been added");
+        System.out.println(CheatSheetList.getSize());
     }
 }

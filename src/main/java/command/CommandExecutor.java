@@ -2,50 +2,40 @@ package command;
 
 import parser.Parser;
 
-import storage.DataFileReader;
-import storage.DataFileWriter;
-
 public class CommandExecutor {
     public CommandExecutor(){
     }
 
-    public static boolean execute(Parser parser, DataFileReader fileReader, DataFileWriter fileWriter) {
+    public static void execute(Parser parser/*, DataFileReader fileReader, DataFileWriter fileWriter*/) {
         Command commandToBeExecuted;
         switch (parser.getCommandType()) {
-        case ADDCHEATSHEET:
+        case ADD:
             commandToBeExecuted = new AddCommand(parser);
             break;
-        case CLEARCHEETSHEET:
+        case CLEAR:
             commandToBeExecuted = new ClearCommand(parser);
             break;
-        case DELETECHEATSHEET:
+        case DELETE:
             commandToBeExecuted = new DeleteCheatSheet(parser);
             break;
         case EXIT:
             commandToBeExecuted = new ExitCommand(parser);
             break;
-        case FINDCHEATSHEET:
+        case FIND:
             commandToBeExecuted = new FindCommand(parser);
             break;
         case HELP:
             commandToBeExecuted = new Help(parser);
             break;
-        case LISTCHEATSHEET:
+        case LIST:
             commandToBeExecuted = new ListCommand(parser);
             break;
-        case VIEWCHEATSHEET:
+        case VIEW:
             commandToBeExecuted = new ViewCommand(parser);
             break;
         default:
             commandToBeExecuted = new ExitCommand(parser);
         }
-
         commandToBeExecuted.execute();
-
-        if (commandToBeExecuted.isExitCommand) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }
