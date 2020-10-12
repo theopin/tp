@@ -40,6 +40,13 @@ public class WriteDataFilesTest {
             System.out.println(e.getMessage());
         } finally {
             createdFile.delete();
+            removeCheatSheet();
         }
+    }
+
+    void removeCheatSheet() {
+        int cheatSheetIndex = CheatSheetList.getSize();
+        CheatSheet testCheatSheet = CheatSheetList.getCheatSheet(cheatSheetIndex);
+        CheatSheetList.remove(testCheatSheet.getCheatSheetName());
     }
 }

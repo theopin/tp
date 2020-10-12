@@ -54,7 +54,6 @@ public class ParseDataFileTest {
 
     private void removeCheatSheet() {
         int cheatSheetIndex = CheatSheetList.getSize();
-        System.out.println(cheatSheetIndex);
         CheatSheet testCheatSheet = CheatSheetList.getCheatSheet(cheatSheetIndex);
         CheatSheetList.remove(testCheatSheet.getCheatSheetName());
     }
