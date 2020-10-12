@@ -1,10 +1,10 @@
-package seedu.duke;
+package cheatlogs;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-class DukeTest {
+class CheatLogsTest {
 
     @Test
     public void sampleTest() {
