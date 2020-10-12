@@ -9,8 +9,9 @@ import java.util.regex.Pattern;
 
 public class Parser {
     private final CommandEnum commandType;
-    private ArrayList<ArgumentEnum> argEnumSet;
-    private HashMap<ArgumentEnum, String> descriptionMap;
+    private final ArrayList<ArgumentFlagEnum> argEnumSet;
+    private HashMap<ArgumentFlagEnum, String> descriptionMap;
+
 
     public Parser(String userInput) {
         commandType = parseTypeOfCommand(userInput);
@@ -46,13 +47,13 @@ public class Parser {
         }
     }
 
-    private ArrayList<ArgumentEnum> parseTypeOfArgument(String userInput) {
-        ArrayList<ArgumentEnum> argEnumList = new ArrayList<>();
+    private ArrayList<ArgumentFlagEnum> parseTypeOfArgument(String userInput) {
+        ArrayList<ArgumentFlagEnum> argEnumList = new ArrayList<>();
         Pattern pattern = Pattern.compile(" /[dnilk] ");
         Matcher matcher = pattern.matcher(userInput);
         ArrayList<String> argList = addMatchesToArgEnumSet(matcher);
         for (String arg : argList) {
-            for (ArgumentEnum ae : ArgumentEnum.values()) {
+            for (ArgumentFlagEnum ae : ArgumentFlagEnum.values()) {
                 if (arg.equals(ae.getAssociatedKeyWord())) {
                     argEnumList.add(ae);
                     break;
@@ -62,7 +63,7 @@ public class Parser {
         return argEnumList;
     }
 
-    private HashMap<ArgumentEnum, String> parseDescription(String userInput) {
+    private HashMap<ArgumentFlagEnum, String> parseDescription(String userInput) {
         descriptionMap = new HashMap<>();
         String[] details = userInput.split(" /[ndilk ]");
         for (int i = 1; i < details.length; i++) {
@@ -84,11 +85,12 @@ public class Parser {
         return commandType;
     }
 
-    public ArrayList<ArgumentEnum> getArgEnumSet() {
+
+    public ArrayList<ArgumentFlagEnum> getArgEnumSet() {
         return argEnumSet;
     }
 
-    public HashMap<ArgumentEnum, String> getDescriptionMap() {
+    public HashMap<ArgumentFlagEnum, String> getDescriptionMap() {
         return descriptionMap;
     }
 

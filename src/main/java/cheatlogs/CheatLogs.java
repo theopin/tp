@@ -1,21 +1,26 @@
 package cheatlogs;
 
 import command.Command;
-import command.ExecuteCommand;
+import command.CommandExecutor;
 import parser.Parser;
+import ui.Printer;
 import ui.Ui;
-import ui.UserSession;
 
 public class CheatLogs {
     // Main Function
     public static void main(String[] args) {
         //new UserSession();
         Ui ui = new Ui();
-        ui.displayWelcomeScreen();
+        Printer.printWelcomeScreen();
         while (!Command.isExitCommand) {
-            String input = ui.askForUserInput();
+            Printer.printUserInputPrompt();
+            String input = ui.getUserInput();
             Parser parser = new Parser(input);
-            ExecuteCommand.executeCommand(parser);
+            //CommandExecutor.execute(parser);
         }
+/*
+        UserSession session = new UserSession();
+        session.runProgramSequence();
+*/
     }
 }

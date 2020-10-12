@@ -4,8 +4,9 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import parser.Parser;
 
-public class ClearCheatSheet extends Command {
-    public ClearCheatSheet(Parser parser) {
+
+public class ClearCommand extends Command {
+    public ClearCommand(Parser parser) {
         super(parser);
     }
 
