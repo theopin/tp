@@ -3,7 +3,7 @@ package command;
 public enum CommandEnum {
     ADDCHEATSHEET,
     CLEARCHEETSHEET,
-    DELETECHEATHSHEET,
+    DELETECHEATSHEET,
     EXIT,
     FINDCHEATSHEET,
     HELP,
