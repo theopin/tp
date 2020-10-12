@@ -6,7 +6,6 @@ import command.CommandEnum;
 import ui.Ui;
 
 public class UserSession {
-
     public UserSession() {
         new ReadDataFile();
         runProgramSequence();
@@ -28,5 +27,6 @@ public class UserSession {
             action = newUserCommand.getCommandType().toString();
         } while (!action.equals(command));
         ui.printExitMessage();
+        */
     }
 }
