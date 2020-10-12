@@ -40,11 +40,10 @@ public class Ui {
         System.out.println("-----------------------------------------------------------------------------------------");
         System.out.println("Please Enter a Command:");
         Scanner in = new Scanner(System.in);
-        String userInput = in.nextLine();
-        return userInput;
+        return in.nextLine();
     }
 
-    public void printExitMessage() {
+    public void printExitLogo() {
         String exitLogo =  " ________  ________  ________  ________  ________      ___    ___ _______\n"
                 + "|\\   ____\\|\\   __  \\|\\   __  \\|\\   ___ \\|\\   __  "
                 + "\\    |\\  \\  /  /|\\  ___ \\\n"
@@ -67,5 +66,9 @@ public class Ui {
         for (int i = 0; i < cheatSheetList.getSize(); i++) {
             System.out.println(cheatSheetList.getCheatSheet(i));
         }
+    }
+
+    public void printExitText() {
+        System.out.println("Thank you for using CheatLogs. See you soon");
     }
 }
