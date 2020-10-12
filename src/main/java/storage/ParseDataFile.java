@@ -56,7 +56,6 @@ public class ParseDataFile {
 
         this.convertedCheatSheet = new CheatSheet(cheatSheetName,
                 cheatSheetProgrammingLanguage, cheatSheetDetails.toString().trim());
-        CheatSheetList.add(this.convertedCheatSheet);
     }
 
     /**

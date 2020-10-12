@@ -31,7 +31,6 @@ public class ParseDataFileTest {
         File textFile = new File(String.valueOf(this.textFile1));
         ParseDataFile parseTest = new ParseDataFile(textFile);
         assertEquals(fileName, parseTest.convertedCheatSheet.getCheatSheetName());
-        removeCheatSheet();
     }
 
     @Test
@@ -40,7 +39,6 @@ public class ParseDataFileTest {
         ParseDataFile parseTest = new ParseDataFile(textFile);
         assertEquals(fileProgrammingLanguage, parseTest.convertedCheatSheet
                 .getCheatSheetProgrammingLanguage());
-        removeCheatSheet();
     }
 
     @Test
@@ -49,13 +47,6 @@ public class ParseDataFileTest {
         ParseDataFile parseTest = new ParseDataFile(textFile);
         assertEquals(fileDetails, parseTest.convertedCheatSheet
                 .getCheatSheetDetails());
-        removeCheatSheet();
-    }
-
-    private void removeCheatSheet() {
-        int cheatSheetIndex = CheatSheetList.getSize();
-        CheatSheet testCheatSheet = CheatSheetList.getCheatSheet(cheatSheetIndex);
-        CheatSheetList.remove(testCheatSheet.getCheatSheetName());
     }
 
     @Test

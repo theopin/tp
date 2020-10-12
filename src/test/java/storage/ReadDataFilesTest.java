@@ -12,10 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ReadDataFilesTest {
-    
-    Path testNonEmptyFolder = Paths.get("src","test", "java", "storage",
+    Path testNonEmptyFolder = Paths.get("src", "test", "java", "storage",
             "data_present");
-    Path testMissingFolder = Paths.get("src","test", "java", "storage",
+    Path testMissingFolder = Paths.get("src", "test", "java", "storage",
             "missing_folder");
 
     @Test
@@ -23,9 +22,13 @@ public class ReadDataFilesTest {
         ReadDataFiles readTest = new ReadDataFiles(String.valueOf(testNonEmptyFolder),
                 testNonEmptyFolder);
         readTest.executeFunction();
+        assertEquals(1, CheatSheetList.getSize());
+        removeCheatSheet();
+    }
+
+    private void removeCheatSheet() {
         int cheatSheetIndex = CheatSheetList.getSize();
         CheatSheet testCheatSheet = CheatSheetList.getCheatSheet(cheatSheetIndex);
-        assertEquals("Sample1", testCheatSheet.getCheatSheetName());
         CheatSheetList.remove(testCheatSheet.getCheatSheetName());
     }
 
