@@ -10,4 +10,8 @@ class ParserTest {
     void parser() {
         assertTrue(true);
     }
+
+    @Test
+    void parser_incompleteInput_exceptionThrown() {
+    }
 }

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ClearCheetSheetTest {
+class ClearCheatSheetTest {
 
     @Test
     void execute() {
