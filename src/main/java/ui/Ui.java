@@ -43,7 +43,7 @@ public class Ui {
         return in.nextLine();
     }
 
-    public void printExitMessage() {
+    public void printExitLogo() {
         String exitLogo =  " ________  ________  ________  ________  ________      ___    ___ _______\n"
                 + "|\\   ____\\|\\   __  \\|\\   __  \\|\\   ___ \\|\\   __  "
                 + "\\    |\\  \\  /  /|\\  ___ \\\n"

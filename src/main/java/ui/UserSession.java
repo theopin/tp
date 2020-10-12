@@ -11,9 +11,10 @@ public class UserSession {
         new ReadDataFile();
         runProgramSequence();
     }
-        /**
-         * Runs the program based on a given sequence.
-         */
+
+    /**
+     * Runs the program based on a given sequence.
+     */
     private void runProgramSequence() {
         String action;
         Parser newUserCommand;
@@ -21,7 +22,7 @@ public class UserSession {
 
         ui.displayWelcomeScreen();
         // Ask for new user input until user types an exit command
-
+        /*
         do {
             newUserCommand = new Parser(ui.askForUserInput());
             action = newUserCommand.getCommandType().toString();
