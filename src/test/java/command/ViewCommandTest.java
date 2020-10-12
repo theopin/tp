@@ -12,7 +12,5 @@ class ViewCommandTest {
     void testViewCommand() {
         Parser input = new Parser("/view");
         ViewCommand vs = new ViewCommand(input);
-
-
     }
 }

@@ -26,6 +26,7 @@ public class UserSession {
      * Runs the program based on a given user commands.
      */
     public void runProgramSequence() {
+        /*
         Parser userCommandParser;
 
         Printer.printWelcomeScreen();
@@ -38,5 +39,6 @@ public class UserSession {
         } while (!Command.isExitCommand);
 
         Printer.printExitLogo();
+        */
     }
 }
