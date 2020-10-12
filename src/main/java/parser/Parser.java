@@ -1,6 +1,5 @@
 package parser;
 
-import command.Command;
 import command.CommandEnum;
 
 import java.util.EnumSet;
@@ -10,8 +9,8 @@ import java.util.regex.Pattern;
 
 public class Parser {
     private final CommandEnum commandType;
-    private EnumSet<ArgumentEnum> argEnumSet;
-    private HashMap<ArgumentEnum, String> descriptionMap;
+    private EnumSet<ArgumentFlagEnum> argEnumSet;
+    private HashMap<ArgumentFlagEnum, String> descriptionMap;
 
     public Parser(String userInput) {
         commandType = parseTypeOfCommand(userInput);
@@ -47,43 +46,43 @@ public class Parser {
         }
     }
 
-    private EnumSet<ArgumentEnum> parseTypeOfArgument(String userInput) {
+    private EnumSet<ArgumentFlagEnum> parseTypeOfArgument(String userInput) {
         argEnumSet = null;
         String[] parsedInput = userInput.split(" ");
         for (int i = 1; i < parsedInput.length; i++) {
             switch (parsedInput[i]) {
             case "/d":
                 assert false;
-                argEnumSet.add(ArgumentEnum.DESCRIPTION);
+                argEnumSet.add(ArgumentFlagEnum.DESCRIPTION);
                 break;
             case "/n":
                 assert false;
-                argEnumSet.add(ArgumentEnum.NAME);
+                argEnumSet.add(ArgumentFlagEnum.NAME);
                 break;
             case "/i":
                 assert false;
-                argEnumSet.add(ArgumentEnum.INDEX);
+                argEnumSet.add(ArgumentFlagEnum.INDEX);
                 break;
             case "/l":
                 assert false;
-                argEnumSet.add(ArgumentEnum.PROGRAMMINGLANGUAGE);
+                argEnumSet.add(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
                 break;
             case "/k":
                 assert false;
-                argEnumSet.add(ArgumentEnum.SECTIONKEYWORD);
+                argEnumSet.add(ArgumentFlagEnum.SECTIONKEYWORD);
                 break;
             default:
-                argEnumSet.add(ArgumentEnum.DESCRIPTION);
+                argEnumSet.add(ArgumentFlagEnum.DESCRIPTION);
             }
         }
         return argEnumSet;
     }
 
-    private HashMap<ArgumentEnum, String> parseDescription(String userInput) {
+    private HashMap<ArgumentFlagEnum, String> parseDescription(String userInput) {
         descriptionMap = new HashMap<>();
         try {
             assert argEnumSet != null;
-            for (ArgumentEnum ae : argEnumSet) {
+            for (ArgumentFlagEnum ae : argEnumSet) {
                 Pattern pattern = Pattern.compile(ae.getAssociatedKeyWord() + ".*(?= /[idn])");
                 Matcher matcher = pattern.matcher(userInput);
                 String description = matcher.group();
@@ -99,11 +98,11 @@ public class Parser {
         return commandType;
     }
 
-    public EnumSet<ArgumentEnum> getArgEnumSet() {
+    public EnumSet<ArgumentFlagEnum> getArgEnumSet() {
         return argEnumSet;
     }
 
-    public HashMap<ArgumentEnum, String> getDescriptionMap() {
+    public HashMap<ArgumentFlagEnum, String> getDescriptionMap() {
         return descriptionMap;
     }
 

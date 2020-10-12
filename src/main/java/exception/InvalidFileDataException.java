@@ -3,7 +3,6 @@ package exception;
 import java.io.File;
 
 public class InvalidFileDataException extends Exception {
-
     private File cheatSheetDocument;
 
     public InvalidFileDataException(File cheatSheetDocument) {
