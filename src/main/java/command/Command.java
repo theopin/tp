@@ -7,7 +7,7 @@ import parser.Parser;
  */
 
 public abstract class Command {
-    public boolean isExitCommand;
+    public static boolean isExitCommand;
     protected Parser parser;
 
     public Command(Parser parser) {

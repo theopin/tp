@@ -10,7 +10,7 @@ public class ExecuteCommand {
             commandToBeExecuted = new AddCheatSheet(parser);
             break;
         case CLEARCHEETSHEET:
-            commandToBeExecuted = new ClearCheetSheet(parser);
+            commandToBeExecuted = new ClearCheatSheet(parser);
             break;
         case DELETECHEATSHEET:
             commandToBeExecuted = new DeleteCheatSheet(parser);
