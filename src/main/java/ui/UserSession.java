@@ -1,13 +1,13 @@
 package ui;
 
 import parser.Parser;
-import storage.ReadDataFile;
+import storage.DataFileReader;
 import command.CommandEnum;
 import ui.Ui;
 
 public class UserSession {
     public UserSession() {
-        new ReadDataFile();
+        new DataFileReader();
         runProgramSequence();
     }
 
