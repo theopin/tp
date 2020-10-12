@@ -13,17 +13,17 @@ import java.nio.file.Path;
  * Allows the user to read data from the data directory and use it
  * to insert the cheatsheets present in the folder to the application.
  */
-public class ReadDataFiles extends DataFile {
+public class DataFileReader extends DataFile {
     private String folderPath = String.valueOf(DATA_DIR);
     private Path dataFolder;
 
     // Main Constructor
-    public ReadDataFiles() {
+    public DataFileReader() {
         executeFunction();
     }
 
     // Constructor for debugging purposes
-    public ReadDataFiles(String folderPath, Path dataFolder) {
+    public DataFileReader(String folderPath, Path dataFolder) {
         this.folderPath = folderPath;
         this.dataFolder = dataFolder;
     }
@@ -91,9 +91,9 @@ public class ReadDataFiles extends DataFile {
      * @param cheatSheetDocument File of the cheatSheet
      */
     private void extractCheatSheet(File cheatSheetDocument) {
-        ParseDataFile parseExecution = new ParseDataFile(cheatSheetDocument);
-        if (parseExecution.convertedCheatSheet != null) {
-            CheatSheetList.add(parseExecution.convertedCheatSheet);
+        DataFileParser parsedData = new DataFileParser(cheatSheetDocument);
+        if (parsedData.convertedCheatSheet != null) {
+            CheatSheetList.add(parsedData.convertedCheatSheet);
         }
     }
 }

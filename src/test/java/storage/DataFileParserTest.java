@@ -1,7 +1,5 @@
 package storage;
 
-import cheatsheet.CheatSheet;
-import cheatsheet.CheatSheetList;
 import exception.InvalidFileDataException;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +10,7 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ParseDataFileTest {
+public class DataFileParserTest {
     Path textFile1 = Paths.get("src","test", "java", "storage",
             "data_present", "testFile1");
     Path textFile2 = Paths.get("src","test", "java", "storage",
@@ -29,14 +27,14 @@ public class ParseDataFileTest {
     @Test
     void parseDataName_textFile1_success() {
         File textFile = new File(String.valueOf(this.textFile1));
-        ParseDataFile parseTest = new ParseDataFile(textFile);
+        DataFileParser parseTest = new DataFileParser(textFile);
         assertEquals(fileName, parseTest.convertedCheatSheet.getCheatSheetName());
     }
 
     @Test
     void parseDataLanguage_textFile1_success() {
         File textFile = new File(String.valueOf(this.textFile1));
-        ParseDataFile parseTest = new ParseDataFile(textFile);
+        DataFileParser parseTest = new DataFileParser(textFile);
         assertEquals(fileProgrammingLanguage, parseTest.convertedCheatSheet
                 .getCheatSheetProgrammingLanguage());
     }
@@ -44,7 +42,7 @@ public class ParseDataFileTest {
     @Test
     void parseDataDetails_textFile1_success() {
         File textFile = new File(String.valueOf(this.textFile1));
-        ParseDataFile parseTest = new ParseDataFile(textFile);
+        DataFileParser parseTest = new DataFileParser(textFile);
         assertEquals(fileDetails, parseTest.convertedCheatSheet
                 .getCheatSheetDetails());
     }
@@ -52,7 +50,7 @@ public class ParseDataFileTest {
     @Test
     void parseEmptyDataName_textFile2_failure() {
         File textFile = new File(String.valueOf(this.textFile2));
-        ParseDataFile parseTest = new ParseDataFile();
+        DataFileParser parseTest = new DataFileParser();
         assertThrows(InvalidFileDataException.class, () -> {
             parseTest.parseCheatSheet(textFile);
         });
@@ -61,7 +59,7 @@ public class ParseDataFileTest {
     @Test
     void parseEmptyProgrammingLanguage_textFile3_failure() {
         File textFile = new File(String.valueOf(this.textFile3));
-        ParseDataFile parseTest = new ParseDataFile();
+        DataFileParser parseTest = new DataFileParser();
         assertThrows(InvalidFileDataException.class, () -> {
             parseTest.parseCheatSheet(textFile);
         });
@@ -70,7 +68,7 @@ public class ParseDataFileTest {
     @Test
     void parseEmptyDetails_textFile4_failure() {
         File textFile = new File(String.valueOf(this.textFile4));
-        ParseDataFile parseTest = new ParseDataFile();
+        DataFileParser parseTest = new DataFileParser();
         assertThrows(InvalidFileDataException.class, () -> {
             parseTest.parseCheatSheet(textFile);
         });

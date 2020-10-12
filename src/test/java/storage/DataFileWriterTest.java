@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class WriteDataFilesTest {
+public class DataFileWriterTest {
     final String fileName = "Sample1";
     final String fileProgrammingLanguage = "C++";
     final String fileDetails = "Use case statements to check multiple conditions.";
@@ -26,7 +26,7 @@ public class WriteDataFilesTest {
     public void writeDataFiles_cheatSheetObject_success() {
         CheatSheetList.add(new CheatSheet(fileName, fileProgrammingLanguage,
                 fileDetails));
-        new WriteDataFiles(textCompareFile);
+        new DataFileWriter(textCompareFile);
         File createdFile = new File(String.valueOf(textCompareFile));
 
         try {

@@ -1,14 +1,13 @@
 package storage;
 
 import cheatsheet.CheatSheet;
-import cheatsheet.CheatSheetList;
 import exception.InvalidFileDataException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class ParseDataFile {
+public class DataFileParser {
     protected static final String NAME = "Name: ";
     protected static final String PROGRAMMING_LANGUAGE = "Programming Language: ";
     protected static final String DETAILS = "Contents: ";
@@ -21,7 +20,7 @@ public class ParseDataFile {
     private String cheatSheetName = "";
     private String cheatSheetProgrammingLanguage = "";
 
-    public ParseDataFile(File cheatSheetDocument) {
+    public DataFileParser(File cheatSheetDocument) {
         try {
             parseCheatSheet(cheatSheetDocument);
         } catch (FileNotFoundException | InvalidFileDataException e) {
@@ -29,7 +28,7 @@ public class ParseDataFile {
         }
     }
 
-    public ParseDataFile() {
+    public DataFileParser() {
     }
 
     /**
@@ -72,7 +71,8 @@ public class ParseDataFile {
                     .trim();
         } else if (cheatSheetLine.startsWith(DETAILS)) {
             String detailsFirstLine = cheatSheetLine
-                    .replace(DETAILS, EMPTY);
+                    .replace(DETAILS, EMPTY)
+                    .trim();
             this.cheatSheetDetails
                     .append(detailsFirstLine)
                     .append(System.lineSeparator());

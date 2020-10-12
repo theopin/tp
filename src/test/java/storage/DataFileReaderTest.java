@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ReadDataFilesTest {
+public class DataFileReaderTest {
     Path testNonEmptyFolder = Paths.get("src", "test", "java", "storage",
             "data_present");
     Path testMissingFolder = Paths.get("src", "test", "java", "storage",
@@ -19,7 +19,7 @@ public class ReadDataFilesTest {
 
     @Test
     void readDataFiles_nonEmptyFolder_success() {
-        ReadDataFiles readTest = new ReadDataFiles(String.valueOf(testNonEmptyFolder),
+        DataFileReader readTest = new DataFileReader(String.valueOf(testNonEmptyFolder),
                 testNonEmptyFolder);
         readTest.executeFunction();
         assertEquals(1, CheatSheetList.getSize());
@@ -34,7 +34,7 @@ public class ReadDataFilesTest {
 
     @Test
     void readDataFiles_missingFolder_exceptionThrown() {
-        ReadDataFiles readTest = new ReadDataFiles(String.valueOf(testMissingFolder),
+        DataFileReader readTest = new DataFileReader(String.valueOf(testMissingFolder),
                 testMissingFolder);
         assertThrows(FileNotFoundException.class, readTest::insertStoredCheatSheets);
     }

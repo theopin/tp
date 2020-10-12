@@ -11,25 +11,25 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-import static storage.ParseDataFile.NAME;
-import static storage.ParseDataFile.PROGRAMMING_LANGUAGE;
-import static storage.ParseDataFile.DETAILS;
+import static storage.DataFileParser.NAME;
+import static storage.DataFileParser.PROGRAMMING_LANGUAGE;
+import static storage.DataFileParser.DETAILS;
 
 /**
  * Allows the user to write data based on the cheatSheets currently present
  * in the list of cheatSheets into individual files.
  */
-public class WriteDataFiles extends DataFile {
+public class DataFileWriter extends DataFile {
     private ArrayList<CheatSheet> cheatSheets;
     private Path debugPath = null;
 
     // Main Constructor
-    public WriteDataFiles() {
+    public DataFileWriter() {
         executeFunction();
     }
 
     // Constructor for debugging purposes
-    public WriteDataFiles(Path textFilePath) {
+    public DataFileWriter(Path textFilePath) {
         this.cheatSheets = CheatSheetList.getCheatSheetList();
         this.debugPath = textFilePath;
         executeFunction();
@@ -61,20 +61,20 @@ public class WriteDataFiles extends DataFile {
      * @param cheatSheet The cheatSheet that is currently being converted into a file.
      */
     public void convertStringToFile(CheatSheet cheatSheet) {
-        Path textFileDirectory;
+        Path textFile;
         StringBuilder cheatSheetFileBuild = new StringBuilder();
 
         // Build cheatsheet content
         buildFileContents(cheatSheetFileBuild, cheatSheet);
 
         String fileName = cheatSheet.getCheatSheetName();
-        textFileDirectory = (debugPath == null) ? Paths.get(USER_DIR, DATA, fileName) : debugPath;
+        textFile = (debugPath == null) ? Paths.get(USER_DIR, DATA, fileName) : debugPath;
 
         try {
-            if (!Files.exists(textFileDirectory)) {
-                Files.createFile(textFileDirectory);
+            if (!Files.exists(textFile)) {
+                Files.createFile(textFile);
             }
-            writeToFile(String.valueOf(textFileDirectory), cheatSheetFileBuild.toString());
+            writeToFile(String.valueOf(textFile), cheatSheetFileBuild.toString());
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
