@@ -19,4 +19,8 @@ class CommandTest {
         // todo : implement this
         assertTrue(true);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c9ea7149aa308f7e9b7b3266d17375d36aaa9e76
