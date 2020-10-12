@@ -1,6 +1,7 @@
 package storage;
 
 import cheatsheet.CheatSheet;
+import cheatsheet.CheatSheetList;
 import exception.InvalidFileDataException;
 
 import java.io.File;
@@ -55,6 +56,7 @@ public class ParseDataFile {
 
         this.convertedCheatSheet = new CheatSheet(cheatSheetName,
                 cheatSheetProgrammingLanguage, cheatSheetDetails.toString().trim());
+        CheatSheetList.add(this.convertedCheatSheet);
     }
 
     /**

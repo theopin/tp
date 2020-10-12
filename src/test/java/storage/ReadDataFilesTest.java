@@ -2,7 +2,6 @@ package storage;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
-import exception.DirectoryIsEmptyException;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
@@ -16,8 +15,6 @@ public class ReadDataFilesTest {
     
     Path testNonEmptyFolder = Paths.get("src","test", "java", "storage",
             "data_present");
-    Path testEmptyFolder = Paths.get("src","test", "java", "storage",
-            "data_empty");
     Path testMissingFolder = Paths.get("src","test", "java", "storage",
             "missing_folder");
 
@@ -29,6 +26,7 @@ public class ReadDataFilesTest {
         int cheatSheetIndex = CheatSheetList.getSize();
         CheatSheet testCheatSheet = CheatSheetList.getCheatSheet(cheatSheetIndex);
         assertEquals("Sample1", testCheatSheet.getCheatSheetName());
+        CheatSheetList.remove(testCheatSheet.getCheatSheetName());
     }
 
     @Test
