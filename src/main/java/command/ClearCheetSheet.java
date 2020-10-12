@@ -1,5 +1,7 @@
 package command;
 
+import cheatsheet.CheatSheet;
+import cheatsheet.CheatSheetList;
 import parser.Parser;
 
 public class ClearCheetSheet extends Command {
@@ -9,6 +11,8 @@ public class ClearCheetSheet extends Command {
 
     @Override
     public void execute() {
-
+        for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
+            CheatSheetList.remove(cs.getCheatSheetName());
+        }
     }
 }
