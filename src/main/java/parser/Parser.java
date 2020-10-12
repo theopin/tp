@@ -28,7 +28,7 @@ public class Parser {
             case "/clear":
                 return CommandEnum.CLEARCHEETSHEET;
             case "/delete":
-                return CommandEnum.DELETECHEATHSHEET;
+                return CommandEnum.DELETECHEATSHEET;
             case "/exit":
                 return CommandEnum.EXIT;
             case "/find":
