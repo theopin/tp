@@ -3,7 +3,9 @@ package parser;
 public enum ArgumentEnum {
     NAME("/n"),
     DESCRIPTION("/d"),
-    INDEX("/i");
+    INDEX("/i"),
+    PROGRAMMINGLANGUAGE("/l"),
+    SECTIONKEYWORD("/k");
 
     private final String associatedKeyWord;
 

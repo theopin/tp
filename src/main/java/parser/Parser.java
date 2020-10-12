@@ -64,6 +64,14 @@ public class Parser {
                 assert false;
                 argEnumSet.add(ArgumentEnum.INDEX);
                 break;
+            case "/l":
+                assert false;
+                argEnumSet.add(ArgumentEnum.PROGRAMMINGLANGUAGE);
+                break;
+            case "/k":
+                assert false;
+                argEnumSet.add(ArgumentEnum.SECTIONKEYWORD);
+                break;
             default:
                 argEnumSet.add(ArgumentEnum.DESCRIPTION);
             }
