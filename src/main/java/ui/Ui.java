@@ -12,23 +12,24 @@ public class Ui {
     }
 
     public void displayWelcomeScreen() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = "  /$$$$$$  /$$                             /$$     /$$                              \n" +
+                " /$$__  $$| $$                            | $$    | $$                              \n" +
+                "| $$  \\__/| $$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$  | $$  /$$$$$$   /$$$$$$   /$$$$$$$\n" +
+                "| $$      | $$__  $$ /$$__  $$ |____  $$|_  $$_/  | $$ /$$__  $$ /$$__  $$ /$$_____/\n" +
+                "| $$      | $$  \\ $$| $$$$$$$$  /$$$$$$$  | $$    | $$| $$  \\ $$| $$  \\ $$|  $$$$$$ \n" +
+                "| $$    $$| $$  | $$| $$_____/ /$$__  $$  | $$ /$$| $$| $$  | $$| $$  | $$ \\____  $$\n" +
+                "|  $$$$$$/| $$  | $$|  $$$$$$$|  $$$$$$$  |  $$$$/| $$|  $$$$$$/|  $$$$$$$ /$$$$$$$/\n" +
+                " \\______/ |__/  |__/ \\_______/ \\_______/   \\___/  |__/ \\______/  \\____  $$|_______/ \n" +
+                "                                                                 /$$  \\ $$          \n" +
+                "                                                                |  $$$$$$/          \n" +
+                "                                                                 \\______/           ";
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
     }
 
     public String askForUserInput() {
         Scanner in = new Scanner(System.in);
-        String userInput = in.nextLine();
-        return userInput;
-    }
-
-    public void printExitMessage() {
-        System.out.println("Bye Friend");
+        return in.nextLine();
     }
 
     public void printCheatSheet() {
@@ -36,5 +37,9 @@ public class Ui {
         for (int i = 0; i < cheatSheetList.getSize(); i++) {
             System.out.println(cheatSheetList.getCheatSheet(i));
         }
+    }
+
+    public void printExitText() {
+        System.out.println("Thank you for using CheatLogs. See you soon");
     }
 }
