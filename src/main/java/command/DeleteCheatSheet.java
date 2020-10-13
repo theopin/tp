@@ -1,6 +1,5 @@
 package command;
 
-import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import parser.ArgumentFlagEnum;
 import parser.Parser;
@@ -25,13 +24,12 @@ public class DeleteCheatSheet extends Command {
                     break;
                 }
             }
-        }  else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
+        } else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
             index = Integer.parseInt(parser.getDescriptionMap().get(ArgumentFlagEnum.INDEX));
             name = CheatSheetList.getCheatSheet(index).getCheatSheetName();
         }
 
-        Printer.printDeleteCheatSheetMessage();
-        Printer.printCheatSheet(CheatSheetList.getCheatSheet(index));
+        Printer.printDeleteCheatSheetMessage(CheatSheetList.getCheatSheet(index));
         CheatSheetList.remove(name);
     }
 }

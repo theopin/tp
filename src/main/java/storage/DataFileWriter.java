@@ -51,7 +51,7 @@ public class DataFileWriter extends DataFile {
      * a string.
      */
     private void storeCheatSheet() {
-        if(cheatSheets != null){
+        if (cheatSheets != null) {
             for (CheatSheet cheatSheet : cheatSheets) {
                 convertStringToFile(cheatSheet);
             }
@@ -103,7 +103,7 @@ public class DataFileWriter extends DataFile {
     /**
      * Writes the values of textContent into a File.
      *
-     * @param directory Name of the file.
+     * @param directory    Name of the file.
      * @param fileContents Contents of the file
      * @throws IOException Thrown if there are issues with writing the string
      *                     into a file.

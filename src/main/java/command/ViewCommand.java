@@ -23,10 +23,9 @@ public class ViewCommand extends Command {
                     break;
                 }
             }
-        }  else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
+        } else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
             index = Integer.parseInt(parser.getDescriptionMap().get(ArgumentFlagEnum.INDEX));
         }
         Printer.printViewCheatSheetMessage(CheatSheetList.getCheatSheet(index));
-        System.out.println(CheatSheetList.getCheatSheet(index).getCheatSheetDetails());
     }
 }

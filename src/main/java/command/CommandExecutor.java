@@ -4,7 +4,7 @@ import exception.CommandException;
 import parser.Parser;
 
 public class CommandExecutor {
-    public CommandExecutor(){
+    public CommandExecutor() {
     }
 
     public static void execute(Parser parser) throws CommandException {

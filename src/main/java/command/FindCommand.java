@@ -27,20 +27,23 @@ public class FindCommand extends Command {
             if (!programmingLanguage.isEmpty() && keyword.isEmpty()) {
                 if (cs.getCheatSheetProgrammingLanguage().equals(programmingLanguage)) {
                     Printer.printCheatSheet(cs);
+                    Printer.printWhiteSpace();
                 }
             } else if (!keyword.isEmpty() && programmingLanguage.isEmpty()) {
                 if (cs.getCheatSheetDetails().contains(keyword)) {
                     Printer.printCheatSheet(cs);
+                    Printer.printWhiteSpace();
                 }
             } else if (!programmingLanguage.isEmpty() && !keyword.isEmpty()) {
                 if (cs.getCheatSheetProgrammingLanguage().equals(programmingLanguage)
                         && cs.getCheatSheetDetails().contains(keyword)) {
                     Printer.printCheatSheet(cs);
+                    Printer.printWhiteSpace();
                 }
             } else {
                 Printer.printCheatSheet(cs);
+                Printer.printWhiteSpace();
             }
-            System.out.println("");
         }
     }
 }
