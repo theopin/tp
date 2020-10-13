@@ -38,6 +38,7 @@ public class UserSession {
                 Parser parsedUserCommand = new Parser(userInput);
                 CommandExecutor.execute(parsedUserCommand);
             } catch (CommandException c) {
+                System.out.println(c.getMessage());
                 continue;
             }
             fileWriter.executeFunction();

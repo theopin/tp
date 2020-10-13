@@ -2,9 +2,12 @@ package command;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
+import exception.CommandException;
 import parser.ArgumentFlagEnum;
 import parser.Parser;
 import ui.Printer;
+
+import java.nio.charset.CoderMalfunctionError;
 
 public class DeleteCheatSheet extends Command {
     public DeleteCheatSheet(Parser parser) {
@@ -12,26 +15,35 @@ public class DeleteCheatSheet extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws CommandException {
         int index = 0;
         String name = "";
-        if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.NAME)) {
-            name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);
-            // this for loop is temporary
+        CheatSheet cheatSheetToBeDeleted;
+        try {
+            if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.NAME)) {
+                name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);
+                // this for loop is temporary
 
-            for (int i = 0; i < CheatSheetList.getCheatSheetList().size(); i++) {
-                if (CheatSheetList.getCheatSheetList().get(i).getCheatSheetName().equals(name)) {
-                    index = i + 1;
-                    break;
+                for (int i = 0; i < CheatSheetList.getSize(); i++) {
+                    if (CheatSheetList.getCheatSheet(i).getCheatSheetName().equals(name)) {
+                        index = i;
+                        break;
+                    }
                 }
-            }
-        }  else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
-            index = Integer.parseInt(parser.getDescriptionMap().get(ArgumentFlagEnum.INDEX));
-            name = CheatSheetList.getCheatSheet(index).getCheatSheetName();
-        }
 
-        Printer.printDeleteCheatSheetMessage();
-        Printer.printCheatSheet(CheatSheetList.getCheatSheet(index));
-        CheatSheetList.remove(name);
+            }  else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
+                index = Integer.parseInt(parser.getDescriptionMap().get(ArgumentFlagEnum.INDEX));
+                name = CheatSheetList.getCheatSheet(index).getCheatSheetName();
+            }
+
+            cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(index);
+            CheatSheetList.remove(name);
+            Printer.printDeleteCheatSheetMessage();
+            Printer.printCheatSheet(cheatSheetToBeDeleted);
+        } catch (IndexOutOfBoundsException i) {
+            throw new CommandException("Enter a valid argument or name");
+        } catch (NumberFormatException n) {
+            throw new CommandException("Enter a valid index");
+        }
     }
 }

@@ -21,7 +21,7 @@ public class AddCommand extends Command {
             String description = parser.getDescriptionMap().get(ArgumentFlagEnum.DESCRIPTION);
 
             if (name == null) {
-                throw new CommandException();
+                throw new CommandException("Please enter a name");
             }
 
             CheatSheet cheatSheet = new CheatSheet(name, programmingLanguage, description);
