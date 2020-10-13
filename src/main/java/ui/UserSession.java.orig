@@ -2,7 +2,10 @@ package ui;
 
 import command.Command;
 import command.CommandExecutor;
+<<<<<<< HEAD
+=======
 import exception.CommandException;
+>>>>>>> 3e37779ac8a3895317ebd63f217fc4d5094429e3
 import parser.Parser;
 import storage.DataFileReader;
 import storage.DataFileWriter;
@@ -18,8 +21,13 @@ public class UserSession {
     Ui ui;
 
     public UserSession() {
+<<<<<<< HEAD
+        //fileReader = new DataFileReader();
+        //fileWriter = new DataFileWriter();
+=======
         fileReader = new DataFileReader();
         fileWriter = new DataFileWriter();
+>>>>>>> 3e37779ac8a3895317ebd63f217fc4d5094429e3
         ui = new Ui();
     }
 
@@ -27,6 +35,10 @@ public class UserSession {
      * Runs the program based on a given user commands.
      */
     public void runProgramSequence() {
+<<<<<<< HEAD
+        /*
+=======
+>>>>>>> 3e37779ac8a3895317ebd63f217fc4d5094429e3
         Parser userCommandParser;
 
         Printer.printWelcomeScreen();
@@ -34,6 +46,14 @@ public class UserSession {
         do {
             Printer.printUserInputPrompt();
             String userInput = ui.getUserInput();
+<<<<<<< HEAD
+            Parser parsedUserCommand = new Parser(userInput);
+            CommandExecutor.execute(parsedUserCommand);
+        } while (!Command.isExitCommand);
+
+        Printer.printExitLogo();
+        */
+=======
             try {
                 Parser parsedUserCommand = new Parser(userInput);
                 CommandExecutor.execute(parsedUserCommand);
@@ -44,5 +64,6 @@ public class UserSession {
         } while (!Command.isExitCommand);
 
         Printer.printExitLogo();
+>>>>>>> 3e37779ac8a3895317ebd63f217fc4d5094429e3
     }
 }

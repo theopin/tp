@@ -4,7 +4,10 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import parser.ArgumentFlagEnum;
 import parser.Parser;
+<<<<<<< HEAD
+=======
 import ui.Printer;
+>>>>>>> 3e37779ac8a3895317ebd63f217fc4d5094429e3
 
 public class FindCommand extends Command {
     public FindCommand(Parser parser) {
@@ -16,6 +19,22 @@ public class FindCommand extends Command {
         String programmingLanguage = "";
         String keyword = "";
 
+<<<<<<< HEAD
+        for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
+            if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.PROGRAMMINGLANGUAGE)) {
+                programmingLanguage = parser.getDescriptionMap().get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
+            }
+            if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.SECTIONKEYWORD)) {
+                keyword = parser.getDescriptionMap().get(ArgumentFlagEnum.SECTIONKEYWORD);
+            }
+            if (!programmingLanguage.isEmpty() && keyword.isEmpty()) {
+                if (cs.getCheatSheetProgrammingLanguage().equals(programmingLanguage)) {
+                    System.out.println(cs);
+                }
+            } else if (!keyword.isEmpty() && programmingLanguage.isEmpty()) {
+                if (cs.getCheatSheetDetails().contains(keyword)) {
+                    System.out.println(cs);
+=======
         if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.PROGRAMMINGLANGUAGE)) {
             programmingLanguage = parser.getDescriptionMap().get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
         }
@@ -31,16 +50,25 @@ public class FindCommand extends Command {
             } else if (!keyword.isEmpty() && programmingLanguage.isEmpty()) {
                 if (cs.getCheatSheetDetails().contains(keyword)) {
                     Printer.printCheatSheet(cs);
+>>>>>>> 3e37779ac8a3895317ebd63f217fc4d5094429e3
                 }
             } else if (!programmingLanguage.isEmpty() && !keyword.isEmpty()) {
                 if (cs.getCheatSheetProgrammingLanguage().equals(programmingLanguage)
                         && cs.getCheatSheetDetails().contains(keyword)) {
+<<<<<<< HEAD
+                    System.out.println(cs);
+                }
+            } else {
+                System.out.println("error");
+            }
+=======
                     Printer.printCheatSheet(cs);
                 }
             } else {
                 Printer.printCheatSheet(cs);
             }
             System.out.println("");
+>>>>>>> 3e37779ac8a3895317ebd63f217fc4d5094429e3
         }
     }
 }

@@ -12,6 +12,10 @@ public class Parser {
     private final CommandEnum commandType;
     private final ArrayList<ArgumentFlagEnum> argEnumSet;
     private HashMap<ArgumentFlagEnum, String> descriptionMap;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 3e37779ac8a3895317ebd63f217fc4d5094429e3
 
 
     public Parser(String userInput) throws CommandException {
@@ -64,6 +68,13 @@ public class Parser {
         return argEnumList;
     }
 
+<<<<<<< HEAD
+    private HashMap<ArgumentFlagEnum, String> parseDescription(String userInput) {
+        descriptionMap = new HashMap<>();
+        String[] details = userInput.split(" /[ndilk ]");
+        for (int i = 1; i < details.length; i++) {
+            descriptionMap.put(argEnumSet.get(i - 1), details[i].trim());
+=======
     private HashMap<ArgumentFlagEnum, String> parseDescription(String userInput) throws CommandException {
         descriptionMap = new HashMap<>();
         try {
@@ -73,6 +84,7 @@ public class Parser {
             }
         } catch (IndexOutOfBoundsException i) {
             throw new CommandException();
+>>>>>>> 3e37779ac8a3895317ebd63f217fc4d5094429e3
         }
         return descriptionMap;
     }

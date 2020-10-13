@@ -1,6 +1,9 @@
 package ui;
 
+<<<<<<< HEAD
+=======
 import cheatsheet.CheatSheet;
+>>>>>>> 3e37779ac8a3895317ebd63f217fc4d5094429e3
 import cheatsheet.CheatSheetList;
 
 /*
@@ -59,8 +62,19 @@ public class Printer {
         print("Please Enter a Command:");
     }
 
+<<<<<<< HEAD
+    public static void printCheatSheetList(CheatSheetList list) {
+        for (int i = 0; i < list.getSize(); i++) {
+            System.out.println(list.getCheatSheet(i));
+        }
+    }
+
+    public static void printHelpSheet() {
+        System.out.println("/add n/ CHEAT_SHEET_NAME d/ DESCRIPTION");
+=======
     public static void printHelpSheet() {
         System.out.println("/add n/ <CHEAT_SHEET_NAME> d/ <DESCRIPTION>");
+>>>>>>> 3e37779ac8a3895317ebd63f217fc4d5094429e3
         System.out.println("\tAdds a new cheat sheet to the application and prompts user to include data "
                 + "into the cheat sheet.");
         System.out.println("/clear");
@@ -77,6 +91,8 @@ public class Printer {
         System.out.println("/exit");
         System.out.println("\tExits the application.");
     }
+<<<<<<< HEAD
+=======
 
     public static void printCheatSheet(CheatSheet cheatSheet) {
         System.out.println("\tName: " + cheatSheet.getCheatSheetName());
@@ -99,4 +115,5 @@ public class Printer {
     public static void printViewCheatSheetMessage(CheatSheet cheatSheet) {
         System.out.println("This is your content for " + cheatSheet.getCheatSheetName() + ": ");
     }
+>>>>>>> 3e37779ac8a3895317ebd63f217fc4d5094429e3
 }
