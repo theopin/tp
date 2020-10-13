@@ -22,6 +22,16 @@ class CheatSheetListTest {
         // to be added
     }
 
+
+    @Test
+    void testClear() {
+        for (int i = 0; i < 10; i++) {
+            CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
+        }
+        CheatSheetList.clear();
+        assertEquals(0, CheatSheetList.getSize());
+    }
+
     @Test
     void testPrintCheatSheetNames() {
         StringBuilder print = new StringBuilder("Current list of cheat sheet:\n");

@@ -44,5 +44,6 @@ public class UserSession {
         } while (!Command.isExitCommand);
 
         Printer.printExitLogo();
+
     }
 }
