@@ -21,14 +21,6 @@ public class DeleteCheatSheet extends Command {
         try {
             if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.NAME)) {
                 name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);
-                // this for loop is temporary
-/*
-                for (int i = 0; i < CheatSheetList.getSize(); i++) {
-                    if (CheatSheetList.getCheatSheet(i).getCheatSheetName().equals(name)) {
-                        index = i;
-                        break;
-                    }
-                }*/
                 cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(name);
             }  else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
                 index = Integer.parseInt(parser.getDescriptionMap().get(ArgumentFlagEnum.INDEX));
