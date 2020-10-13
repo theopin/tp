@@ -109,7 +109,7 @@ public class Printer {
     }
 
     public static void printAddNewCheatSheetMessage(CheatSheet cheatSheet) {
-        System.out.println("Added new cheat sheet: ");
+        System.out.println("Added new cheat sheet:");
         printCheatSheet(cheatSheet);
         System.out.println(LINE);
         System.out.println("Now you have " + CheatSheetList.getSize() + " cheatsheet(s)");
