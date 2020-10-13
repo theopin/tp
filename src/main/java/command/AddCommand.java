@@ -12,8 +12,6 @@ public class AddCommand extends Command {
         super(parser);
     }
 
-    // todo: need ask theo how to implement the storage, now only cr8 cheatsheet got no content
-
     @Override
     public void execute() throws CommandException {
         String name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);

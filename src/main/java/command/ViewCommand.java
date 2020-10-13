@@ -11,8 +11,6 @@ public class ViewCommand extends Command {
         super(parser);
     }
 
-    // todo: need to implement it to show cheatsheet content
-
     @Override
     public void execute() throws CommandException {
         int index = 0;
