@@ -15,9 +15,6 @@ public class ClearCommand extends Command {
     @Override
     public void execute() {
         Printer.printClearCheatSheetMessage(CheatSheetList.getSize());
-        for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
-            CheatSheetList.remove(cs.getCheatSheetName());
-            Printer.printCheatSheet(cs);
-        }
+        CheatSheetList.clear();
     }
 }
