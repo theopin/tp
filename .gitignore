@@ -13,6 +13,9 @@ src/main/resources/docs/
 *.iml
 bin/
 
+# Data Files
+/data/
+
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 src/test/java/storage/data_present/Sample1
