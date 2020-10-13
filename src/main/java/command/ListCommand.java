@@ -1,7 +1,10 @@
 package command;
 
+<<<<<<< HEAD
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
+=======
+>>>>>>> a36b5c4cc93357943ee51b13e0cf58f5a3f95893
 import parser.Parser;
 import ui.Printer;
 
@@ -14,9 +17,6 @@ public class ListCommand extends Command {
 
     @Override
     public void execute() {
-        for (int i = 1; i <= CheatSheetList.getSize(); i++) {
-            System.out.println(i + ". " + CheatSheetList.getCheatSheet(i).getCheatSheetName() + " (ProgrammingLanguage: "
-                    + CheatSheetList.getCheatSheet(i).getCheatSheetProgrammingLanguage() + ")");
-        }
+        Printer.printCheatSheetList();
     }
 }

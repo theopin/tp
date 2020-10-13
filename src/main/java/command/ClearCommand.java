@@ -1,6 +1,5 @@
 package command;
 
-import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import parser.Parser;
 import ui.Printer;

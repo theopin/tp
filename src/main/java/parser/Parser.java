@@ -20,31 +20,27 @@ public class Parser {
         descriptionMap = parseDescription(userInput);
     }
 
-    private CommandEnum parseTypeOfCommand(String userInput) {
-        try {
-            String parsedInput = userInput.split(" ")[0];
-            switch (parsedInput) {
-            case "/add":
-                return CommandEnum.ADD;
-            case "/clear":
-                return CommandEnum.CLEAR;
-            case "/delete":
-                return CommandEnum.DELETE;
-            case "/exit":
-                return CommandEnum.EXIT;
-            case "/find":
-                return CommandEnum.FIND;
-            case "/help":
-                return CommandEnum.HELP;
-            case "/list":
-                return CommandEnum.LIST;
-            case "/view":
-                return CommandEnum.VIEW;
-            default:
-                return CommandEnum.EXIT;
-            }
-        } catch (ArrayIndexOutOfBoundsException a) {
+    private CommandEnum parseTypeOfCommand(String userInput) throws CommandException {
+        String parsedInput = userInput.split(" ")[0];
+        switch (parsedInput) {
+        case "/add":
+            return CommandEnum.ADD;
+        case "/clear":
+            return CommandEnum.CLEAR;
+        case "/delete":
+            return CommandEnum.DELETE;
+        case "/exit":
             return CommandEnum.EXIT;
+        case "/find":
+            return CommandEnum.FIND;
+        case "/help":
+            return CommandEnum.HELP;
+        case "/list":
+            return CommandEnum.LIST;
+        case "/view":
+            return CommandEnum.VIEW;
+        default:
+            throw new CommandException("Please enter a valid command");
         }
     }
 
@@ -72,7 +68,7 @@ public class Parser {
                 descriptionMap.put(argEnumSet.get(i - 1), details[i].trim());
             }
         } catch (IndexOutOfBoundsException i) {
-            throw new CommandException();
+            throw new CommandException("Please enter a valid index");
         }
         return descriptionMap;
     }
