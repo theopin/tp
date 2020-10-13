@@ -26,7 +26,7 @@ public class ViewCommand extends Command {
             } else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
                 index = Integer.parseInt(parser.getDescriptionMap().get(ArgumentFlagEnum.INDEX));
             }
-                Printer.printViewCheatSheetMessage(CheatSheetList.getCheatSheet(index));
+            Printer.printViewCheatSheetMessage(CheatSheetList.getCheatSheet(index));
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new CommandException("Please enter a valid index");
         }

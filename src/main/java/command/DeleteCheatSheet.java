@@ -17,33 +17,24 @@ public class DeleteCheatSheet extends Command {
     public void execute() throws CommandException {
         int index = 0;
         String name = "";
-        CheatSheet cheatSheetToBeDeleted;
+        CheatSheet cheatSheetToBeDeleted = null;
         try {
             if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.NAME)) {
                 name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);
-                // this for loop is temporary
-
-                for (int i = 0; i < CheatSheetList.getSize(); i++) {
-                    if (CheatSheetList.getCheatSheet(i).getCheatSheetName().equals(name)) {
-                        index = i;
-                        break;
-                    }
-                }
-
+                cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(name);
             }  else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
                 index = Integer.parseInt(parser.getDescriptionMap().get(ArgumentFlagEnum.INDEX));
-                name = CheatSheetList.getCheatSheet(index).getCheatSheetName();
+                cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(index);
             }
 
-            cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(index);
-            CheatSheetList.remove(name);
-            fileDestroyer.executeFunction(name);
+            assert cheatSheetToBeDeleted != null;
+            CheatSheetList.remove(cheatSheetToBeDeleted.getCheatSheetName());
+            fileDestroyer.executeFunction(cheatSheetToBeDeleted.getCheatSheetName());
             Printer.printDeleteCheatSheetMessage(cheatSheetToBeDeleted);
         } catch (IndexOutOfBoundsException i) {
             throw new CommandException("Enter a valid argument or name");
         } catch (NumberFormatException n) {
             throw new CommandException("Enter a valid index");
         }
-
     }
 }
