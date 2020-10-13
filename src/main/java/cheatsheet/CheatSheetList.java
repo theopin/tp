@@ -72,6 +72,13 @@ public class CheatSheetList {
     }
 
     /**
+     * Removes all cheat sheet in the list
+     */
+    public static void clear() {
+        cheatSheets.clear();
+    }
+
+    /**
      * Retrieves a cheat sheet from the list using its index.
      *
      * @param index The index of desired cheat sheet
