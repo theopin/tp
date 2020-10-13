@@ -51,7 +51,7 @@ public class DataFileWriter extends DataFile {
      * a string.
      */
     private void storeCheatSheet() {
-        if(cheatSheets != null){
+        if (cheatSheets != null) {
             for (CheatSheet cheatSheet : cheatSheets) {
                 convertStringToFile(cheatSheet);
             }
