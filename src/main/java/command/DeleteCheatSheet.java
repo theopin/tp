@@ -37,6 +37,7 @@ public class DeleteCheatSheet extends Command {
 
             cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(index);
             CheatSheetList.remove(name);
+            fileDestroyer.executeFunction(name);
             Printer.printDeleteCheatSheetMessage(cheatSheetToBeDeleted);
         } catch (IndexOutOfBoundsException i) {
             throw new CommandException("Enter a valid argument or name");
