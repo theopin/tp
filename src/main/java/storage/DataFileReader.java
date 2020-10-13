@@ -15,7 +15,7 @@ import java.nio.file.Path;
  */
 public class DataFileReader extends DataFile {
     private String folderPath = String.valueOf(DATA_DIR);
-    private Path dataFolder;
+    private Path dataFolder = DATA_DIR;
 
     // Main Constructor
     public DataFileReader() {

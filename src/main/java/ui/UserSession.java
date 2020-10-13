@@ -17,8 +17,8 @@ public class UserSession {
     Ui ui;
 
     public UserSession() {
-        //fileReader = new DataFileReader();
-        //fileWriter = new DataFileWriter();
+        fileReader = new DataFileReader();
+        fileWriter = new DataFileWriter();
         ui = new Ui();
     }
 
@@ -26,7 +26,6 @@ public class UserSession {
      * Runs the program based on a given user commands.
      */
     public void runProgramSequence() {
-        /*
         Parser userCommandParser;
 
         Printer.printWelcomeScreen();
@@ -36,9 +35,10 @@ public class UserSession {
             String userInput = ui.getUserInput();
             Parser parsedUserCommand = new Parser(userInput);
             CommandExecutor.execute(parsedUserCommand);
+            fileWriter.executeFunction();
         } while (!Command.isExitCommand);
 
         Printer.printExitLogo();
-        */
+
     }
 }
