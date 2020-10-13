@@ -1,5 +1,6 @@
 package ui;
 
+import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 
 /*
@@ -58,14 +59,8 @@ public class Printer {
         print("Please Enter a Command:");
     }
 
-    public static void printCheatSheetList(CheatSheetList list) {
-        for (int i = 0; i < list.getSize(); i++) {
-            System.out.println(list.getCheatSheet(i));
-        }
-    }
-
     public static void printHelpSheet() {
-        System.out.println("/add n/ CHEAT_SHEET_NAME d/ DESCRIPTION");
+        System.out.println("/add n/ <CHEAT_SHEET_NAME> d/ <DESCRIPTION>");
         System.out.println("\tAdds a new cheat sheet to the application and prompts user to include data "
                 + "into the cheat sheet.");
         System.out.println("/clear");
@@ -81,5 +76,27 @@ public class Printer {
         System.out.println("\tLists all the possible commands that can be executed in the application.");
         System.out.println("/exit");
         System.out.println("\tExits the application.");
+    }
+
+    public static void printCheatSheet(CheatSheet cheatSheet) {
+        System.out.println("\tName: " + cheatSheet.getCheatSheetName());
+        System.out.println("\tProgramming Language: " + cheatSheet.getCheatSheetProgrammingLanguage());
+        System.out.println("\tDetails: " + cheatSheet.getCheatSheetDetails());
+    }
+
+    public static void printAddNewCheatSheetMessage() {
+        System.out.println("Added new cheat sheet: ");
+    }
+
+    public static void printClearCheatSheetMessage(int number) {
+        System.out.println("Cleared total of " + number + " cheat sheets");
+    }
+
+    public static void printDeleteCheatSheetMessage() {
+        System.out.println("This cheat sheet has been deleted: ");
+    }
+
+    public static void printViewCheatSheetMessage(CheatSheet cheatSheet) {
+        System.out.println("This is your content for " + cheatSheet.getCheatSheetName() + ": ");
     }
 }

@@ -3,6 +3,7 @@ package command;
 import cheatsheet.CheatSheetList;
 import parser.ArgumentFlagEnum;
 import parser.Parser;
+import ui.Printer;
 
 public class ViewCommand extends Command {
     public ViewCommand(Parser parser) {
@@ -25,6 +26,7 @@ public class ViewCommand extends Command {
         }  else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
             index = Integer.parseInt(parser.getDescriptionMap().get(ArgumentFlagEnum.INDEX));
         }
-        System.out.println(CheatSheetList.getCheatSheet(index));
+        Printer.printViewCheatSheetMessage(CheatSheetList.getCheatSheet(index));
+        System.out.println(CheatSheetList.getCheatSheet(index).getCheatSheetDetails());
     }
 }

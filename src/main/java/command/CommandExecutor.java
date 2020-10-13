@@ -1,12 +1,13 @@
 package command;
 
+import exception.CommandException;
 import parser.Parser;
 
 public class CommandExecutor {
     public CommandExecutor(){
     }
 
-    public static void execute(Parser parser/*, DataFileReader fileReader, DataFileWriter fileWriter*/) {
+    public static void execute(Parser parser) throws CommandException {
         Command commandToBeExecuted;
         switch (parser.getCommandType()) {
         case ADD:

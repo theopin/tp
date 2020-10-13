@@ -3,6 +3,7 @@ package command;
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import parser.Parser;
+import ui.Printer;
 
 
 public class ClearCommand extends Command {
@@ -13,8 +14,10 @@ public class ClearCommand extends Command {
 
     @Override
     public void execute() {
+        Printer.printClearCheatSheetMessage(CheatSheetList.getSize());
         for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
             CheatSheetList.remove(cs.getCheatSheetName());
+            Printer.printCheatSheet(cs);
         }
     }
 }
