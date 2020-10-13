@@ -16,17 +16,17 @@ public class AddCommand extends Command {
 
     @Override
     public void execute() throws CommandException {
-            String name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);
-            String programmingLanguage = parser.getDescriptionMap().get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
-            String description = parser.getDescriptionMap().get(ArgumentFlagEnum.DESCRIPTION);
+        String name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);
+        String programmingLanguage = parser.getDescriptionMap().get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
+        String description = parser.getDescriptionMap().get(ArgumentFlagEnum.DESCRIPTION);
 
-            if (name == null) {
-                throw new CommandException();
-            }
+        if (name == null) {
+            throw new CommandException();
+        }
 
-            CheatSheet cheatSheet = new CheatSheet(name, programmingLanguage, description);
-            CheatSheetList.add(cheatSheet);
-            Printer.printAddNewCheatSheetMessage();
-            Printer.printCheatSheet(cheatSheet);
+        CheatSheet cheatSheet = new CheatSheet(name, programmingLanguage, description);
+        CheatSheetList.add(cheatSheet);
+        Printer.printAddNewCheatSheetMessage();
+        Printer.printCheatSheet(cheatSheet);
     }
 }

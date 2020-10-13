@@ -61,18 +61,26 @@ public class CheatSheetList {
             }
             index++;
         }
+        remove(index);
+    }
 
+    /**
+     * Deletes a cheat sheet from the list.
+     * Prints an error message if index is out of bound.
+     *
+     * @param index The index of the desired cheat sheet
+     */
+    public static void remove(int index) throws IndexOutOfBoundsException {
         try {
             cheatSheets.remove(index);
         } catch (IndexOutOfBoundsException e) {
             // todo: add error message in UI
             throw new IndexOutOfBoundsException();
         }
-
     }
 
     /**
-     * Removes all cheat sheet in the list
+     * Removes all cheat sheet in the list.
      */
     public static void clear() {
         cheatSheets.clear();
@@ -95,4 +103,21 @@ public class CheatSheetList {
         return cheatSheet;
     }
 
+    /**
+     * Retrieves a cheat sheet from the list using its name.
+     *
+     * @param name The name attribute of desired cheat sheet
+     * @return size of cheatSheets
+     */
+    public static CheatSheet getCheatSheet(String name) throws IndexOutOfBoundsException {
+        CheatSheet cheatSheet;
+        int index = 0;
+        for (CheatSheet cs : cheatSheets) {
+            if (cs.getCheatSheetName().equals(name)) {
+                break;
+            }
+            index++;
+        }
+        return getCheatSheet(index + 1);
+    }
 }
