@@ -2,9 +2,12 @@ package command;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
+import exception.CommandException;
 import parser.ArgumentFlagEnum;
 import parser.Parser;
 import ui.Printer;
+
+import java.util.ArrayList;
 
 public class FindCommand extends Command {
     public FindCommand(Parser parser) {
@@ -12,9 +15,10 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws CommandException {
         String programmingLanguage = "";
         String keyword = "";
+        ArrayList<CheatSheet> cheatSheetArrayList = new ArrayList<>();
 
         if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.PROGRAMMINGLANGUAGE)) {
             programmingLanguage = parser.getDescriptionMap().get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
@@ -22,25 +26,32 @@ public class FindCommand extends Command {
         if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.SECTIONKEYWORD)) {
             keyword = parser.getDescriptionMap().get(ArgumentFlagEnum.SECTIONKEYWORD);
         }
-        System.out.println("Showing all matches: ");
+
         for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
             if (!programmingLanguage.isEmpty() && keyword.isEmpty()) {
                 if (cs.getCheatSheetProgrammingLanguage().equals(programmingLanguage)) {
-                    Printer.printCheatSheet(cs);
+                    cheatSheetArrayList.add(cs);
                 }
             } else if (!keyword.isEmpty() && programmingLanguage.isEmpty()) {
                 if (cs.getCheatSheetDetails().contains(keyword)) {
-                    Printer.printCheatSheet(cs);
+                    cheatSheetArrayList.add(cs);
                 }
             } else if (!programmingLanguage.isEmpty() && !keyword.isEmpty()) {
                 if (cs.getCheatSheetProgrammingLanguage().equals(programmingLanguage)
                         && cs.getCheatSheetDetails().contains(keyword)) {
-                    Printer.printCheatSheet(cs);
+                    cheatSheetArrayList.add(cs);
                 }
             } else {
-                Printer.printCheatSheet(cs);
+                throw new CommandException("Please enter at least an argument");
             }
-            System.out.println("");
+        }
+        if (cheatSheetArrayList.isEmpty()) {
+            throw new CommandException("No matching content found");
+        }
+        System.out.println("Showing all matches: ");
+        for (CheatSheet cs : cheatSheetArrayList) {
+            Printer.printCheatSheet(cs);
+            Printer.printWhiteSpace();
         }
     }
 }

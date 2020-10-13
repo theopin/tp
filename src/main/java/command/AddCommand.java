@@ -21,12 +21,11 @@ public class AddCommand extends Command {
         String description = parser.getDescriptionMap().get(ArgumentFlagEnum.DESCRIPTION);
 
         if (name == null) {
-            throw new CommandException();
+            throw new CommandException("Please enter a name");
         }
 
         CheatSheet cheatSheet = new CheatSheet(name, programmingLanguage, description);
         CheatSheetList.add(cheatSheet);
-        Printer.printAddNewCheatSheetMessage();
-        Printer.printCheatSheet(cheatSheet);
+        Printer.printAddNewCheatSheetMessage(cheatSheet);
     }
 }

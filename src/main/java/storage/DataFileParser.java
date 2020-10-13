@@ -37,7 +37,6 @@ public class DataFileParser {
      * @param cheatSheetDocument cheatSheet file to be parsed.
      * @throws FileNotFoundException Thrown if the file is not found in
      *                               the user directory.
-     *
      */
     protected void parseCheatSheet(File cheatSheetDocument) throws FileNotFoundException,
             InvalidFileDataException {
