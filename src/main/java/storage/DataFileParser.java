@@ -54,6 +54,7 @@ public class DataFileParser {
 
         this.convertedCheatSheet = new CheatSheet(cheatSheetName,
                 cheatSheetProgrammingLanguage, cheatSheetDetails.toString().trim());
+        componentScanner.close();
     }
 
     /**

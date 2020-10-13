@@ -4,6 +4,7 @@ import command.Command;
 import command.CommandExecutor;
 import exception.CommandException;
 import parser.Parser;
+import storage.DataFileDestroyer;
 import storage.DataFileReader;
 import storage.DataFileWriter;
 
@@ -15,6 +16,7 @@ public class UserSession {
      */
     DataFileReader fileReader;
     DataFileWriter fileWriter;
+    DataFileDestroyer fileDestroyer;
     Ui ui;
 
     public UserSession() {
