@@ -9,16 +9,16 @@ import java.util.stream.Stream;
 
 public class DataFileDestroyer extends DataFile {
 
+    private static final String MULTIPLE = "multiple";
     private Path debugPath = null;
 
     @Override
     public void executeFunction() {
-    /*        try {
-                clearDirectory();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-    */
+        try {
+            clearDirectory(DATA_DIR);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void executeFunction(String unwantedFile) {
@@ -29,10 +29,14 @@ public class DataFileDestroyer extends DataFile {
         }
     }
 
-    public void executeFunction(Path unwantedFilePath) {
+    public void executeFunction(Path unwantedFilePath, String function) {
         this.debugPath = unwantedFilePath;
         try {
-            deleteFile(null);
+            if (function.equals(MULTIPLE)) {
+                clearDirectory(unwantedFilePath);
+            } else {
+                deleteFile(null);
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -44,9 +48,16 @@ public class DataFileDestroyer extends DataFile {
                 : debugPath;
         Files.delete(unwantedFilePath);
     }
-    /*
-        private void clearDirectory() throws IOException {
-            Files.list(DATA_DIR).forEach(Files::delete);
-        }
-    */
+
+    private void clearDirectory(Path intendedDirectory) throws IOException {
+        Stream<Path> dataDirectoryFiles = Files.list(intendedDirectory);
+        dataDirectoryFiles.forEach(path -> {
+            try {
+                Files.delete(path);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        });
+    }
+
 }
