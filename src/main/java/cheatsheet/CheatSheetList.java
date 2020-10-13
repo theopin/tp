@@ -72,7 +72,7 @@ public class CheatSheetList {
     }
 
     /**
-     * Removes all cheat sheet in the list
+     * Removes all cheat sheet in the list.
      */
     public static void clear() {
         cheatSheets.clear();

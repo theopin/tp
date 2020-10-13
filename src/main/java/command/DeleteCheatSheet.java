@@ -7,7 +7,6 @@ import parser.ArgumentFlagEnum;
 import parser.Parser;
 import ui.Printer;
 
-import java.nio.charset.CoderMalfunctionError;
 
 public class DeleteCheatSheet extends Command {
     public DeleteCheatSheet(Parser parser) {
@@ -38,12 +37,12 @@ public class DeleteCheatSheet extends Command {
 
             cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(index);
             CheatSheetList.remove(name);
-            Printer.printDeleteCheatSheetMessage();
-            Printer.printCheatSheet(cheatSheetToBeDeleted);
+            Printer.printDeleteCheatSheetMessage(cheatSheetToBeDeleted);
         } catch (IndexOutOfBoundsException i) {
             throw new CommandException("Enter a valid argument or name");
         } catch (NumberFormatException n) {
             throw new CommandException("Enter a valid index");
         }
+
     }
 }

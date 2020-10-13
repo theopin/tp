@@ -49,7 +49,7 @@ public class DataFileReader extends DataFile {
      * Converts the data obtained from the /data folder into cheatsheets and adds
      * them to the application.
      *
-     * @throws FileNotFoundException Thrown if the /data folder is not found
+     * @throws FileNotFoundException     Thrown if the /data folder is not found
      * @throws DirectoryIsEmptyException Thrown if the /data folder is empty
      */
     protected void insertStoredCheatSheets() throws FileNotFoundException,

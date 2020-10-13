@@ -51,7 +51,7 @@ public class FindCommand extends Command {
         System.out.println("Showing all matches: ");
         for (CheatSheet cs : cheatSheetArrayList) {
             Printer.printCheatSheet(cs);
-            System.out.println("");
+            Printer.printWhiteSpace();
         }
     }
 }
