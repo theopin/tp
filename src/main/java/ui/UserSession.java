@@ -21,12 +21,12 @@ public class UserSession {
 
         ui.displayWelcomeScreen();
         // Ask for new user input until user types an exit command
-        /*
+
         do {
             newUserCommand = new Parser(ui.askForUserInput());
             action = newUserCommand.getCommandType().toString();
-        } while (!action.equals(command));
-        ui.printExitMessage();
-        */
+        } while (!action.equals("Command.EXIT"));
+        ui.printExitLogo();
+
     }
 }
