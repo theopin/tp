@@ -1,12 +1,12 @@
 package command;
 
 public enum CommandEnum {
-    ADDCHEATSHEET,
-    CLEARCHEETSHEET,
-    DELETECHEATSHEET,
+    ADD,
+    CLEAR,
+    DELETE,
     EXIT,
-    FINDCHEATSHEET,
+    FIND,
     HELP,
-    LISTCHEATSHEET,
-    VIEWCHEATSHEET;
+    LIST,
+    VIEW;
 }

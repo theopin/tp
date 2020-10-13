@@ -1,19 +1,20 @@
 package parser;
 
-import command.Command;
 import command.CommandEnum;
+import exception.CommandException;
 
-import java.util.EnumSet;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
     private final CommandEnum commandType;
-    private EnumSet<ArgumentEnum> argEnumSet;
-    private HashMap<ArgumentEnum, String> descriptionMap;
+    private final ArrayList<ArgumentFlagEnum> argEnumSet;
+    private HashMap<ArgumentFlagEnum, String> descriptionMap;
 
-    public Parser(String userInput) {
+
+    public Parser(String userInput) throws CommandException {
         commandType = parseTypeOfCommand(userInput);
         argEnumSet = parseTypeOfArgument(userInput);
         descriptionMap = parseDescription(userInput);
@@ -24,21 +25,21 @@ public class Parser {
             String parsedInput = userInput.split(" ")[0];
             switch (parsedInput) {
             case "/add":
-                return CommandEnum.ADDCHEATSHEET;
+                return CommandEnum.ADD;
             case "/clear":
-                return CommandEnum.CLEARCHEETSHEET;
+                return CommandEnum.CLEAR;
             case "/delete":
-                return CommandEnum.DELETECHEATSHEET;
+                return CommandEnum.DELETE;
             case "/exit":
                 return CommandEnum.EXIT;
             case "/find":
-                return CommandEnum.FINDCHEATSHEET;
+                return CommandEnum.FIND;
             case "/help":
                 return CommandEnum.HELP;
             case "/list":
-                return CommandEnum.LISTCHEATSHEET;
+                return CommandEnum.LIST;
             case "/view":
-                return CommandEnum.VIEWCHEATSHEET;
+                return CommandEnum.VIEW;
             default:
                 return CommandEnum.EXIT;
             }
@@ -47,63 +48,53 @@ public class Parser {
         }
     }
 
-    private EnumSet<ArgumentEnum> parseTypeOfArgument(String userInput) {
-        argEnumSet = null;
-        String[] parsedInput = userInput.split(" ");
-        for (int i = 1; i < parsedInput.length; i++) {
-            switch (parsedInput[i]) {
-            case "/d":
-                assert false;
-                argEnumSet.add(ArgumentEnum.DESCRIPTION);
-                break;
-            case "/n":
-                assert false;
-                argEnumSet.add(ArgumentEnum.NAME);
-                break;
-            case "/i":
-                assert false;
-                argEnumSet.add(ArgumentEnum.INDEX);
-                break;
-            case "/l":
-                assert false;
-                argEnumSet.add(ArgumentEnum.PROGRAMMINGLANGUAGE);
-                break;
-            case "/k":
-                assert false;
-                argEnumSet.add(ArgumentEnum.SECTIONKEYWORD);
-                break;
-            default:
-                argEnumSet.add(ArgumentEnum.DESCRIPTION);
+    private ArrayList<ArgumentFlagEnum> parseTypeOfArgument(String userInput) {
+        ArrayList<ArgumentFlagEnum> argEnumList = new ArrayList<>();
+        Pattern pattern = Pattern.compile(" /[dnilk] ");
+        Matcher matcher = pattern.matcher(userInput);
+        ArrayList<String> argList = addMatchesToArgEnumSet(matcher);
+        for (String arg : argList) {
+            for (ArgumentFlagEnum ae : ArgumentFlagEnum.values()) {
+                if (arg.equals(ae.getAssociatedKeyWord())) {
+                    argEnumList.add(ae);
+                    break;
+                }
             }
         }
-        return argEnumSet;
+        return argEnumList;
     }
 
-    private HashMap<ArgumentEnum, String> parseDescription(String userInput) {
+    private HashMap<ArgumentFlagEnum, String> parseDescription(String userInput) throws CommandException {
         descriptionMap = new HashMap<>();
         try {
-            assert argEnumSet != null;
-            for (ArgumentEnum ae : argEnumSet) {
-                Pattern pattern = Pattern.compile(ae.getAssociatedKeyWord() + ".*(?= /[idn])");
-                Matcher matcher = pattern.matcher(userInput);
-                String description = matcher.group();
-                descriptionMap.put(ae, description);
+            String[] details = userInput.split(" /[ndilk ]");
+            for (int i = 1; i < details.length; i++) {
+                descriptionMap.put(argEnumSet.get(i - 1), details[i].trim());
             }
-        } catch (ArrayIndexOutOfBoundsException a) {
-            return new HashMap<>();
+        } catch (IndexOutOfBoundsException i) {
+            throw new CommandException();
         }
         return descriptionMap;
+    }
+
+    private ArrayList<String> addMatchesToArgEnumSet(Matcher matcher) {
+        ArrayList<String> argList = new ArrayList<>();
+        while (matcher.find()) {
+            argList.add(matcher.group().trim());
+        }
+        return argList;
     }
 
     public CommandEnum getCommandType() {
         return commandType;
     }
 
-    public EnumSet<ArgumentEnum> getArgEnumSet() {
+
+    public ArrayList<ArgumentFlagEnum> getArgEnumSet() {
         return argEnumSet;
     }
 
-    public HashMap<ArgumentEnum, String> getDescriptionMap() {
+    public HashMap<ArgumentFlagEnum, String> getDescriptionMap() {
         return descriptionMap;
     }
 

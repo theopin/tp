@@ -1,6 +1,7 @@
 package command;
 
 import parser.Parser;
+import ui.Printer;
 
 public class Help extends Command {
     public Help(Parser parser) {
@@ -9,6 +10,6 @@ public class Help extends Command {
 
     @Override
     public void execute() {
-
+        Printer.printHelpSheet();
     }
 }

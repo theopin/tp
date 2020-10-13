@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CheatSheetListTest {
 
-
     @Test
     void testGetSize() {
         for (int i = 0; i < 10; i++) {

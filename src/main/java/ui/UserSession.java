@@ -1,32 +1,49 @@
 package ui;
 
+import command.Command;
+import command.CommandExecutor;
+import exception.CommandException;
 import parser.Parser;
 import storage.DataFileReader;
-import command.CommandEnum;
-import ui.Ui;
+import storage.DataFileWriter;
+
 
 public class UserSession {
+    /*
+     * These are objects that will be passed to command subclasses
+     * that allow them to execute helper functions.
+     */
+    DataFileReader fileReader;
+    DataFileWriter fileWriter;
+    Ui ui;
+
     public UserSession() {
-        new DataFileReader();
-        runProgramSequence();
+        fileReader = new DataFileReader();
+        fileWriter = new DataFileWriter();
+        ui = new Ui();
     }
 
     /**
-     * Runs the program based on a given sequence.
+     * Runs the program based on a given user commands.
      */
-    private void runProgramSequence() {
-        String action;
-        Parser newUserCommand;
-        Ui ui = new Ui();
+    public void runProgramSequence() {
+        Parser userCommandParser;
 
-        ui.displayWelcomeScreen();
-        // Ask for new user input until user types an exit command
-
+        Printer.printWelcomeScreen();
+        // Ask for new user input and executes it until user types an exit command
         do {
-            newUserCommand = new Parser(ui.askForUserInput());
-            action = newUserCommand.getCommandType().toString();
-        } while (!action.equals("Command.EXIT"));
-        ui.printExitLogo();
+            Printer.printUserInputPrompt();
+            String userInput = ui.getUserInput();
+            try {
+                Parser parsedUserCommand = new Parser(userInput);
+                CommandExecutor.execute(parsedUserCommand);
+            } catch (CommandException c) {
+                continue;
+            }
+            fileWriter.executeFunction();
+        } while (!Command.isExitCommand);
+
+        Printer.printExitLogo();
 
     }
 }

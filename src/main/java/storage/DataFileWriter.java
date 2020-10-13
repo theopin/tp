@@ -42,6 +42,7 @@ public class DataFileWriter extends DataFile {
      */
     @Override
     public void executeFunction() {
+        cheatSheets = CheatSheetList.getCheatSheetList();
         storeCheatSheet();
     }
 
@@ -50,8 +51,10 @@ public class DataFileWriter extends DataFile {
      * a string.
      */
     private void storeCheatSheet() {
-        for (CheatSheet cheatSheet : cheatSheets) {
-            convertStringToFile(cheatSheet);
+        if(cheatSheets != null){
+            for (CheatSheet cheatSheet : cheatSheets) {
+                convertStringToFile(cheatSheet);
+            }
         }
     }
 
