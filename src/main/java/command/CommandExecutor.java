@@ -35,7 +35,7 @@ public class CommandExecutor {
             commandToBeExecuted = new ViewCommand(parser);
             break;
         default:
-            commandToBeExecuted = new ExitCommand(parser);
+            throw new CommandException("THIS WILL NVR HAPPEN");
         }
         commandToBeExecuted.execute();
     }

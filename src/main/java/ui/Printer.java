@@ -40,7 +40,7 @@ public class Printer {
                 + "                                       \\ \\  \\____\\ \\  \\\\\\  \\ \\  \\|\\  \\\n"
                 + "                                        \\ \\_______\\ \\_______\\ \\_______\\\n"
                 + "                                         \\|_______|\\|_______|\\|_______|\n"
-                + LINE
+                + LINE + "\n"
                 + "Welcome to CheatLogs, the one stop cheat sheet management systems\n"
                 + "Your CAP is our upmost priority"
                 + RESET_TEXT
