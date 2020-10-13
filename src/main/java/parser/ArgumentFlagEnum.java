@@ -1,6 +1,6 @@
 package parser;
 
-public enum ArgumentEnum {
+public enum ArgumentFlagEnum {
     NAME("/n"),
     DESCRIPTION("/d"),
     INDEX("/i"),
@@ -9,7 +9,7 @@ public enum ArgumentEnum {
 
     private final String associatedKeyWord;
 
-    ArgumentEnum(String associatedKeyword) {
+    ArgumentFlagEnum(String associatedKeyword) {
         this.associatedKeyWord = associatedKeyword;
     }
 

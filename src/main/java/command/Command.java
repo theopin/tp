@@ -5,9 +5,8 @@ import parser.Parser;
 /**
  * The base class for all commands.
  */
-
 public abstract class Command {
-    public boolean isExitCommand;
+    public static boolean isExitCommand;
     protected Parser parser;
 
     public Command(Parser parser) {
