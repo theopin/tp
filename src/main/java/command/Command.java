@@ -1,5 +1,6 @@
 package command;
 
+import exception.CommandException;
 import parser.Parser;
 
 /**
@@ -14,5 +15,5 @@ public abstract class Command {
         isExitCommand = false;
     }
 
-    public abstract void execute();
+    public abstract void execute() throws CommandException;
 }

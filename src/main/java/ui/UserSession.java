@@ -2,6 +2,7 @@ package ui;
 
 import command.Command;
 import command.CommandExecutor;
+import exception.CommandException;
 import parser.Parser;
 import storage.DataFileReader;
 import storage.DataFileWriter;
@@ -33,12 +34,15 @@ public class UserSession {
         do {
             Printer.printUserInputPrompt();
             String userInput = ui.getUserInput();
-            Parser parsedUserCommand = new Parser(userInput);
-            CommandExecutor.execute(parsedUserCommand);
+            try {
+                Parser parsedUserCommand = new Parser(userInput);
+                CommandExecutor.execute(parsedUserCommand);
+            } catch (CommandException c) {
+                continue;
+            }
             fileWriter.executeFunction();
         } while (!Command.isExitCommand);
 
         Printer.printExitLogo();
-
     }
 }

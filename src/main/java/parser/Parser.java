@@ -1,6 +1,7 @@
 package parser;
 
 import command.CommandEnum;
+import exception.CommandException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +14,7 @@ public class Parser {
     private HashMap<ArgumentFlagEnum, String> descriptionMap;
 
 
-    public Parser(String userInput) {
+    public Parser(String userInput) throws CommandException {
         commandType = parseTypeOfCommand(userInput);
         argEnumSet = parseTypeOfArgument(userInput);
         descriptionMap = parseDescription(userInput);
@@ -63,11 +64,15 @@ public class Parser {
         return argEnumList;
     }
 
-    private HashMap<ArgumentFlagEnum, String> parseDescription(String userInput) {
+    private HashMap<ArgumentFlagEnum, String> parseDescription(String userInput) throws CommandException {
         descriptionMap = new HashMap<>();
-        String[] details = userInput.split(" /[ndilk ]");
-        for (int i = 1; i < details.length; i++) {
-            descriptionMap.put(argEnumSet.get(i - 1), details[i].trim());
+        try {
+            String[] details = userInput.split(" /[ndilk ]");
+            for (int i = 1; i < details.length; i++) {
+                descriptionMap.put(argEnumSet.get(i - 1), details[i].trim());
+            }
+        } catch (IndexOutOfBoundsException i) {
+            throw new CommandException();
         }
         return descriptionMap;
     }
