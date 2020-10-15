@@ -46,6 +46,7 @@ public class UserSession {
             fileWriter.executeFunction();
         } while (!Command.isExitCommand);
 
+        ui.closeScanner();
         Printer.printExitLogo();
     }
 }

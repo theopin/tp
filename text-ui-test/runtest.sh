@@ -3,6 +3,9 @@
 # change to script directory
 cd "${0%/*}"
 
+# delete existing data directory
+rm -rf data
+
 cd ..
 ./gradlew clean shadowJar
 
@@ -11,7 +14,7 @@ cd text-ui-test
 java  -jar $(find ../build/libs/ -mindepth 1 -print -quit) < input.txt > ACTUAL.TXT
 
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
-dos2unix EXPECTED-UNIX.TXT ACTUAL.TXT
+dos2unix -f EXPECTED-UNIX.TXT ACTUAL.TXT
 diff EXPECTED-UNIX.TXT ACTUAL.TXT
 if [ $? -eq 0 ]
 then

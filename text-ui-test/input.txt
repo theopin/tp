@@ -1,1 +1,4 @@
-
+/add /n name /l language /d details
+/list
+/clear
+/exit
