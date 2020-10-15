@@ -2,9 +2,9 @@ package command;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
-import exception.CommandException;
 import parser.ArgumentFlagEnum;
 import parser.Parser;
+import exception.CommandException;
 import ui.Printer;
 
 public class AddCommand extends Command {
