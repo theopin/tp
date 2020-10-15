@@ -19,6 +19,7 @@ public class DataFileReaderTest {
 
     @Test
     void readDataFiles_nonEmptyFolder_success() {
+        CheatSheetList.clear();
         DataFileReader readTest = new DataFileReader(String.valueOf(testNonEmptyFolder),
                 testNonEmptyFolder);
         readTest.executeFunction();
