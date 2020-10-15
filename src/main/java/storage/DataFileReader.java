@@ -62,7 +62,6 @@ public class DataFileReader extends DataFile {
         String[] directoryItems = dataDirectory.list();
 
         assert directoryItems != null;
-
         if (directoryItems.length == 0) {
             throw new DirectoryIsEmptyException();
         }

@@ -13,7 +13,6 @@ public class ViewCommand extends Command {
 
     @Override
     public void execute() throws CommandException {
-
         int index = 0;
         try {
             if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.NAME)) {

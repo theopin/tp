@@ -39,7 +39,6 @@ public class FindCommand extends Command {
             } else if (!programmingLanguage.isEmpty() && !keyword.isEmpty()) {
                 if (cs.getCheatSheetProgrammingLanguage().equals(programmingLanguage)
                         && cs.getCheatSheetDetails().contains(keyword)) {
-
                     cheatSheetArrayList.add(cs);
                 }
             } else {
