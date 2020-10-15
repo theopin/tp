@@ -84,6 +84,7 @@ public class CheatSheetList {
      */
     public static void clear() {
         cheatSheets.clear();
+        assert cheatSheets.size() == 0;
     }
 
     /**
@@ -118,6 +119,7 @@ public class CheatSheetList {
             }
             index++;
         }
+        assert index < cheatSheets.size();
         return getCheatSheet(index + 1);
     }
 }
