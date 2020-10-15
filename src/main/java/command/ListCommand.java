@@ -1,6 +1,5 @@
 package command;
 
-
 import parser.Parser;
 import ui.Printer;
 
