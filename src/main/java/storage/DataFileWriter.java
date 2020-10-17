@@ -21,19 +21,6 @@ import static storage.DataFileParser.DETAILS;
  */
 public class DataFileWriter extends DataFile {
     private ArrayList<CheatSheet> cheatSheets;
-    private Path debugPath = null;
-
-    // Main Constructor
-    public DataFileWriter() {
-        executeFunction();
-    }
-
-    // Constructor for debugging purposes
-    public DataFileWriter(Path textFilePath) {
-        this.cheatSheets = CheatSheetList.getCheatSheetList();
-        this.debugPath = textFilePath;
-        executeFunction();
-    }
 
     /**
      * Converts the cheatSheets present in the list of cheatSheet into
@@ -51,7 +38,8 @@ public class DataFileWriter extends DataFile {
      * a string.
      */
     private void storeCheatSheet() {
-        if (cheatSheets != null) {
+        int cheatSheetsSize = cheatSheets.size();
+        if (cheatSheetsSize > 0) {
             for (CheatSheet cheatSheet : cheatSheets) {
                 convertStringToFile(cheatSheet);
             }
@@ -71,7 +59,7 @@ public class DataFileWriter extends DataFile {
         buildFileContents(cheatSheetFileBuild, cheatSheet);
 
         String fileName = cheatSheet.getCheatSheetName();
-        textFile = (debugPath == null) ? Paths.get(USER_DIR, DATA, fileName) : debugPath;
+        textFile = Paths.get(USER_DIR, DATA, fileName);
 
         try {
             if (!Files.exists(textFile)) {
