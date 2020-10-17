@@ -30,6 +30,29 @@ access cheat sheets and notes for various programming syntax and functions.
 2. Download the latest `cheatlogs.jar` from here.
 3. Copy the file to the folder you want to use as the home folder for this application.
 4. Use java -jar `cheatlogs.jar` to run the program. A welcome message should appear, as shown below.
+```
+ ________  ___  ___  _______   ________  _________  ________  ___  ___  _______   _______  _________
+|\   ____\|\  \|\  \|\  ___ \ |\   __  \|\___   ___\\   ____\|\  \|\  \|\  ___ \ |\  ___ \|\___   ___\
+\ \  \___|\ \  \\\  \ \   __/|\ \  \|\  \|___ \  \_\ \  \___|\ \  \\\  \ \   __/|\ \   __/\|___ \  \_|
+ \ \  \    \ \   __  \ \  \_|/_\ \   __  \   \ \  \ \ \_____  \ \   __  \ \  \_|/_\ \  \_|/__  \ \  \
+  \ \  \____\ \  \ \  \ \  \_|\ \ \  \ \  \   \ \  \ \|____|\  \ \  \ \  \ \  \_|\ \ \  \_|\ \  \ \  \
+   \ \_______\ \__\ \__\ \_______\ \__\ \__\   \ \__\  ____\_\  \ \__\ \__\ \_______\ \_______\  \ \__\
+    \|_______|\|__|\|__|\|_______|\|__|\|__|    \|__| |\_________\|__|\|__|\|_______|\|_______|   \|__|
+                                      ___       ________  ________
+                                     |\  \     |\   __  \|\   ____\
+                                     \ \  \    \ \  \|\  \ \  \___|
+                                      \ \  \    \ \  \\\  \ \  \  ___
+                                       \ \  \____\ \  \\\  \ \  \|\  \
+                                        \ \_______\ \_______\ \_______\
+                                         \|_______|\|_______|\|_______|
+--------------------------------------------------------------------------------------------------------
+Welcome to CheatLogs, the one stop cheat sheet management systems
+Your CAP is our upmost priority
+--------------------------------------------------------------------------------------------------------
+
+Please Enter a Command:
+```
+
 
 5. Type a command in the terminal and press Enter to execute it.
    Some example commands you can try:
