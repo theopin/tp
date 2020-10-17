@@ -95,17 +95,36 @@ Notes:
 Examples:
 * `/find Java` returns `java - cheatsheet` and `JAVA11`
 
+### Listing all cheat sheets: `/list`
+Shows of all the cheat sheets that are stored in the application.
+ 
+Format: `/list`
+
 ### Viewing help: `/help`
 Lists all the possible commands that can be executed in the application.
 
 Format: `/help`
 
-### Listing all cheat sheets: `/list`
-
 ### Viewing the cheatsheet: `/view`
-Shows of all the cheat sheets that are stored in the application.
+View the contents of a cheat sheet either by the name or index
+
+Format 1: `/view n/NAME` 
+
+Examples:
+* `/view n/MyPythonCheatSheet`
  
-Format: `/list`
+Format 2: `/list` followed by `/view i/INDEX` 
+
+Examples:
+* `/list` 
+* `/view i/2`
+
+Format 3: `/find KEYWORD` followed by `/view i/INDEX`
+
+Examples:
+* `/find CheatSheet` 
+* `/view i/2`
+
 
 ### Archiving data files [coming in v2.0]
 TBC
