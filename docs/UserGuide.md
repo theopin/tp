@@ -8,19 +8,19 @@ It has a text based interface that allows the user to
 access cheat sheets and notes for various programming syntax and functions.
 
 ## Index
-* Quick Start 
-* Features
-  * Adding a cheat sheet: `/add`
-  * Clearing all entries: `/clear`
-  * Deleting a cheat sheet: `/delete`
-  * Editing a cheat sheet: `/edit` [coming in v2.0]
-  * Exiting the program: `/exit`
-  * Locating a cheat sheet by name: `/find`
-  * Viewing help: `/help`
-  * Listing all cheat sheets: `/list`
-  * Viewing the cheatsheet: `/view`
-  * Data storage
-  * Archiving data files [coming in v2.0]
+* [Quick Start](#quick-start) 
+* [Features](#features)
+  * [Adding a cheat sheet: `/add`](#adding-a-cheat-sheet-add)
+  * [Clearing all entries: `/clear`](#clearing-all-entries-clear)
+  * [Deleting a cheat sheet: `/delete`](#deleting-a-cheat-sheet-delete)
+  * [Editing a cheat sheet: `/edit` [coming in v2.0]](#editing-a-cheat-sheet-edit-coming-in-v20)
+  * [Exiting the program: `/exit`](#exiting-the-program-exit)
+  * [Locating a cheat sheet by name: `/find`](#locating-a-cheat-sheet-by-name-find)
+  * [Viewing help: `/help`](#viewing-help-help)
+  * [Listing all cheat sheets: `/list`](#listing-all-cheat-sheets-list)
+  * [Viewing the cheatsheet: `/view`](#viewing-the-cheatsheet-view)
+  * [Data storage](#data-storage)
+  * [Archiving data files [coming in v2.0]](#archiving-data-files-coming-in-v20)
 * FAQ
 * Command Summary
 
