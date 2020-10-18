@@ -1,6 +1,5 @@
 package storage;
 
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,15 +8,13 @@ import java.util.stream.Stream;
 
 public class DataFileDestroyer extends DataFile {
 
-    private static final String MULTIPLE = "multiple";
-    private Path debugPath = null;
-
     @Override
     public void executeFunction() {
         try {
-            clearDirectory(DATA_DIR);
+            clearDirectory();
         } catch (IOException e) {
             System.out.println(e.getMessage());
+            createNewDirectory();
         }
     }
 
@@ -29,28 +26,13 @@ public class DataFileDestroyer extends DataFile {
         }
     }
 
-    public void executeFunction(Path unwantedFilePath, String function) {
-        this.debugPath = unwantedFilePath;
-        try {
-            if (function.equals(MULTIPLE)) {
-                clearDirectory(unwantedFilePath);
-            } else {
-                deleteFile(null);
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private void deleteFile(String unwantedFile) throws IOException {
-        Path unwantedFilePath = (debugPath == null)
-                ? Paths.get(USER_DIR, DATA, unwantedFile)
-                : debugPath;
+    protected void deleteFile(String unwantedFile) throws IOException {
+        Path unwantedFilePath = Paths.get(USER_DIR, DATA, unwantedFile);
         Files.delete(unwantedFilePath);
     }
 
-    private void clearDirectory(Path intendedDirectory) throws IOException {
-        Stream<Path> dataDirectoryFiles = Files.list(intendedDirectory);
+    protected void clearDirectory() throws IOException {
+        Stream<Path> dataDirectoryFiles = Files.list(DataFile.DATA_DIR);
         dataDirectoryFiles.forEach(path -> {
             try {
                 Files.delete(path);

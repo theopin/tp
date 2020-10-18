@@ -65,7 +65,7 @@ public class DataFileWriter extends DataFile {
             if (!Files.exists(textFile)) {
                 Files.createFile(textFile);
             }
-            writeToFile(String.valueOf(textFile), cheatSheetFileBuild.toString());
+            writeToFile(textFile.toString(), cheatSheetFileBuild.toString());
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

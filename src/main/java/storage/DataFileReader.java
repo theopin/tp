@@ -74,18 +74,6 @@ public class DataFileReader extends DataFile {
     }
 
     /**
-     * Creates a new directory and file at the specified location
-     * if it currently does not exist.
-     */
-    private void createNewDirectory() {
-        try {
-            Files.createDirectories(DATA_DIR);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    /**
      * Extracts the contents of the cheatsheet from the specified file.
      *
      * @param cheatSheetDocument File of the cheatSheet
