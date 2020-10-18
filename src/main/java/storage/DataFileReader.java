@@ -14,19 +14,7 @@ import java.nio.file.Path;
  * to insert the cheatsheets present in the folder to the application.
  */
 public class DataFileReader extends DataFile {
-    private String folderPath = String.valueOf(DATA_DIR);
-    private Path dataFolder = DATA_DIR;
 
-    // Main Constructor
-    public DataFileReader() {
-        executeFunction();
-    }
-
-    // Constructor for debugging purposes
-    public DataFileReader(String folderPath, Path dataFolder) {
-        this.folderPath = folderPath;
-        this.dataFolder = dataFolder;
-    }
 
     /**
      * Converts the file contents into tasks that can be added into
@@ -54,11 +42,11 @@ public class DataFileReader extends DataFile {
      */
     protected void insertStoredCheatSheets() throws FileNotFoundException,
             DirectoryIsEmptyException {
-        if (!Files.exists(dataFolder)) {
+        if (!Files.exists(DATA_DIR)) {
             throw new FileNotFoundException();
         }
 
-        File dataDirectory = new File(folderPath);
+        File dataDirectory = new File(DATA_DIR.toString());
         String[] directoryItems = dataDirectory.list();
 
         assert directoryItems != null;

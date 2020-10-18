@@ -23,11 +23,11 @@ public class DataFileTest {
             + System.lineSeparator()
             + "Contents: Use case statements to check multiple conditions.";
 
-    final Path dataDir = Paths.get(userDir, data);
-    final Path existingFile = Paths.get(userDir, data, fileName);
+    Path dataDir = Paths.get(userDir, data);
+    Path sampleFile = Paths.get(userDir, data, fileName);
 
     DataFileWriter testWriter = new DataFileWriter();
-    //DataFileReader testReader = new DataFileReader();
+    DataFileReader testReader = new DataFileReader();
     DataFileDestroyer testDestroyer = new DataFileDestroyer();
 
     void createDataDir() {
@@ -47,7 +47,15 @@ public class DataFileTest {
         }
     }
 
-    void eraseUserDir() {
+    void eraseFile(Path fileName) {
+        try {
+            Files.delete(fileName);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    void eraseDataDir() {
         try {
             Files.delete(dataDir);
         } catch (IOException e) {
@@ -55,9 +63,4 @@ public class DataFileTest {
         }
     }
 
-    void removeCheatSheet() {
-        int cheatSheetIndex = CheatSheetList.getSize();
-        CheatSheet testCheatSheet = CheatSheetList.getCheatSheet(cheatSheetIndex);
-        CheatSheetList.remove(testCheatSheet.getCheatSheetName());
-    }
 }

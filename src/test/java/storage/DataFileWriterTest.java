@@ -25,39 +25,39 @@ public class DataFileWriterTest extends DataFileTest {
                 fileDetails));
 
         testWriter.executeFunction();
-        File createdFile = existingFile.toFile();
+        File createdFile = sampleFile.toFile();
 
         try {
-            String actualFileContent = Files.readString(existingFile);
+            String actualFileContent = Files.readString(sampleFile);
             assertEquals(sampleFileContent, actualFileContent);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } finally {
             createdFile.delete();
-            removeCheatSheet();
-            eraseUserDir();
+            CheatSheetList.clear();
+            eraseDataDir();
         }
     }
 
     @Test
     public void writeDataFiles_existingCheatSheet_success() {
         createDataDir();
-        createSampleFile(existingFile, dummyFileContent);
+        createSampleFile(sampleFile, dummyFileContent);
         CheatSheetList.add(new CheatSheet(fileName, fileProgrammingLanguage,
                 fileDetails));
 
         testWriter.executeFunction();
-        File createdFile = existingFile.toFile();
+        File createdFile = sampleFile.toFile();
 
         try {
-            String actualFileContent = Files.readString(existingFile);
+            String actualFileContent = Files.readString(sampleFile);
             assertEquals(sampleFileContent, actualFileContent);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } finally {
             createdFile.delete();
-            removeCheatSheet();
-            eraseUserDir();
+            CheatSheetList.clear();
+            eraseDataDir();
         }
     }
 
@@ -67,7 +67,7 @@ public class DataFileWriterTest extends DataFileTest {
         testWriter.executeFunction();
 
         String[] userDirectoryFiles = dataDir.toFile().list();
-        eraseUserDir();
+        eraseDataDir();
 
         int directoryFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
         assertEquals(0, directoryFiles);
