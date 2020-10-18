@@ -1,0 +1,19 @@
+/l
+C
+/l
+
+/d
+This is an example of a C program. The main specifies the main entrance and exit point of the program.
+```
+#include<stdlib.h> // preprocessor directives
+#include<stdio.h>
+
+int main(void){
+    /*
+     * enter your main code here
+     */
+    ...
+    return 0;
+}
+```
+/d/
