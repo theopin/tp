@@ -17,7 +17,14 @@ public class DataFileParser {
     private final StringBuilder cheatSheetDetails = new StringBuilder();
     private String cheatSheetProgrammingLanguage = "";
 
-    public DataFileParser(File cheatSheetDocument) {
+
+    /**
+     * Parses the given cheatSheet file and handles any exceptions
+     * thrown while attempting to parse this file.
+     *
+     * @param cheatSheetDocument cheatSheet file to be parsed.
+     */
+    protected void handleOperation(File cheatSheetDocument) {
         try {
             parseCheatSheet(cheatSheetDocument);
         } catch (FileNotFoundException | InvalidFileDataException e) {

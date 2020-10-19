@@ -65,7 +65,8 @@ public class DataFileReader extends DataFile {
      * @param cheatSheetDocument File of the cheatSheet
      */
     private void extractCheatSheet(File cheatSheetDocument) {
-        DataFileParser parsedData = new DataFileParser(cheatSheetDocument);
+        DataFileParser parsedData = new DataFileParser();
+        parsedData.handleOperation(cheatSheetDocument);
         if (parsedData.convertedCheatSheet != null) {
             CheatSheetList.add(parsedData.convertedCheatSheet);
         }

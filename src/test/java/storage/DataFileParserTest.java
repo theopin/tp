@@ -3,7 +3,6 @@ package storage;
 import cheatsheet.CheatSheetList;
 import org.junit.jupiter.api.Test;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DataFileParserTest extends DataFileTest {
@@ -17,9 +16,10 @@ public class DataFileParserTest extends DataFileTest {
     void parseDataName_textFile1_success() {
         createDataDir();
         CheatSheetList.clear();
-
         createSampleFile(sampleFile, sampleFileContent);
-        DataFileParser testParser = new DataFileParser(sampleFile.toFile());
+
+        DataFileParser testParser = new DataFileParser();
+        testParser.handleOperation(sampleFile.toFile());
         CheatSheetList.add(testParser.convertedCheatSheet);
 
         final String cheatSheetName = CheatSheetList
@@ -37,7 +37,9 @@ public class DataFileParserTest extends DataFileTest {
         createDataDir();
         CheatSheetList.clear();
         createSampleFile(sampleFile, sampleFileContent);
-        DataFileParser testParser = new DataFileParser(sampleFile.toFile());
+
+        DataFileParser testParser = new DataFileParser();
+        testParser.handleOperation(sampleFile.toFile());
         CheatSheetList.add(testParser.convertedCheatSheet);
 
         final String cheatSheetProgrammingLanguage =
@@ -56,7 +58,9 @@ public class DataFileParserTest extends DataFileTest {
         createDataDir();
         CheatSheetList.clear();
         createSampleFile(sampleFile, sampleFileContent);
-        DataFileParser testParser = new DataFileParser(sampleFile.toFile());
+
+        DataFileParser testParser = new DataFileParser();
+        testParser.handleOperation(sampleFile.toFile());
         CheatSheetList.add(testParser.convertedCheatSheet);
 
         final String cheatSheetDetails = CheatSheetList
