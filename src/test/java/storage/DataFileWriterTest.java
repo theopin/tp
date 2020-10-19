@@ -19,6 +19,7 @@ public class DataFileWriterTest extends DataFileTest {
     @Test
     public void writeDataFiles_newCheatSheet_success() {
         createDataDir();
+        CheatSheetList.clear();
         CheatSheetList.add(new CheatSheet(fileName, fileProgrammingLanguage,
                 fileDetails));
 
@@ -40,6 +41,7 @@ public class DataFileWriterTest extends DataFileTest {
     @Test
     public void writeDataFiles_existingCheatSheet_success() {
         createDataDir();
+        CheatSheetList.clear();
         createSampleFile(sampleFile, dummyFileContent);
         CheatSheetList.add(new CheatSheet(fileName, fileProgrammingLanguage,
                 fileDetails));
@@ -62,6 +64,7 @@ public class DataFileWriterTest extends DataFileTest {
     @Test
     public void writeDataFiles_emptyCheatSheetList_success() {
         createDataDir();
+        CheatSheetList.clear();
         testWriter.executeFunction();
 
         String[] userDirectoryFiles = dataDir.toFile().list();
