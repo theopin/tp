@@ -78,10 +78,7 @@ public class DataFileWriter extends DataFile {
      * @param cheatSheet The cheatSheet that is currently being converted into a file.
      */
     private void buildFileContents(StringBuilder cheatSheetFileBuild, CheatSheet cheatSheet) {
-        cheatSheetFileBuild.append(NAME)
-                .append(cheatSheet.getCheatSheetName())
-                .append(System.lineSeparator())
-                .append(PROGRAMMING_LANGUAGE)
+        cheatSheetFileBuild.append(PROGRAMMING_LANGUAGE)
                 .append(cheatSheet.getCheatSheetProgrammingLanguage())
                 .append(System.lineSeparator())
                 .append(DETAILS)

@@ -1,6 +1,7 @@
 package storage;
 
 import cheatsheet.CheatSheet;
+import cheatsheet.CheatSheetList;
 import exception.InvalidFileDataException;
 
 import java.io.File;
@@ -17,7 +18,6 @@ public class DataFileParser {
 
     private final StringBuilder cheatSheetDetails = new StringBuilder();
 
-    private String cheatSheetName = "";
     private String cheatSheetProgrammingLanguage = "";
 
     public DataFileParser(File cheatSheetDocument) {
@@ -25,10 +25,8 @@ public class DataFileParser {
             parseCheatSheet(cheatSheetDocument);
         } catch (FileNotFoundException | InvalidFileDataException e) {
             System.out.println(e.getMessage());
-        }
-    }
 
-    public DataFileParser() {
+        }
     }
 
     /**
@@ -42,12 +40,14 @@ public class DataFileParser {
             InvalidFileDataException {
         Scanner componentScanner = new Scanner(cheatSheetDocument);
 
+        String cheatSheetName = cheatSheetDocument.getName();
         while (componentScanner.hasNextLine()) {
             extractCheatSheetComponents(componentScanner.nextLine());
         }
-        if (this.cheatSheetName.isEmpty()
+        if (cheatSheetName.isEmpty()
                 || this.cheatSheetProgrammingLanguage.isEmpty()
                 || cheatSheetDetails.toString().trim().isEmpty()) {
+
 
             throw new InvalidFileDataException(cheatSheetDocument);
         }
@@ -63,9 +63,8 @@ public class DataFileParser {
      * @param cheatSheetLine Line of the file being analyzed.
      */
     private void extractCheatSheetComponents(String cheatSheetLine) {
-        if (cheatSheetLine.startsWith(NAME)) {
-            this.cheatSheetName = cheatSheetLine.replace(NAME, EMPTY).trim();
-        } else if (cheatSheetLine.startsWith(PROGRAMMING_LANGUAGE)) {
+
+        if (cheatSheetLine.startsWith(PROGRAMMING_LANGUAGE)) {
             this.cheatSheetProgrammingLanguage = cheatSheetLine
                     .replace(PROGRAMMING_LANGUAGE, EMPTY)
                     .trim();
@@ -81,7 +80,5 @@ public class DataFileParser {
                     .append(cheatSheetLine.trim())
                     .append(System.lineSeparator());
         }
-
     }
-
 }

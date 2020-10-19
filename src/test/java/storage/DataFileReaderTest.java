@@ -12,23 +12,22 @@ public class DataFileReaderTest extends DataFileTest {
 
     @Test
     void readDataFiles_missingFolder_exceptionThrown() {
-        eraseDataDir();
         assertThrows(FileNotFoundException.class, testReader::insertStoredCheatSheets);
     }
 
     @Test
     void readDataFiles_nonEmptyFolder_success() {
-        CheatSheetList.clear();
         createDataDir();
+        CheatSheetList.clear();
 
         createSampleFile(sampleFile, sampleFileContent);
         testReader.executeFunction();
 
-        int listSize = CheatSheetList.getSize();
+        final int listSize = CheatSheetList.getSize();
 
         CheatSheetList.clear();
         eraseFile(sampleFile);
-        eraseDataDir();
+        eraseFile(dataDir);
 
         assertEquals(1, listSize);
     }

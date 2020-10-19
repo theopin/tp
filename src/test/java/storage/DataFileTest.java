@@ -17,9 +17,7 @@ public class DataFileTest {
     String fileProgrammingLanguage = "C++";
     String fileDetails = "Use case statements to check multiple conditions.";
 
-    String sampleFileContent = "Name: Sample1"
-            + System.lineSeparator()
-            + "Programming Language: C++"
+    String sampleFileContent = "Programming Language: C++"
             + System.lineSeparator()
             + "Contents: Use case statements to check multiple conditions.";
 
@@ -35,12 +33,13 @@ public class DataFileTest {
             Files.createDirectories(dataDir);
         } catch (IOException e) {
             System.out.println(e.getMessage());
+
         }
     }
 
     void createSampleFile(Path fileName, String fileContent) {
         try {
-            Files.createFile(fileName);
+            //Files.createFile(fileName);
             Files.writeString(fileName, fileContent);
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -48,19 +47,7 @@ public class DataFileTest {
     }
 
     void eraseFile(Path fileName) {
-        try {
-            Files.delete(fileName);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    void eraseDataDir() {
-        try {
-            Files.delete(dataDir);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        fileName.toFile().delete();
     }
 
 }

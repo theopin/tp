@@ -71,5 +71,6 @@ public class DataFileReader extends DataFile {
         if (parsedData.convertedCheatSheet != null) {
             CheatSheetList.add(parsedData.convertedCheatSheet);
         }
+
     }
 }

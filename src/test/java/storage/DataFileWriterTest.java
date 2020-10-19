@@ -12,9 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DataFileWriterTest extends DataFileTest {
 
-    final String dummyFileContent = "Name: Sample1"
-            + System.lineSeparator()
-            + "Programming Language: C++"
+    final String dummyFileContent = "Programming Language: C++"
             + System.lineSeparator()
             + "Contents: Use case statements.";
 
@@ -35,7 +33,7 @@ public class DataFileWriterTest extends DataFileTest {
         } finally {
             createdFile.delete();
             CheatSheetList.clear();
-            eraseDataDir();
+            eraseFile(dataDir);
         }
     }
 
@@ -55,9 +53,9 @@ public class DataFileWriterTest extends DataFileTest {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } finally {
-            createdFile.delete();
             CheatSheetList.clear();
-            eraseDataDir();
+            createdFile.delete();
+            eraseFile(dataDir);
         }
     }
 
@@ -67,7 +65,7 @@ public class DataFileWriterTest extends DataFileTest {
         testWriter.executeFunction();
 
         String[] userDirectoryFiles = dataDir.toFile().list();
-        eraseDataDir();
+        eraseFile(dataDir);
 
         int directoryFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
         assertEquals(0, directoryFiles);
