@@ -54,10 +54,10 @@ public class DataFileDestroyer extends DataFile {
      */
     protected void clearDirectory() throws IOException {
         String[] dataDirectoryFiles = DATA_DIR.toFile().list();
-        if(dataDirectoryFiles == null) {
+        if (dataDirectoryFiles == null) {
             throw new IOException();
         }
-        for(String dataDirectoryFile : dataDirectoryFiles) {
+        for (String dataDirectoryFile : dataDirectoryFiles) {
             deleteFile(dataDirectoryFile);
         }
     }

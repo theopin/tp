@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class DataFileDestroyerTest extends DataFileTest {
     Path sampleFile2 = Paths.get(userDir, data, "Sample2");
 
-    final String secondFileContent = "Programming Language: C++"
+    String secondFileContent = "Programming Language: C++"
             + System.lineSeparator()
             + "Contents: Use case statements.";
 
@@ -47,6 +47,7 @@ public class DataFileDestroyerTest extends DataFileTest {
     public void clearDirectory_multipleFiles_success() {
         createDataDir();
         createSampleFile(sampleFile, sampleFileContent);
+        createSampleFile(sampleFile2, secondFileContent);
         testDestroyer.executeFunction();
 
         String[] userDirectoryFiles = dataDir.toFile().list();

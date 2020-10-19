@@ -14,9 +14,7 @@ public class DataFileParser {
     protected static final String EMPTY = "";
 
     protected CheatSheet convertedCheatSheet;
-
     private final StringBuilder cheatSheetDetails = new StringBuilder();
-
     private String cheatSheetProgrammingLanguage = "";
 
     public DataFileParser(File cheatSheetDocument) {
@@ -24,7 +22,6 @@ public class DataFileParser {
             parseCheatSheet(cheatSheetDocument);
         } catch (FileNotFoundException | InvalidFileDataException e) {
             System.out.println(e.getMessage());
-
         }
     }
 
@@ -34,6 +31,8 @@ public class DataFileParser {
      * @param cheatSheetDocument cheatSheet file to be parsed.
      * @throws FileNotFoundException Thrown if the file is not found in
      *                               the user directory.
+     * @throws InvalidFileDataException Thrown if the file contains
+     *                                  parameters that cannot be parsed.
      */
     protected void parseCheatSheet(File cheatSheetDocument) throws FileNotFoundException,
             InvalidFileDataException {
@@ -43,11 +42,8 @@ public class DataFileParser {
         while (componentScanner.hasNextLine()) {
             extractCheatSheetComponents(componentScanner.nextLine());
         }
-        if (cheatSheetName.isEmpty()
-                || this.cheatSheetProgrammingLanguage.isEmpty()
+        if (this.cheatSheetProgrammingLanguage.isEmpty()
                 || cheatSheetDetails.toString().trim().isEmpty()) {
-
-
             throw new InvalidFileDataException(cheatSheetDocument);
         }
 
