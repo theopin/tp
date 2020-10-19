@@ -53,11 +53,13 @@ public class DataFileDestroyer extends DataFile {
      * @throws IOException Thrown if the /data directory is missing or empty.
      */
     protected void clearDirectory() throws IOException {
-        Stream<Path> dataDirectoryFiles = Files.list(DATA_DIR);
-        dataDirectoryFiles.forEach(path -> {
-            path.toFile().delete();
-        });
-        assert Files.list(DATA_DIR).count() == 0;
+        String[] dataDirectoryFiles = DATA_DIR.toFile().list();
+        if(dataDirectoryFiles == null) {
+            throw new IOException();
+        }
+        for(String dataDirectoryFile : dataDirectoryFiles) {
+            deleteFile(dataDirectoryFile);
+        }
     }
 
 }

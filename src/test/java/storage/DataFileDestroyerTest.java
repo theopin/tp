@@ -43,4 +43,16 @@ public class DataFileDestroyerTest extends DataFileTest {
         assertEquals(0, directoryFiles);
     }
 
+    @Test
+    public void clearDirectory_multipleFiles_success() {
+        createDataDir();
+        createSampleFile(sampleFile, sampleFileContent);
+        testDestroyer.executeFunction();
+
+        String[] userDirectoryFiles = dataDir.toFile().list();
+        eraseFile(dataDir);
+
+        int directoryFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
+        assertEquals(0, directoryFiles);
+    }
 }
