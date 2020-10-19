@@ -33,7 +33,7 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "CheatLogs"
     archiveClassifier = null
 }
 
@@ -42,6 +42,7 @@ checkstyle {
 }
 
 run{
+    enableAssertions = true
     standardInput = System.in
 	enableAssertions = true
 }

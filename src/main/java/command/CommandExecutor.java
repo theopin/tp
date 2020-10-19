@@ -8,6 +8,8 @@ public class CommandExecutor {
     }
 
     public static void execute(Parser parser) throws CommandException {
+        assert parser != null;
+
         Command commandToBeExecuted;
         switch (parser.getCommandType()) {
         case ADD:
