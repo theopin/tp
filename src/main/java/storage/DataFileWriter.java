@@ -11,7 +11,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-import static storage.DataFileParser.NAME;
 import static storage.DataFileParser.PROGRAMMING_LANGUAGE;
 import static storage.DataFileParser.DETAILS;
 

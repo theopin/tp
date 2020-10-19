@@ -5,9 +5,7 @@ import exception.DirectoryIsEmptyException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 
 /**
  * Allows the user to read data from the data directory and use it

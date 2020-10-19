@@ -1,7 +1,6 @@
 package storage;
 
 import cheatsheet.CheatSheet;
-import cheatsheet.CheatSheetList;
 import exception.InvalidFileDataException;
 
 import java.io.File;
