@@ -26,7 +26,7 @@ public abstract class DataFile {
      * if it currently does not exist.
      */
     protected void createNewDirectory() {
-        if (Files.exists(DATA_DIR)) {
+        if (!Files.exists(DATA_DIR)) {
             try {
                 Files.createDirectories(DATA_DIR);
             } catch (IOException e) {
