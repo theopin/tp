@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import parser.Parser;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class AddCommandTest {
 
@@ -18,9 +19,9 @@ class AddCommandTest {
         AddCommand addCommand = new AddCommand(parser);
         addCommand.execute();
         Assertions.assertAll(
-                () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
-                () -> assertEquals("Java", CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
-                () -> assertEquals("Content1", CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
+            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
+            () -> assertEquals("Java", CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
+            () -> assertEquals("Content1", CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
         );
     }
 
@@ -32,9 +33,9 @@ class AddCommandTest {
         AddCommand addCommand = new AddCommand(parser);
         addCommand.execute();
         Assertions.assertAll(
-                () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
-                () -> assertEquals("Java", CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
-                () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
+            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
+            () -> assertEquals("Java", CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
+            () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
         );
     }
 
@@ -46,9 +47,9 @@ class AddCommandTest {
         AddCommand addCommand = new AddCommand(parser);
         addCommand.execute();
         Assertions.assertAll(
-                () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
-                () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
-                () -> assertEquals("Content1", CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
+            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
+            () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
+            () -> assertEquals("Content1", CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
         );
     }
 
@@ -73,9 +74,9 @@ class AddCommandTest {
         AddCommand addCommand = new AddCommand(parser);
         addCommand.execute();
         Assertions.assertAll(
-                () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
-                () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
-                () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
+            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
+            () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
+            () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
         );
     }
 
