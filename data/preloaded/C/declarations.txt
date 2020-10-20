@@ -1,8 +1,5 @@
-/l
-C
-/l
-
-/d
+Programming Language: C
+Contents:
 There are ways to declare the variables in  C program.
 Declarations in C can be made by typing the datatype and the variable name.
 The datatype of the variable must be a valid datatype, including char, int, double, or other user defined variables.
@@ -20,5 +17,3 @@ int numberOne = 1;
 ```
 In a C program, a variable must be declared at the top of the program.
 This is to allocate specific amount of memory for the program.
-
-/d

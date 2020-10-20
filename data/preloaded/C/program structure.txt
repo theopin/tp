@@ -1,8 +1,5 @@
-/l
-C
-/l
-
-/d
+Programming Language: C
+Contents:
 This is an example of a C program. The main specifies the main entrance and exit point of the program.
 ```
 #include<stdlib.h> // preprocessor directives
@@ -16,4 +13,3 @@ int main(void){
     return 0;
 }
 ```
-/d/

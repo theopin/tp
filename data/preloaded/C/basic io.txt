@@ -1,9 +1,5 @@
-/l
-C
-/l
-
-/d
-
+Programming Language: C
+Contents:
 There are several input and output throughputs in a C program.
 However, for this cheatsheet we will cover the basics, that is the standard input output
 
@@ -40,4 +36,3 @@ For C, there are there basic input and output methods.
     %d denotes an int
     $c denotes a char
     %f denotes a float (%n.mf -> n denotes the number of characters, m denotes how many decimal points in the number)
-/d

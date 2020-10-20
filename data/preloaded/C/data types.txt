@@ -1,8 +1,5 @@
-/l
-C
-/l
-
-/d
+Programming Language: C
+Contents:
 There are several data types in a C program. These are the few native datatypes that is available in C:
     1. char             | -128 to 127 or 0 to 255
     2. unsigned char    | 0 to 255
@@ -53,4 +50,3 @@ int main(int argc, char** argv) {
     return 0;
 }
 ```
-/d/
