@@ -16,6 +16,10 @@ public class ListCommand extends Command {
     @Override
     public void execute() {
         Printer.printCheatSheetList();
+        askForSortingConfigAndPrint();
+    }
+
+    private void askForSortingConfigAndPrint() {
         System.out.println("Sort filter (na: name ascending, la: language ascending, nd: name descending"
             + ", ld: language descending or <enter> to skip)");
         Scanner scanner = new Scanner(System.in);
