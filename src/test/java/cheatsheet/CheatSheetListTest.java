@@ -52,6 +52,8 @@ class CheatSheetListTest {
 
     @Test
     void testAdd() {
+        // I commented this out cause i think its repeated and there's error cuz of the missing cheatsheetlist.clear
+        /*
         for (int i = 0; i < 10; i++) {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
@@ -59,7 +61,7 @@ class CheatSheetListTest {
         for (int i = 0; i < 10; i++) {
             CheatSheetList.remove("Name" + i);
         }
-
+        */
         CheatSheetList.clear();
         for (int i = 0; i < 10; i++) {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
