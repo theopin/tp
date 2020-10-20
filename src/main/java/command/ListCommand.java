@@ -1,8 +1,7 @@
 package command;
 
-import cheatsheet.CheatSheet;
-import sort.sortByName;
-import sort.sortByLanguage;
+import sort.SortByName;
+import sort.SortByLanguage;
 import cheatsheet.CheatSheetList;
 import parser.Parser;
 import ui.Printer;
@@ -21,20 +20,22 @@ public class ListCommand extends Command {
             + ", ld: language descending or <enter> to skip)");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        while(!input.isEmpty()) {
+        while (!input.isEmpty()) {
             switch (input) {
             case "na":
-                CheatSheetList.getCheatSheetList().sort(new sortByName());
+                CheatSheetList.getCheatSheetList().sort(new SortByName());
                 break;
             case "la":
-                CheatSheetList.getCheatSheetList().sort(new sortByLanguage());
+                CheatSheetList.getCheatSheetList().sort(new SortByLanguage());
                 break;
             case "nd":
-                CheatSheetList.getCheatSheetList().sort(new sortByName().reversed());
+                CheatSheetList.getCheatSheetList().sort(new SortByName().reversed());
                 break;
             case "ld":
-                CheatSheetList.getCheatSheetList().sort(new sortByLanguage().reversed());
+                CheatSheetList.getCheatSheetList().sort(new SortByLanguage().reversed());
                 break;
+            default:
+                CheatSheetList.getCheatSheetList().sort(new SortByName());
             }
             Printer.printCheatSheetList();
             input = scanner.nextLine();
