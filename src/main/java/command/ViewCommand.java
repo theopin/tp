@@ -6,6 +6,11 @@ import parser.ArgumentFlagEnum;
 import parser.Parser;
 import ui.Printer;
 
+
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+
 public class ViewCommand extends Command {
     public ViewCommand(Parser parser) {
         super(parser);
@@ -27,8 +32,15 @@ public class ViewCommand extends Command {
                 index = Integer.parseInt(parser.getDescriptionMap().get(ArgumentFlagEnum.INDEX));
             }
             Printer.printViewCheatSheetMessage(CheatSheetList.getCheatSheet(index));
+            copyTextToClipboard(CheatSheetList.getCheatSheet(index).getCheatSheetDetails());
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new CommandException("Please enter a valid index");
         }
+    }
+
+    private void copyTextToClipboard(String contentToBeCopied) {
+        StringSelection stringSelection = new StringSelection(contentToBeCopied);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
     }
 }
