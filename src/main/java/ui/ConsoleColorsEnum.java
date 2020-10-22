@@ -23,7 +23,7 @@ public enum ConsoleColorsEnum {
 
     RESET_TEXT("\u001b[0m");
 
-    private final String ansiCode = null;
+    private String ansiCode = null;
 
     ConsoleColorsEnum(String ansiCode) {
         this.ansiCode = ansiCode;
