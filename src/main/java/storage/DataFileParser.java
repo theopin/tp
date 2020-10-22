@@ -10,14 +10,19 @@ import java.util.Scanner;
 public class DataFileParser {
     protected static final String NAME = "Name: ";
     protected static final String PROGRAMMING_LANGUAGE = "Programming Language: ";
+    protected static final String FAVOURITE = "Favourite: ";
     protected static final String DETAILS = "Contents: ";
     protected static final String EMPTY = "";
     protected static final String EMPTY_Asaas = "";
 
+    protected static final String FAVOURITE_FILE = "Yes";
+    protected static final String NOT_FAVOURITE_FILE = "No";
+
     protected CheatSheet convertedCheatSheet;
+
     private final StringBuilder cheatSheetDetails = new StringBuilder();
     private String cheatSheetProgrammingLanguage = "";
-
+    private boolean cheatSheetFavourite = false;
 
     /**
      * Parses the given cheatSheet file and handles any exceptions
@@ -57,6 +62,9 @@ public class DataFileParser {
 
         this.convertedCheatSheet = new CheatSheet(cheatSheetName,
                 cheatSheetProgrammingLanguage, cheatSheetDetails.toString().trim());
+        if (this.cheatSheetFavourite) {
+            this.convertedCheatSheet.setFavorite();
+        }
         componentScanner.close();
     }
 
@@ -71,6 +79,9 @@ public class DataFileParser {
             this.cheatSheetProgrammingLanguage = cheatSheetLine
                     .replace(PROGRAMMING_LANGUAGE, EMPTY)
                     .trim();
+        } else if (cheatSheetLine.startsWith(FAVOURITE)) {
+            this.cheatSheetFavourite = cheatSheetLine
+                    .contains(FAVOURITE_FILE);
         } else if (cheatSheetLine.startsWith(DETAILS)) {
             String detailsFirstLine = cheatSheetLine
                     .replace(DETAILS, EMPTY)
