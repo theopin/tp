@@ -9,6 +9,6 @@ public enum CommandEnum {
     HELP,
     LIST,
     VIEW,
-    FAVORITE,
+    FAVOURITE,
     SETTINGS;
 }

@@ -9,7 +9,7 @@ import command.ListCommand;
 import command.FindCommand;
 import command.HelpCommand;
 import command.ViewCommand;
-import command.FavoriteCommand;
+import command.FavouriteCommand;
 import command.SettingsCommand;
 import command.CommandEnum;
 
@@ -63,8 +63,8 @@ public class Parser {
         case VIEW:
             commandToBeExecuted = new ViewCommand(argEnumSet, descriptionMap);
             break;
-        case FAVORITE:
-            commandToBeExecuted = new FavoriteCommand(argEnumSet, descriptionMap);
+        case FAVOURITE:
+            commandToBeExecuted = new FavouriteCommand(argEnumSet, descriptionMap);
             break;
         case SETTINGS:
             commandToBeExecuted = new SettingsCommand(argEnumSet, descriptionMap);
@@ -95,8 +95,8 @@ public class Parser {
             return CommandEnum.LIST;
         case "/view":
             return CommandEnum.VIEW;
-        case "/favorite":
-            return CommandEnum.FAVORITE;
+        case "/favourite":
+            return CommandEnum.FAVOURITE;
         case "/settings":
             return CommandEnum.SETTINGS;
         default:

@@ -116,7 +116,7 @@ public final class Printer {
                     + i + ". " + cs.getCheatSheetName()
                     + " (Language: " + cs.getCheatSheetProgrammingLanguage() + ")"
                     + " (Details: " + cs.getCheatSheetDetails() + ")"
-                    + (cs.getFavorite() ? "(Favorited)" : ""));
+                    + (cs.getFavourite() ? "(Favourited)" : ""));
         }
     }
 
@@ -149,8 +149,8 @@ public final class Printer {
         printCheatSheet(cheatSheet);
     }
 
-    public static void printFavoritedCheatSheetMessage(CheatSheet cheatSheet) {
-        print("This cheat sheet has been favorited: ");
+    public static void printFavouritedCheatSheetMessage(CheatSheet cheatSheet) {
+        print("This cheat sheet has been favourited: ");
         printCheatSheet(cheatSheet);
     }
 }
