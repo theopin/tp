@@ -7,43 +7,79 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DataFileWriterTest {
-    final String fileName = "Sample1";
-    final String fileProgrammingLanguage = "C++";
-    final String fileDetails = "Use case statements to check multiple conditions.";
+public class DataFileWriterTest extends DataFileTest {
 
-    Path textFile = Paths.get("src","test", "java", "storage",
-            "data_present", "testFile1");
-    Path textCompareFile = Paths.get("src","test", "java", "storage",
-            "data_present", "Sample1");
+    final String dummyFileContent = "Programming Language: C++"
+            + System.lineSeparator()
+            + "Contents: Use case statements.";
 
     @Test
-    public void writeDataFiles_cheatSheetObject_success() {
+    void parseDataName_textFile1_success() {
+        assertTrue(true);
+    }
+    /*
+    @Test
+    public void writeDataFiles_newCheatSheet_success() {
+        createDataDir();
+        CheatSheetList.clear();
         CheatSheetList.add(new CheatSheet(fileName, fileProgrammingLanguage,
                 fileDetails));
-        new DataFileWriter(textCompareFile);
-        File createdFile = new File(String.valueOf(textCompareFile));
+
+        testWriter.executeFunction();
+        File createdFile = sampleFile.toFile();
 
         try {
-            String referenceFile = Files.readString(textFile);
-            String actualFile = Files.readString(textCompareFile);
-            assertEquals(referenceFile, actualFile);
+            String actualFileContent = Files.readString(sampleFile);
+            assertEquals(sampleFileContent, actualFileContent);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } finally {
             createdFile.delete();
-            removeCheatSheet();
+            CheatSheetList.clear();
+            eraseFile(dataDir);
         }
     }
 
-    void removeCheatSheet() {
-        int cheatSheetIndex = CheatSheetList.getSize();
-        CheatSheet testCheatSheet = CheatSheetList.getCheatSheet(cheatSheetIndex);
-        CheatSheetList.remove(testCheatSheet.getCheatSheetName());
+    @Test
+    public void writeDataFiles_existingCheatSheet_success() {
+        createDataDir();
+        CheatSheetList.clear();
+        createSampleFile(sampleFile, dummyFileContent);
+        CheatSheetList.add(new CheatSheet(fileName, fileProgrammingLanguage,
+                fileDetails));
+
+        testWriter.executeFunction();
+        File createdFile = sampleFile.toFile();
+
+        try {
+            String actualFileContent = Files.readString(sampleFile);
+            assertEquals(sampleFileContent, actualFileContent);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            CheatSheetList.clear();
+            createdFile.delete();
+            eraseFile(dataDir);
+        }
     }
+
+    @Test
+    public void writeDataFiles_emptyCheatSheetList_success() {
+        createDataDir();
+        CheatSheetList.clear();
+        testWriter.executeFunction();
+
+        String[] userDirectoryFiles = dataDir.toFile().list();
+        eraseFile(dataDir);
+
+        int directoryFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
+        assertEquals(0, directoryFiles);
+    }
+
+
+    */
 }
