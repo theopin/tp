@@ -24,10 +24,11 @@ public class ListCommand extends Command {
             + ", ld: language descending or <enter> to skip)");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        while (!input.isEmpty()) {
+        while (!input.equals("q")) {
             switch (input) {
             case "na":
                 CheatSheetList.getCheatSheetList().sort(new SortByName());
+                System.out.println("Currently sorting name in ascending order");
                 break;
             case "la":
                 CheatSheetList.getCheatSheetList().sort(new SortByLanguage());
