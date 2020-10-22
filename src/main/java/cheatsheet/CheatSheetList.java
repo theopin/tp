@@ -84,7 +84,6 @@ public class CheatSheetList {
      */
     public static void clear() {
         cheatSheets.clear();
-        assert cheatSheets.size() == 0;
     }
 
     /**
@@ -92,6 +91,7 @@ public class CheatSheetList {
      *
      * @param index The index of desired cheat sheet
      * @return size of cheatSheets
+     * @throws IndexOutOfBoundsException when index < 0 or index >= cheatSheets.size()
      */
     public static CheatSheet getCheatSheet(int index) throws IndexOutOfBoundsException {
         CheatSheet cheatSheet;
@@ -110,8 +110,7 @@ public class CheatSheetList {
      * @param name The name attribute of desired cheat sheet
      * @return size of cheatSheets
      */
-    public static CheatSheet getCheatSheet(String name) throws IndexOutOfBoundsException {
-        CheatSheet cheatSheet;
+    public static CheatSheet getCheatSheet(String name) {
         int index = 0;
         for (CheatSheet cs : cheatSheets) {
             if (cs.getCheatSheetName().equals(name)) {
@@ -119,7 +118,6 @@ public class CheatSheetList {
             }
             index++;
         }
-        assert index < cheatSheets.size();
         return getCheatSheet(index + 1);
     }
 }

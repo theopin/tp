@@ -31,6 +31,7 @@ public class UserSession {
     public void runProgramSequence() {
         Parser userCommandParser;
 
+        fileReader.executeFunction();
         Printer.printWelcomeScreen();
         // Ask for new user input and executes it until user types an exit command
         do {

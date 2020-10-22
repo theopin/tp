@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class CheatSheetListTest {
     private static Logger logger = Logger.getLogger("Tester");
@@ -19,11 +20,6 @@ class CheatSheetListTest {
         }
         assertEquals(10, CheatSheetList.getSize());
         logger.log(Level.INFO, "Finished GetSize test");
-    }
-
-    @Test
-    void testGetCheatSheetList() {
-        // to be added
     }
 
 
@@ -52,16 +48,6 @@ class CheatSheetListTest {
 
     @Test
     void testAdd() {
-        // I commented this out cause i think its repeated and there's error cuz of the missing cheatsheetlist.clear
-        /*
-        for (int i = 0; i < 10; i++) {
-            CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
-        }
-        assertEquals(10, CheatSheetList.getSize());
-        for (int i = 0; i < 10; i++) {
-            CheatSheetList.remove("Name" + i);
-        }
-        */
         CheatSheetList.clear();
         for (int i = 0; i < 10; i++) {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
@@ -95,6 +81,34 @@ class CheatSheetListTest {
     }
 
     @Test
+    void remove_negativeIndex_exceptionThrown() {
+        CheatSheetList.clear();
+        for (int i = 0; i < 10; i++) {
+            CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
+        }
+        try {
+            CheatSheetList.remove(-1);
+            fail();
+        } catch (IndexOutOfBoundsException e) {
+            // todo: add error message
+        }
+    }
+
+    @Test
+    void remove_nonExistentName_exceptionThrown() {
+        CheatSheetList.clear();
+        for (int i = 0; i < 10; i++) {
+            CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
+        }
+        try {
+            CheatSheetList.remove("dummy");
+            fail();
+        } catch (IndexOutOfBoundsException e) {
+            // todo: add error message
+        }
+    }
+
+    @Test
     void testGetCheatSheet() {
         CheatSheetList.clear();
         CheatSheet test = new CheatSheet("Name1", "Language1", "Details1");
@@ -105,8 +119,39 @@ class CheatSheetListTest {
                 CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
             }
         }
+        // test to get cheatsheet by index and by name
         assertEquals(test, CheatSheetList.getCheatSheet(2));
         assertEquals(test, CheatSheetList.getCheatSheet("Name1"));
         logger.log(Level.INFO, "Finished GetCheatSheet test");
+    }
+
+    @Test
+    void getCheatSheet_negativeIndex_exceptionThrown() {
+        CheatSheetList.clear();
+        CheatSheet test;
+        for (int i = 0; i < 10; i++) {
+            CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
+        }
+        try {
+            test = CheatSheetList.getCheatSheet(-1);
+            fail();
+        } catch (IndexOutOfBoundsException e) {
+            // todo: add and check error message
+        }
+    }
+
+    @Test
+    void getCheatSheet_nonExistentName_exceptionThrown() {
+        CheatSheetList.clear();
+        CheatSheet test;
+        for (int i = 0; i < 10; i++) {
+            CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
+        }
+        try {
+            test = CheatSheetList.getCheatSheet("cheatlogs");
+            fail();
+        } catch (IndexOutOfBoundsException e) {
+            // todo: add and check error message
+        }
     }
 }
