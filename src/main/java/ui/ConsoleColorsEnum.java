@@ -26,7 +26,7 @@ public enum ConsoleColorsEnum {
     private final String ansiCode = null;
 
     ConsoleColorsEnum(String ansiCode) {
-        ansiCode = ansiCode;
+        this.ansiCode = ansiCode;
     }
 
     @Override
