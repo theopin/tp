@@ -62,7 +62,7 @@ public class DataFileParser {
         this.convertedCheatSheet = new CheatSheet(cheatSheetName,
                 cheatSheetProgrammingLanguage, cheatSheetDetails.toString().trim());
         if (this.cheatSheetFavourite) {
-           this.convertedCheatSheet.setFavorite();
+            this.convertedCheatSheet.setFavorite();
         }
         componentScanner.close();
     }
