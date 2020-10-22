@@ -1,77 +1,76 @@
 package storage;
 
-import exception.InvalidFileDataException;
+import cheatsheet.CheatSheetList;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class DataFileParserTest {
-    Path textFile1 = Paths.get("src","test", "java", "storage",
-            "data_present", "testFile1");
-    Path textFile2 = Paths.get("src","test", "java", "storage",
-            "data_missing_parameter", "testFile2");
-    Path textFile3 = Paths.get("src","test", "java", "storage",
-            "data_missing_parameter", "testFile3");
-    Path textFile4 = Paths.get("src","test", "java", "storage",
-            "data_missing_parameter", "testFile4");
+public class DataFileParserTest extends DataFileTest {
 
-    final String fileName = "Sample1";
-    final String fileProgrammingLanguage = "C++";
-    final String fileDetails = "Use case statements to check multiple conditions.";
+    String fileProgrammingLanguage = "C++";
+    String fileDetails = "Use case statements to check multiple conditions.";
+
+    int firstCheatSheetIndex = 1;
 
     @Test
     void parseDataName_textFile1_success() {
-        File textFile = new File(String.valueOf(this.textFile1));
-        DataFileParser parseTest = new DataFileParser(textFile);
-        assertEquals(fileName, parseTest.convertedCheatSheet.getCheatSheetName());
+        createDataDir();
+        CheatSheetList.clear();
+        createSampleFile(sampleFile, sampleFileContent);
+
+        DataFileParser testParser = new DataFileParser();
+        testParser.handleOperation(sampleFile.toFile());
+        CheatSheetList.add(testParser.convertedCheatSheet);
+
+        final String cheatSheetName = CheatSheetList
+                .getCheatSheet(firstCheatSheetIndex)
+                .getCheatSheetName();
+
+        CheatSheetList.clear();
+        eraseFile(dataDir);
+        eraseFile(sampleFile);
+        assertEquals(fileName, cheatSheetName);
     }
 
     @Test
     void parseDataLanguage_textFile1_success() {
-        File textFile = new File(String.valueOf(this.textFile1));
-        DataFileParser parseTest = new DataFileParser(textFile);
-        assertEquals(fileProgrammingLanguage, parseTest.convertedCheatSheet
-                .getCheatSheetProgrammingLanguage());
+        createDataDir();
+        CheatSheetList.clear();
+        createSampleFile(sampleFile, sampleFileContent);
+
+        DataFileParser testParser = new DataFileParser();
+        testParser.handleOperation(sampleFile.toFile());
+        CheatSheetList.add(testParser.convertedCheatSheet);
+
+        final String cheatSheetProgrammingLanguage =
+                CheatSheetList
+                .getCheatSheet(firstCheatSheetIndex)
+                .getCheatSheetProgrammingLanguage();
+
+        CheatSheetList.clear();
+        eraseFile(sampleFile);
+        eraseFile(dataDir);
+        assertEquals(fileProgrammingLanguage, cheatSheetProgrammingLanguage);
     }
 
     @Test
     void parseDataDetails_textFile1_success() {
-        File textFile = new File(String.valueOf(this.textFile1));
-        DataFileParser parseTest = new DataFileParser(textFile);
-        assertEquals(fileDetails, parseTest.convertedCheatSheet
-                .getCheatSheetDetails());
-    }
+        createDataDir();
+        CheatSheetList.clear();
+        createSampleFile(sampleFile, sampleFileContent);
 
-    @Test
-    void parseEmptyDataName_textFile2_failure() {
-        File textFile = new File(String.valueOf(this.textFile2));
-        DataFileParser parseTest = new DataFileParser();
-        assertThrows(InvalidFileDataException.class, () -> {
-            parseTest.parseCheatSheet(textFile);
-        });
-    }
+        DataFileParser testParser = new DataFileParser();
+        testParser.handleOperation(sampleFile.toFile());
+        CheatSheetList.add(testParser.convertedCheatSheet);
 
-    @Test
-    void parseEmptyProgrammingLanguage_textFile3_failure() {
-        File textFile = new File(String.valueOf(this.textFile3));
-        DataFileParser parseTest = new DataFileParser();
-        assertThrows(InvalidFileDataException.class, () -> {
-            parseTest.parseCheatSheet(textFile);
-        });
-    }
+        final String cheatSheetDetails = CheatSheetList
+                .getCheatSheet(firstCheatSheetIndex)
+                .getCheatSheetDetails();
 
-    @Test
-    void parseEmptyDetails_textFile4_failure() {
-        File textFile = new File(String.valueOf(this.textFile4));
-        DataFileParser parseTest = new DataFileParser();
-        assertThrows(InvalidFileDataException.class, () -> {
-            parseTest.parseCheatSheet(textFile);
-        });
+        CheatSheetList.clear();
+        eraseFile(sampleFile);
+        eraseFile(dataDir);
+        assertEquals(fileDetails, cheatSheetDetails);
     }
 
 }

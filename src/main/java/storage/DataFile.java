@@ -1,5 +1,7 @@
 package storage;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -18,5 +20,19 @@ public abstract class DataFile {
      * A method that is to be run when its subclass is created.
      */
     public abstract void executeFunction();
+
+    /**
+     * Creates a new directory and file at the specified location
+     * if it currently does not exist.
+     */
+    protected void createNewDirectory() {
+        if (!Files.exists(DATA_DIR)) {
+            try {
+                Files.createDirectories(DATA_DIR);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
 }
