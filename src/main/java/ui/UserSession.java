@@ -1,7 +1,6 @@
 package ui;
 
 import command.Command;
-//import command.CommandExecutor;
 import exception.CommandException;
 import parser.Parser;
 import storage.DataFileReader;
@@ -10,9 +9,10 @@ import storage.DataFileDestroyer;
 
 public class UserSession {
     /*
-     * These are objects that will be passed to command subclasses
-     * that allow them to execute helper functions.
+     * These are objects that will be injected to command subclasses
+     * that allow them to execute.
      */
+    Printer printer;
     DataFileReader fileReader;
     DataFileWriter fileWriter;
     DataFileDestroyer fileDestroyer;
@@ -20,11 +20,12 @@ public class UserSession {
     Parser userCommandParser;
 
     public UserSession() {
-        fileReader = new DataFileReader();
-        fileWriter = new DataFileWriter();
-        fileDestroyer = new DataFileDestroyer();
+        printer = new Printer();
+        fileReader = new DataFileReader(printer);
+        fileWriter = new DataFileWriter(printer);
+        fileDestroyer = new DataFileDestroyer(printer);
         ui = new Ui();
-        userCommandParser = new Parser(fileDestroyer);
+        userCommandParser = new Parser(fileDestroyer, printer);
     }
 
     /**
@@ -32,23 +33,23 @@ public class UserSession {
      */
     public void runProgramSequence() {
         fileReader.executeFunction();
-        Printer.printWelcomeScreen();
+        printer.printWelcomeScreen();
 
         // Ask for new user input and executes it until user types an exit command
         do {
-            Printer.printUserInputPrompt();
+            printer.printUserInputPrompt();
             String userInput = ui.getUserInput();
             try {
                 Command parsedUserCommand = userCommandParser.parse(userInput);
                 parsedUserCommand.execute();
             } catch (CommandException c) {
-                System.out.println(c.getMessage());
+                printer.print(c.getMessage());
                 continue;
             }
-            fileWriter.executeFunction();
+            fileWriter. executeFunction();
         } while (!Command.isExitCommand);
 
         ui.closeScanner();
-        Printer.printExitLogo();
+        printer.printExitLogo();
     }
 }

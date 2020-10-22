@@ -110,7 +110,7 @@ public class CheatSheetList {
      * @param name The name attribute of desired cheat sheet
      * @return size of cheatSheets
      */
-    public static CheatSheet getCheatSheet(String name) {
+    public static CheatSheet getCheatSheet(String name) throws IndexOutOfBoundsException {
         int index = 0;
         for (CheatSheet cs : cheatSheets) {
             if (cs.getCheatSheetName().equals(name)) {

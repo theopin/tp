@@ -36,7 +36,6 @@ class ParserTest {
             Parser parser = new Parser();
             Command command = parser.parse(userInput);
             assertEquals(AddCommand.class, command.getClass());
-            assertEquals(argEnumList, command.getArgEnumSet());
             assertEquals(descriptionMap, command.getDescriptionMap());
         } catch (CommandException e) {
             fail();

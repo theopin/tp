@@ -42,7 +42,7 @@ class ViewCommandTest {
             viewCommand.execute();
             fail();
         } catch (CommandException e) {
-            assertEquals("Please enter a valid index", e.getMessage());
+            assertEquals("Please enter a name or an index", e.getMessage());
         }
     }
 }

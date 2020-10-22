@@ -1,5 +1,7 @@
 package storage;
 
+import ui.Printer;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,6 +13,8 @@ import java.nio.file.Paths;
  * executed based on the type of class that is a child of this class.
  */
 public abstract class DataFile {
+    protected Printer printer;
+
     protected static final String USER_DIR = System.getProperty("user.dir");
     protected static final String DATA = "data";
 
@@ -30,7 +34,7 @@ public abstract class DataFile {
             try {
                 Files.createDirectories(DATA_DIR);
             } catch (IOException e) {
-                System.out.println(e.getMessage());
+                printer.print(e.getMessage());
             }
         }
     }

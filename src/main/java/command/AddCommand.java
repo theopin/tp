@@ -2,16 +2,15 @@ package command;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
-import parser.ArgumentFlagEnum;
 import exception.CommandException;
 import ui.Printer;
 
-import java.util.ArrayList;
+import parser.ArgumentFlagEnum;
 import java.util.HashMap;
 
 public class AddCommand extends Command {
-    public AddCommand(ArrayList<ArgumentFlagEnum> argEnumSet, HashMap<ArgumentFlagEnum, String> descriptionMap) {
-        super(argEnumSet, descriptionMap);
+    public AddCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
+        super(descriptionMap, printer);
     }
 
     @Override
@@ -28,7 +27,7 @@ public class AddCommand extends Command {
 
         CheatSheet cheatSheet = new CheatSheet(name, programmingLanguage, description);
         CheatSheetList.add(cheatSheet);
-        Printer.printAddNewCheatSheetMessage(cheatSheet);
+        printer.printAddNewCheatSheetMessage(cheatSheet);
     }
 
     private boolean checkIfNameAlreadyExist(String name) {

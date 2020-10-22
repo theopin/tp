@@ -7,16 +7,14 @@ import parser.ArgumentFlagEnum;
 import storage.DataFileDestroyer;
 import ui.Printer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-
 
 public class DeleteCommand extends Command {
     protected DataFileDestroyer fileDestroyer;
 
-    public DeleteCommand(ArrayList<ArgumentFlagEnum> argEnumSet, HashMap<ArgumentFlagEnum, String> descriptionMap,
+    public DeleteCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer,
                          DataFileDestroyer fileDestroyer) {
-        super(argEnumSet, descriptionMap);
+        super(descriptionMap, printer);
         this.fileDestroyer = fileDestroyer;
     }
 
@@ -29,18 +27,22 @@ public class DeleteCommand extends Command {
             if (descriptionMap.containsKey(ArgumentFlagEnum.NAME)) {
                 name = descriptionMap.get(ArgumentFlagEnum.NAME);
                 cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(name);
-            }  else if (descriptionMap.containsKey(ArgumentFlagEnum.INDEX)) {
+            } else if (descriptionMap.containsKey(ArgumentFlagEnum.INDEX)) {
                 index = Integer.parseInt(descriptionMap.get(ArgumentFlagEnum.INDEX));
                 cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(index);
             }
 
+            if (cheatSheetToBeDeleted == null) {
+                throw new CommandException("Please enter a name or an index");
+            }
+
             CheatSheetList.remove(cheatSheetToBeDeleted.getCheatSheetName());
             fileDestroyer.executeFunction(cheatSheetToBeDeleted.getCheatSheetName());
-            Printer.printDeleteCheatSheetMessage(cheatSheetToBeDeleted);
+            printer.printDeleteCheatSheetMessage(cheatSheetToBeDeleted);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
-            throw new CommandException("Enter valid arguments");
+            throw new CommandException("Please enter valid arguments");
         } catch (NumberFormatException n) {
-            throw new CommandException("Enter a valid index");
+            throw new CommandException("Please enter a valid index");
         }
     }
 }

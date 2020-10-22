@@ -4,7 +4,6 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import exception.CommandException;
 import parser.ArgumentFlagEnum;
-import parser.Parser;
 import sort.SortByLanguage;
 import sort.SortByName;
 import ui.Printer;
@@ -14,8 +13,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class FindCommand extends Command {
-    public FindCommand(ArrayList<ArgumentFlagEnum> argEnumSet, HashMap<ArgumentFlagEnum, String> descriptionMap) {
-        super(argEnumSet, descriptionMap);
+    public FindCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
+        super(descriptionMap, printer);
     }
 
     @Override
@@ -49,20 +48,23 @@ public class FindCommand extends Command {
                 throw new CommandException("Please enter at least an argument");
             }
         }
+
         if (cheatSheetArrayList.isEmpty()) {
             throw new CommandException("No matching content found");
         }
-        System.out.println("Showing all matches: ");
+
+        printer.print("Showing all matches: ");
         for (CheatSheet cs : cheatSheetArrayList) {
-            Printer.printCheatSheet(cs);
-            Printer.printWhiteSpace();
+            printer.printCheatSheet(cs);
+            printer.printWhiteSpace();
         }
         askForSortingConfigAndPrint(cheatSheetArrayList);
     }
 
     protected void askForSortingConfigAndPrint(ArrayList<CheatSheet> cheatSheetArrayList) {
-        System.out.println("Sort filter (na: name ascending, la: language ascending, nd: name descending"
+        printer.print("Sort filter (na: name ascending, la: language ascending, nd: name descending"
             + ", ld: language descending or <enter> to skip)");
+
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         while (!input.isEmpty()) {
@@ -82,12 +84,14 @@ public class FindCommand extends Command {
             default:
                 cheatSheetArrayList.sort(new SortByName());
             }
-            System.out.println("Showing all matches: ");
+
+            printer.print("Showing all matches: ");
             for (CheatSheet cs : cheatSheetArrayList) {
-                Printer.printCheatSheet(cs);
-                Printer.printWhiteSpace();
+                printer.printCheatSheet(cs);
+                printer.printWhiteSpace();
             }
             input = scanner.nextLine();
         }
+        askForSortingConfigAndPrint(cheatSheetArrayList);
     }
 }

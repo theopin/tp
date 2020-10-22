@@ -15,6 +15,7 @@ import command.CommandEnum;
 
 import exception.CommandException;
 import storage.DataFileDestroyer;
+import ui.Printer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,13 +24,15 @@ import java.util.regex.Pattern;
 
 public class Parser {
     private DataFileDestroyer fileDestroyer;
+    private Printer printer;
     private static final String FLAG_REGEX = " /[dnilk] ";
 
-    public Parser(){
+    public Parser() {
     }
 
-    public Parser(DataFileDestroyer fileDestroyer) {
+    public Parser(DataFileDestroyer fileDestroyer, Printer printer) {
         this.fileDestroyer = fileDestroyer;
+        this.printer = printer;
     }
 
     public Command parse(String userInput) throws CommandException {
@@ -40,34 +43,34 @@ public class Parser {
         Command commandToBeExecuted = null;
         switch (commandType) {
         case ADD:
-            commandToBeExecuted = new AddCommand(argEnumSet, descriptionMap);
+            commandToBeExecuted = new AddCommand(descriptionMap, printer);
             break;
         case CLEAR:
-            commandToBeExecuted = new ClearCommand(argEnumSet, descriptionMap, fileDestroyer);
+            commandToBeExecuted = new ClearCommand(descriptionMap, printer, fileDestroyer);
             break;
         case DELETE:
-            commandToBeExecuted = new DeleteCommand(argEnumSet, descriptionMap, fileDestroyer);
+            commandToBeExecuted = new DeleteCommand(descriptionMap, printer, fileDestroyer);
             break;
         case EXIT:
-            commandToBeExecuted = new ExitCommand(argEnumSet, descriptionMap);
+            commandToBeExecuted = new ExitCommand(descriptionMap, printer);
             break;
         case FIND:
-            commandToBeExecuted = new FindCommand(argEnumSet, descriptionMap);
+            commandToBeExecuted = new FindCommand(descriptionMap, printer);
             break;
         case HELP:
-            commandToBeExecuted = new HelpCommand(argEnumSet, descriptionMap);
+            commandToBeExecuted = new HelpCommand(descriptionMap, printer);
             break;
         case LIST:
-            commandToBeExecuted = new ListCommand(argEnumSet, descriptionMap);
+            commandToBeExecuted = new ListCommand(descriptionMap, printer);
             break;
         case VIEW:
-            commandToBeExecuted = new ViewCommand(argEnumSet, descriptionMap);
+            commandToBeExecuted = new ViewCommand(descriptionMap, printer);
             break;
         case FAVOURITE:
-            commandToBeExecuted = new FavouriteCommand(argEnumSet, descriptionMap);
+            commandToBeExecuted = new FavouriteCommand(descriptionMap, printer);
             break;
         case SETTINGS:
-            commandToBeExecuted = new SettingsCommand(argEnumSet, descriptionMap);
+            commandToBeExecuted = new SettingsCommand(descriptionMap, printer);
             break;
         default:
             assert false;
@@ -107,9 +110,9 @@ public class Parser {
     private ArrayList<ArgumentFlagEnum> parseTypeOfArgument(String userInput) {
         ArrayList<ArgumentFlagEnum> argEnumList = new ArrayList<>();
 
-        Pattern pattern = Pattern.compile(FLAG_REGEX);
-        Matcher matcher = pattern.matcher(userInput);
-        ArrayList<String> argList = addMatchesToArgEnumSet(matcher);
+        Pattern flagPattern = Pattern.compile(FLAG_REGEX);
+        Matcher flagMatcher = flagPattern.matcher(userInput);
+        ArrayList<String> argList = addMatchesToArgEnumSet(flagMatcher);
         for (String arg : argList) {
             for (ArgumentFlagEnum ae : ArgumentFlagEnum.values()) {
                 if (arg.equals(ae.getAssociatedKeyWord())) {
@@ -135,10 +138,10 @@ public class Parser {
         return descriptionMap;
     }
 
-    private ArrayList<String> addMatchesToArgEnumSet(Matcher matcher) {
+    private ArrayList<String> addMatchesToArgEnumSet(Matcher flagMatcher) {
         ArrayList<String> argList = new ArrayList<>();
-        while (matcher.find()) {
-            argList.add(matcher.group().trim());
+        while (flagMatcher.find()) {
+            argList.add(flagMatcher.group().trim());
         }
         return argList;
     }

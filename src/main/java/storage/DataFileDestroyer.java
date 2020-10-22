@@ -1,13 +1,17 @@
 package storage;
 
 
+import ui.Printer;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.stream.Stream;
 
 public class DataFileDestroyer extends DataFile {
+    public DataFileDestroyer(Printer printer) {
+        this.printer = printer;
+    }
 
     /**
      * Constructor that executes the operation to delete all cheatsheet files.
@@ -17,7 +21,7 @@ public class DataFileDestroyer extends DataFile {
         try {
             clearDirectory();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            printer.print(e.getMessage());
         }
     }
 
@@ -31,7 +35,7 @@ public class DataFileDestroyer extends DataFile {
         try {
             deleteFile(unwantedFile);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            printer.print(e.getMessage());
         }
     }
 
