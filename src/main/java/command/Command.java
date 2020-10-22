@@ -1,8 +1,14 @@
 package command;
 
+import cheatsheet.CheatSheetList;
 import exception.CommandException;
 import parser.Parser;
+import sort.SortByLanguage;
+import sort.SortByName;
 import storage.DataFileDestroyer;
+import ui.Printer;
+
+import java.util.Scanner;
 
 /**
  * The base class for all commands.

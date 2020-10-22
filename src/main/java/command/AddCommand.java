@@ -20,10 +20,21 @@ public class AddCommand extends Command {
 
         if (name == null) {
             throw new CommandException("Please enter a name");
+        } else if (checkIfNameAlreadyExist(name)) {
+            throw new CommandException("Name already existed, please enter another name");
         }
 
         CheatSheet cheatSheet = new CheatSheet(name, programmingLanguage, description);
         CheatSheetList.add(cheatSheet);
         Printer.printAddNewCheatSheetMessage(cheatSheet);
+    }
+
+    private boolean checkIfNameAlreadyExist(String name) {
+        for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
+            if (cs.getCheatSheetName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
