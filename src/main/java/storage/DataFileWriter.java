@@ -2,6 +2,7 @@ package storage;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
+import ui.Printer;
 
 import java.io.IOException;
 import java.io.FileWriter;
@@ -25,6 +26,10 @@ import static storage.DataFileParser.NOT_FAVOURITE_FILE;
 public class DataFileWriter extends DataFile {
     private ArrayList<CheatSheet> cheatSheets;
 
+    public DataFileWriter(Printer printer) {
+        this.printer = printer;
+    }
+
     /**
      * Converts the cheatSheets present in the list of cheatSheet into
      * a string. This string is then saved in a file, 1 file
@@ -43,8 +48,8 @@ public class DataFileWriter extends DataFile {
     private void storeCheatSheet() {
         int cheatSheetsSize = cheatSheets.size();
         if (cheatSheetsSize > 0) {
-            for (CheatSheet cheatSheet : cheatSheets) {
-                convertStringToFile(cheatSheet);
+            for (CheatSheet cs : cheatSheets) {
+                convertStringToFile(cs);
             }
         }
     }
@@ -70,7 +75,7 @@ public class DataFileWriter extends DataFile {
             }
             writeToFile(textFile.toString(), cheatSheetFileBuild.toString());
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            printer.print(e.getMessage());
         }
     }
 

@@ -14,11 +14,11 @@ public final class Printer {
     public Printer() {
     }
 
-    private static void print(Object obj) {
+    public void print(Object obj) {
         System.out.println(obj);
     }
 
-    public static void printWelcomeScreen() {
+    public void printWelcomeScreen() {
         print(ConsoleColorsEnum.CYAN_TEXT
                 + " ________  ___  ___  _______   ________  _________  ________  "
                 + "___  ___  _______   _______  _________" + NEWLINE
@@ -48,7 +48,7 @@ public final class Printer {
         );
     }
 
-    public static void printExitLogo() {
+    public void printExitLogo() {
         print(ConsoleColorsEnum.CYAN_TEXT
                 + " ________  ________  ________  ________  ________      ___    ___ _______" + NEWLINE
                 + "|\\   ____\\|\\   __  \\|\\   __  \\|\\   ___ \\|\\   __  "
@@ -68,15 +68,15 @@ public final class Printer {
         );
     }
 
-    public static void printUserInputPrompt() {
-        print(LINE + "" + NEWLINE + NEWLINE + "Please Enter a Command:");
+    public void printUserInputPrompt() {
+        print(LINE + "" + NEWLINE + NEWLINE + "Please enter a Command:");
     }
 
-    public static void printWhiteSpace() {
+    public void printWhiteSpace() {
         print(" ");
     }
 
-    public static void printHelpSheet() {
+    public void printHelpSheet() {
         print(ConsoleColorsEnum.BOLD + "/add /n <CHEAT_SHEET_NAME> /l <PROGRAMMING_LANGUAGE> /d <DESCRIPTION>"
                 + ConsoleColorsEnum.RESET_TEXT + NEWLINE
                 + "\tAdds a new cheat sheet to the application and prompts user to include data" + NEWLINE
@@ -102,13 +102,13 @@ public final class Printer {
                 + "\tExits the application." + NEWLINE);
     }
 
-    public static void printCheatSheet(CheatSheet cheatSheet) {
+    public void printCheatSheet(CheatSheet cheatSheet) {
         print("\tName: " + cheatSheet.getCheatSheetName() + NEWLINE
             + "\tProgramming Language: " + cheatSheet.getCheatSheetProgrammingLanguage() + NEWLINE
             + "\tDetails: " + cheatSheet.getCheatSheetDetails());
     }
 
-    public static void printCheatSheetList() {
+    public void printCheatSheetList() {
         int i = 0;
         for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
             i++;
@@ -120,36 +120,36 @@ public final class Printer {
         }
     }
 
-    public static void printCheatSheetSize() {
+    public void printCheatSheetSize() {
         print("Now you have " + CheatSheetList.getSize() + " cheatsheet(s)");
     }
 
-    public static void printAddNewCheatSheetMessage(CheatSheet cheatSheet) {
+    public void printAddNewCheatSheetMessage(CheatSheet cheatSheet) {
         print("Added new cheat sheet:");
         printCheatSheet(cheatSheet);
         print(LINE);
         printCheatSheetSize();
     }
 
-    public static void printClearCheatSheetMessage(int number) {
+    public void printClearCheatSheetMessage(int number) {
         print("Cleared total of " + number + " cheat sheets");
         print(LINE);
         print("Now you have no cheatsheets");
     }
 
-    public static void printDeleteCheatSheetMessage(CheatSheet cheatSheet) {
+    public void printDeleteCheatSheetMessage(CheatSheet cheatSheet) {
         print("This cheat sheet has been deleted: ");
         printCheatSheet(cheatSheet);
         print(LINE);
         printCheatSheetSize();
     }
 
-    public static void printViewCheatSheetMessage(CheatSheet cheatSheet) {
+    public void printViewCheatSheetMessage(CheatSheet cheatSheet) {
         print("This is your content for " + cheatSheet.getCheatSheetName() + ": ");
         printCheatSheet(cheatSheet);
     }
 
-    public static void printFavouritedCheatSheetMessage(CheatSheet cheatSheet) {
+    public void printFavouritedCheatSheetMessage(CheatSheet cheatSheet) {
         print("This cheat sheet has been favourited: ");
         printCheatSheet(cheatSheet);
     }

@@ -4,22 +4,19 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import exception.CommandException;
 import parser.ArgumentFlagEnum;
-import parser.Parser;
 import ui.Printer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FavouriteCommand extends Command {
-    public FavouriteCommand(ArrayList<ArgumentFlagEnum> argEnumSet, HashMap<ArgumentFlagEnum, String> descriptionMap) {
-        super(argEnumSet, descriptionMap);
+    public FavouriteCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
+        super(descriptionMap, printer);
     }
 
     @Override
     public void execute() throws CommandException {
-
-        int index = 0;
-        String name = "";
+        int index;
+        String name;
 
         CheatSheet cheatSheetToFavourite = null;
 
@@ -32,12 +29,17 @@ public class FavouriteCommand extends Command {
                 cheatSheetToFavourite = CheatSheetList.getCheatSheet(index);
 
             }
+
+            if (cheatSheetToFavourite == null) {
+                throw new CommandException("Please enter a name or an index");
+            }
+
             cheatSheetToFavourite.setFavourite(true);
-            Printer.printFavouritedCheatSheetMessage(cheatSheetToFavourite);
+            printer.printFavouritedCheatSheetMessage(cheatSheetToFavourite);
         } catch (NullPointerException | IndexOutOfBoundsException i) {
-            throw new CommandException("Enter valid arguments");
+            throw new CommandException("Please enter valid arguments");
         } catch (NumberFormatException n) {
-            throw new CommandException("Enter a valid index");
+            throw new CommandException("Please enter a valid index");
         }
 
     }
