@@ -8,8 +8,6 @@ public class ListCommand extends Command {
         super(parser);
     }
 
-    // todo: need to ask adhy whether he can attach index to cheatsheet
-
     @Override
     public void execute() {
         Printer.printCheatSheetList();

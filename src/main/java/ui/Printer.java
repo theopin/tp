@@ -3,6 +3,7 @@ package ui;
 import ui.ConsoleColorsEnum;
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
+
 /*
  * Handles printing of all outputs
  * */
@@ -19,7 +20,7 @@ public final class Printer {
     }
 
     public static void printWelcomeScreen() {
-        print("\u001B[5m"
+        print(ConsoleColorsEnum.CYAN_TEXT
                 + " ________  ___  ___  _______   ________  _________  ________  "
                 + "___  ___  _______   _______  _________\n"
                 + "|\\   ____\\|\\  \\|\\  \\|\\  ___ \\ |\\   __  \\|\\___   ___\\"

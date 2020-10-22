@@ -12,6 +12,7 @@ public class DataFileParser {
     protected static final String PROGRAMMING_LANGUAGE = "Programming Language: ";
     protected static final String DETAILS = "Contents: ";
     protected static final String EMPTY = "";
+    protected static final String EMPTY_Asaas = "";
 
     protected CheatSheet convertedCheatSheet;
 
