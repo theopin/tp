@@ -18,8 +18,8 @@ class DeleteCommandTest {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         try {
-            Parser parser = new Parser(userInput);
-            DeleteCheatSheet deleteCommand = new DeleteCheatSheet(parser);
+            Parser parser = new Parser();
+            Command deleteCommand = parser.parse(userInput);
             deleteCommand.execute();
             assertEquals(9, CheatSheetList.getSize());
         } catch (CommandException e) {
@@ -35,8 +35,8 @@ class DeleteCommandTest {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         try {
-            Parser parser = new Parser(userInput);
-            DeleteCheatSheet deleteCommand = new DeleteCheatSheet(parser);
+            Parser parser = new Parser();
+            Command deleteCommand  = parser.parse(userInput);
             deleteCommand.execute();
             assertEquals(9, CheatSheetList.getSize());
         } catch (CommandException e) {
@@ -52,8 +52,8 @@ class DeleteCommandTest {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         try {
-            Parser parser = new Parser(userInput);
-            DeleteCheatSheet deleteCommand = new DeleteCheatSheet(parser);
+            Parser parser = new Parser();
+            Command deleteCommand  = parser.parse(userInput);
             deleteCommand.execute();
             fail();
         } catch (CommandException e) {
@@ -69,8 +69,8 @@ class DeleteCommandTest {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         try {
-            Parser parser = new Parser(userInput);
-            DeleteCheatSheet deleteCommand = new DeleteCheatSheet(parser);
+            Parser parser = new Parser();
+            Command deleteCommand  = parser.parse(userInput);
             deleteCommand.execute();
             fail();
         } catch (CommandException e) {
@@ -86,8 +86,8 @@ class DeleteCommandTest {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         try {
-            Parser parser = new Parser(userInput);
-            DeleteCheatSheet deleteCommand = new DeleteCheatSheet(parser);
+            Parser parser = new Parser();
+            Command deleteCommand  = parser.parse(userInput);
             deleteCommand.execute();
             fail();
         } catch (CommandException e) {

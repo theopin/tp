@@ -7,11 +7,14 @@ import parser.ArgumentFlagEnum;
 import parser.Parser;
 import ui.Printer;
 
-public class FavoriteCommand extends Command {
-        public FavoriteCommand(Parser parser) {
-            super(parser);
-        }
+import java.util.ArrayList;
+import java.util.HashMap;
 
+public class FavoriteCommand extends Command {
+    public FavoriteCommand(ArrayList<ArgumentFlagEnum> argEnumSet, HashMap<ArgumentFlagEnum, String> descriptionMap) {
+        super(argEnumSet, descriptionMap);
+    }
+    
     @Override
     public void execute() throws CommandException {
 
@@ -21,11 +24,11 @@ public class FavoriteCommand extends Command {
         CheatSheet cheatSheetToFavorite = null;
 
         try {
-            if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.NAME)) {
-                name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);
+            if (descriptionMap.containsKey(ArgumentFlagEnum.NAME)) {
+                name = descriptionMap.get(ArgumentFlagEnum.NAME);
                 cheatSheetToFavorite = CheatSheetList.getCheatSheet(name);
-            } else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
-                index = Integer.parseInt(parser.getDescriptionMap().get(ArgumentFlagEnum.INDEX));
+            } else if (descriptionMap.containsKey(ArgumentFlagEnum.INDEX)) {
+                index = Integer.parseInt(descriptionMap.get(ArgumentFlagEnum.INDEX));
                 cheatSheetToFavorite = CheatSheetList.getCheatSheet(index);
 
             }

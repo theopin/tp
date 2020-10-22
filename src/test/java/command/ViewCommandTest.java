@@ -21,8 +21,8 @@ class ViewCommandTest {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         try {
-            Parser parser = new Parser(userInput);
-            ViewCommand viewCommand = new ViewCommand(parser);
+            Parser parser = new Parser();
+            Command viewCommand = parser.parser(userInput);
             viewCommand.execute();
         } catch (CommandException e) {
             fail();
@@ -37,8 +37,8 @@ class ViewCommandTest {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         try {
-            Parser parser = new Parser(userInput);
-            ViewCommand viewCommand = new ViewCommand(parser);
+            Parser parser = new Parser();
+            Command viewCommand = parser.parse(userInput);
             viewCommand.execute();
             fail();
         } catch (CommandException e) {

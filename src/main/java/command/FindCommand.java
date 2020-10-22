@@ -10,11 +10,12 @@ import sort.SortByName;
 import ui.Printer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class FindCommand extends Command {
-    public FindCommand(Parser parser) {
-        super(parser);
+    public FindCommand(ArrayList<ArgumentFlagEnum> argEnumSet, HashMap<ArgumentFlagEnum, String> descriptionMap) {
+        super(argEnumSet, descriptionMap);
     }
 
     @Override
@@ -23,11 +24,11 @@ public class FindCommand extends Command {
         String keyword = "";
         ArrayList<CheatSheet> cheatSheetArrayList = new ArrayList<>();
 
-        if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.PROGRAMMINGLANGUAGE)) {
-            programmingLanguage = parser.getDescriptionMap().get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
+        if (descriptionMap.containsKey(ArgumentFlagEnum.PROGRAMMINGLANGUAGE)) {
+            programmingLanguage = descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
         }
-        if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.SECTIONKEYWORD)) {
-            keyword = parser.getDescriptionMap().get(ArgumentFlagEnum.SECTIONKEYWORD);
+        if (descriptionMap.containsKey(ArgumentFlagEnum.SECTIONKEYWORD)) {
+            keyword = descriptionMap.get(ArgumentFlagEnum.SECTIONKEYWORD);
         }
 
         for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {

@@ -1,10 +1,13 @@
 package command;
 
-import parser.Parser;
+import parser.ArgumentFlagEnum;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ExitCommand extends Command {
-    public ExitCommand(Parser parser) {
-        super(parser);
+    public ExitCommand(ArrayList<ArgumentFlagEnum> argEnumSet, HashMap<ArgumentFlagEnum, String> descriptionMap) {
+        super(argEnumSet, descriptionMap);
     }
 
     @Override

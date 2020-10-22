@@ -1,11 +1,12 @@
 package ui;
 
 import command.Command;
-import command.CommandExecutor;
+//import command.CommandExecutor;
 import exception.CommandException;
 import parser.Parser;
 import storage.DataFileReader;
 import storage.DataFileWriter;
+import storage.DataFileDestroyer;
 
 public class UserSession {
     /*
@@ -14,14 +15,16 @@ public class UserSession {
      */
     DataFileReader fileReader;
     DataFileWriter fileWriter;
+    DataFileDestroyer fileDestroyer;
     Ui ui;
     Parser userCommandParser;
 
     public UserSession() {
         fileReader = new DataFileReader();
         fileWriter = new DataFileWriter();
+        fileDestroyer = new DataFileDestroyer();
         ui = new Ui();
-        userCommandParser = new Parser();
+        userCommandParser = new Parser(fileDestroyer);
     }
 
     /**

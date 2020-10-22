@@ -5,12 +5,20 @@ import cheatsheet.CheatSheetList;
 import exception.CommandException;
 import parser.ArgumentFlagEnum;
 import parser.Parser;
+import storage.DataFileDestroyer;
 import ui.Printer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class DeleteCommand extends Command {
-    public DeleteCommand(Parser parser) {
-        super(parser);
+    protected DataFileDestroyer fileDestroyer;
+
+    public DeleteCommand(ArrayList<ArgumentFlagEnum> argEnumSet, HashMap<ArgumentFlagEnum, String> descriptionMap,
+                         DataFileDestroyer fileDestroyer) {
+        super(argEnumSet, descriptionMap);
+        this.fileDestroyer = fileDestroyer;
     }
 
     @Override
@@ -19,11 +27,11 @@ public class DeleteCommand extends Command {
         String name;
         CheatSheet cheatSheetToBeDeleted = null;
         try {
-            if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.NAME)) {
-                name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);
+            if (descriptionMap.containsKey(ArgumentFlagEnum.NAME)) {
+                name = descriptionMap.get(ArgumentFlagEnum.NAME);
                 cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(name);
-            }  else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
-                index = Integer.parseInt(parser.getDescriptionMap().get(ArgumentFlagEnum.INDEX));
+            }  else if (descriptionMap.containsKey(ArgumentFlagEnum.INDEX)) {
+                index = Integer.parseInt(descriptionMap.get(ArgumentFlagEnum.INDEX));
                 cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(index);
             }
 

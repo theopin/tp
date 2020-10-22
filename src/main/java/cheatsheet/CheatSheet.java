@@ -53,6 +53,7 @@ public class CheatSheet {
     public boolean getFavorite() {
         return isFavorite;
     }
+
     public void setFavorite(boolean isFavorite) {
         this.isFavorite = isFavorite;
     }

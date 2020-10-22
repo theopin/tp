@@ -19,15 +19,29 @@ import java.util.HashMap;
  */
 public abstract class Command {
     public static boolean isExitCommand;
-    private final ArrayList<ArgumentFlagEnum> argEnumSet;
-    private HashMap<ArgumentFlagEnum, String> descriptionMap;
+    protected ArrayList<ArgumentFlagEnum> argEnumSet;
+    protected HashMap<ArgumentFlagEnum, String> descriptionMap;
     protected DataFileDestroyer fileDestroyer;
 
     public Command() {
-        this.parser = parser;
+    }
+
+    public Command(ArrayList<ArgumentFlagEnum> argEnumSet, HashMap<ArgumentFlagEnum, String> descriptionMap) {
+        this.argEnumSet = argEnumSet;
+        this.descriptionMap = descriptionMap;
         isExitCommand = false;
         fileDestroyer = new DataFileDestroyer();
     }
+
+
+    public ArrayList<ArgumentFlagEnum> getArgEnumSet() {
+        return argEnumSet;
+    }
+
+    public HashMap<ArgumentFlagEnum, String> getDescriptionMap() {
+        return descriptionMap;
+    }
+
 
     public abstract void execute() throws CommandException;
 }

@@ -9,7 +9,7 @@ public class CheatSheetList {
     }
 
     /**
-     * Gets the number of cheat shee        t currently in the CheatSheetList.
+     * Gets the number of cheat sheet currently in the CheatSheetList.
      *
      * @return size of cheatSheets
      */
