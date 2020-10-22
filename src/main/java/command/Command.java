@@ -1,18 +1,23 @@
 package command;
 
 import exception.CommandException;
+import parser.ArgumentFlagEnum;
 import parser.Parser;
 import storage.DataFileDestroyer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * The base class for all commands.
  */
 public abstract class Command {
     public static boolean isExitCommand;
-    protected Parser parser;
+    private final ArrayList<ArgumentFlagEnum> argEnumSet;
+    private HashMap<ArgumentFlagEnum, String> descriptionMap;
     protected DataFileDestroyer fileDestroyer;
 
-    public Command(Parser parser) {
+    public Command() {
         this.parser = parser;
         isExitCommand = false;
         fileDestroyer = new DataFileDestroyer();

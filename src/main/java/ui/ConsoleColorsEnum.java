@@ -19,7 +19,9 @@ public enum ConsoleColorsEnum {
     CYAN_TEXT_BG    ("\u001B[46m"),
     WHITE_TEXT_BG   ("\u001B[47m"),
 
-    BOLD ("\u001B[1m");
+    BOLD ("\u001B[1m"),
+
+    RESET_TEXT ("\u001b[0m");
 
     private final String ANSI_CODE;
     ConsoleColorsEnum(String ansiCode){

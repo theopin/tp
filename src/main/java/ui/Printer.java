@@ -1,14 +1,12 @@
 package ui;
 
-import ui.ConsoleColorsEnum;
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 
 /*
- * Handles printing of all outputs
+ * This class manages the output of text
  * */
 public final class Printer {
-    private static final String RESET_TEXT = "\u001b[0m";
     private static final String LINE = "----------------------------------------------------------------"
             + "----------------------------------------";
 
@@ -22,54 +20,55 @@ public final class Printer {
     public static void printWelcomeScreen() {
         print(ConsoleColorsEnum.CYAN_TEXT
                 + " ________  ___  ___  _______   ________  _________  ________  "
-                + "___  ___  _______   _______  _________\n"
+                + "___  ___  _______   _______  _________" + System.lineSeparator()
                 + "|\\   ____\\|\\  \\|\\  \\|\\  ___ \\ |\\   __  \\|\\___   ___\\"
-                + "\\   ____\\|\\  \\|\\  \\|\\  ___ \\ |\\  ___ \\|\\___   ___\\\n"
+                + "\\   ____\\|\\  \\|\\  \\|\\  ___ \\ |\\  ___ \\|\\___   ___\\\\" + System.lineSeparator()
                 + "\\ \\  \\___|\\ \\  \\\\\\  \\ \\   __/|\\ \\  \\|\\  \\|___ \\  "
-                + "\\_\\ \\  \\___|\\ \\  \\\\\\  \\ \\   __/|\\ \\   __/\\|___ \\  \\_|\n"
+                + "\\_\\ \\  \\___|\\ \\  \\\\\\  \\ \\   __/|\\ \\   __/\\|___ \\  \\_|" + System.lineSeparator()
                 + " \\ \\  \\    \\ \\   __  \\ \\  \\_|/_\\ \\   __  \\   \\ \\  \\ "
-                + "\\ \\_____  \\ \\   __  \\ \\  \\_|/_\\ \\  \\_|/__  \\ \\  \\\n"
+                + "\\ \\_____  \\ \\   __  \\ \\  \\_|/_\\ \\  \\_|/__  \\ \\  \\" + System.lineSeparator()
                 + "  \\ \\  \\____\\ \\  \\ \\  \\ \\  \\_|\\ \\ \\  \\ \\  \\   \\ \\  "
-                + "\\ \\|____|\\  \\ \\  \\ \\  \\ \\  \\_|\\ \\ \\  \\_|\\ \\  \\ \\  \\\n"
+                + "\\ \\|____|\\  \\ \\  \\ \\  \\ \\  \\_|\\ \\ \\  \\_|\\ \\  \\ \\  \\" + System.lineSeparator()
                 + "   \\ \\_______\\ \\__\\ \\__\\ \\_______\\ \\__\\ \\__\\   \\ \\__"
-                + "\\  ____\\_\\  \\ \\__\\ \\__\\ \\_______\\ \\_______\\  \\ \\__\\\n"
+                + "\\  ____\\_\\  \\ \\__\\ \\__\\ \\_______\\ \\_______\\  \\ \\__\\" + System.lineSeparator()
                 + "    \\|_______|\\|__|\\|__|\\|_______|\\|__|\\|__|    \\|__| |\\____"
-                + "_____\\|__|\\|__|\\|_______|\\|_______|   \\|__|\n"
-                + "                                      ___       ________  ________\n"
-                + "                                     |\\  \\     |\\   __  \\|\\   ____\\\n"
-                + "                                     \\ \\  \\    \\ \\  \\|\\  \\ \\  \\___|\n"
-                + "                                      \\ \\  \\    \\ \\  \\\\\\  \\ \\  \\  ___\n"
-                + "                                       \\ \\  \\____\\ \\  \\\\\\  \\ \\  \\|\\  \\\n"
-                + "                                        \\ \\_______\\ \\_______\\ \\_______\\\n"
-                + "                                         \\|_______|\\|_______|\\|_______|\n"
-                + LINE + "\n"
-                + "Welcome to CheatLogs, the one stop cheat sheet management systems\n"
+                + "_____\\|__|\\|__|\\|_______|\\|_______|   \\|__|" + System.lineSeparator()
+                + "                                      ___       ________  ________" + System.lineSeparator()
+                + "                                     |\\  \\     |\\   __  \\|\\   ____\\" + System.lineSeparator()
+                + "                                     \\ \\  \\    \\ \\  \\|\\  \\ \\  \\___|" + System.lineSeparator()
+                + "                                      \\ \\  \\    \\ \\  \\\\\\  \\ \\  \\  ___" + System.lineSeparator()
+                + "                                       \\ \\  \\____\\ \\  \\\\\\  \\ \\  \\|\\  \\" + System.lineSeparator()
+                + "                                        \\ \\_______\\ \\_______\\ \\_______\\" + System.lineSeparator()
+                + "                                         \\|_______|\\|_______|\\|_______|" + System.lineSeparator()
+                + LINE + System.lineSeparator()
+                + "Welcome to CheatLogs, the one stop cheat sheet management systems" + System.lineSeparator()
                 + "Your CAP is our upmost priority"
-                + RESET_TEXT
+                + ConsoleColorsEnum.RESET_TEXT
         );
     }
 
     public static void printExitLogo() {
-        print(" ________  ________  ________  ________  ________      ___    ___ _______\n"
+        print(ConsoleColorsEnum.CYAN_TEXT
+                + " ________  ________  ________  ________  ________      ___    ___ _______" + System.lineSeparator()
                 + "|\\   ____\\|\\   __  \\|\\   __  \\|\\   ___ \\|\\   __  "
-                + "\\    |\\  \\  /  /|\\  ___ \\\n"
+                + "\\    |\\  \\  /  /|\\  ___ \\" + System.lineSeparator()
                 + "\\ \\  \\___|\\ \\  \\|\\  \\ \\  \\|\\  \\ \\  \\_|\\ \\ \\  "
-                + "\\|\\ /_   \\ \\  \\/  / | \\   __/|\n"
+                + "\\|\\ /_   \\ \\  \\/  / | \\   __/|" + System.lineSeparator()
                 + " \\ \\  \\  __\\ \\  \\\\\\  \\ \\  \\\\\\  \\ \\  \\ \\\\ \\ "
-                + "\\   __  \\   \\ \\    / / \\ \\  \\_|/__\n"
+                + "\\   __  \\   \\ \\    / / \\ \\  \\_|/__" + System.lineSeparator()
                 + "  \\ \\  \\|\\  \\ \\  \\\\\\  \\ \\  \\\\\\  \\ \\  \\_\\\\ \\"
-                + " \\  \\|\\  \\   \\/  /  /   \\ \\  \\_|\\ \\\n"
+                + " \\  \\|\\  \\   \\/  /  /   \\ \\  \\_|\\ \\" + System.lineSeparator()
                 + "   \\ \\_______\\ \\_______\\ \\_______\\ \\_______\\ \\_______\\"
-                + "__/  / /      \\ \\_______\\\n"
+                + "__/  / /      \\ \\_______\\" + System.lineSeparator()
                 + "    \\|_______|\\|_______|\\|_______|\\|_______|\\|_______|\\___"
-                + "/ /        \\|_______|\n"
-                + "                                                     \\|___|/\n"
+                + "/ /        \\|_______|" + System.lineSeparator()
+                + "                                                     \\|___|/" + System.lineSeparator()
+                + ConsoleColorsEnum.RESET_TEXT
         );
     }
 
     public static void printUserInputPrompt() {
-        print(LINE + '\n');
-        print("Please Enter a Command:");
+        print(LINE + "" + System.lineSeparator() + System.lineSeparator() + "Please Enter a Command:");
     }
 
     public static void printWhiteSpace() {
@@ -77,44 +76,58 @@ public final class Printer {
     }
 
     public static void printHelpSheet() {
-        print("/add /n <CHEAT_SHEET_NAME> /l <PROGRAMMING_LANGUAGE> /d <DESCRIPTION> ");
-        print("\tAdds a new cheat sheet to the application and prompts user to include data "
-                + "into the cheat sheet.");
-        print("/clear");
-        print("\tClears all entries from the cheat sheet.");
-        print("/delete /i <CHEAT_SHEET_INDEX>");
-        print("\tTo be used after using /list, Deletes the cheat sheet at INDEX items down the list. "
-                + "The first cheat sheet has an index of 1.");
-        print("/find /l <PROGRAMMING LANGUAGE> k/ <KEYWORD>");
-        print("\tFinds a cheat sheet whose names contain any of the given keywords.");
-        print("/view /i <CHEAT_SHEET_INDEX>");
-        print("\tView the contents of a cheat sheet either by the name or index");
-        print("/list");
-        print("\tLists all the possible commands that can be executed in the application.");
-        print("/exit");
-        print("\tExits the application.");
+        print(ConsoleColorsEnum.BOLD + "/add /n <CHEAT_SHEET_NAME> /l <PROGRAMMING_LANGUAGE> /d <DESCRIPTION>"
+                + ConsoleColorsEnum.RESET_TEXT + System.lineSeparator()
+                + "\tAdds a new cheat sheet to the application and prompts user to include data" + System.lineSeparator()
+                + "\tinto the cheat sheet." + System.lineSeparator()
+                + ConsoleColorsEnum.BOLD + "/delete /i <CHEAT_SHEET_INDEX>"
+                + ConsoleColorsEnum.RESET_TEXT + System.lineSeparator()
+                + "\tTo be used after using /list, Deletes the cheat sheet at INDEX items down the list." + System.lineSeparator()
+                + "\tThe first cheat sheet has an index of 1." + System.lineSeparator()
+                + ConsoleColorsEnum.BOLD + "/find /l <PROGRAMMING LANGUAGE> k/ <KEYWORD>"
+                + ConsoleColorsEnum.RESET_TEXT + System.lineSeparator()
+                + "\tFinds a cheat sheet whose names contain any of the given keywords." + System.lineSeparator()
+                + ConsoleColorsEnum.BOLD + "/view /i <CHEAT_SHEET_INDEX>"
+                + ConsoleColorsEnum.RESET_TEXT + System.lineSeparator()
+                + "\tView the contents of a cheat sheet either by the name or index" + System.lineSeparator()
+                + ConsoleColorsEnum.BOLD + "/list"
+                + ConsoleColorsEnum.RESET_TEXT + System.lineSeparator()
+                + "\tLists all the possible commands that can be executed in the application." + System.lineSeparator()
+                + ConsoleColorsEnum.BOLD + "/clear"
+                + ConsoleColorsEnum.RESET_TEXT + System.lineSeparator()
+                + "\tClears all entries from the cheat sheet." + System.lineSeparator()
+                + ConsoleColorsEnum.BOLD + "/exit"
+                + ConsoleColorsEnum.RESET_TEXT + System.lineSeparator()
+                + "\tExits the application." + System.lineSeparator());
     }
 
     public static void printCheatSheet(CheatSheet cheatSheet) {
-        print("\tName: " + cheatSheet.getCheatSheetName());
-        print("\tProgramming Language: " + cheatSheet.getCheatSheetProgrammingLanguage());
-        print("\tDetails: " + cheatSheet.getCheatSheetDetails());
+        print("\tName: " + cheatSheet.getCheatSheetName() + System.lineSeparator()
+            + "\tProgramming Language: " + cheatSheet.getCheatSheetProgrammingLanguage() + System.lineSeparator()
+            + "\tDetails: " + cheatSheet.getCheatSheetDetails());
     }
 
     public static void printCheatSheetList() {
-        for (int i = 1; i <= CheatSheetList.getSize(); i++) {
+        int i = 0;
+        for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
+            i++;
             print("\t"
-                    + i + ". " + CheatSheetList.getCheatSheet(i).getCheatSheetName()
-                    + " (Language: " + CheatSheetList.getCheatSheet(i).getCheatSheetProgrammingLanguage() + ")"
-                    + " (Details: " + CheatSheetList.getCheatSheet(i).getCheatSheetDetails() + ")");
+                    + i + ". " + cs.getCheatSheetName()
+                    + " (Language: " + cs.getCheatSheetProgrammingLanguage() + ")"
+                    + " (Details: " + cs.getCheatSheetDetails() + ")"
+                    + (cs.getFavorite() ? "(Favorited)" : ""));
         }
+    }
+
+    public static void printCheatSheetSize(){
+        print("Now you have " + CheatSheetList.getSize() + " cheatsheet(s)");
     }
 
     public static void printAddNewCheatSheetMessage(CheatSheet cheatSheet) {
         print("Added new cheat sheet:");
         printCheatSheet(cheatSheet);
         print(LINE);
-        print("Now you have " + CheatSheetList.getSize() + " cheatsheet(s)");
+        printCheatSheetSize();
     }
 
     public static void printClearCheatSheetMessage(int number) {
@@ -127,11 +140,16 @@ public final class Printer {
         print("This cheat sheet has been deleted: ");
         printCheatSheet(cheatSheet);
         print(LINE);
-        print("Now you have " + CheatSheetList.getSize() + " cheatsheet(s)");
+        printCheatSheetSize();
     }
 
     public static void printViewCheatSheetMessage(CheatSheet cheatSheet) {
         print("This is your content for " + cheatSheet.getCheatSheetName() + ": ");
+        printCheatSheet(cheatSheet);
+    }
+
+    public static void printFavoritedCheatSheetMessage(CheatSheet cheatSheet) {
+        print("This cheat sheet has been favorited: ");
         printCheatSheet(cheatSheet);
     }
 }

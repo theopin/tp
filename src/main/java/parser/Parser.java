@@ -1,5 +1,6 @@
 package parser;
 
+import command.Command;
 import command.CommandEnum;
 import exception.CommandException;
 
@@ -9,15 +10,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
-    private final CommandEnum commandType;
-    private final ArrayList<ArgumentFlagEnum> argEnumSet;
-    private HashMap<ArgumentFlagEnum, String> descriptionMap;
-
-
-    public Parser(String userInput) throws CommandException {
-        commandType = parseTypeOfCommand(userInput);
-        argEnumSet = parseTypeOfArgument(userInput);
-        descriptionMap = parseDescription(userInput);
+    private Parser(){
+    }
+    public Command parse(String userInput) throws CommandException {
+        CommandEnum commandType = parseTypeOfCommand(userInput);
+        ArrayList<ArgumentFlagEnum> argEnumSet = parseTypeOfArgument(userInput);
+        ashMap<ArgumentFlagEnum, String> descriptionMap = parseDescription(userInput);
     }
 
     private CommandEnum parseTypeOfCommand(String userInput) throws CommandException {
@@ -39,6 +37,10 @@ public class Parser {
             return CommandEnum.LIST;
         case "/view":
             return CommandEnum.VIEW;
+        case "/favorite":
+            return CommandEnum.FAVORITE;
+        case "/settings":
+            return CommandEnum.SETTINGS;
         default:
             throw new CommandException("Please enter a valid command");
         }
@@ -81,17 +83,17 @@ public class Parser {
         return argList;
     }
 
-    public CommandEnum getCommandType() {
+//    public CommandEnum getCommandType() {
         return commandType;
     }
 
 
-    public ArrayList<ArgumentFlagEnum> getArgEnumSet() {
-        return argEnumSet;
-    }
+  //  public ArrayList<ArgumentFlagEnum> getArgEnumSet() {
+//        return argEnumSet;
+  //  }
 
-    public HashMap<ArgumentFlagEnum, String> getDescriptionMap() {
-        return descriptionMap;
+   // public HashMap<ArgumentFlagEnum, String> getDescriptionMap() {
+     //   return descriptionMap;
     }
 
 }

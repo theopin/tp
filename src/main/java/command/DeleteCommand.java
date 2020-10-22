@@ -8,15 +8,15 @@ import parser.Parser;
 import ui.Printer;
 
 
-public class DeleteCheatSheet extends Command {
-    public DeleteCheatSheet(Parser parser) {
+public class DeleteCommand extends Command {
+    public DeleteCommand(Parser parser) {
         super(parser);
     }
 
     @Override
     public void execute() throws CommandException {
-        int index = 0;
-        String name = "";
+        int index;
+        String name;
         CheatSheet cheatSheetToBeDeleted = null;
         try {
             if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.NAME)) {
@@ -27,12 +27,11 @@ public class DeleteCheatSheet extends Command {
                 cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(index);
             }
 
-            assert cheatSheetToBeDeleted != null;
             CheatSheetList.remove(cheatSheetToBeDeleted.getCheatSheetName());
             fileDestroyer.executeFunction(cheatSheetToBeDeleted.getCheatSheetName());
             Printer.printDeleteCheatSheetMessage(cheatSheetToBeDeleted);
-        } catch (IndexOutOfBoundsException i) {
-            throw new CommandException("Enter a valid argument or name");
+        } catch (NullPointerException | IndexOutOfBoundsException e) {
+            throw new CommandException("Enter valid arguments");
         } catch (NumberFormatException n) {
             throw new CommandException("Enter a valid index");
         }

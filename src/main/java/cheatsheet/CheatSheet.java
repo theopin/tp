@@ -50,8 +50,11 @@ public class CheatSheet {
         dateModified = LocalDateTime.now();
     }
 
-    public void setFavorite() {
-        isFavorite = true;
+    public boolean getFavorite() {
+        return isFavorite;
+    }
+    public void setFavorite(boolean isFavorite) {
+        this.isFavorite = isFavorite;
     }
 
     public void setDateCreated(LocalDateTime dateCreated) {

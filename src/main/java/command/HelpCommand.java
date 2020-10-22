@@ -3,8 +3,8 @@ package command;
 import parser.Parser;
 import ui.Printer;
 
-public class Help extends Command {
-    public Help(Parser parser) {
+public class HelpCommand extends Command {
+    public HelpCommand(Parser parser) {
         super(parser);
     }
 

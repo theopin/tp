@@ -19,7 +19,7 @@ public class CommandExecutor {
             commandToBeExecuted = new ClearCommand(parser);
             break;
         case DELETE:
-            commandToBeExecuted = new DeleteCheatSheet(parser);
+            commandToBeExecuted = new DeleteCommand(parser);
             break;
         case EXIT:
             commandToBeExecuted = new ExitCommand(parser);
@@ -28,7 +28,7 @@ public class CommandExecutor {
             commandToBeExecuted = new FindCommand(parser);
             break;
         case HELP:
-            commandToBeExecuted = new Help(parser);
+            commandToBeExecuted = new HelpCommand(parser);
             break;
         case LIST:
             commandToBeExecuted = new ListCommand(parser);
@@ -36,8 +36,15 @@ public class CommandExecutor {
         case VIEW:
             commandToBeExecuted = new ViewCommand(parser);
             break;
+        case FAVORITE:
+            commandToBeExecuted = new FavoriteCommand(parser);
+            break;
+        case SETTINGS:
+            commandToBeExecuted = new SettingsCommand(parser);
+            break;
         default:
-            throw new CommandException("THIS WILL NVR HAPPEN");
+            assert false;
+            return;
         }
         commandToBeExecuted.execute();
     }
