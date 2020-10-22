@@ -22,12 +22,7 @@ public class ViewCommand extends Command {
         try {
             if (descriptionMap.containsKey(ArgumentFlagEnum.NAME)) {
                 String name = descriptionMap.get(ArgumentFlagEnum.NAME);
-                for (CheatSheet cs: CheatSheetList.getCheatSheetList()) {
-                    if (cs.getCheatSheetName().equals(name)) {
-                        desiredCheatSheet = cs;
-                        break;
-                    }
-                }
+                desiredCheatSheet = CheatSheetList.getCheatSheet(name);
             } else if (descriptionMap.containsKey(ArgumentFlagEnum.INDEX)) {
                 int index = Integer.parseInt(descriptionMap.get(ArgumentFlagEnum.INDEX));
                 desiredCheatSheet = CheatSheetList.getCheatSheet(index);
