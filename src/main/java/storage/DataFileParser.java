@@ -14,6 +14,7 @@ public class DataFileParser {
     protected static final String FAVOURITE = "Favourite: ";
     protected static final String DETAILS = "Contents: ";
     protected static final String EMPTY = "";
+    protected static final String EMPTY_Asaas = "";
 
     protected static final String FAVOURITE_FILE = "Yes";
     protected static final String NOT_FAVOURITE_FILE = "No";

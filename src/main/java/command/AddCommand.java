@@ -2,10 +2,12 @@ package command;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
+
 import exception.CommandException;
-import parser.ArgumentFlagEnum;
+
 import ui.Printer;
 
+import parser.ArgumentFlagEnum;
 import java.util.HashMap;
 
 public class AddCommand extends Command {
