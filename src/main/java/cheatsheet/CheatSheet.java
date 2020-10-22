@@ -37,25 +37,26 @@ public class CheatSheet {
 
     public void setCheatSheetName(String cheatSheetName) {
         this.cheatSheetName = cheatSheetName;
-        dateModified = LocalDateTime.now();
+        updateCheatSheet();
     }
 
     public void setCheatSheetProgrammingLanguage(String cheatSheetProgrammingLanguage) {
         this.cheatSheetProgrammingLanguage = cheatSheetProgrammingLanguage;
-        dateModified = LocalDateTime.now();
+        updateCheatSheet();
     }
 
     public void setCheatSheetDetails(String cheatSheetDetails) {
         this.cheatSheetDetails = cheatSheetDetails;
-        dateModified = LocalDateTime.now();
+        updateCheatSheet();
     }
 
     public void setFavorite() {
         isFavorite = true;
+        updateCheatSheet();
     }
 
-    public void setDateCreated(LocalDateTime dateCreated) {
-        this.dateCreated = dateCreated;
+    public void updateCheatSheet() {
+        this.dateModified = LocalDateTime.now();
     }
 
     @Override
