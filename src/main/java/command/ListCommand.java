@@ -1,16 +1,19 @@
 package command;
 
+import parser.ArgumentFlagEnum;
 import sort.SortByName;
 import sort.SortByLanguage;
 import cheatsheet.CheatSheetList;
 import parser.Parser;
 import ui.Printer;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class ListCommand extends Command {
-    public ListCommand(Parser parser) {
-        super(parser);
+    public ListCommand(ArrayList<ArgumentFlagEnum> argEnumSet, HashMap<ArgumentFlagEnum, String> descriptionMap) {
+        super(argEnumSet, descriptionMap);
     }
 
     @Override

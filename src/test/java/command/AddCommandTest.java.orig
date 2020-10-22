@@ -134,4 +134,9 @@ class AddCommandTest {
             assertEquals("Please enter a name", e.getMessage());
         }
     }
+<<<<<<< Updated upstream
+=======
+
+ok
+>>>>>>> Stashed changes
 }

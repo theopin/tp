@@ -13,6 +13,7 @@ public class DataFileParser {
     protected static final String FAVOURITE = "Favourite: ";
     protected static final String DETAILS = "Contents: ";
     protected static final String EMPTY = "";
+    protected static final String EMPTY_Asaas = "";
 
     protected static final String FAVOURITE_FILE = "Yes";
     protected static final String NOT_FAVOURITE_FILE = "No";
@@ -62,7 +63,7 @@ public class DataFileParser {
         this.convertedCheatSheet = new CheatSheet(cheatSheetName,
                 cheatSheetProgrammingLanguage, cheatSheetDetails.toString().trim());
         if (this.cheatSheetFavourite) {
-            this.convertedCheatSheet.setFavorite();
+            this.convertedCheatSheet.setFavourite(true);
         }
         componentScanner.close();
     }

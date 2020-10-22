@@ -8,7 +8,7 @@ public class Ui {
     public Ui() {
     }
 
-    public String getUserInput() {
+    public String getUserInput()    {
         return in.nextLine();
     }
 

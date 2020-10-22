@@ -4,132 +4,153 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 
 /*
- * Handles printing of all outputs
+ * This class manages the output of text
  * */
-public class Printer {
-    private static final String RED_TEXT = "\u001b[31m";
-    private static final String GREEN_TEXT = "\u001b[32;1m";
-    private static final String CYAN_TEXT = "\u001b[36m";
-    private static final String RESET_TEXT = "\u001b[0m";
+public final class Printer {
     private static final String LINE = "----------------------------------------------------------------"
             + "----------------------------------------";
+    private static final String NEWLINE = System.lineSeparator();
+
+    public Printer() {
+    }
 
     private static void print(Object obj) {
         System.out.println(obj);
     }
 
     public static void printWelcomeScreen() {
-        System.out.println(CYAN_TEXT + " ________  ___  ___  _______   ________  _________  ________  "
-                + "___  ___  _______   _______  _________\n"
+        print(ConsoleColorsEnum.CYAN_TEXT
+                + " ________  ___  ___  _______   ________  _________  ________  "
+                + "___  ___  _______   _______  _________" + NEWLINE
                 + "|\\   ____\\|\\  \\|\\  \\|\\  ___ \\ |\\   __  \\|\\___   ___\\"
-                + "\\   ____\\|\\  \\|\\  \\|\\  ___ \\ |\\  ___ \\|\\___   ___\\\n"
+                + "\\   ____\\|\\  \\|\\  \\|\\  ___ \\ |\\  ___ \\|\\___   ___\\" + NEWLINE
                 + "\\ \\  \\___|\\ \\  \\\\\\  \\ \\   __/|\\ \\  \\|\\  \\|___ \\  "
-                + "\\_\\ \\  \\___|\\ \\  \\\\\\  \\ \\   __/|\\ \\   __/\\|___ \\  \\_|\n"
+                + "\\_\\ \\  \\___|\\ \\  \\\\\\  \\ \\   __/|\\ \\   __/\\|___ \\  \\_|" + NEWLINE
                 + " \\ \\  \\    \\ \\   __  \\ \\  \\_|/_\\ \\   __  \\   \\ \\  \\ "
-                + "\\ \\_____  \\ \\   __  \\ \\  \\_|/_\\ \\  \\_|/__  \\ \\  \\\n"
+                + "\\ \\_____  \\ \\   __  \\ \\  \\_|/_\\ \\  \\_|/__  \\ \\  \\" + NEWLINE
                 + "  \\ \\  \\____\\ \\  \\ \\  \\ \\  \\_|\\ \\ \\  \\ \\  \\   \\ \\  "
-                + "\\ \\|____|\\  \\ \\  \\ \\  \\ \\  \\_|\\ \\ \\  \\_|\\ \\  \\ \\  \\\n"
+                + "\\ \\|____|\\  \\ \\  \\ \\  \\ \\  \\_|\\ \\ \\  \\_|\\ \\  \\ \\  \\" + NEWLINE
                 + "   \\ \\_______\\ \\__\\ \\__\\ \\_______\\ \\__\\ \\__\\   \\ \\__"
-                + "\\  ____\\_\\  \\ \\__\\ \\__\\ \\_______\\ \\_______\\  \\ \\__\\\n"
+                + "\\  ____\\_\\  \\ \\__\\ \\__\\ \\_______\\ \\_______\\  \\ \\__\\" + NEWLINE
                 + "    \\|_______|\\|__|\\|__|\\|_______|\\|__|\\|__|    \\|__| |\\____"
-                + "_____\\|__|\\|__|\\|_______|\\|_______|   \\|__|\n"
-                + "                                      ___       ________  ________\n"
-                + "                                     |\\  \\     |\\   __  \\|\\   ____\\\n"
-                + "                                     \\ \\  \\    \\ \\  \\|\\  \\ \\  \\___|\n"
-                + "                                      \\ \\  \\    \\ \\  \\\\\\  \\ \\  \\  ___\n"
-                + "                                       \\ \\  \\____\\ \\  \\\\\\  \\ \\  \\|\\  \\\n"
-                + "                                        \\ \\_______\\ \\_______\\ \\_______\\\n"
-                + "                                         \\|_______|\\|_______|\\|_______|\n"
-                + LINE + "\n"
-                + "Welcome to CheatLogs, the one stop cheat sheet management systems\n"
+                + "_____\\|__|\\|__|\\|_______|\\|_______|   \\|__|" + NEWLINE
+                + "                                      ___       ________  ________" + NEWLINE
+                + "                                     |\\  \\     |\\   __  \\|\\   ____\\" + NEWLINE
+                + "                                     \\ \\  \\    \\ \\  \\|\\  \\ \\  \\___|" + NEWLINE
+                + "                                      \\ \\  \\    \\ \\  \\\\\\  \\ \\  \\  ___" + NEWLINE
+                + "                                       \\ \\  \\____\\ \\  \\\\\\  \\ \\  \\|\\  \\" + NEWLINE
+                + "                                        \\ \\_______\\ \\_______\\ \\_______\\" + NEWLINE
+                + "                                         \\|_______|\\|_______|\\|_______|" + NEWLINE
+                + LINE + NEWLINE
+                + "Welcome to CheatLogs, the one stop cheat sheet management systems" + NEWLINE
                 + "Your CAP is our upmost priority"
-                + RESET_TEXT
+                + ConsoleColorsEnum.RESET_TEXT
         );
     }
 
     public static void printExitLogo() {
-        System.out.println(" ________  ________  ________  ________  ________      ___    ___ _______\n"
+        print(ConsoleColorsEnum.CYAN_TEXT
+                + " ________  ________  ________  ________  ________      ___    ___ _______" + NEWLINE
                 + "|\\   ____\\|\\   __  \\|\\   __  \\|\\   ___ \\|\\   __  "
-                + "\\    |\\  \\  /  /|\\  ___ \\\n"
+                + "\\    |\\  \\  /  /|\\  ___ \\" + NEWLINE
                 + "\\ \\  \\___|\\ \\  \\|\\  \\ \\  \\|\\  \\ \\  \\_|\\ \\ \\  "
-                + "\\|\\ /_   \\ \\  \\/  / | \\   __/|\n"
+                + "\\|\\ /_   \\ \\  \\/  / | \\   __/|" + NEWLINE
                 + " \\ \\  \\  __\\ \\  \\\\\\  \\ \\  \\\\\\  \\ \\  \\ \\\\ \\ "
-                + "\\   __  \\   \\ \\    / / \\ \\  \\_|/__\n"
+                + "\\   __  \\   \\ \\    / / \\ \\  \\_|/__" + NEWLINE
                 + "  \\ \\  \\|\\  \\ \\  \\\\\\  \\ \\  \\\\\\  \\ \\  \\_\\\\ \\"
-                + " \\  \\|\\  \\   \\/  /  /   \\ \\  \\_|\\ \\\n"
+                + " \\  \\|\\  \\   \\/  /  /   \\ \\  \\_|\\ \\" + NEWLINE
                 + "   \\ \\_______\\ \\_______\\ \\_______\\ \\_______\\ \\_______\\"
-                + "__/  / /      \\ \\_______\\\n"
+                + "__/  / /      \\ \\_______\\" + NEWLINE
                 + "    \\|_______|\\|_______|\\|_______|\\|_______|\\|_______|\\___"
-                + "/ /        \\|_______|\n"
-                + "                                                     \\|___|/\n"
+                + "/ /        \\|_______|" + NEWLINE
+                + "                                                     \\|___|/" + NEWLINE
+                + ConsoleColorsEnum.RESET_TEXT
         );
     }
 
     public static void printUserInputPrompt() {
-        System.out.println(LINE + '\n');
-        System.out.println("Please Enter a Command:");
+        print(LINE + "" + NEWLINE + NEWLINE + "Please Enter a Command:");
     }
 
     public static void printWhiteSpace() {
-        System.out.println(" ");
+        print(" ");
     }
 
     public static void printHelpSheet() {
-        System.out.println("/add /n <CHEAT_SHEET_NAME> /l <PROGRAMMING_LANGUAGE> /d <DESCRIPTION> ");
-        System.out.println("\tAdds a new cheat sheet to the application and prompts user to include data "
-                + "into the cheat sheet.");
-        System.out.println("/clear");
-        System.out.println("\tClears all entries from the cheat sheet.");
-        System.out.println("/delete /i <CHEAT_SHEET_INDEX>");
-        System.out.println("\tTo be used after using /list, Deletes the cheat sheet at INDEX items down the list. "
-                + "The first cheat sheet has an index of 1.");
-        System.out.println("/find /l <PROGRAMMING LANGUAGE> k/ <KEYWORD>");
-        System.out.println("\tFinds a cheat sheet whose names contain any of the given keywords.");
-        System.out.println("/view /i <CHEAT_SHEET_INDEX>");
-        System.out.println("\tView the contents of a cheat sheet either by the name or index");
-        System.out.println("/list");
-        System.out.println("\tLists all the possible commands that can be executed in the application.");
-        System.out.println("/exit");
-        System.out.println("\tExits the application.");
+        print(ConsoleColorsEnum.BOLD + "/add /n <CHEAT_SHEET_NAME> /l <PROGRAMMING_LANGUAGE> /d <DESCRIPTION>"
+                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
+                + "\tAdds a new cheat sheet to the application and prompts user to include data" + NEWLINE
+                + "\tinto the cheat sheet." + NEWLINE
+                + ConsoleColorsEnum.BOLD + "/delete /i <CHEAT_SHEET_INDEX>"
+                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
+                + "\tTo be used after using /list, Deletes the cheat sheet at INDEX items down the list." + NEWLINE
+                + "\tThe first cheat sheet has an index of 1." + NEWLINE
+                + ConsoleColorsEnum.BOLD + "/find /l <PROGRAMMING LANGUAGE> k/ <KEYWORD>"
+                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
+                + "\tFinds a cheat sheet whose names contain any of the given keywords." + NEWLINE
+                + ConsoleColorsEnum.BOLD + "/view /i <CHEAT_SHEET_INDEX>"
+                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
+                + "\tView the contents of a cheat sheet either by the name or index" + NEWLINE
+                + ConsoleColorsEnum.BOLD + "/list"
+                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
+                + "\tLists all the possible commands that can be executed in the application." + NEWLINE
+                + ConsoleColorsEnum.BOLD + "/clear"
+                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
+                + "\tClears all entries from the cheat sheet." + NEWLINE
+                + ConsoleColorsEnum.BOLD + "/exit"
+                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
+                + "\tExits the application." + NEWLINE);
     }
 
     public static void printCheatSheet(CheatSheet cheatSheet) {
-        System.out.println("\tName: " + cheatSheet.getCheatSheetName());
-        System.out.println("\tProgramming Language: " + cheatSheet.getCheatSheetProgrammingLanguage());
-        System.out.println("\tDetails: " + cheatSheet.getCheatSheetDetails());
+        print("\tName: " + cheatSheet.getCheatSheetName() + NEWLINE
+            + "\tProgramming Language: " + cheatSheet.getCheatSheetProgrammingLanguage() + NEWLINE
+            + "\tDetails: " + cheatSheet.getCheatSheetDetails());
     }
 
     public static void printCheatSheetList() {
-        for (int i = 1; i <= CheatSheetList.getSize(); i++) {
-            System.out.println("\t"
-                    + i + ". " + CheatSheetList.getCheatSheet(i).getCheatSheetName()
-                    + " (Language: " + CheatSheetList.getCheatSheet(i).getCheatSheetProgrammingLanguage() + ")"
-                    + " (Details: " + CheatSheetList.getCheatSheet(i).getCheatSheetDetails() + ")");
+        int i = 0;
+        for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
+            i++;
+            print("\t"
+                    + i + ". " + cs.getCheatSheetName()
+                    + " (Language: " + cs.getCheatSheetProgrammingLanguage() + ")"
+                    + " (Details: " + cs.getCheatSheetDetails() + ")"
+                    + (cs.getFavourite() ? "(Favourited)" : ""));
         }
     }
 
+    public static void printCheatSheetSize() {
+        print("Now you have " + CheatSheetList.getSize() + " cheatsheet(s)");
+    }
+
     public static void printAddNewCheatSheetMessage(CheatSheet cheatSheet) {
-        System.out.println("Added new cheat sheet:");
+        print("Added new cheat sheet:");
         printCheatSheet(cheatSheet);
-        System.out.println(LINE);
-        System.out.println("Now you have " + CheatSheetList.getSize() + " cheatsheet(s)");
+        print(LINE);
+        printCheatSheetSize();
     }
 
     public static void printClearCheatSheetMessage(int number) {
-        System.out.println("Cleared total of " + number + " cheat sheets");
-        System.out.println(LINE);
-        System.out.println("Now you have no cheatsheets");
+        print("Cleared total of " + number + " cheat sheets");
+        print(LINE);
+        print("Now you have no cheatsheets");
     }
 
     public static void printDeleteCheatSheetMessage(CheatSheet cheatSheet) {
-        System.out.println("This cheat sheet has been deleted: ");
+        print("This cheat sheet has been deleted: ");
         printCheatSheet(cheatSheet);
-        System.out.println(LINE);
-        System.out.println("Now you have " + CheatSheetList.getSize() + " cheatsheet(s)");
+        print(LINE);
+        printCheatSheetSize();
     }
 
     public static void printViewCheatSheetMessage(CheatSheet cheatSheet) {
-        System.out.println("This is your content for " + cheatSheet.getCheatSheetName() + ": ");
+        print("This is your content for " + cheatSheet.getCheatSheetName() + ": ");
+        printCheatSheet(cheatSheet);
+    }
+
+    public static void printFavouritedCheatSheetMessage(CheatSheet cheatSheet) {
+        print("This cheat sheet has been favourited: ");
         printCheatSheet(cheatSheet);
     }
 }

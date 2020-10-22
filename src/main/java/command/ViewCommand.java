@@ -10,26 +10,28 @@ import ui.Printer;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ViewCommand extends Command {
-    public ViewCommand(Parser parser) {
-        super(parser);
+    public ViewCommand(ArrayList<ArgumentFlagEnum> argEnumSet, HashMap<ArgumentFlagEnum, String> descriptionMap) {
+        super(argEnumSet, descriptionMap);
     }
 
     @Override
     public void execute() throws CommandException {
         int index = 0;
         try {
-            if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.NAME)) {
-                String name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);
+            if (descriptionMap.containsKey(ArgumentFlagEnum.NAME)) {
+                String name = descriptionMap.get(ArgumentFlagEnum.NAME);
                 for (int i = 0; i < CheatSheetList.getSize(); i++) {
                     if (CheatSheetList.getCheatSheet(i).getCheatSheetName().equals(name)) {
                         index = i + 1;
                         break;
                     }
                 }
-            } else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
-                index = Integer.parseInt(parser.getDescriptionMap().get(ArgumentFlagEnum.INDEX));
+            } else if (descriptionMap.containsKey(ArgumentFlagEnum.INDEX)) {
+                index = Integer.parseInt(descriptionMap.get(ArgumentFlagEnum.INDEX));
             }
             Printer.printViewCheatSheetMessage(CheatSheetList.getCheatSheet(index));
             copyTextToClipboard(CheatSheetList.getCheatSheet(index).getCheatSheetDetails());
