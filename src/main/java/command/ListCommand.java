@@ -1,9 +1,9 @@
 package command;
 
-import cheatsheet.CheatSheetList;
 import parser.ArgumentFlagEnum;
-import sort.SortByLanguage;
+import cheatsheet.CheatSheetList;
 import sort.SortByName;
+import sort.SortByLanguage;
 import ui.Printer;
 
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class ListCommand extends Command {
 
     private void askForSortingConfigAndPrint() {
         printer.print("Sort filter (na: name ascending, la: language ascending, nd: name descending"
-            + ", ld: language descending or <enter> to skip)");
+                + ", ld: language descending or <enter> to skip)");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         while (!input.equals("q")) {

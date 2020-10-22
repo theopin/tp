@@ -5,6 +5,7 @@ import exception.CommandException;
 import parser.Parser;
 import storage.DataFileReader;
 import storage.DataFileWriter;
+import storage.DataFileDestroyer;
 
 public class UserSession {
     /*

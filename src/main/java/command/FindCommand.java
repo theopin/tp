@@ -92,5 +92,6 @@ public class FindCommand extends Command {
             }
             input = scanner.nextLine();
         }
+        askForSortingConfigAndPrint(cheatSheetArrayList);
     }
 }

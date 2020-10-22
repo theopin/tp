@@ -9,9 +9,9 @@ import ui.Printer;
 
 import java.util.HashMap;
 
-
 public class DeleteCommand extends Command {
     protected DataFileDestroyer fileDestroyer;
+
     public DeleteCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer,
                          DataFileDestroyer fileDestroyer) {
         super(descriptionMap, printer);

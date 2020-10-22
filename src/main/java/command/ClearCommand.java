@@ -5,7 +5,6 @@ import parser.ArgumentFlagEnum;
 import storage.DataFileDestroyer;
 import ui.Printer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ClearCommand extends Command {
@@ -16,7 +15,6 @@ public class ClearCommand extends Command {
         super(descriptionMap, printer);
         this.fileDestroyer = fileDestroyer;
     }
-
 
     @Override
     public void execute() {

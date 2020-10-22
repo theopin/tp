@@ -18,7 +18,6 @@ import static storage.DataFileParser.DETAILS;
 import static storage.DataFileParser.FAVOURITE_FILE;
 import static storage.DataFileParser.NOT_FAVOURITE_FILE;
 
-
 /**
  * Allows the user to write data based on the cheatSheets currently present
  * in the list of cheatSheets into individual files.

@@ -110,9 +110,9 @@ public class Parser {
     private ArrayList<ArgumentFlagEnum> parseTypeOfArgument(String userInput) {
         ArrayList<ArgumentFlagEnum> argEnumList = new ArrayList<>();
 
-        Pattern pattern = Pattern.compile(FLAG_REGEX);
-        Matcher matcher = pattern.matcher(userInput);
-        ArrayList<String> argList = addMatchesToArgEnumSet(matcher);
+        Pattern flagPattern = Pattern.compile(FLAG_REGEX);
+        Matcher flagMatcher = flagPattern.matcher(userInput);
+        ArrayList<String> argList = addMatchesToArgEnumSet(flagMatcher);
         for (String arg : argList) {
             for (ArgumentFlagEnum ae : ArgumentFlagEnum.values()) {
                 if (arg.equals(ae.getAssociatedKeyWord())) {
@@ -138,10 +138,10 @@ public class Parser {
         return descriptionMap;
     }
 
-    private ArrayList<String> addMatchesToArgEnumSet(Matcher matcher) {
+    private ArrayList<String> addMatchesToArgEnumSet(Matcher flagMatcher) {
         ArrayList<String> argList = new ArrayList<>();
-        while (matcher.find()) {
-            argList.add(matcher.group().trim());
+        while (flagMatcher.find()) {
+            argList.add(flagMatcher.group().trim());
         }
         return argList;
     }

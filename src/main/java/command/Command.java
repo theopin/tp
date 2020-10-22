@@ -6,9 +6,6 @@ import ui.Printer;
 
 import java.util.HashMap;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 /**
  * The base class for all Commands.
  */
@@ -29,16 +26,6 @@ public abstract class Command {
     public HashMap<ArgumentFlagEnum, String> getDescriptionMap() {
         return descriptionMap;
     }
-
-
-    public ArrayList<ArgumentFlagEnum> getArgEnumSet() {
-        return argEnumSet;
-    }
-
-    public HashMap<ArgumentFlagEnum, String> getDescriptionMap() {
-        return descriptionMap;
-    }
-
 
     public abstract void execute() throws CommandException;
 }
