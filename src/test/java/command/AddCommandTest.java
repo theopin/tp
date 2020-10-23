@@ -6,6 +6,7 @@ import exception.CommandException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import parser.Parser;
+import ui.Printer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -17,8 +18,8 @@ class AddCommandTest {
         final String userInput = "/add /n name /l language /d details";
         CheatSheetList.clear();
         try {
-            Parser parser = new Parser(userInput);
-            AddCommand addCommand = new AddCommand(parser);
+            Parser parser = new Parser(null, new Printer());;
+            Command addCommand = parser.parse(userInput);
             addCommand.execute();
             assertEquals(1, CheatSheetList.getSize());
         } catch (CommandException e) {
@@ -30,8 +31,8 @@ class AddCommandTest {
     void addOneCheatSheet_allFieldsFilled_success() throws CommandException {
         CheatSheetList.clear();
         String userInput = "/add /n FirstTest /l Java /d Content1";
-        Parser parser = new Parser(userInput);
-        AddCommand addCommand = new AddCommand(parser);
+        Parser parser = new Parser(null, new Printer());;
+        Command addCommand = parser.parse(userInput);
         addCommand.execute();
         Assertions.assertAll(
             () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
@@ -44,8 +45,8 @@ class AddCommandTest {
     void addOneCheatSheet_nameAndLanguageFilled_success() throws CommandException {
         CheatSheetList.clear();
         String userInput = "/add /n FirstTest /l Java";
-        Parser parser = new Parser(userInput);
-        AddCommand addCommand = new AddCommand(parser);
+        Parser parser = new Parser(null, new Printer());;
+        Command addCommand = parser.parse(userInput);
         addCommand.execute();
         Assertions.assertAll(
             () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
@@ -58,8 +59,8 @@ class AddCommandTest {
     void addOneCheatSheet_nameAndDescriptionFilled_success() throws CommandException {
         CheatSheetList.clear();
         String userInput = "/add /n FirstTest /d Content1";
-        Parser parser = new Parser(userInput);
-        AddCommand addCommand = new AddCommand(parser);
+        Parser parser = new Parser(null, new Printer());;
+        Command addCommand = parser.parse(userInput);
         addCommand.execute();
         Assertions.assertAll(
             () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
@@ -72,8 +73,8 @@ class AddCommandTest {
     void addOneCheatSheet_languageAndDescriptionFilled_CommandExceptionThrown() throws CommandException {
         CheatSheetList.clear();
         String userInput = "/add /l Java /d Content1";
-        Parser parser = new Parser(userInput);
-        AddCommand addCommand = new AddCommand(parser);
+        Parser parser = new Parser(null, new Printer());;
+        Command addCommand = parser.parse(userInput);
         try {
             addCommand.execute();
         } catch (CommandException c) {
@@ -85,8 +86,8 @@ class AddCommandTest {
     void addOneCheatSheet_nameFilled_CommandExceptionThrown() throws CommandException {
         CheatSheetList.clear();
         String userInput = "/add /n FirstTest";
-        Parser parser = new Parser(userInput);
-        AddCommand addCommand = new AddCommand(parser);
+        Parser parser = new Parser(null, new Printer());;
+        Command addCommand = parser.parse(userInput);
         addCommand.execute();
         Assertions.assertAll(
             () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
@@ -99,8 +100,8 @@ class AddCommandTest {
     void addOneCheatSheet_LanguageFilled_CommandExceptionThrown() throws CommandException {
         CheatSheetList.clear();
         String userInput = "/add /l Java";
-        Parser parser = new Parser(userInput);
-        AddCommand addCommand = new AddCommand(parser);
+        Parser parser = new Parser(null, new Printer());;
+        Command addCommand = parser.parse(userInput);
         try {
             addCommand.execute();
         } catch (CommandException c) {
@@ -112,8 +113,8 @@ class AddCommandTest {
     void addOneCheatSheet_DescriptionFilled_CommandExceptionThrown() throws CommandException {
         CheatSheetList.clear();
         String userInput = "/add /d Content1";
-        Parser parser = new Parser(userInput);
-        AddCommand addCommand = new AddCommand(parser);
+        Parser parser = new Parser(null, new Printer());;
+        Command addCommand = parser.parse(userInput);
         try {
             addCommand.execute();
         } catch (CommandException c) {
@@ -126,8 +127,8 @@ class AddCommandTest {
         final String userInput = "/add";
         CheatSheetList.clear();
         try {
-            Parser parser = new Parser(userInput);
-            AddCommand addCommand = new AddCommand(parser);
+            Parser parser = new Parser(null, new Printer());;
+            Command addCommand = parser.parse(userInput);
             addCommand.execute();
             fail();
         } catch (CommandException e) {

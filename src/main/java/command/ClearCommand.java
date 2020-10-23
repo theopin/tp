@@ -1,18 +1,24 @@
 package command;
 
 import cheatsheet.CheatSheetList;
-import parser.Parser;
+import parser.ArgumentFlagEnum;
+import storage.DataFileDestroyer;
 import ui.Printer;
 
+import java.util.HashMap;
 
 public class ClearCommand extends Command {
-    public ClearCommand(Parser parser) {
-        super(parser);
+    protected DataFileDestroyer fileDestroyer;
+
+    public ClearCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer,
+                        DataFileDestroyer fileDestroyer) {
+        super(descriptionMap, printer);
+        this.fileDestroyer = fileDestroyer;
     }
 
     @Override
     public void execute() {
-        Printer.printClearCheatSheetMessage(CheatSheetList.getSize());
+        printer.printClearCheatSheetMessage(CheatSheetList.getSize());
         CheatSheetList.clear();
         fileDestroyer.executeFunction();
     }

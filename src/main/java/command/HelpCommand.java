@@ -5,13 +5,13 @@ import ui.Printer;
 
 import java.util.HashMap;
 
-public class ExitCommand extends Command {
-    public ExitCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
+public class HelpCommand extends Command {
+    public HelpCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
         super(descriptionMap, printer);
     }
 
     @Override
     public void execute() {
-        isExitCommand = true;
+        printer.printHelpSheet();
     }
 }

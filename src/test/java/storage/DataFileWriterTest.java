@@ -36,7 +36,7 @@ public class DataFileWriterTest extends DataFileTest {
             String actualFileContent = Files.readString(sampleFile);
             assertEquals(sampleFileContent, actualFileContent);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            printer.print(e.getMessage());
         } finally {
             createdFile.delete();
             CheatSheetList.clear();
@@ -59,7 +59,7 @@ public class DataFileWriterTest extends DataFileTest {
             String actualFileContent = Files.readString(sampleFile);
             assertEquals(sampleFileContent, actualFileContent);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            printer.print(e.getMessage());
         } finally {
             CheatSheetList.clear();
             createdFile.delete();

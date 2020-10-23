@@ -1,5 +1,7 @@
 package storage;
 
+import ui.Printer;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,15 +23,16 @@ public class DataFileTest {
     Path dataDir = Paths.get(userDir, data);
     Path sampleFile = Paths.get(userDir, data, fileName);
 
-    DataFileWriter testWriter = new DataFileWriter();
-    DataFileReader testReader = new DataFileReader();
-    DataFileDestroyer testDestroyer = new DataFileDestroyer();
+    Printer printer = new Printer();
+    DataFileWriter testWriter = new DataFileWriter(printer);
+    DataFileReader testReader = new DataFileReader(printer);
+    DataFileDestroyer testDestroyer = new DataFileDestroyer(printer);
 
     void createDataDir() {
         try {
             Files.createDirectories(dataDir);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            printer.print(e.getMessage());
 
         }
     }
@@ -39,7 +42,7 @@ public class DataFileTest {
             //Files.createFile(fileName);
             Files.writeString(fileName, fileContent);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            printer.print(e.getMessage());
         }
     }
 
