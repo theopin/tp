@@ -15,18 +15,9 @@ public class AddCommand extends Command {
 
     @Override
     public void execute() throws CommandException {
-        boolean isExit;
-        String description;
         String name = descriptionMap.get(ArgumentFlagEnum.NAME);
         String programmingLanguage = descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
-        //String description = descriptionMap.get(ArgumentFlagEnum.DESCRIPTION);
-        Editor contentEditor = new Editor();
-        do {
-            //wait for the text editor program to finish
-            // needs to figure out how to stop the infinite loop
-            System.out.println("Loading....");
-            description = contentEditor.getContent();
-        } while (description == null);
+        String description = callContentEditor();
 
         if (name == null) {
             throw new CommandException("Please enter a name");
@@ -37,7 +28,17 @@ public class AddCommand extends Command {
         CheatSheetList.add(cheatSheet);
 
         printer.printAddNewCheatSheetMessage(cheatSheet);
+    }
 
+    private String callContentEditor() {
+        String content;
+        Editor contentEditor = new Editor();
+        do {
+            // needs to figure out how to stop the infinite loop
+            System.out.println("Waiting for user input...");
+            content = contentEditor.getContent();
+        } while (content == null);
+        return content;
     }
 
     private boolean checkIfNameAlreadyExist(String name) {

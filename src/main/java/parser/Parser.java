@@ -1,17 +1,6 @@
 package parser;
 
-import command.Command;
-import command.AddCommand;
-import command.ClearCommand;
-import command.DeleteCommand;
-import command.ExitCommand;
-import command.ListCommand;
-import command.FindCommand;
-import command.HelpCommand;
-import command.ViewCommand;
-import command.FavouriteCommand;
-import command.SettingsCommand;
-import command.CommandEnum;
+import command.*;
 
 import exception.CommandException;
 import storage.DataFileDestroyer;
@@ -51,6 +40,9 @@ public class Parser {
         case DELETE:
             commandToBeExecuted = new DeleteCommand(descriptionMap, printer, fileDestroyer);
             break;
+        case EDIT:
+            commandToBeExecuted = new EditCommand(descriptionMap,printer);
+            break;
         case EXIT:
             commandToBeExecuted = new ExitCommand(descriptionMap, printer);
             break;
@@ -88,6 +80,8 @@ public class Parser {
             return CommandEnum.CLEAR;
         case "/delete":
             return CommandEnum.DELETE;
+        case "/edit":
+            return CommandEnum.EDIT;
         case "/exit":
             return CommandEnum.EXIT;
         case "/find":

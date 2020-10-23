@@ -11,6 +11,15 @@ public class Editor extends JFrame implements ActionListener {
     static boolean isEditDone;
 
     public Editor(){
+        generateEditorUI();
+    }
+
+    public Editor(String content){
+        generateEditorUI();
+        textArea.setText(content);
+    }
+
+    private void generateEditorUI() {
         isEditDone = false;
         editorFrame = new JFrame("editor");
         textArea = new JTextArea();
