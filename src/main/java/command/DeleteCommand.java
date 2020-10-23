@@ -7,7 +7,7 @@ import parser.ArgumentFlagEnum;
 import storage.DataFileDestroyer;
 import ui.Printer;
 
-public class DeleteCommand extends Command {
+public class DeleteCommand extends FinderCommand {
     protected DataFileDestroyer fileDestroyer;
 
     public DeleteCommand(Printer printer, DataFileDestroyer fileDestroyer) {
@@ -32,27 +32,14 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute() throws CommandException {
-        int index;
-        String name;
-        CheatSheet cheatSheetToBeDeleted = null;
         try {
-            if (descriptionMap.containsKey(ArgumentFlagEnum.NAME)) {
-                name = descriptionMap.get(ArgumentFlagEnum.NAME);
-                cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(name);
-            } else if (descriptionMap.containsKey(ArgumentFlagEnum.INDEX)) {
-                index = Integer.parseInt(descriptionMap.get(ArgumentFlagEnum.INDEX));
-                cheatSheetToBeDeleted = CheatSheetList.getCheatSheet(index);
-            }
-
-            if (cheatSheetToBeDeleted == null) {
-                throw new CommandException("Please enter a name or an index");
-            }
+            CheatSheet cheatSheetToBeDeleted = getCheatSheetFromNameOrIndex();
 
             CheatSheetList.remove(cheatSheetToBeDeleted.getCheatSheetName());
             fileDestroyer.executeFunction(cheatSheetToBeDeleted.getCheatSheetName());
             printer.printDeleteCheatSheetMessage(cheatSheetToBeDeleted);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
-            throw new CommandException("Please enter valid arguments");
+            throw new CommandException("Please enter a valid name or index");
         } catch (NumberFormatException n) {
             throw new CommandException("Please enter a valid index");
         }

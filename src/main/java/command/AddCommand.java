@@ -33,9 +33,7 @@ public class AddCommand extends Command {
         String programmingLanguage = descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
         String description = descriptionMap.get(ArgumentFlagEnum.DESCRIPTION);
 
-        if (name == null) {
-            throw new CommandException("Please enter a name");
-        } else if (checkIfNameAlreadyExist(name)) {
+        if (checkIfNameAlreadyExist(name)) {
             throw new CommandException("Name already existed, please enter another name");
         }
 

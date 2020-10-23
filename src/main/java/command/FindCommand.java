@@ -11,7 +11,7 @@ import ui.Printer;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FindCommand extends Command {
+public class FindCommand extends FinderCommand {
     public FindCommand(Printer printer) {
         super(printer);
 
