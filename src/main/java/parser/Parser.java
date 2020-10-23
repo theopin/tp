@@ -10,7 +10,6 @@ import command.FindCommand;
 import command.HelpCommand;
 import command.ViewCommand;
 import command.FavouriteCommand;
-import command.SettingsCommand;
 
 import exception.CommandException;
 import storage.DataFileDestroyer;
@@ -70,8 +69,6 @@ public class Parser {
             return new ViewCommand(printer);
         case "/favourite":
             return new FavouriteCommand(printer);
-        case "/settings":
-            return new SettingsCommand(printer);
         default:
             throw new CommandException("Please enter a valid command");
         }

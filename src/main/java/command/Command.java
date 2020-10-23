@@ -19,18 +19,18 @@ public abstract class Command {
     }
 
     public Command(Printer printer) {
-        this.descriptionMap = new HashMap<ArgumentFlagEnum, String>();
+        this.descriptionMap = new HashMap<>();
         this.flags = new ArgumentFlagEnum[] {};
         this.printer = printer;
         isExitCommand = false;
     }
 
-    public void initCommandDetails(ArgumentFlagEnum[] flags) {
+    public void initCommandDetails(ArgumentFlagEnum[] initFlags) {
         assert flags != null;
         assert descriptionMap != null;
 
-        setFlags(flags);
-        if (this.flags != null) {
+        setFlags(initFlags);
+        if (flags != null) {
             for (ArgumentFlagEnum flag : flags) {
                 descriptionMap.put(flag, null);
             }
