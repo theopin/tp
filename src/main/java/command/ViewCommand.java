@@ -9,11 +9,25 @@ import ui.Printer;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import java.util.HashMap;
 
 public class ViewCommand extends Command {
-    public ViewCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
-        super(descriptionMap, printer);
+    public ViewCommand(Printer printer) {
+        super(printer);
+
+        initCommandDetails(new ArgumentFlagEnum[] {
+            ArgumentFlagEnum.NAME,
+            ArgumentFlagEnum.INDEX,
+        });
+    }
+
+    @Override
+    public boolean hasAllRequiredArguments() {
+        if (descriptionMap.get(ArgumentFlagEnum.NAME) != null
+                || descriptionMap.get(ArgumentFlagEnum.INDEX) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

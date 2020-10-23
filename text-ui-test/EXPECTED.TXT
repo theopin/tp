@@ -21,7 +21,7 @@ Your CAP is our upmost priority[0m
 Please enter a Command:
 Added new cheat sheet:
 	Name: name
-	Programming Language: language
+	Programming Language: Language
 	Details: details
 --------------------------------------------------------------------------------------------------------
 Now you have 1 cheatsheet(s)

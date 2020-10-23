@@ -11,97 +11,67 @@ import command.HelpCommand;
 import command.ViewCommand;
 import command.FavouriteCommand;
 import command.SettingsCommand;
-import command.CommandEnum;
 
 import exception.CommandException;
 import storage.DataFileDestroyer;
+import ui.Ui;
 import ui.Printer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
     private DataFileDestroyer fileDestroyer;
     private Printer printer;
-    private static final String FLAG_REGEX = " /[dnilk] ";
+    private Ui ui;
+    private static final String FLAG_REGEX = " /[a-z] ";
 
     public Parser() {
     }
 
-    public Parser(DataFileDestroyer fileDestroyer, Printer printer) {
+    public Parser(DataFileDestroyer fileDestroyer, Printer printer, Ui ui) {
         this.fileDestroyer = fileDestroyer;
         this.printer = printer;
+        this.ui = ui;
     }
 
     public Command parse(String userInput) throws CommandException {
-        CommandEnum commandType = parseTypeOfCommand(userInput);
+        Command commandToBeExecuted = parseTypeOfCommand(userInput);
         ArrayList<ArgumentFlagEnum> argEnumSet = parseTypeOfArgument(userInput);
         HashMap<ArgumentFlagEnum, String> descriptionMap = parseDescription(userInput, argEnumSet);
+        commandToBeExecuted.setDescriptionMap(descriptionMap);
 
-        Command commandToBeExecuted = null;
-        switch (commandType) {
-        case ADD:
-            commandToBeExecuted = new AddCommand(descriptionMap, printer);
-            break;
-        case CLEAR:
-            commandToBeExecuted = new ClearCommand(descriptionMap, printer, fileDestroyer);
-            break;
-        case DELETE:
-            commandToBeExecuted = new DeleteCommand(descriptionMap, printer, fileDestroyer);
-            break;
-        case EXIT:
-            commandToBeExecuted = new ExitCommand(descriptionMap, printer);
-            break;
-        case FIND:
-            commandToBeExecuted = new FindCommand(descriptionMap, printer);
-            break;
-        case HELP:
-            commandToBeExecuted = new HelpCommand(descriptionMap, printer);
-            break;
-        case LIST:
-            commandToBeExecuted = new ListCommand(descriptionMap, printer);
-            break;
-        case VIEW:
-            commandToBeExecuted = new ViewCommand(descriptionMap, printer);
-            break;
-        case FAVOURITE:
-            commandToBeExecuted = new FavouriteCommand(descriptionMap, printer);
-            break;
-        case SETTINGS:
-            commandToBeExecuted = new SettingsCommand(descriptionMap, printer);
-            break;
-        default:
-            assert false;
-        }
+        setMissingArguments(commandToBeExecuted);
 
         return commandToBeExecuted;
     }
 
-    private CommandEnum parseTypeOfCommand(String userInput) throws CommandException {
+    private Command parseTypeOfCommand(String userInput) throws CommandException {
         String parsedInput = userInput.split(" ")[0];
         switch (parsedInput) {
         case "/add":
-            return CommandEnum.ADD;
+            return new AddCommand(printer);
         case "/clear":
-            return CommandEnum.CLEAR;
+            return new ClearCommand(printer, fileDestroyer);
         case "/delete":
-            return CommandEnum.DELETE;
+            return new DeleteCommand(printer, fileDestroyer);
         case "/exit":
-            return CommandEnum.EXIT;
+            return new ExitCommand(printer);
         case "/find":
-            return CommandEnum.FIND;
+            return new FindCommand(printer);
         case "/help":
-            return CommandEnum.HELP;
+            return new HelpCommand(printer);
         case "/list":
-            return CommandEnum.LIST;
+            return new ListCommand(printer);
         case "/view":
-            return CommandEnum.VIEW;
+            return new ViewCommand(printer);
         case "/favourite":
-            return CommandEnum.FAVOURITE;
+            return new FavouriteCommand(printer);
         case "/settings":
-            return CommandEnum.SETTINGS;
+            return new SettingsCommand(printer);
         default:
             throw new CommandException("Please enter a valid command");
         }
@@ -138,8 +108,25 @@ public class Parser {
         return descriptionMap;
     }
 
+    private void setMissingArguments(Command commandToBeExecuted) {
+        while (!commandToBeExecuted.hasAllRequiredArguments()) {
+            for (Map.Entry<ArgumentFlagEnum, String> entry : commandToBeExecuted.getDescriptionMap().entrySet()) {
+                ArgumentFlagEnum curArg = entry.getKey();
+                String curArgVal = entry.getValue();
+
+                if (curArgVal == null) {
+                    printer.printMissingArgument(curArg);
+                    String newArgVal = ui.getUserInput();
+                    commandToBeExecuted.getDescriptionMap().replace(curArg, newArgVal);
+                    return;
+                }
+            }
+        }
+    }
+
     private ArrayList<String> addMatchesToArgEnumSet(Matcher flagMatcher) {
         ArrayList<String> argList = new ArrayList<>();
+
         while (flagMatcher.find()) {
             argList.add(flagMatcher.group().trim());
         }

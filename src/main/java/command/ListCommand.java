@@ -1,17 +1,22 @@
 package command;
 
-import parser.ArgumentFlagEnum;
 import cheatsheet.CheatSheetList;
-import sort.SortByName;
 import sort.SortByLanguage;
+import sort.SortByName;
 import ui.Printer;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class ListCommand extends Command {
-    public ListCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
-        super(descriptionMap, printer);
+    public ListCommand(Printer printer) {
+        super(printer);
+
+        initCommandDetails(null);
+    }
+
+    @Override
+    public boolean hasAllRequiredArguments() {
+        return true;
     }
 
     @Override

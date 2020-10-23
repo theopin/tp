@@ -25,7 +25,7 @@ public class UserSession {
         fileWriter = new DataFileWriter(printer);
         fileDestroyer = new DataFileDestroyer(printer);
         ui = new Ui();
-        userCommandParser = new Parser(fileDestroyer, printer);
+        userCommandParser = new Parser(fileDestroyer, printer, ui);
     }
 
     /**

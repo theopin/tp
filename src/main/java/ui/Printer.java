@@ -2,6 +2,7 @@ package ui;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
+import parser.ArgumentFlagEnum;
 
 /*
  * This class manages the output of text
@@ -152,5 +153,9 @@ public final class Printer {
     public void printFavouritedCheatSheetMessage(CheatSheet cheatSheet) {
         print("This cheat sheet has been favourited: ");
         printCheatSheet(cheatSheet);
+    }
+
+    public void printMissingArgument(ArgumentFlagEnum curArg) {
+        print("Please input data for the follow argument: " + curArg.name());
     }
 }

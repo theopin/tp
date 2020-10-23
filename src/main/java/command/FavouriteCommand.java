@@ -6,11 +6,24 @@ import exception.CommandException;
 import parser.ArgumentFlagEnum;
 import ui.Printer;
 
-import java.util.HashMap;
-
 public class FavouriteCommand extends Command {
-    public FavouriteCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
-        super(descriptionMap, printer);
+    public FavouriteCommand(Printer printer) {
+        super(printer);
+
+        initCommandDetails(new ArgumentFlagEnum[] {
+            ArgumentFlagEnum.NAME,
+            ArgumentFlagEnum.INDEX,
+        });
+    }
+
+    @Override
+    public boolean hasAllRequiredArguments() {
+        if (descriptionMap.get(ArgumentFlagEnum.NAME) != null
+            || descriptionMap.get(ArgumentFlagEnum.INDEX) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

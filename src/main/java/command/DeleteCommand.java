@@ -7,15 +7,27 @@ import parser.ArgumentFlagEnum;
 import storage.DataFileDestroyer;
 import ui.Printer;
 
-import java.util.HashMap;
-
 public class DeleteCommand extends Command {
     protected DataFileDestroyer fileDestroyer;
 
-    public DeleteCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer,
-                         DataFileDestroyer fileDestroyer) {
-        super(descriptionMap, printer);
+    public DeleteCommand(Printer printer, DataFileDestroyer fileDestroyer) {
+        super(printer);
         this.fileDestroyer = fileDestroyer;
+
+        initCommandDetails(new ArgumentFlagEnum[] {
+            ArgumentFlagEnum.NAME,
+            ArgumentFlagEnum.INDEX,
+        });
+    }
+
+    @Override
+    public boolean hasAllRequiredArguments() {
+        if (descriptionMap.get(ArgumentFlagEnum.NAME) != null
+            || descriptionMap.get(ArgumentFlagEnum.INDEX) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
