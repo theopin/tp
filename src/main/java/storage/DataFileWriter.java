@@ -2,6 +2,7 @@ package storage;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
+import ui.Printer;
 
 import java.io.IOException;
 import java.io.FileWriter;
@@ -12,7 +13,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import static storage.DataFileParser.PROGRAMMING_LANGUAGE;
+import static storage.DataFileParser.FAVOURITE;
 import static storage.DataFileParser.DETAILS;
+import static storage.DataFileParser.FAVOURITE_FILE;
+import static storage.DataFileParser.NOT_FAVOURITE_FILE;
 
 /**
  * Allows the user to write data based on the cheatSheets currently present
@@ -20,6 +24,10 @@ import static storage.DataFileParser.DETAILS;
  */
 public class DataFileWriter extends DataFile {
     private ArrayList<CheatSheet> cheatSheets;
+
+    public DataFileWriter(Printer printer) {
+        this.printer = printer;
+    }
 
     /**
      * Converts the cheatSheets present in the list of cheatSheet into
@@ -39,8 +47,8 @@ public class DataFileWriter extends DataFile {
     private void storeCheatSheet() {
         int cheatSheetsSize = cheatSheets.size();
         if (cheatSheetsSize > 0) {
-            for (CheatSheet cheatSheet : cheatSheets) {
-                convertStringToFile(cheatSheet);
+            for (CheatSheet cs : cheatSheets) {
+                convertStringToFile(cs);
             }
         }
     }
@@ -66,7 +74,7 @@ public class DataFileWriter extends DataFile {
             }
             writeToFile(textFile.toString(), cheatSheetFileBuild.toString());
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            printer.print(e.getMessage());
         }
     }
 
@@ -77,8 +85,12 @@ public class DataFileWriter extends DataFile {
      * @param cheatSheet The cheatSheet that is currently being converted into a file.
      */
     private void buildFileContents(StringBuilder cheatSheetFileBuild, CheatSheet cheatSheet) {
+        String favouriteStatus = cheatSheet.getIsFavourite() ? FAVOURITE_FILE : NOT_FAVOURITE_FILE;
         cheatSheetFileBuild.append(PROGRAMMING_LANGUAGE)
                 .append(cheatSheet.getCheatSheetProgrammingLanguage())
+                .append(System.lineSeparator())
+                .append(FAVOURITE)
+                .append(favouriteStatus)
                 .append(System.lineSeparator())
                 .append(DETAILS)
                 .append(cheatSheet.getCheatSheetDetails());

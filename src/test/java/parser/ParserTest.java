@@ -1,6 +1,7 @@
 package parser;
 
-import command.CommandEnum;
+import command.AddCommand;
+import command.Command;
 import exception.CommandException;
 import org.junit.jupiter.api.Test;
 
@@ -32,10 +33,10 @@ class ParserTest {
         }
 
         try {
-            Parser parser = new Parser(userInput);
-            assertEquals(CommandEnum.ADD, parser.getCommandType());
-            assertEquals(argEnumList, parser.getArgEnumSet());
-            assertEquals(descriptionMap, parser.getDescriptionMap());
+            Parser parser = new Parser();
+            Command command = parser.parse(userInput);
+            assertEquals(AddCommand.class, command.getClass());
+            assertEquals(descriptionMap, command.getDescriptionMap());
         } catch (CommandException e) {
             fail();
         }
@@ -45,7 +46,8 @@ class ParserTest {
     void parser_incompleteInput_exceptionThrown() {
         String userInput = "dummy command";
         try {
-            Parser parser = new Parser(userInput);
+            Parser parser = new Parser();
+            parser.parse(userInput);
             fail();
         } catch (CommandException e) {
             assertEquals("Please enter a valid command", e.getMessage());

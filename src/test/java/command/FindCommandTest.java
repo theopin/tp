@@ -19,7 +19,7 @@ class FindCommandTest {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         try {
-            Parser parser = new Parser(userInput);
+            Parser parser = new Parser();
             FindCommand findCommand = new FindCommand(parser);
             findCommand.execute();
         } catch (CommandException e) {
@@ -27,6 +27,7 @@ class FindCommandTest {
         }
     }
     */
+
     @Test
     void execute_noArgument_exceptionThrown() {
         final String userInput = "/find";
@@ -35,8 +36,8 @@ class FindCommandTest {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         try {
-            Parser parser = new Parser(userInput);
-            FindCommand findCommand = new FindCommand(parser);
+            Parser parser = new Parser();
+            Command findCommand = parser.parse(userInput);
             findCommand.execute();
             fail();
         } catch (CommandException e) {

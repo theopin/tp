@@ -2,21 +2,22 @@ package command;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
-import parser.ArgumentFlagEnum;
-import parser.Parser;
 import exception.CommandException;
 import ui.Printer;
 
+import parser.ArgumentFlagEnum;
+import java.util.HashMap;
+
 public class AddCommand extends Command {
-    public AddCommand(Parser parser) {
-        super(parser);
+    public AddCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
+        super(descriptionMap, printer);
     }
 
     @Override
     public void execute() throws CommandException {
-        String name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);
-        String programmingLanguage = parser.getDescriptionMap().get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
-        String description = parser.getDescriptionMap().get(ArgumentFlagEnum.DESCRIPTION);
+        String name = descriptionMap.get(ArgumentFlagEnum.NAME);
+        String programmingLanguage = descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
+        String description = descriptionMap.get(ArgumentFlagEnum.DESCRIPTION);
 
         if (name == null) {
             throw new CommandException("Please enter a name");
@@ -26,7 +27,16 @@ public class AddCommand extends Command {
 
         CheatSheet cheatSheet = new CheatSheet(name, programmingLanguage, description);
         CheatSheetList.add(cheatSheet);
-        Printer.printAddNewCheatSheetMessage(cheatSheet);
+        printer.printAddNewCheatSheetMessage(cheatSheet);
+    }
+
+    private boolean checkIfNameAlreadyExist(String name) {
+        for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
+            if (cs.getCheatSheetName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean checkIfNameAlreadyExist(String name) {

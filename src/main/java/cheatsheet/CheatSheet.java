@@ -6,7 +6,7 @@ public class CheatSheet {
     private String cheatSheetName;
     private String cheatSheetProgrammingLanguage;
     private String cheatSheetDetails;
-    private boolean isFavorite;
+    private boolean isFavourite;
     private boolean isModifiable;
     private LocalDateTime dateCreated;
     private LocalDateTime dateModified;
@@ -15,7 +15,7 @@ public class CheatSheet {
         this.cheatSheetName = cheatSheetName;
         this.cheatSheetProgrammingLanguage = cheatSheetProgrammingLanguage;
         this.cheatSheetDetails = cheatSheetDetails;
-        this.isFavorite = false;
+        this.isFavourite = false;
         this.dateCreated = LocalDateTime.now();
     }
 
@@ -25,6 +25,10 @@ public class CheatSheet {
 
     public String getCheatSheetProgrammingLanguage() {
         return cheatSheetProgrammingLanguage;
+    }
+
+    public boolean getIsFavourite() {
+        return isFavourite;
     }
 
     public String getCheatSheetDetails() {
@@ -50,8 +54,12 @@ public class CheatSheet {
         dateModified = LocalDateTime.now();
     }
 
-    public void setFavorite() {
-        isFavorite = true;
+    public boolean getFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean isFavourite) {
+        this.isFavourite = isFavourite;
     }
 
     public void setDateCreated(LocalDateTime dateCreated) {

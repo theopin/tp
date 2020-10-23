@@ -2,26 +2,31 @@ package command;
 
 import cheatsheet.CheatSheetList;
 import exception.CommandException;
-import parser.Parser;
-import sort.SortByLanguage;
-import sort.SortByName;
-import storage.DataFileDestroyer;
+
+import parser.ArgumentFlagEnum;
 import ui.Printer;
 
-import java.util.Scanner;
+import java.util.HashMap;
 
 /**
- * The base class for all commands.
+ * The base class for all Commands.
  */
 public abstract class Command {
+    protected HashMap<ArgumentFlagEnum, String> descriptionMap;
+    protected Printer printer;
     public static boolean isExitCommand;
-    protected Parser parser;
-    protected DataFileDestroyer fileDestroyer;
 
-    public Command(Parser parser) {
-        this.parser = parser;
+    public Command() {
+    }
+
+    public Command(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
+        this.descriptionMap = descriptionMap;
+        this.printer = printer;
         isExitCommand = false;
-        fileDestroyer = new DataFileDestroyer();
+    }
+
+    public HashMap<ArgumentFlagEnum, String> getDescriptionMap() {
+        return descriptionMap;
     }
 
     public abstract void execute() throws CommandException;
