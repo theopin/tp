@@ -1,17 +1,50 @@
 package command;
 
-import parser.Parser;
+import parser.ArgumentFlagEnum;
+import cheatsheet.CheatSheetList;
+import sort.SortByName;
+import sort.SortByLanguage;
 import ui.Printer;
 
-public class ListCommand extends Command {
-    public ListCommand(Parser parser) {
-        super(parser);
-    }
+import java.util.HashMap;
+import java.util.Scanner;
 
-    // todo: need to ask adhy whether he can attach index to cheatsheet
+public class ListCommand extends Command {
+    public ListCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
+        super(descriptionMap, printer);
+    }
 
     @Override
     public void execute() {
-        Printer.printCheatSheetList();
+        printer.printCheatSheetList();
+        askForSortingConfigAndPrint();
+    }
+
+    private void askForSortingConfigAndPrint() {
+        printer.print("Sort filter (na: name ascending, la: language ascending, nd: name descending"
+                + ", ld: language descending or <enter> to skip)");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        while (!input.equals("q")) {
+            switch (input) {
+            case "na":
+                CheatSheetList.getCheatSheetList().sort(new SortByName());
+                printer.print("Currently sorting name in ascending order");
+                break;
+            case "la":
+                CheatSheetList.getCheatSheetList().sort(new SortByLanguage());
+                break;
+            case "nd":
+                CheatSheetList.getCheatSheetList().sort(new SortByName().reversed());
+                break;
+            case "ld":
+                CheatSheetList.getCheatSheetList().sort(new SortByLanguage().reversed());
+                break;
+            default:
+                CheatSheetList.getCheatSheetList().sort(new SortByName());
+            }
+            printer.printCheatSheetList();
+            input = scanner.nextLine();
+        }
     }
 }

@@ -1,7 +1,10 @@
 package parser;
 
-import command.CommandEnum;
+import command.*;
+
 import exception.CommandException;
+import storage.DataFileDestroyer;
+import ui.Printer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,15 +12,63 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
-    private final CommandEnum commandType;
-    private final ArrayList<ArgumentFlagEnum> argEnumSet;
-    private HashMap<ArgumentFlagEnum, String> descriptionMap;
+    private DataFileDestroyer fileDestroyer;
+    private Printer printer;
+    private static final String FLAG_REGEX = " /[dnilk] ";
 
+    public Parser() {
+    }
 
-    public Parser(String userInput) throws CommandException {
-        commandType = parseTypeOfCommand(userInput);
-        argEnumSet = parseTypeOfArgument(userInput);
-        descriptionMap = parseDescription(userInput);
+    public Parser(DataFileDestroyer fileDestroyer, Printer printer) {
+        this.fileDestroyer = fileDestroyer;
+        this.printer = printer;
+    }
+
+    public Command parse(String userInput) throws CommandException {
+        CommandEnum commandType = parseTypeOfCommand(userInput);
+        ArrayList<ArgumentFlagEnum> argEnumSet = parseTypeOfArgument(userInput);
+        HashMap<ArgumentFlagEnum, String> descriptionMap = parseDescription(userInput, argEnumSet);
+
+        Command commandToBeExecuted = null;
+        switch (commandType) {
+        case ADD:
+            commandToBeExecuted = new AddCommand(descriptionMap, printer);
+            break;
+        case CLEAR:
+            commandToBeExecuted = new ClearCommand(descriptionMap, printer, fileDestroyer);
+            break;
+        case DELETE:
+            commandToBeExecuted = new DeleteCommand(descriptionMap, printer, fileDestroyer);
+            break;
+        case EDIT:
+            commandToBeExecuted = new EditCommand(descriptionMap,printer);
+            break;
+        case EXIT:
+            commandToBeExecuted = new ExitCommand(descriptionMap, printer);
+            break;
+        case FIND:
+            commandToBeExecuted = new FindCommand(descriptionMap, printer);
+            break;
+        case HELP:
+            commandToBeExecuted = new HelpCommand(descriptionMap, printer);
+            break;
+        case LIST:
+            commandToBeExecuted = new ListCommand(descriptionMap, printer);
+            break;
+        case VIEW:
+            commandToBeExecuted = new ViewCommand(descriptionMap, printer);
+            break;
+        case FAVOURITE:
+            commandToBeExecuted = new FavouriteCommand(descriptionMap, printer);
+            break;
+        case SETTINGS:
+            commandToBeExecuted = new SettingsCommand(descriptionMap, printer);
+            break;
+        default:
+            assert false;
+        }
+
+        return commandToBeExecuted;
     }
 
     private CommandEnum parseTypeOfCommand(String userInput) throws CommandException {
@@ -29,6 +80,8 @@ public class Parser {
             return CommandEnum.CLEAR;
         case "/delete":
             return CommandEnum.DELETE;
+        case "/edit":
+            return CommandEnum.EDIT;
         case "/exit":
             return CommandEnum.EXIT;
         case "/find":
@@ -39,6 +92,10 @@ public class Parser {
             return CommandEnum.LIST;
         case "/view":
             return CommandEnum.VIEW;
+        case "/favourite":
+            return CommandEnum.FAVOURITE;
+        case "/settings":
+            return CommandEnum.SETTINGS;
         default:
             throw new CommandException("Please enter a valid command");
         }
@@ -46,9 +103,10 @@ public class Parser {
 
     private ArrayList<ArgumentFlagEnum> parseTypeOfArgument(String userInput) {
         ArrayList<ArgumentFlagEnum> argEnumList = new ArrayList<>();
-        Pattern pattern = Pattern.compile(" /[dnilk] ");
-        Matcher matcher = pattern.matcher(userInput);
-        ArrayList<String> argList = addMatchesToArgEnumSet(matcher);
+
+        Pattern flagPattern = Pattern.compile(FLAG_REGEX);
+        Matcher flagMatcher = flagPattern.matcher(userInput);
+        ArrayList<String> argList = addMatchesToArgEnumSet(flagMatcher);
         for (String arg : argList) {
             for (ArgumentFlagEnum ae : ArgumentFlagEnum.values()) {
                 if (arg.equals(ae.getAssociatedKeyWord())) {
@@ -60,10 +118,11 @@ public class Parser {
         return argEnumList;
     }
 
-    private HashMap<ArgumentFlagEnum, String> parseDescription(String userInput) throws CommandException {
-        descriptionMap = new HashMap<>();
+    private HashMap<ArgumentFlagEnum, String> parseDescription(String userInput, ArrayList<ArgumentFlagEnum> argEnumSet)
+            throws CommandException {
+        HashMap<ArgumentFlagEnum, String> descriptionMap = new HashMap<>();
         try {
-            String[] details = userInput.split(" /[ndilk ]");
+            String[] details = userInput.split(FLAG_REGEX);
             for (int i = 1; i < details.length; i++) {
                 descriptionMap.put(argEnumSet.get(i - 1), details[i].trim());
             }
@@ -73,25 +132,11 @@ public class Parser {
         return descriptionMap;
     }
 
-    private ArrayList<String> addMatchesToArgEnumSet(Matcher matcher) {
+    private ArrayList<String> addMatchesToArgEnumSet(Matcher flagMatcher) {
         ArrayList<String> argList = new ArrayList<>();
-        while (matcher.find()) {
-            argList.add(matcher.group().trim());
+        while (flagMatcher.find()) {
+            argList.add(flagMatcher.group().trim());
         }
         return argList;
     }
-
-    public CommandEnum getCommandType() {
-        return commandType;
-    }
-
-
-    public ArrayList<ArgumentFlagEnum> getArgEnumSet() {
-        return argEnumSet;
-    }
-
-    public HashMap<ArgumentFlagEnum, String> getDescriptionMap() {
-        return descriptionMap;
-    }
-
 }

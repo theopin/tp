@@ -2,17 +2,15 @@ package command;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
+import editor.Editor;
 import exception.CommandException;
 import parser.ArgumentFlagEnum;
 import ui.Printer;
 
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
 import java.util.HashMap;
 
-public class ViewCommand extends Command {
-    public ViewCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
+public class EditCommand extends Command {
+    public EditCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
         super(descriptionMap, printer);
     }
 
@@ -27,21 +25,24 @@ public class ViewCommand extends Command {
                 int index = Integer.parseInt(descriptionMap.get(ArgumentFlagEnum.INDEX));
                 desiredCheatSheet = CheatSheetList.getCheatSheet(index);
             }
-
             if (desiredCheatSheet == null) {
                 throw new CommandException("Please enter a name or an index");
             }
+            // This line calls the
+            callContentEditor(desiredCheatSheet);
 
             printer.printViewCheatSheetMessage(desiredCheatSheet);
-            copyTextToClipboard(desiredCheatSheet.getCheatSheetDetails());
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new CommandException("Please enter a valid index");
         }
     }
 
-    private void copyTextToClipboard(String contentToBeCopied) {
-        StringSelection stringSelection = new StringSelection(contentToBeCopied);
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        clipboard.setContents(stringSelection, null);
+    private void callContentEditor(CheatSheet desiredCheatSheet) {
+        String cheatSheetContent = desiredCheatSheet.getCheatSheetDetails();
+        Editor contentEditor = new Editor(cheatSheetContent);
+        while(!contentEditor.isEditDone()){
+            printer.print("Waiting for user input...");
+        }
+        desiredCheatSheet.setCheatSheetDetails(contentEditor.getContent());
     }
 }

@@ -4,9 +4,12 @@ public enum CommandEnum {
     ADD,
     CLEAR,
     DELETE,
+    EDIT,
     EXIT,
     FIND,
     HELP,
     LIST,
-    VIEW;
+    VIEW,
+    FAVOURITE,
+    SETTINGS;
 }
