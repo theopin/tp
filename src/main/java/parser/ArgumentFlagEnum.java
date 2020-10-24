@@ -4,7 +4,7 @@ public enum ArgumentFlagEnum {
     NAME("/n"),
     DESCRIPTION("/d"),
     INDEX("/i"),
-    PROGRAMMINGLANGUAGE("/l"),
+    SUBJECT("/l"),
     SECTIONKEYWORD("/k");
 
     private final String associatedKeyWord;

@@ -14,31 +14,20 @@ public class DeleteCommand extends FinderCommand {
         super(printer);
         this.fileDestroyer = fileDestroyer;
 
-        /*initCommandDetails(new ArgumentFlagEnum[] {
-            ArgumentFlagEnum.NAME,
-            ArgumentFlagEnum.INDEX,
-        });*/
         descriptionMap.put(ArgumentFlagEnum.NAME, null);
         descriptionMap.put(ArgumentFlagEnum.INDEX, null);
-        requiredArguments.add(ArgumentFlagEnum.NAME);
-        requiredArguments.add(ArgumentFlagEnum.INDEX);
+        alternativeArguments.add(ArgumentFlagEnum.NAME);
+        alternativeArguments.add(ArgumentFlagEnum.INDEX);
     }
-    /*
-    @Override
-    public boolean hasAllRequiredArguments() {
-        return descriptionMap.get(ArgumentFlagEnum.NAME) != null
-            || descriptionMap.get(ArgumentFlagEnum.INDEX) != null;
-    }
-    */
 
     @Override
     public void execute() throws CommandException {
         try {
-            CheatSheet cheatSheetToBeDeleted = getCheatSheetFromNameOrIndex();
+            CheatSheet cheatSheetToDelete = getCheatSheetFromNameOrIndex();
 
-            CheatSheetList.remove(cheatSheetToBeDeleted.getCheatSheetName());
-            fileDestroyer.executeFunction(cheatSheetToBeDeleted.getCheatSheetName());
-            printer.printDeleteCheatSheetMessage(cheatSheetToBeDeleted);
+            CheatSheetList.remove(cheatSheetToDelete.getName());
+            fileDestroyer.executeFunction(cheatSheetToDelete.getName());
+            printer.printDeleteCheatSheetMessage(cheatSheetToDelete);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw new CommandException("Please enter a valid name or index");
         } catch (NumberFormatException n) {

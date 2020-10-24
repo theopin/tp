@@ -57,6 +57,7 @@ public class Editor extends JFrame implements ActionListener {
         String action = a.getActionCommand();
         switch (action) {
         case "Save":
+            toggleEdit();
             typedText = textArea.getText();
             // textArea.setText("");
             editorFrame.dispose();

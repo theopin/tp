@@ -9,22 +9,11 @@ public class FavouriteCommand extends FinderCommand {
     public FavouriteCommand(Printer printer) {
         super(printer);
 
-        /*initCommandDetails(new ArgumentFlagEnum[] {
-            ArgumentFlagEnum.NAME,
-            ArgumentFlagEnum.INDEX,
-        });*/
         descriptionMap.put(ArgumentFlagEnum.NAME, null);
         descriptionMap.put(ArgumentFlagEnum.INDEX, null);
-        requiredArguments.add(ArgumentFlagEnum.NAME);
-        requiredArguments.add(ArgumentFlagEnum.INDEX);
+        alternativeArguments.add(ArgumentFlagEnum.NAME);
+        alternativeArguments.add(ArgumentFlagEnum.INDEX);
     }
-    /*
-    @Override
-    public boolean hasAllRequiredArguments() {
-        return descriptionMap.get(ArgumentFlagEnum.NAME) != null
-            || descriptionMap.get(ArgumentFlagEnum.INDEX) != null;
-    }
-    */
 
     @Override
     public void execute() throws CommandException {

@@ -14,49 +14,37 @@ import java.util.Scanner;
 public class FindCommand extends FinderCommand {
     public FindCommand(Printer printer) {
         super(printer);
-
-        /*initCommandDetails(new ArgumentFlagEnum[] {
-            ArgumentFlagEnum.PROGRAMMINGLANGUAGE,
-            ArgumentFlagEnum.SECTIONKEYWORD,
-        });*/
-        descriptionMap.put(ArgumentFlagEnum.PROGRAMMINGLANGUAGE, null);
+        descriptionMap.put(ArgumentFlagEnum.SUBJECT, null);
         descriptionMap.put(ArgumentFlagEnum.SECTIONKEYWORD, null);
-        requiredArguments.add(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
-        requiredArguments.add(ArgumentFlagEnum.SECTIONKEYWORD);
+        alternativeArguments.add(ArgumentFlagEnum.SUBJECT);
+        alternativeArguments.add(ArgumentFlagEnum.SECTIONKEYWORD);
     }
-    /*
-    @Override
-    public boolean hasAllRequiredArguments() {
-        return descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE) != null
-            || descriptionMap.get(ArgumentFlagEnum.SECTIONKEYWORD) != null;
-    }
-    */
 
     @Override
     public void execute() throws CommandException {
-        String programmingLanguage = "";
+        String subject = "";
         String keyword = "";
         ArrayList<CheatSheet> cheatSheetArrayList = new ArrayList<>();
 
-        if (descriptionMap.containsKey(ArgumentFlagEnum.PROGRAMMINGLANGUAGE)) {
-            programmingLanguage = descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
+        if (descriptionMap.containsKey(ArgumentFlagEnum.SUBJECT)) {
+            subject = descriptionMap.get(ArgumentFlagEnum.SUBJECT);
         }
         if (descriptionMap.containsKey(ArgumentFlagEnum.SECTIONKEYWORD)) {
             keyword = descriptionMap.get(ArgumentFlagEnum.SECTIONKEYWORD);
         }
 
-        for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
-            if (!programmingLanguage.isEmpty() && keyword.isEmpty()) {
-                if (cs.getCheatSheetProgrammingLanguage().contains(programmingLanguage)) {
+        for (CheatSheet cs : CheatSheetList.getList()) {
+            if (!subject.isEmpty() && keyword.isEmpty()) {
+                if (cs.getSubject().contains(subject)) {
                     cheatSheetArrayList.add(cs);
                 }
-            } else if (!keyword.isEmpty() && programmingLanguage.isEmpty()) {
-                if (cs.getCheatSheetDetails().contains(keyword)) {
+            } else if (!keyword.isEmpty() && subject.isEmpty()) {
+                if (cs.getDetails().contains(keyword)) {
                     cheatSheetArrayList.add(cs);
                 }
-            } else if (!programmingLanguage.isEmpty() && !keyword.isEmpty()) {
-                if (cs.getCheatSheetProgrammingLanguage().contains(programmingLanguage)
-                        && cs.getCheatSheetDetails().contains(keyword)) {
+            } else if (!subject.isEmpty() && !keyword.isEmpty()) {
+                if (cs.getSubject().contains(subject)
+                        && cs.getDetails().contains(keyword)) {
                     cheatSheetArrayList.add(cs);
                 }
             } else {
@@ -68,11 +56,7 @@ public class FindCommand extends FinderCommand {
             throw new CommandException("No matching content found");
         }
 
-        printer.print("Showing all matches: ");
-        for (CheatSheet cs : cheatSheetArrayList) {
-            printer.printCheatSheet(cs);
-            printer.printWhiteSpace();
-        }
+        printMatches(cheatSheetArrayList);
         askForSortingConfigAndPrint(cheatSheetArrayList);
     }
 
@@ -100,13 +84,17 @@ public class FindCommand extends FinderCommand {
                 cheatSheetArrayList.sort(new SortByName());
             }
 
-            printer.print("Showing all matches: ");
-            for (CheatSheet cs : cheatSheetArrayList) {
-                printer.printCheatSheet(cs);
-                printer.printWhiteSpace();
-            }
+            printMatches(cheatSheetArrayList);
             input = scanner.nextLine();
         }
         askForSortingConfigAndPrint(cheatSheetArrayList);
+    }
+
+    private void printMatches(ArrayList<CheatSheet> cheatSheetArrayList) {
+        printer.print("Showing all matches: ");
+        for (CheatSheet cs : cheatSheetArrayList) {
+            printer.printCheatSheet(cs);
+            printer.printWhiteSpace();
+        }
     }
 }

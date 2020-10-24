@@ -2,7 +2,7 @@ package ui;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
-import exception.CommandException;
+import command.Command;
 import parser.ArgumentFlagEnum;
 
 /**
@@ -105,18 +105,18 @@ public final class Printer {
     }
 
     public void printCheatSheet(CheatSheet cheatSheet) {
-        print("\tName: " + cheatSheet.getCheatSheetName() + NEWLINE
-                + "\tProgramming Language: " + cheatSheet.getCheatSheetProgrammingLanguage() + NEWLINE
-                + "\tDetails: " + cheatSheet.getCheatSheetDetails());
+        print("\tName: " + cheatSheet.getName() + NEWLINE
+                + "\tProgramming Language: " + cheatSheet.getSubject() + NEWLINE
+                + "\tDetails: " + cheatSheet.getDetails());
     }
 
     public void printCheatSheetList() {
         int i = 0;
-        for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
+        for (CheatSheet cs : CheatSheetList.getList()) {
             print("\t"
                     + (cs.getIsFavourite() ? ConsoleColorsEnum.YELLOW_TEXT : "")
-                    + (++i) + ". " + cs.getCheatSheetName()
-                    + " (Language: " + cs.getCheatSheetProgrammingLanguage() + ")"
+                    + (++i) + ". " + cs.getName()
+                    + " (Language: " + cs.getSubject() + ")"
                     + (cs.getIsFavourite() ? " *" + ConsoleColorsEnum.RESET_TEXT : "") + "\n");
         }
     }
@@ -146,7 +146,7 @@ public final class Printer {
     }
 
     public void printViewCheatSheetMessage(CheatSheet cheatSheet) {
-        print("This is your content for " + cheatSheet.getCheatSheetName() + ": ");
+        print("This is your content for " + cheatSheet.getName() + ": ");
         printCheatSheet(cheatSheet);
     }
 
@@ -155,7 +155,18 @@ public final class Printer {
         printCheatSheet(cheatSheet);
     }
 
+    public void printAlternativeArgumentPrompt(Command command) {
+        print(NEWLINE);
+        System.out.print(ConsoleColorsEnum.RED_TEXT + "Please enter at least ");
+        for (ArgumentFlagEnum arg :command.getAlternativeArguments()) {
+            System.out.print(arg + " ");
+        }
+        print(ConsoleColorsEnum.RESET_TEXT);
+        print(NEWLINE);
+    }
+
     public void printMissingArgument(ArgumentFlagEnum curArg) {
         System.out.print("Please input " + curArg.name() + ": ");
+
     }
 }

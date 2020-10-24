@@ -1,7 +1,6 @@
 package command;
 
 import cheatsheet.CheatSheet;
-import cheatsheet.CheatSheetList;
 import editor.Editor;
 import exception.CommandException;
 import parser.ArgumentFlagEnum;
@@ -16,7 +15,7 @@ public class EditCommand extends FinderCommand {
     }
 
     @Override
-    public boolean hasAllRequiredArguments() {
+    public boolean hasOneAlternativeArgument() {
         if (descriptionMap.get(ArgumentFlagEnum.NAME) != null
                 || descriptionMap.get(ArgumentFlagEnum.INDEX) != null) {
             return true;
@@ -30,7 +29,6 @@ public class EditCommand extends FinderCommand {
         try {
             CheatSheet desiredCheatSheet = getCheatSheetFromNameOrIndex();
 
-            // This line calls the
             callContentEditor(desiredCheatSheet);
 
             printer.printViewCheatSheetMessage(desiredCheatSheet);
@@ -40,11 +38,11 @@ public class EditCommand extends FinderCommand {
     }
 
     private void callContentEditor(CheatSheet desiredCheatSheet) {
-        String cheatSheetContent = desiredCheatSheet.getCheatSheetDetails();
+        String cheatSheetContent = desiredCheatSheet.getDetails();
         Editor contentEditor = new Editor(cheatSheetContent);
         while (!contentEditor.isEditDone()) {
             printer.print("Waiting for user input...");
         }
-        desiredCheatSheet.setCheatSheetDetails(contentEditor.getContent());
+        desiredCheatSheet.setDetails(contentEditor.getContent());
     }
 }
