@@ -2,11 +2,12 @@ package ui;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
+import exception.CommandException;
 import parser.ArgumentFlagEnum;
 
-/*
- * This class manages the output of text
- * */
+/**
+ * This class manages the output of text.
+ */
 public final class Printer {
     private static final String LINE = "----------------------------------------------------------------"
             + "----------------------------------------";
@@ -105,19 +106,19 @@ public final class Printer {
 
     public void printCheatSheet(CheatSheet cheatSheet) {
         print("\tName: " + cheatSheet.getCheatSheetName() + NEWLINE
-            + "\tProgramming Language: " + cheatSheet.getCheatSheetProgrammingLanguage() + NEWLINE
-            + "\tDetails: " + cheatSheet.getCheatSheetDetails());
+                + "\tProgramming Language: " + cheatSheet.getCheatSheetProgrammingLanguage() + NEWLINE
+                + "\tDetails: " + cheatSheet.getCheatSheetDetails());
     }
 
     public void printCheatSheetList() {
         int i = 0;
         for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
-            i++;
             print("\t"
-                    + i + ". " + cs.getCheatSheetName()
+                    + (cs.getIsFavourite() ? ConsoleColorsEnum.YELLOW_TEXT : "")
+                    + (++i) + ". " + cs.getCheatSheetName()
                     + " (Language: " + cs.getCheatSheetProgrammingLanguage() + ")"
                     + " (Details: " + cs.getCheatSheetDetails() + ")"
-                    + (cs.getFavourite() ? "(Favourited)" : ""));
+                    + (cs.getIsFavourite() ? " *" + ConsoleColorsEnum.RESET_TEXT : "") + "\n");
         }
     }
 
@@ -156,6 +157,6 @@ public final class Printer {
     }
 
     public void printMissingArgument(ArgumentFlagEnum curArg) {
-        print("Please input data for the follow argument: " + curArg.name());
+        print("Please input data for the following argument: " + curArg.name());
     }
 }
