@@ -38,7 +38,7 @@ class AddCommandTest {
     //            Command addCommand = parser.parse(userInput);
     //            addCommand.execute();
     //            assertEquals(1, CheatSheetList.getSize());
-    //            assertEquals("PythonV2", CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage());
+    //            assertEquals("PythonV2", CheatSheetList.getCheatSheet(1).getSubject());
     //        } catch (CommandException e) {
     //            fail();
     //        }
@@ -53,9 +53,9 @@ class AddCommandTest {
     //        Command addCommand = parser.parse(userInput);
     //        addCommand.execute();
     //        Assertions.assertAll(
-    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
-    //            () -> assertEquals("Java", CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
-    //            () -> assertEquals("Content1", CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
+    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getName()),
+    //            () -> assertEquals("Java", CheatSheetList.getCheatSheet(1).getSubject()),
+    //            () -> assertEquals("Content1", CheatSheetList.getCheatSheet(1).getDetails())
     //        );
     //    }
     //
@@ -67,9 +67,9 @@ class AddCommandTest {
     //        Command addCommand = parser.parse(userInput);
     //        addCommand.execute();
     //        Assertions.assertAll(
-    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
-    //            () -> assertEquals("Java", CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
-    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
+    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getName()),
+    //            () -> assertEquals("Java", CheatSheetList.getCheatSheet(1).getSubject()),
+    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getDetails())
     //        );
     //    }
     //
@@ -81,9 +81,9 @@ class AddCommandTest {
     //        Command addCommand = parser.parse(userInput);
     //        addCommand.execute();
     //        Assertions.assertAll(
-    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
-    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
-    //            () -> assertEquals("Content1", CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
+    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getName()),
+    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getSubject()),
+    //            () -> assertEquals("Content1", CheatSheetList.getCheatSheet(1).getDetails())
     //        );
     //    }
     //
@@ -108,9 +108,9 @@ class AddCommandTest {
     //        Command addCommand = parser.parse(userInput);
     //        addCommand.execute();
     //        Assertions.assertAll(
-    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
-    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetProgrammingLanguage()),
-    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getCheatSheetDetails())
+    //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getName()),
+    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getSubject()),
+    //            () -> assertNull(CheatSheetList.getCheatSheet(1).getDetails())
     //        );
     //    }
 

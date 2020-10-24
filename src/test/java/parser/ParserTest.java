@@ -19,7 +19,7 @@ class ParserTest {
 
         ArrayList<ArgumentFlagEnum> argEnumList = new ArrayList<>();
         argEnumList.add(ArgumentFlagEnum.NAME);
-        argEnumList.add(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
+        argEnumList.add(ArgumentFlagEnum.SUBJECT);
         argEnumList.add(ArgumentFlagEnum.DESCRIPTION);
 
         ArrayList<String> detailsList = new ArrayList<>();

@@ -121,8 +121,8 @@ class CheatSheetListTest {
 
         // test to get cheatsheet by index and by name
         try {
-            assertEquals(test, CheatSheetList.getCheatSheet(2));
-            assertEquals(test, CheatSheetList.getCheatSheet("Name1"));
+            assertEquals(test, CheatSheetList.get(2));
+            assertEquals(test, CheatSheetList.get("Name1"));
         } catch (CommandException e) {
             fail();
         }
@@ -137,7 +137,7 @@ class CheatSheetListTest {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         try {
-            test = CheatSheetList.getCheatSheet(-1);
+            test = CheatSheetList.get(-1);
             fail();
         } catch (CommandException e) {
             assertEquals("Please enter a valid index", e.getMessage());
@@ -152,7 +152,7 @@ class CheatSheetListTest {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         try {
-            test = CheatSheetList.getCheatSheet("cheatlogs");
+            test = CheatSheetList.get("cheatlogs");
             fail();
         } catch (CommandException e) {
             assertEquals("Please enter a valid name", e.getMessage());

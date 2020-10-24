@@ -13,7 +13,7 @@ public class DataFileTest {
     String data = "data";
 
     String fileName = "Sample1";
-    String fileProgrammingLanguage = "C++";
+    String fileSubject = "C++";
     String fileDetails = "Use case statements to check multiple conditions.";
 
     String sampleFileContent = "Programming Language: C++"
