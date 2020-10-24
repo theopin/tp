@@ -51,6 +51,7 @@ class AddCommandTest {
         String userInput = "/add /n FirstTest /l Java /d Content1";
         Parser parser = new Parser(null, new Printer(), null);
         Command addCommand = parser.parse(userInput);
+
         addCommand.execute();
         Assertions.assertAll(
             () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
@@ -65,6 +66,7 @@ class AddCommandTest {
         String userInput = "/add /n FirstTest /l Java";
         Parser parser = new Parser(null, new Printer(), null);
         Command addCommand = parser.parse(userInput);
+
         addCommand.execute();
         Assertions.assertAll(
             () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
@@ -79,6 +81,7 @@ class AddCommandTest {
         String userInput = "/add /n FirstTest /d Content1";
         Parser parser = new Parser(null, new Printer(), null);
         Command addCommand = parser.parse(userInput);
+
         addCommand.execute();
         Assertions.assertAll(
             () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),
@@ -106,6 +109,7 @@ class AddCommandTest {
         String userInput = "/add /n FirstTest";
         Parser parser = new Parser(null, new Printer(), null);
         Command addCommand = parser.parse(userInput);
+
         addCommand.execute();
         Assertions.assertAll(
             () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getCheatSheetName()),

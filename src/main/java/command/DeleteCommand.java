@@ -14,21 +14,22 @@ public class DeleteCommand extends FinderCommand {
         super(printer);
         this.fileDestroyer = fileDestroyer;
 
-        initCommandDetails(new ArgumentFlagEnum[] {
+        /*initCommandDetails(new ArgumentFlagEnum[] {
             ArgumentFlagEnum.NAME,
             ArgumentFlagEnum.INDEX,
-        });
+        });*/
+        descriptionMap.put(ArgumentFlagEnum.NAME, null);
+        descriptionMap.put(ArgumentFlagEnum.INDEX, null);
+        requiredArguments.add(ArgumentFlagEnum.NAME);
+        requiredArguments.add(ArgumentFlagEnum.INDEX);
     }
-
+    /*
     @Override
     public boolean hasAllRequiredArguments() {
-        if (descriptionMap.get(ArgumentFlagEnum.NAME) != null
-            || descriptionMap.get(ArgumentFlagEnum.INDEX) != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return descriptionMap.get(ArgumentFlagEnum.NAME) != null
+            || descriptionMap.get(ArgumentFlagEnum.INDEX) != null;
     }
+    */
 
     @Override
     public void execute() throws CommandException {
