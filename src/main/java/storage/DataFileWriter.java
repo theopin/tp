@@ -96,7 +96,7 @@ public class DataFileWriter extends DataFile {
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document xmlFileStructure = dBuilder.newDocument();
 
-        Element mainRoot = xmlFileStructure.createElement("main");
+        Element mainRoot = xmlFileStructure.createElement(MAIN_ELEMENT);
         xmlFileStructure.appendChild(mainRoot);
 
         String favouriteStatus = cheatSheet.getIsFavourite()

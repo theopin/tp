@@ -17,6 +17,7 @@ public abstract class DataFile {
     protected static final String DATA = "data";
     protected static final String XML_EXTENSION = ".xml";
 
+    protected static final String MAIN_ELEMENT = "main";
     protected static final String FAVOURITE_ELEMENT = "favourite";
     protected static final String CONTENTS_ELEMENT = "contents";
     protected static final String FAVOURITE_FILE = "Yes";

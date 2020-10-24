@@ -4,9 +4,15 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import exception.DirectoryIsEmptyException;
 
-
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 import ui.Printer;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -28,7 +34,7 @@ public class DataFileReader extends DataFile {
      */
     @Override
     public void executeFunction() {
-    /*
+
         try {
             insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
@@ -37,11 +43,8 @@ public class DataFileReader extends DataFile {
         } catch (DirectoryIsEmptyException d) {
             printer.print(d.getMessage());
         }
-    */
     }
 
-}
-/*
     /**
      * Converts the data obtained from the /data folder into cheatsheets and adds
      * them to the application.
@@ -49,7 +52,6 @@ public class DataFileReader extends DataFile {
      * @throws FileNotFoundException     Thrown if the /data folder is not found
      * @throws DirectoryIsEmptyException Thrown if the /data folder is empty
      */
-    /*
     protected void insertStoredCheatSheets() throws FileNotFoundException,
             DirectoryIsEmptyException {
         if (!Files.exists(DATA_DIR)) {
@@ -71,7 +73,7 @@ public class DataFileReader extends DataFile {
                 if(!cheatSheetFile.isDirectory()) {
                     extractCheatSheet(cheatSheetFile);
                 }
-            } catch (JDOMException | IOException e) {
+            } catch (IOException | SAXException | ParserConfigurationException e) {
                 printer.print(e.getMessage());
             }
         }
@@ -80,26 +82,35 @@ public class DataFileReader extends DataFile {
     /**
      * Extracts the contents of the cheatsheet from the specified file.
      *
-     * @param cheatSheetDocument File of the cheatSheet
-     * @throws JDOMException Thrown if errors occur when parsing the file.
-     * @throws IOException Thrown if an I/O error prevents the file from being fully parsed.
+     * @param cheatSheetDocument            File of the cheatSheet
+     * @throws IOException                  Thrown if an I/O error prevents the file from being fully parsed.
+     * @throws ParserConfigurationException Thrown if a serious configuration error is caught.
+     * @throws SAXException                 Thrown if a basic error or warning information from either
+     *                                      the XML parser or the application is caught.
      */
-    /*
-    private void extractCheatSheet(File cheatSheetDocument) throws JDOMException, IOException {
-        SAXBuilder saxBuilder = new SAXBuilder();
-        Document cheatSheetXml = saxBuilder.build(cheatSheetDocument);
-        Element mainRoot = cheatSheetXml.getRootElement();
+    private void extractCheatSheet(File cheatSheetDocument) throws IOException,
+            ParserConfigurationException,
+            SAXException {
 
-        Element favouriteElement = mainRoot.getChild(FAVOURITE_ELEMENT);
-        Element contentElement = mainRoot.getChild(CONTENTS_ELEMENT);
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document cheatSheetXml = dBuilder.parse(cheatSheetDocument);
+        cheatSheetXml.getDocumentElement().normalize();
+
+        Element mainRoot = cheatSheetXml.getDocumentElement();
+        Node favouriteElement = mainRoot.getFirstChild();
+        Node contentElement = mainRoot.getLastChild();
 
         String cheatSheetName = cheatSheetDocument
                 .getName()
                 .replace(XML_EXTENSION, "");
-        String cheatSheetContent = contentElement.getText();
+        String cheatSheetContent = contentElement
+                .getFirstChild()
+                .getTextContent();
 
         boolean isMarkedFavourite = favouriteElement
-                .getText()
+                .getFirstChild()
+                .getTextContent()
                 .equals(FAVOURITE_FILE);
 
         createNewCheatSheet(isMarkedFavourite, cheatSheetName, cheatSheetContent);
@@ -114,7 +125,6 @@ public class DataFileReader extends DataFile {
      * @param cheatSheetName Name of the cheatSheet.
      * @param cheatSheetContent Contents of the cheatSheet.
      */
-    /*
     private void createNewCheatSheet(boolean isMarkedFavourite,
                                      String cheatSheetName,
                                      String cheatSheetContent) {
@@ -126,4 +136,3 @@ public class DataFileReader extends DataFile {
         CheatSheetList.add(newCheatSheet);
     }
 }
-*/
