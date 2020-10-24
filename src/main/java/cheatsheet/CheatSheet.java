@@ -59,10 +59,6 @@ public class CheatSheet {
         updateCheatSheet();
     }
 
-    public boolean getFavourite() {
-        return isFavourite;
-    }
-
     public void setFavourite(boolean isFavourite) {
         this.isFavourite = isFavourite;
 

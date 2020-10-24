@@ -1,5 +1,8 @@
 package cheatsheet;
 
+import exception.CommandException;
+import ui.Printer;
+
 import java.util.ArrayList;
 
 public class CheatSheetList {
@@ -27,20 +30,6 @@ public class CheatSheetList {
     }
 
     /**
-     * Converts the cheatSheetName attribute for each cheat sheet into a string.
-     * The string will be used by UI for printing
-     *
-     * @return printedByUI The string to be printed by UI
-     */
-    public static String printCheatSheetNames() {
-        StringBuilder printedByUI = new StringBuilder("Current list of cheat sheet:\n");
-        for (CheatSheet cs : cheatSheets) {
-            printedByUI.append(cs.getCheatSheetName()).append("\n");
-        }
-        return printedByUI.toString();
-    }
-
-    /**
      * Adds a new cheat sheet to the list.
      */
     public static void add(CheatSheet cheatSheet) {
@@ -52,8 +41,9 @@ public class CheatSheetList {
      * Prints an error message if name is not found.
      *
      * @param name The name attribute of the desired cheat sheet
+     * @throws CommandException when index < 0 or index >= cheatSheets.size()
      */
-    public static void remove(String name) throws IndexOutOfBoundsException {
+    public static void remove(String name) throws CommandException {
         int index = 0;
         for (CheatSheet cs : cheatSheets) {
             if (cs.getCheatSheetName().equals(name)) {
@@ -61,7 +51,11 @@ public class CheatSheetList {
             }
             index++;
         }
-        remove(index);
+        try {
+            remove(index);
+        } catch (CommandException e) {
+            throw new CommandException("Please enter a valid index");
+        }
     }
 
     /**
@@ -69,13 +63,13 @@ public class CheatSheetList {
      * Prints an error message if index is out of bound.
      *
      * @param index The index of the desired cheat sheet
+     * @throws CommandException when index < 0 or index >= cheatSheets.size()
      */
-    public static void remove(int index) throws IndexOutOfBoundsException {
+    public static void remove(int index) throws CommandException {
         try {
             cheatSheets.remove(index);
         } catch (IndexOutOfBoundsException e) {
-            // todo: add error message in UI
-            throw new IndexOutOfBoundsException();
+            throw new CommandException("Please enter a valid index");
         }
     }
 
@@ -91,15 +85,14 @@ public class CheatSheetList {
      *
      * @param index The index of desired cheat sheet
      * @return size of cheatSheets
-     * @throws IndexOutOfBoundsException when index < 0 or index >= cheatSheets.size()
+     * @throws CommandException when index < 0 or index >= cheatSheets.size()
      */
-    public static CheatSheet getCheatSheet(int index) throws IndexOutOfBoundsException {
+    public static CheatSheet getCheatSheet(int index) throws CommandException {
         CheatSheet cheatSheet;
         try {
             cheatSheet = cheatSheets.get(index - 1);
         } catch (IndexOutOfBoundsException e) {
-            // todo: add error message in UI
-            throw new IndexOutOfBoundsException();
+            throw new CommandException("Please enter a valid index");
         }
         return cheatSheet;
     }
@@ -109,8 +102,9 @@ public class CheatSheetList {
      *
      * @param name The name attribute of desired cheat sheet
      * @return size of cheatSheets
+     * @throws CommandException when name cannot be found inside the list
      */
-    public static CheatSheet getCheatSheet(String name) throws IndexOutOfBoundsException {
+    public static CheatSheet getCheatSheet(String name) throws CommandException {
         int index = 0;
         for (CheatSheet cs : cheatSheets) {
             if (cs.getCheatSheetName().equals(name)) {
@@ -118,6 +112,12 @@ public class CheatSheetList {
             }
             index++;
         }
-        return getCheatSheet(index + 1);
+        CheatSheet cheatSheet;
+        try {
+            cheatSheet = getCheatSheet(index + 1);
+        } catch (CommandException e) {
+            throw new CommandException("Please enter a valid name");
+        }
+        return cheatSheet;
     }
 }
