@@ -12,6 +12,7 @@ import command.HelpCommand;
 import command.ViewCommand;
 import command.FavouriteCommand;
 
+import editor.Editor;
 import exception.CommandException;
 import storage.DataFileDestroyer;
 import ui.Ui;
@@ -27,15 +28,18 @@ public class Parser {
     private DataFileDestroyer fileDestroyer;
     private Printer printer;
     private Ui ui;
+    private Editor editor;
+
     private static final String FLAG_REGEX = " /[a-z] ";
 
     public Parser() {
     }
 
-    public Parser(DataFileDestroyer fileDestroyer, Printer printer, Ui ui) {
+    public Parser(DataFileDestroyer fileDestroyer, Printer printer, Ui ui, Editor editor) {
         this.fileDestroyer = fileDestroyer;
         this.printer = printer;
         this.ui = ui;
+        this.editor = editor;
     }
 
     public Command parse(String userInput) throws CommandException {
@@ -53,13 +57,13 @@ public class Parser {
         String parsedInput = userInput.split(" ")[0];
         switch (parsedInput) {
         case "/add":
-            return new AddCommand(printer);
+            return new AddCommand(printer, editor);
         case "/clear":
             return new ClearCommand(printer, fileDestroyer);
         case "/delete":
             return new DeleteCommand(printer, fileDestroyer);
         case "/edit":
-            return new EditCommand(printer);
+            return new EditCommand(printer, editor);
         case "/exit":
             return new ExitCommand(printer);
         case "/find":

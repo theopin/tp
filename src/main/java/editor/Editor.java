@@ -10,23 +10,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Editor extends JFrame implements ActionListener {
-    JTextArea textArea;
-    JFrame editorFrame;
-    static String typedText;
-    static boolean isEditDone;
+    private JTextArea textArea;
+    private JFrame editorFrame;
+    private String typedText;
 
     public Editor() {
         generateEditorUI();
     }
 
-    public Editor(String content) {
-        generateEditorUI();
-        textArea.setText(content);
-    }
-
     private void generateEditorUI() {
-        isEditDone = false;
-        editorFrame = new JFrame("editor");
+//        editorFrame = new JFrame("editor");
         textArea = new JTextArea();
 
         final JMenuBar menuBar = new JMenuBar();
@@ -47,43 +40,41 @@ public class Editor extends JFrame implements ActionListener {
 
         menuBar.add(menu1);
 
-        editorFrame.setJMenuBar(menuBar);
-        editorFrame.add(textArea);
-        editorFrame.setSize(600, 800);
-        editorFrame.setVisible(true);
+        setJMenuBar(menuBar);
+        add(textArea);
+        setSize(600, 800);
+        setVisible(false);
     }
 
     public void actionPerformed(ActionEvent a) {
         String action = a.getActionCommand();
         switch (action) {
         case "Save":
-            toggleEdit();
             typedText = textArea.getText();
-            // textArea.setText("");
-            editorFrame.dispose();
+            close();
             break;
         case "Clear All":
             textArea.setText("");
             break;
         case "Cancel":
-            toggleEdit();
-            textArea.setText("");
-            editorFrame.dispose();
+            close();
             break;
         default:
             break;
         }
     }
 
-    public void toggleEdit() {
-        isEditDone = !isEditDone;
-    }
-
-    public boolean isEditDone() {
-        return isEditDone;
-    }
-
     public String getContent() {
         return typedText;
+    }
+
+    public void open(){
+        textArea.setText("");
+        typedText = "";
+        setVisible(true);
+    }
+
+    public void close(){
+        setVisible(false);
     }
 }

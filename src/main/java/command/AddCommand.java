@@ -11,8 +11,11 @@ import ui.Printer;
 import java.util.concurrent.TimeUnit;
 
 public class AddCommand extends Command {
-    public AddCommand(Printer printer) {
+    Editor editor;
+
+    public AddCommand(Printer printer, Editor editor) {
         super(printer);
+        this.editor = editor;
 
         descriptionMap.put(ArgumentFlagEnum.NAME, null);
         descriptionMap.put(ArgumentFlagEnum.SUBJECT, null);
@@ -23,7 +26,16 @@ public class AddCommand extends Command {
     public void execute() throws CommandException {
         String name = descriptionMap.get(ArgumentFlagEnum.NAME);
         String subject = descriptionMap.get(ArgumentFlagEnum.SUBJECT);
-        String description = callContentEditor();
+
+        editor.open();
+        while (editor.isVisible()) {
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (Exception e) {
+                assert false;
+            }
+        }
+        String description = editor.getContent();
 
         if (checkIfNameAlreadyExist(name)) {
             throw new CommandException("Name already existed, please enter another name");
@@ -39,21 +51,6 @@ public class AddCommand extends Command {
         printer.printAddNewCheatSheetMessage(cheatSheet);
     }
 
-    private String callContentEditor() {
-        String content;
-        Editor contentEditor = new Editor();
-        printer.print("Waiting for user input...");
-        do {
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (Exception e) {
-                assert false;
-            }
-            content = contentEditor.getContent();
-        } while (!contentEditor.isEditDone());
-        return content;
-    }
-
     private boolean checkIfNameAlreadyExist(String name) {
         for (CheatSheet cs : CheatSheetList.getList()) {
             if (cs.getName().equals(name)) {
@@ -64,15 +61,11 @@ public class AddCommand extends Command {
     }
 
     private String convertToPascalCaseNoSpace(String input) throws CommandException {
-        try {
-            String[] splitInput = input.split(" ");
-            for (int i = 0; i < splitInput.length; i++) {
-                splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();
-            }
-
-            return String.join("", splitInput);
-        } catch (StringIndexOutOfBoundsException s) {
-            throw new CommandException("Why is there extra space?");
+        String[] splitInput = input.split("\\p{IsWhite_Space}+");
+        for (int i = 0; i < splitInput.length; i++) {
+            splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();
         }
+
+        return String.join("", splitInput);
     }
 }
