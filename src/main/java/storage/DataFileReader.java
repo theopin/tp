@@ -3,17 +3,18 @@ package storage;
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import exception.DirectoryIsEmptyException;
+
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+
 import ui.Printer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.List;
 
 /**
  * Allows the user to read data from the data directory and use it
@@ -79,6 +80,8 @@ public class DataFileReader extends DataFile {
      * Extracts the contents of the cheatsheet from the specified file.
      *
      * @param cheatSheetDocument File of the cheatSheet
+     * @throws JDOMException Thrown if errors occur when parsing the file.
+     * @throws IOException Thrown if an I/O error prevents the file from being fully parsed.
      */
     private void extractCheatSheet(File cheatSheetDocument) throws JDOMException, IOException {
         SAXBuilder saxBuilder = new SAXBuilder();
@@ -115,7 +118,6 @@ public class DataFileReader extends DataFile {
         CheatSheet newCheatSheet = new CheatSheet(cheatSheetName,
                 "C",
                 cheatSheetContent);
-
 
         newCheatSheet.setFavourite(isMarkedFavourite);
         CheatSheetList.add(newCheatSheet);

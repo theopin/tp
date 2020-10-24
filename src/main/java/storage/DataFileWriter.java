@@ -2,6 +2,7 @@ package storage;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
+
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 
 import ui.Printer;
 
-
 /**
  * Allows the user to write data based on the cheatSheets currently present
  * in the list of cheatSheets into individual files.
@@ -31,7 +31,7 @@ public class DataFileWriter extends DataFile {
 
     /**
      * Converts the cheatSheets present in the list of cheatSheet into
-     * a string. This string is then saved in a file, 1 file
+     * a string. This string is then saved in an xml file, 1 file
      * for each cheatSheet.
      */
     @Override
@@ -101,7 +101,7 @@ public class DataFileWriter extends DataFile {
     }
 
     /**
-     * Writes the values of textContent into a File.
+     * Writes formatted attributes of the cheatsheet into an xml file.
      *
      * @param directory       Name of the file.
      * @param xmlFileContents Contents of the file in xml format.
