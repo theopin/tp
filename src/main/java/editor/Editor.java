@@ -1,6 +1,11 @@
 package editor;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,11 +15,11 @@ public class Editor extends JFrame implements ActionListener {
     static String typedText;
     static boolean isEditDone;
 
-    public Editor(){
+    public Editor() {
         generateEditorUI();
     }
 
-    public Editor(String content){
+    public Editor(String content) {
         generateEditorUI();
         textArea.setText(content);
     }
@@ -29,7 +34,7 @@ public class Editor extends JFrame implements ActionListener {
         JMenu menu1 = new JMenu("Actions");
 
         JMenuItem menuItem1 = new JMenuItem("Save");
-        JMenuItem menuItem2 = new JMenuItem( "Clear All");
+        JMenuItem menuItem2 = new JMenuItem("Clear All");
         JMenuItem menuItem3 = new JMenuItem("Cancel");
 
         menuItem1.addActionListener(this);
@@ -45,10 +50,10 @@ public class Editor extends JFrame implements ActionListener {
         editorFrame.setJMenuBar(menuBar);
         editorFrame.add(textArea);
         editorFrame.setSize(600,800);
-        editorFrame.show();
+        editorFrame.setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent a){
+    public void actionPerformed(ActionEvent a) {
         String action = a.getActionCommand();
         switch (action) {
         case "Save":
@@ -63,10 +68,12 @@ public class Editor extends JFrame implements ActionListener {
             textArea.setText(" ");
             editorFrame.setVisible(false);
             break;
+        default:
+            break;
         }
     }
 
-    private void toggleEdit(){
+    private void toggleEdit() {
         isEditDone = true;
     }
 
@@ -74,7 +81,7 @@ public class Editor extends JFrame implements ActionListener {
         return isEditDone;
     }
 
-    public String getContent(){
+    public String getContent() {
         return typedText;
     }
 }

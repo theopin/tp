@@ -40,7 +40,7 @@ public class EditCommand extends Command {
     private void callContentEditor(CheatSheet desiredCheatSheet) {
         String cheatSheetContent = desiredCheatSheet.getCheatSheetDetails();
         Editor contentEditor = new Editor(cheatSheetContent);
-        while(!contentEditor.isEditDone()){
+        while(!contentEditor.isEditDone()) {
             printer.print("Waiting for user input...");
         }
         desiredCheatSheet.setCheatSheetDetails(contentEditor.getContent());
