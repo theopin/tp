@@ -6,13 +6,14 @@ public class HelpCommand extends Command {
     public HelpCommand(Printer printer) {
         super(printer);
 
-        initCommandDetails(null);
+        //initCommandDetails(null);
     }
-
+    /*
     @Override
     public boolean hasAllRequiredArguments() {
         return true;
     }
+    */
 
     @Override
     public void execute() {

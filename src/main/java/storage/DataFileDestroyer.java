@@ -1,6 +1,5 @@
 package storage;
 
-
 import ui.Printer;
 
 import java.io.IOException;
