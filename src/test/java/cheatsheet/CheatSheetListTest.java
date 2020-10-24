@@ -1,5 +1,6 @@
 package cheatsheet;
 
+import exception.CommandException;
 import org.junit.jupiter.api.Test;
 
 import java.util.logging.Level;
@@ -34,18 +35,6 @@ class CheatSheetListTest {
     }
 
     @Test
-    void testPrintCheatSheetNames() {
-        CheatSheetList.clear();
-        StringBuilder print = new StringBuilder("Current list of cheat sheet:\n");
-        for (int i = 0; i < 10; i++) {
-            CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
-            print.append("Name").append(i).append("\n");
-        }
-        assertEquals(print.toString(), CheatSheetList.printCheatSheetNames());
-        logger.log(Level.INFO, "Finished PrintCheatSheetName test");
-    }
-
-    @Test
     void testAdd() {
         CheatSheetList.clear();
         for (int i = 0; i < 10; i++) {
@@ -62,20 +51,30 @@ class CheatSheetListTest {
         for (int i = 0; i < 10; i++) {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
-        CheatSheetList.remove("Name1");
-        CheatSheetList.remove("Name3");
-        CheatSheetList.remove("Name5");
-        assertEquals(7, CheatSheetList.getSize());
+
+        try {
+            CheatSheetList.remove("Name1");
+            CheatSheetList.remove("Name3");
+            CheatSheetList.remove("Name5");
+            assertEquals(7, CheatSheetList.getSize());
+        } catch (CommandException e) {
+            fail();
+        }
 
         // remove(int index);
         CheatSheetList.clear();
         for (int i = 0; i < 10; i++) {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
-        CheatSheetList.remove(1);
-        CheatSheetList.remove(3);
-        CheatSheetList.remove(5);
-        assertEquals(7, CheatSheetList.getSize());
+
+        try {
+            CheatSheetList.remove(1);
+            CheatSheetList.remove(3);
+            CheatSheetList.remove(5);
+            assertEquals(7, CheatSheetList.getSize());
+        } catch (CommandException e) {
+            fail();
+        }
         logger.log(Level.INFO, "Finished Remove test");
 
     }
@@ -89,8 +88,8 @@ class CheatSheetListTest {
         try {
             CheatSheetList.remove(-1);
             fail();
-        } catch (IndexOutOfBoundsException e) {
-            // todo: add error message
+        } catch (CommandException e) {
+            assertEquals("Please enter a valid index", e.getMessage());
         }
     }
 
@@ -103,8 +102,8 @@ class CheatSheetListTest {
         try {
             CheatSheetList.remove("dummy");
             fail();
-        } catch (IndexOutOfBoundsException e) {
-            // todo: add error message
+        } catch (CommandException e) {
+            assertEquals("Please enter a valid index", e.getMessage());
         }
     }
 
@@ -119,9 +118,14 @@ class CheatSheetListTest {
                 CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
             }
         }
+
         // test to get cheatsheet by index and by name
-        assertEquals(test, CheatSheetList.getCheatSheet(2));
-        assertEquals(test, CheatSheetList.getCheatSheet("Name1"));
+        try {
+            assertEquals(test, CheatSheetList.getCheatSheet(2));
+            assertEquals(test, CheatSheetList.getCheatSheet("Name1"));
+        } catch (CommandException e) {
+            fail();
+        }
         logger.log(Level.INFO, "Finished GetCheatSheet test");
     }
 
@@ -135,8 +139,8 @@ class CheatSheetListTest {
         try {
             test = CheatSheetList.getCheatSheet(-1);
             fail();
-        } catch (IndexOutOfBoundsException e) {
-            // todo: add and check error message
+        } catch (CommandException e) {
+            assertEquals("Please enter a valid index", e.getMessage());
         }
     }
 
@@ -150,8 +154,8 @@ class CheatSheetListTest {
         try {
             test = CheatSheetList.getCheatSheet("cheatlogs");
             fail();
-        } catch (IndexOutOfBoundsException e) {
-            // todo: add and check error message
+        } catch (CommandException e) {
+            assertEquals("Please enter a valid name", e.getMessage());
         }
     }
 }
