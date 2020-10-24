@@ -21,28 +21,28 @@ class ViewCommandTest {
             CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
         }
         try {
-            Parser parser = new Parser(userInput);
-            ViewCommand viewCommand = new ViewCommand(parser);
+            Parser parser = new Parser();
+            Command viewCommand = parser.parser(userInput);
             viewCommand.execute();
         } catch (CommandException e) {
             fail();
         }
     }
     */
-    @Test
-    void execute_noArgument_exceptionThrown() {
-        final String userInput = "/view something";
-        CheatSheetList.clear();
-        for (int i = 0; i < 10; i++) {
-            CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
-        }
-        try {
-            Parser parser = new Parser(userInput);
-            ViewCommand viewCommand = new ViewCommand(parser);
-            viewCommand.execute();
-            fail();
-        } catch (CommandException e) {
-            assertEquals("Please enter a valid index", e.getMessage());
-        }
-    }
+//    @Test
+//    void execute_noArgument_exceptionThrown() {
+//        final String userInput = "/view something";
+//        CheatSheetList.clear();
+//        for (int i = 0; i < 10; i++) {
+//            CheatSheetList.add(new CheatSheet("Name" + i, "Language" + i, "Details" + i));
+//        }
+//        try {
+//            Parser parser = new Parser();
+//            Command viewCommand = parser.parse(userInput);
+//            viewCommand.execute();
+//            fail();
+//        } catch (CommandException e) {
+//            assertEquals("Please enter a name or an index", e.getMessage());
+//        }
+//    }
 }

@@ -2,6 +2,7 @@ package storage;
 
 import cheatsheet.CheatSheet;
 import exception.InvalidFileDataException;
+import ui.Printer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,15 +14,21 @@ public class DataFileParser {
     protected static final String FAVOURITE = "Favourite: ";
     protected static final String DETAILS = "Contents: ";
     protected static final String EMPTY = "";
+    protected static final String EMPTY_Asaas = "";
 
     protected static final String FAVOURITE_FILE = "Yes";
     protected static final String NOT_FAVOURITE_FILE = "No";
 
     protected CheatSheet convertedCheatSheet;
+    protected Printer printer;
 
     private final StringBuilder cheatSheetDetails = new StringBuilder();
     private String cheatSheetProgrammingLanguage = "";
     private boolean cheatSheetFavourite = false;
+
+    public DataFileParser(Printer printer) {
+        this.printer = printer;
+    }
 
     /**
      * Parses the given cheatSheet file and handles any exceptions
@@ -33,7 +40,7 @@ public class DataFileParser {
         try {
             parseCheatSheet(cheatSheetDocument);
         } catch (FileNotFoundException | InvalidFileDataException e) {
-            System.out.println(e.getMessage());
+            printer.print(e.getMessage());
         }
     }
 
@@ -62,7 +69,7 @@ public class DataFileParser {
         this.convertedCheatSheet = new CheatSheet(cheatSheetName,
                 cheatSheetProgrammingLanguage, cheatSheetDetails.toString().trim());
         if (this.cheatSheetFavourite) {
-            this.convertedCheatSheet.setFavorite();
+            this.convertedCheatSheet.setFavourite(true);
         }
         componentScanner.close();
     }

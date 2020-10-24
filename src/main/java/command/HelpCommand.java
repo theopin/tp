@@ -2,8 +2,8 @@ package command;
 
 import ui.Printer;
 
-public class ExitCommand extends Command {
-    public ExitCommand(Printer printer) {
+public class HelpCommand extends Command {
+    public HelpCommand(Printer printer) {
         super(printer);
 
         initCommandDetails(null);
@@ -16,6 +16,6 @@ public class ExitCommand extends Command {
 
     @Override
     public void execute() {
-        isExitCommand = true;
+        printer.printHelpSheet();
     }
 }

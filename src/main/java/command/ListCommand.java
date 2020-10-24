@@ -1,34 +1,40 @@
 package command;
 
-import sort.SortByName;
-import sort.SortByLanguage;
 import cheatsheet.CheatSheetList;
-import parser.Parser;
+import sort.SortByLanguage;
+import sort.SortByName;
 import ui.Printer;
 
 import java.util.Scanner;
 
 public class ListCommand extends Command {
-    public ListCommand(Parser parser) {
-        super(parser);
+    public ListCommand(Printer printer) {
+        super(printer);
+
+        initCommandDetails(null);
+    }
+
+    @Override
+    public boolean hasAllRequiredArguments() {
+        return true;
     }
 
     @Override
     public void execute() {
-        Printer.printCheatSheetList();
+        printer.printCheatSheetList();
         askForSortingConfigAndPrint();
     }
 
     private void askForSortingConfigAndPrint() {
-        System.out.println("Sort filter (na: name ascending, la: language ascending, nd: name descending"
-            + ", ld: language descending or <enter> to skip)");
+        printer.print("Sort filter (na: name ascending, la: language ascending, nd: name descending"
+                + ", ld: language descending or <enter> to skip)");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         while (!input.equals("q")) {
             switch (input) {
             case "na":
                 CheatSheetList.getCheatSheetList().sort(new SortByName());
-                System.out.println("Currently sorting name in ascending order");
+                printer.print("Currently sorting name in ascending order");
                 break;
             case "la":
                 CheatSheetList.getCheatSheetList().sort(new SortByLanguage());
@@ -42,7 +48,7 @@ public class ListCommand extends Command {
             default:
                 CheatSheetList.getCheatSheetList().sort(new SortByName());
             }
-            Printer.printCheatSheetList();
+            printer.printCheatSheetList();
             input = scanner.nextLine();
         }
     }

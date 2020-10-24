@@ -2,6 +2,7 @@ package storage;
 
 import cheatsheet.CheatSheetList;
 import exception.DirectoryIsEmptyException;
+import ui.Printer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +13,9 @@ import java.nio.file.Files;
  * to insert the cheatsheets present in the folder to the application.
  */
 public class DataFileReader extends DataFile {
-
+    public DataFileReader(Printer printer) {
+        this.printer = printer;
+    }
 
     /**
      * Converts the file contents into tasks that can be added into
@@ -24,10 +27,10 @@ public class DataFileReader extends DataFile {
         try {
             insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            printer.print(e.getMessage());
             createNewDirectory();
         } catch (DirectoryIsEmptyException d) {
-            System.out.println(d.getMessage());
+            printer.print(d.getMessage());
         }
     }
 
@@ -65,7 +68,7 @@ public class DataFileReader extends DataFile {
      * @param cheatSheetDocument File of the cheatSheet
      */
     private void extractCheatSheet(File cheatSheetDocument) {
-        DataFileParser parsedData = new DataFileParser();
+        DataFileParser parsedData = new DataFileParser(printer);
         parsedData.handleOperation(cheatSheetDocument);
         if (parsedData.convertedCheatSheet != null) {
             CheatSheetList.add(parsedData.convertedCheatSheet);

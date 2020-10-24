@@ -2,31 +2,48 @@ package command;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
-import parser.ArgumentFlagEnum;
-import parser.Parser;
 import exception.CommandException;
 import ui.Printer;
 
+import parser.ArgumentFlagEnum;
+
 public class AddCommand extends Command {
-    public AddCommand(Parser parser) {
-        super(parser);
+    public AddCommand(Printer printer) {
+        super(printer);
+
+        initCommandDetails(new ArgumentFlagEnum[] {
+            ArgumentFlagEnum.NAME,
+            ArgumentFlagEnum.PROGRAMMINGLANGUAGE,
+            ArgumentFlagEnum.DESCRIPTION
+        });
+    }
+
+    @Override
+    public boolean hasAllRequiredArguments() {
+        if (descriptionMap.get(ArgumentFlagEnum.NAME) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public void execute() throws CommandException {
-        String name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);
-        String programmingLanguage = parser.getDescriptionMap().get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
-        String description = parser.getDescriptionMap().get(ArgumentFlagEnum.DESCRIPTION);
+        String name = descriptionMap.get(ArgumentFlagEnum.NAME);
+        String programmingLanguage = descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
+        String description = descriptionMap.get(ArgumentFlagEnum.DESCRIPTION);
 
-        if (name == null) {
-            throw new CommandException("Please enter a name");
-        } else if (checkIfNameAlreadyExist(name)) {
+        if (checkIfNameAlreadyExist(name)) {
             throw new CommandException("Name already existed, please enter another name");
+        }
+
+        if (programmingLanguage != null) {
+            programmingLanguage = convertToPascalCaseNoSpace(programmingLanguage);
         }
 
         CheatSheet cheatSheet = new CheatSheet(name, programmingLanguage, description);
         CheatSheetList.add(cheatSheet);
-        Printer.printAddNewCheatSheetMessage(cheatSheet);
+        printer.printAddNewCheatSheetMessage(cheatSheet);
     }
 
     private boolean checkIfNameAlreadyExist(String name) {
@@ -36,5 +53,15 @@ public class AddCommand extends Command {
             }
         }
         return false;
+    }
+
+    private String convertToPascalCaseNoSpace(String input) {
+        String[] splitInput = input.split(" ");
+
+        for (int i = 0; i < splitInput.length; i++) {
+            splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();
+        }
+
+        return String.join("", splitInput);
     }
 }

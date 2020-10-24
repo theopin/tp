@@ -1,38 +1,41 @@
 package command;
 
-import cheatsheet.CheatSheetList;
+import cheatsheet.CheatSheet;
 import exception.CommandException;
 import parser.ArgumentFlagEnum;
-import parser.Parser;
 import ui.Printer;
-
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 
-public class ViewCommand extends Command {
-    public ViewCommand(Parser parser) {
-        super(parser);
+public class ViewCommand extends FinderCommand {
+    public ViewCommand(Printer printer) {
+        super(printer);
+
+        initCommandDetails(new ArgumentFlagEnum[] {
+            ArgumentFlagEnum.NAME,
+            ArgumentFlagEnum.INDEX,
+        });
+    }
+
+    @Override
+    public boolean hasAllRequiredArguments() {
+        if (descriptionMap.get(ArgumentFlagEnum.NAME) != null
+                || descriptionMap.get(ArgumentFlagEnum.INDEX) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public void execute() throws CommandException {
-        int index = 0;
         try {
-            if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.NAME)) {
-                String name = parser.getDescriptionMap().get(ArgumentFlagEnum.NAME);
-                for (int i = 0; i < CheatSheetList.getSize(); i++) {
-                    if (CheatSheetList.getCheatSheet(i).getCheatSheetName().equals(name)) {
-                        index = i + 1;
-                        break;
-                    }
-                }
-            } else if (parser.getDescriptionMap().containsKey(ArgumentFlagEnum.INDEX)) {
-                index = Integer.parseInt(parser.getDescriptionMap().get(ArgumentFlagEnum.INDEX));
-            }
-            Printer.printViewCheatSheetMessage(CheatSheetList.getCheatSheet(index));
-            copyTextToClipboard(CheatSheetList.getCheatSheet(index).getCheatSheetDetails());
+            CheatSheet desiredCheatSheet = getCheatSheetFromNameOrIndex();
+
+            printer.printViewCheatSheetMessage(desiredCheatSheet);
+            copyTextToClipboard(desiredCheatSheet.getCheatSheetDetails());
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new CommandException("Please enter a valid index");
         }
