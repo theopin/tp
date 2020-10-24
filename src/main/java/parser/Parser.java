@@ -106,8 +106,9 @@ public class Parser {
     }
 
     private void setMissingArguments(Command commandToBeExecuted) {
+        HashMap<ArgumentFlagEnum, String> map = commandToBeExecuted.getDescriptionMap();
         while (!commandToBeExecuted.hasAllRequiredArguments()) {
-            for (Map.Entry<ArgumentFlagEnum, String> entry : commandToBeExecuted.getDescriptionMap().entrySet()) {
+            /*for (Map.Entry<ArgumentFlagEnum, String> entry : commandToBeExecuted.getDescriptionMap().entrySet()) {
                 ArgumentFlagEnum curArg = entry.getKey();
                 String curArgVal = entry.getValue();
 
@@ -115,7 +116,18 @@ public class Parser {
                     printer.printMissingArgument(curArg);
                     String newArgVal = ui.getUserInput();
                     commandToBeExecuted.getDescriptionMap().replace(curArg, newArgVal);
-                    return;
+                    //return;
+                }
+         */
+            for (ArgumentFlagEnum key : map.keySet()) {
+                if (map.get(key) == null) {
+                    printer.printMissingArgument(key);
+                    if (key == ArgumentFlagEnum.PROGRAMMINGLANGUAGE) {
+                        System.out.println("<<enter>> if you want to skip");
+                    }
+                    String newArgVal = ui.getUserInput();
+                    commandToBeExecuted.getDescriptionMap().replace(key, newArgVal);
+                    //return;
                 }
             }
         }

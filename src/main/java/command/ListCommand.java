@@ -11,14 +11,14 @@ public class ListCommand extends Command {
     public ListCommand(Printer printer) {
         super(printer);
 
-        initCommandDetails(null);
+        //initCommandDetails(null);
     }
-
+/*
     @Override
     public boolean hasAllRequiredArguments() {
         return true;
     }
-
+*/
     @Override
     public void execute() {
         printer.printCheatSheetList();
@@ -27,10 +27,10 @@ public class ListCommand extends Command {
 
     private void askForSortingConfigAndPrint() {
         printer.print("Sort filter (na: name ascending, la: language ascending, nd: name descending"
-                + ", ld: language descending or <enter> to skip)");
+                + ", ld: language descending or <<enter>> to skip)");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        while (!input.equals("q")) {
+        while (!input.isEmpty()) {
             switch (input) {
             case "na":
                 CheatSheetList.getCheatSheetList().sort(new SortByName());

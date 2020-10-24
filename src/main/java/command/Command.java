@@ -1,18 +1,19 @@
 package command;
 
-import cheatsheet.CheatSheetList;
 import exception.CommandException;
 
 import parser.ArgumentFlagEnum;
 import ui.Printer;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * The base class for all Commands.
  */
 public abstract class Command {
-    protected ArgumentFlagEnum[] flags;
+    //protected ArgumentFlagEnum[] flags;
+    protected ArrayList<ArgumentFlagEnum> requiredArguments;
     protected HashMap<ArgumentFlagEnum, String> descriptionMap;
     protected Printer printer;
     public static boolean isExitCommand;
@@ -22,12 +23,13 @@ public abstract class Command {
 
     public Command(Printer printer) {
         this.descriptionMap = new HashMap<>();
-        this.flags = new ArgumentFlagEnum[] {};
+        this.requiredArguments = new ArrayList<>();
+        //this.flags = new ArgumentFlagEnum[] {};
         this.printer = printer;
         isExitCommand = false;
     }
 
-    public void initCommandDetails(ArgumentFlagEnum[] initFlags) {
+    /*public void initCommandDetails(ArgumentFlagEnum[] initFlags) {
         assert flags != null;
         assert descriptionMap != null;
 
@@ -37,11 +39,11 @@ public abstract class Command {
                 descriptionMap.put(flag, null);
             }
         }
-    }
+    }*/
 
-    protected void setFlags(ArgumentFlagEnum[] flags) {
+    /*protected void setFlags(ArgumentFlagEnum[] flags) {
         this.flags = flags;
-    }
+    }*/
 
     public HashMap<ArgumentFlagEnum, String> getDescriptionMap() {
         return descriptionMap;
@@ -51,7 +53,18 @@ public abstract class Command {
         this.descriptionMap.putAll(descriptionMap);
     }
 
-    public abstract boolean hasAllRequiredArguments();
+    public ArrayList<ArgumentFlagEnum> getRequiredArguments() {
+        return requiredArguments;
+    }
+
+    public boolean hasAllRequiredArguments() {
+        for (ArgumentFlagEnum arg : requiredArguments) {
+            if (descriptionMap.get(arg) != null && !descriptionMap.get(arg).isEmpty()) {
+                return true;
+            }
+        }
+        return requiredArguments.size() == 0;
+    }
 
     public abstract void execute() throws CommandException;
 }

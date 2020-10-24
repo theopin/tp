@@ -11,14 +11,14 @@ public class ClearCommand extends Command {
         super(printer);
         this.fileDestroyer = fileDestroyer;
 
-        initCommandDetails(null);
+        //initCommandDetails(null);
     }
-
+/*
     @Override
     public boolean hasAllRequiredArguments() {
         return true;
     }
-
+*/
     @Override
     public void execute() {
         printer.printClearCheatSheetMessage(CheatSheetList.getSize());
