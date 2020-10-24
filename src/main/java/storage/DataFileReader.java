@@ -4,10 +4,6 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import exception.DirectoryIsEmptyException;
 
-import org.jdom2.Document;
-import org.jdom2.Element;
-import org.jdom2.JDOMException;
-import org.jdom2.input.SAXBuilder;
 
 import ui.Printer;
 
@@ -32,6 +28,7 @@ public class DataFileReader extends DataFile {
      */
     @Override
     public void executeFunction() {
+    /*
         try {
             insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
@@ -40,8 +37,11 @@ public class DataFileReader extends DataFile {
         } catch (DirectoryIsEmptyException d) {
             printer.print(d.getMessage());
         }
+    */
     }
 
+}
+/*
     /**
      * Converts the data obtained from the /data folder into cheatsheets and adds
      * them to the application.
@@ -49,6 +49,7 @@ public class DataFileReader extends DataFile {
      * @throws FileNotFoundException     Thrown if the /data folder is not found
      * @throws DirectoryIsEmptyException Thrown if the /data folder is empty
      */
+    /*
     protected void insertStoredCheatSheets() throws FileNotFoundException,
             DirectoryIsEmptyException {
         if (!Files.exists(DATA_DIR)) {
@@ -83,6 +84,7 @@ public class DataFileReader extends DataFile {
      * @throws JDOMException Thrown if errors occur when parsing the file.
      * @throws IOException Thrown if an I/O error prevents the file from being fully parsed.
      */
+    /*
     private void extractCheatSheet(File cheatSheetDocument) throws JDOMException, IOException {
         SAXBuilder saxBuilder = new SAXBuilder();
         Document cheatSheetXml = saxBuilder.build(cheatSheetDocument);
@@ -112,6 +114,7 @@ public class DataFileReader extends DataFile {
      * @param cheatSheetName Name of the cheatSheet.
      * @param cheatSheetContent Contents of the cheatSheet.
      */
+    /*
     private void createNewCheatSheet(boolean isMarkedFavourite,
                                      String cheatSheetName,
                                      String cheatSheetContent) {
@@ -123,3 +126,4 @@ public class DataFileReader extends DataFile {
         CheatSheetList.add(newCheatSheet);
     }
 }
+*/

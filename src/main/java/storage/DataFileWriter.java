@@ -3,10 +3,15 @@ package storage;
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 
-import org.jdom2.Document;
-import org.jdom2.Element;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import java.io.IOException;
 import java.io.FileWriter;
@@ -16,6 +21,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Text;
 import ui.Printer;
 
 /**
@@ -59,7 +67,7 @@ public class DataFileWriter extends DataFile {
      * @param cheatSheet The cheatSheet that is currently being converted into a file.
      */
     public void convertCheatSheetToFile(CheatSheet cheatSheet) {
-        String fileName = cheatSheet.getCheatSheetName() + ".xml";
+        String fileName = cheatSheet.getCheatSheetName() + XML_EXTENSION;
         Path textFile = Paths.get(USER_DIR, DATA, fileName);
 
         try {
@@ -68,8 +76,8 @@ public class DataFileWriter extends DataFile {
             }
             Document cheatSheetFile = buildFileContents(cheatSheet);
 
-            writeToFile(textFile.toString(), cheatSheetFile);
-        } catch (IOException e) {
+            writeToFile(textFile, cheatSheetFile);
+        } catch (IOException | ParserConfigurationException | TransformerException e) {
             printer.print(e.getMessage());
         }
     }
@@ -77,44 +85,52 @@ public class DataFileWriter extends DataFile {
     /**
      * Sets the contents for the respective cheatSheet file.
      *
-     * @param cheatSheet The cheatSheet that is currently being converted into a file.
-     * @return xmlFileStructure A document containing relevant data of the cheatsheet
-     *                          in a .xml file format.
+     * @param cheatSheet                     The cheatSheet that is currently being converted into a file.
+     * @return xmlFileStructure              A document containing relevant data of the cheatsheet
+     *                                       in a .xml file format.
+     * @throws ParserConfigurationException  Thrown if a serious configuration error is detected.
      */
-    private Document buildFileContents(CheatSheet cheatSheet) {
-        Element mainRoot = new Element("main");
-        Document xmlFileStructure = new Document(mainRoot);
+    private Document buildFileContents(CheatSheet cheatSheet) throws ParserConfigurationException {
+        DocumentBuilderFactory dbFactory =
+                DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+        Document xmlFileStructure = dBuilder.newDocument();
+
+        Element mainRoot = xmlFileStructure.createElement("main");
+        xmlFileStructure.appendChild(mainRoot);
 
         String favouriteStatus = cheatSheet.getIsFavourite()
                 ? FAVOURITE_FILE
                 : NOT_FAVOURITE_FILE;
-        Element favouriteElement = new Element(FAVOURITE_ELEMENT);
-        favouriteElement.setText(favouriteStatus);
-        xmlFileStructure.getRootElement().addContent(favouriteElement);
+
+        Element favouriteElement = xmlFileStructure.createElement(FAVOURITE_ELEMENT);
+        Text favouriteTextNode = xmlFileStructure.createTextNode(favouriteStatus);
+        favouriteElement.appendChild(favouriteTextNode);
+        mainRoot.appendChild(favouriteElement);
 
         String fileContent = cheatSheet.getCheatSheetDetails();
-        Element fileContentElement = new Element(CONTENTS_ELEMENT);
-        fileContentElement.setText(fileContent);
-        xmlFileStructure.getRootElement().addContent(fileContentElement);
+
+        Element fileContentElement = xmlFileStructure.createElement(CONTENTS_ELEMENT);
+        Text fileContentTextNode = xmlFileStructure.createTextNode(fileContent);
+        fileContentElement.appendChild(fileContentTextNode);
+        mainRoot.appendChild(fileContentElement);
 
         return xmlFileStructure;
     }
-
     /**
      * Writes formatted attributes of the cheatsheet into an xml file.
      *
-     * @param directory       Name of the file.
-     * @param xmlFileContents Contents of the file in xml format.
-     * @throws IOException    Thrown if there are issues with writing the string
-     *                        into a file.
+     * @param fileDirectory           Name of the file.
+     * @param xmlFileContents         Contents of the file in xml format.
+     * @throws TransformerException   Thrown if there an exceptional condition occurrs
+     *                                during the transformation process.
      */
-    private void writeToFile(String directory, Document xmlFileContents) throws IOException {
-        FileWriter fileEditor = new FileWriter(directory);
-
-        XMLOutputter xmlOutput = new XMLOutputter();
-        xmlOutput.setFormat(Format.getPrettyFormat());
-        xmlOutput.output(xmlFileContents, fileEditor);
-
-        fileEditor.close();
+    private void writeToFile(Path fileDirectory, Document xmlFileContents)
+            throws TransformerException {
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource fileSource = new DOMSource(xmlFileContents);
+        StreamResult fileResult = new StreamResult(fileDirectory.toFile());
+        transformer.transform(fileSource, fileResult);
     }
 }
