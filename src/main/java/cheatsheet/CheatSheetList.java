@@ -1,7 +1,6 @@
 package cheatsheet;
 
 import exception.CommandException;
-import ui.Printer;
 
 import java.util.ArrayList;
 
@@ -25,7 +24,7 @@ public class CheatSheetList {
      *
      * @return cheatSheets The current list of cheat sheets
      */
-    public static ArrayList<CheatSheet> getCheatSheetList() {
+    public static ArrayList<CheatSheet> getList() {
         return cheatSheets;
     }
 
@@ -46,7 +45,7 @@ public class CheatSheetList {
     public static void remove(String name) throws CommandException {
         int index = 0;
         for (CheatSheet cs : cheatSheets) {
-            if (cs.getCheatSheetName().equals(name)) {
+            if (cs.getName().equals(name)) {
                 break;
             }
             index++;
@@ -88,7 +87,7 @@ public class CheatSheetList {
      * @return size of cheatSheets
      * @throws CommandException when index < 0 or index >= cheatSheets.size()
      */
-    public static CheatSheet getCheatSheet(int index) throws CommandException {
+    public static CheatSheet get(int index) throws CommandException {
         CheatSheet cheatSheet;
         try {
             cheatSheet = cheatSheets.get(index - 1);
@@ -105,17 +104,17 @@ public class CheatSheetList {
      * @return size of cheatSheets
      * @throws CommandException when name cannot be found inside the list
      */
-    public static CheatSheet getCheatSheet(String name) throws CommandException {
+    public static CheatSheet get(String name) throws CommandException {
         int index = 0;
         for (CheatSheet cs : cheatSheets) {
-            if (cs.getCheatSheetName().equals(name)) {
+            if (cs.getName().equals(name)) {
                 break;
             }
             index++;
         }
         CheatSheet cheatSheet;
         try {
-            cheatSheet = getCheatSheet(index + 1);
+            cheatSheet = get(index + 1);
         } catch (CommandException e) {
             throw new CommandException("Please enter a valid name");
         }

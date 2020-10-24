@@ -15,10 +15,10 @@ public abstract class FinderCommand extends Command {
         CheatSheet desiredCheatSheet = null;
         if (descriptionMap.get(ArgumentFlagEnum.NAME) != null) {
             String name = descriptionMap.get(ArgumentFlagEnum.NAME);
-            desiredCheatSheet = CheatSheetList.getCheatSheet(name);
+            desiredCheatSheet = CheatSheetList.get(name);
         } else if (descriptionMap.get(ArgumentFlagEnum.INDEX) != null) {
             int index = Integer.parseInt(descriptionMap.get(ArgumentFlagEnum.INDEX));
-            desiredCheatSheet = CheatSheetList.getCheatSheet(index);
+            desiredCheatSheet = CheatSheetList.get(index);
         }
 
         if (desiredCheatSheet == null) {

@@ -42,7 +42,7 @@ public class DataFileWriter extends DataFile {
      */
     @Override
     public void executeFunction() {
-        cheatSheets = CheatSheetList.getCheatSheetList();
+        cheatSheets = CheatSheetList.getList();
         storeCheatSheet();
     }
 
@@ -65,7 +65,7 @@ public class DataFileWriter extends DataFile {
      * @param cheatSheet The cheatSheet that is currently being converted into a file.
      */
     public void convertCheatSheetToFile(CheatSheet cheatSheet) {
-        String fileName = cheatSheet.getCheatSheetName() + XML_EXTENSION;
+        String fileName = cheatSheet.getName() + XML_EXTENSION;
         Path textFile = Paths.get(USER_DIR, DATA, fileName);
 
         try {
@@ -128,7 +128,7 @@ public class DataFileWriter extends DataFile {
      * @param mainRoot                       The root that the created element needs to be joined to.
      */
     private void insertFileContent(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
-        String fileContent = cheatSheet.getCheatSheetDetails();
+        String fileContent = cheatSheet.getDetails();
 
         Element fileContentElement = xmlFileStructure.createElement(CONTENTS_ELEMENT);
         Text fileContentTextNode = xmlFileStructure.createTextNode(fileContent);

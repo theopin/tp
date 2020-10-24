@@ -8,67 +8,48 @@ import parser.ArgumentFlagEnum;
 
 import ui.Printer;
 
-import java.util.concurrent.TimeUnit;
-
 public class AddCommand extends Command {
-    public AddCommand(Printer printer) {
-        super(printer);
+    Editor editor;
 
-        /*initCommandDetails(new ArgumentFlagEnum[] {
-            ArgumentFlagEnum.NAME,
-            ArgumentFlagEnum.PROGRAMMINGLANGUAGE,
-            ArgumentFlagEnum.DESCRIPTION
-        });*/
+    public AddCommand(Printer printer, Editor editor) {
+        super(printer);
+        this.editor = editor;
+
         descriptionMap.put(ArgumentFlagEnum.NAME, null);
-        descriptionMap.put(ArgumentFlagEnum.PROGRAMMINGLANGUAGE, null);
-        // descriptionMap.put(ArgumentFlagEnum.DESCRIPTION, null);
-        requiredArguments.add(ArgumentFlagEnum.NAME);
+        descriptionMap.put(ArgumentFlagEnum.SUBJECT, null);
+        alternativeArguments.add(ArgumentFlagEnum.NAME);
     }
-    /*
-    @Override
-    public boolean hasAllRequiredArguments() {
-        return descriptionMap.get(ArgumentFlagEnum.NAME) != null;
-    }
-    */
 
     @Override
     public void execute() throws CommandException {
         String name = descriptionMap.get(ArgumentFlagEnum.NAME);
-        String programmingLanguage = descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
-        String description = callContentEditor();
-
         if (checkIfNameAlreadyExist(name)) {
             throw new CommandException("Name already existed, please enter another name");
         }
 
-        if (programmingLanguage != null) {
-            programmingLanguage = convertToPascalCaseNoSpace(programmingLanguage);
+        String subject = descriptionMap.get(ArgumentFlagEnum.SUBJECT);
+        if (subject != null) {
+            subject = convertToPascalCaseNoSpace(subject);
         }
-        System.out.println(description);
-        CheatSheet cheatSheet = new CheatSheet(name, programmingLanguage, description);
+
+        callContentEditor();
+        String description = editor.getContent();
+
+        printer.print(description);
+        CheatSheet cheatSheet = new CheatSheet(name, subject, description);
         CheatSheetList.add(cheatSheet);
 
         printer.printAddNewCheatSheetMessage(cheatSheet);
     }
 
-    private String callContentEditor() {
-        String content;
-        Editor contentEditor = new Editor();
-        System.out.println("Waiting for user input...");
-        do {
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (Exception e) {
-                assert false;
-            }
-            content = contentEditor.getContent();
-        } while (!contentEditor.isEditDone());
-        return content;
+    private void callContentEditor() {
+        editor.open();
+        editor.waitForClose();
     }
 
     private boolean checkIfNameAlreadyExist(String name) {
-        for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
-            if (cs.getCheatSheetName().equals(name)) {
+        for (CheatSheet cs : CheatSheetList.getList()) {
+            if (cs.getName().equals(name)) {
                 return true;
             }
         }
@@ -76,15 +57,11 @@ public class AddCommand extends Command {
     }
 
     private String convertToPascalCaseNoSpace(String input) throws CommandException {
-        try {
-            String[] splitInput = input.split(" ");
-            for (int i = 0; i < splitInput.length; i++) {
-                splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();
-            }
-
-            return String.join("", splitInput);
-        } catch (StringIndexOutOfBoundsException s) {
-            throw new CommandException(" why extra space?");
+        String[] splitInput = input.split("\\p{IsWhite_Space}+");
+        for (int i = 0; i < splitInput.length; i++) {
+            splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();
         }
+
+        return String.join("", splitInput);
     }
 }

@@ -1,6 +1,7 @@
 package ui;
 
 import command.Command;
+import editor.Editor;
 import exception.CommandException;
 import parser.Parser;
 import storage.DataFileReader;
@@ -18,14 +19,16 @@ public class UserSession {
     DataFileDestroyer fileDestroyer;
     Ui ui;
     Parser userCommandParser;
+    Editor editor;
 
     public UserSession() {
         printer = new Printer();
         fileReader = new DataFileReader(printer);
         fileWriter = new DataFileWriter(printer);
         fileDestroyer = new DataFileDestroyer(printer);
+        editor = new Editor();
         ui = new Ui();
-        userCommandParser = new Parser(fileDestroyer, printer, ui);
+        userCommandParser = new Parser(fileDestroyer, printer, ui, editor);
     }
 
     /**

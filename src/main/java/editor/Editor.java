@@ -8,25 +8,16 @@ import javax.swing.JMenuItem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
 
 public class Editor extends JFrame implements ActionListener {
-    JTextArea textArea;
-    JFrame editorFrame;
-    static String typedText;
-    static boolean isEditDone;
+    private JTextArea textArea;
 
     public Editor() {
         generateEditorUI();
     }
 
-    public Editor(String content) {
-        generateEditorUI();
-        textArea.setText(content);
-    }
-
     private void generateEditorUI() {
-        isEditDone = false;
-        editorFrame = new JFrame("editor");
         textArea = new JTextArea();
 
         final JMenuBar menuBar = new JMenuBar();
@@ -47,43 +38,54 @@ public class Editor extends JFrame implements ActionListener {
 
         menuBar.add(menu1);
 
-        editorFrame.setJMenuBar(menuBar);
-        editorFrame.add(textArea);
-        editorFrame.setSize(600, 800);
-        editorFrame.setVisible(true);
+        setJMenuBar(menuBar);
+        add(textArea);
+        setSize(600, 800);
+        setVisible(false);
     }
 
     public void actionPerformed(ActionEvent a) {
         String action = a.getActionCommand();
         switch (action) {
         case "Save":
-            toggleEdit();
-            typedText = textArea.getText();
-            // textArea.setText("");
-            editorFrame.dispose();
+            close();
             break;
         case "Clear All":
             textArea.setText("");
             break;
         case "Cancel":
-            toggleEdit();
             textArea.setText("");
-            editorFrame.dispose();
+            close();
             break;
         default:
             break;
         }
     }
 
-    public void toggleEdit() {
-        isEditDone = !isEditDone;
-    }
-
-    public boolean isEditDone() {
-        return isEditDone;
+    public void setContent(String content) {
+        textArea.setText(content);
     }
 
     public String getContent() {
-        return typedText;
+        return textArea.getText();
+    }
+
+    public void open() {
+        textArea.setText("");
+        setVisible(true);
+    }
+
+    public void waitForClose() {
+        while (isVisible()) {
+            try {
+                TimeUnit.MICROSECONDS.sleep(1000);
+            } catch (Exception e) {
+                assert false;
+            }
+        }
+    }
+    
+    public void close() {
+        setVisible(false);
     }
 }
