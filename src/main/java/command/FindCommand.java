@@ -9,12 +9,26 @@ import sort.SortByName;
 import ui.Printer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
-public class FindCommand extends Command {
-    public FindCommand(HashMap<ArgumentFlagEnum, String> descriptionMap, Printer printer) {
-        super(descriptionMap, printer);
+public class FindCommand extends FinderCommand {
+    public FindCommand(Printer printer) {
+        super(printer);
+
+        initCommandDetails(new ArgumentFlagEnum[] {
+            ArgumentFlagEnum.PROGRAMMINGLANGUAGE,
+            ArgumentFlagEnum.SECTIONKEYWORD,
+        });
+    }
+
+    @Override
+    public boolean hasAllRequiredArguments() {
+        if (descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE) != null
+            || descriptionMap.get(ArgumentFlagEnum.SECTIONKEYWORD) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
