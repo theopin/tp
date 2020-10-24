@@ -12,21 +12,22 @@ public class AddCommand extends Command {
     public AddCommand(Printer printer) {
         super(printer);
 
-        initCommandDetails(new ArgumentFlagEnum[] {
+        /*initCommandDetails(new ArgumentFlagEnum[] {
             ArgumentFlagEnum.NAME,
             ArgumentFlagEnum.PROGRAMMINGLANGUAGE,
             ArgumentFlagEnum.DESCRIPTION
-        });
+        });*/
+        descriptionMap.put(ArgumentFlagEnum.NAME, null);
+        descriptionMap.put(ArgumentFlagEnum.PROGRAMMINGLANGUAGE, null);
+        descriptionMap.put(ArgumentFlagEnum.DESCRIPTION, null);
+        requiredArguments.add(ArgumentFlagEnum.NAME);
     }
-
+    /*
     @Override
     public boolean hasAllRequiredArguments() {
-        if (descriptionMap.get(ArgumentFlagEnum.NAME) != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return descriptionMap.get(ArgumentFlagEnum.NAME) != null;
     }
+    */
 
     @Override
     public void execute() throws CommandException {
@@ -68,13 +69,16 @@ public class AddCommand extends Command {
         return false;
     }
 
-    private String convertToPascalCaseNoSpace(String input) {
-        String[] splitInput = input.split(" ");
+    private String convertToPascalCaseNoSpace(String input) throws CommandException {
+        try {
+            String[] splitInput = input.split(" ");
+            for (int i = 0; i < splitInput.length; i++) {
+                splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();
+            }
 
-        for (int i = 0; i < splitInput.length; i++) {
-            splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();
+            return String.join("", splitInput);
+        } catch (StringIndexOutOfBoundsException s) {
+            throw new CommandException(" why extra space?");
         }
-
-        return String.join("", splitInput);
     }
 }

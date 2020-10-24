@@ -6,13 +6,14 @@ public class ExitCommand extends Command {
     public ExitCommand(Printer printer) {
         super(printer);
 
-        initCommandDetails(null);
+        //initCommandDetails(null);
     }
-
+    /*
     @Override
     public boolean hasAllRequiredArguments() {
         return true;
     }
+    */
 
     @Override
     public void execute() {

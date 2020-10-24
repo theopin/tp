@@ -14,11 +14,13 @@ import command.FavouriteCommand;
 
 import exception.CommandException;
 import storage.DataFileDestroyer;
+import ui.ConsoleColorsEnum;
 import ui.Ui;
 import ui.Printer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -109,8 +111,9 @@ public class Parser {
     }
 
     private void setMissingArguments(Command commandToBeExecuted) {
+        LinkedHashMap<ArgumentFlagEnum, String> map = commandToBeExecuted.getDescriptionMap();
         while (!commandToBeExecuted.hasAllRequiredArguments()) {
-            for (Map.Entry<ArgumentFlagEnum, String> entry : commandToBeExecuted.getDescriptionMap().entrySet()) {
+            /*for (Map.Entry<ArgumentFlagEnum, String> entry : commandToBeExecuted.getDescriptionMap().entrySet()) {
                 ArgumentFlagEnum curArg = entry.getKey();
                 String curArgVal = entry.getValue();
 
@@ -118,8 +121,31 @@ public class Parser {
                     printer.printMissingArgument(curArg);
                     String newArgVal = ui.getUserInput();
                     commandToBeExecuted.getDescriptionMap().replace(curArg, newArgVal);
-                    return;
+                    //return;
                 }
+         */
+            for (ArgumentFlagEnum key : map.keySet()) {
+                if (map.get(key) == null) {
+                    printer.printMissingArgument(key);
+                    /*if (key == ArgumentFlagEnum.PROGRAMMINGLANGUAGE) {
+                        System.out.println("<<enter>> if you want to skip");
+                    }*/
+                    String newArgVal = ui.getUserInput();
+                    if (newArgVal.isEmpty()) {
+                        newArgVal = null;
+                    }
+                    commandToBeExecuted.getDescriptionMap().replace(key, newArgVal);
+                    //return;
+                }
+            }
+            if (!commandToBeExecuted.hasAllRequiredArguments()) {
+                System.out.println();
+                System.out.print(ConsoleColorsEnum.RED_TEXT + "Please enter at least ");
+                for (ArgumentFlagEnum arg : commandToBeExecuted.getRequiredArguments()) {
+                    System.out.print(arg + " ");
+                }
+                System.out.println(ConsoleColorsEnum.RESET_TEXT);
+                System.out.println();
             }
         }
     }
