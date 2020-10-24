@@ -1,63 +1,69 @@
 package storage;
 
 
+import ui.Printer;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.stream.Stream;
 
 public class DataFileDestroyer extends DataFile {
+    public DataFileDestroyer(Printer printer) {
+        this.printer = printer;
+    }
 
-    private static final String MULTIPLE = "multiple";
-    private Path debugPath = null;
-
+    /**
+     * Constructor that executes the operation to delete all cheatsheet files.
+     */
     @Override
     public void executeFunction() {
         try {
-            clearDirectory(DATA_DIR);
+            clearDirectory();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            printer.print(e.getMessage());
         }
     }
 
+    /**
+     * Constructor that executes the operation to delete a
+     * specific cheatsheet file.
+     *
+     * @param unwantedFile Name of the cheatsheet to be deleted.
+     */
     public void executeFunction(String unwantedFile) {
         try {
             deleteFile(unwantedFile);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            printer.print(e.getMessage());
         }
     }
 
-    public void executeFunction(Path unwantedFilePath, String function) {
-        this.debugPath = unwantedFilePath;
-        try {
-            if (function.equals(MULTIPLE)) {
-                clearDirectory(unwantedFilePath);
-            } else {
-                deleteFile(null);
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private void deleteFile(String unwantedFile) throws IOException {
-        Path unwantedFilePath = (debugPath == null)
-                ? Paths.get(USER_DIR, DATA, unwantedFile)
-                : debugPath;
+    /**
+     * Deletes a specified cheatsheet file from the /data directory.
+     *
+     * @param unwantedFile Name of the cheatsheet to be deleted.
+     * @throws IOException Thrown if the path of the unwanted file specified
+     *                     is not existent.
+     */
+    protected void deleteFile(String unwantedFile) throws IOException {
+        Path unwantedFilePath = Paths.get(USER_DIR, DATA, unwantedFile);
         Files.delete(unwantedFilePath);
     }
 
-    private void clearDirectory(Path intendedDirectory) throws IOException {
-        Stream<Path> dataDirectoryFiles = Files.list(intendedDirectory);
-        dataDirectoryFiles.forEach(path -> {
-            try {
-                Files.delete(path);
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        });
+    /**
+     * Deletes all cheatsheet files from the /data directory.
+     *
+     * @throws IOException Thrown if the /data directory is missing or empty.
+     */
+    protected void clearDirectory() throws IOException {
+        String[] dataDirectoryFiles = DATA_DIR.toFile().list();
+        if (dataDirectoryFiles == null) {
+            throw new IOException();
+        }
+        for (String dataDirectoryFile : dataDirectoryFiles) {
+            deleteFile(dataDirectoryFile);
+        }
     }
 
 }

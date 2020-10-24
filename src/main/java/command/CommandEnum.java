@@ -8,5 +8,7 @@ public enum CommandEnum {
     FIND,
     HELP,
     LIST,
-    VIEW;
+    VIEW,
+    FAVOURITE,
+    SETTINGS;
 }
