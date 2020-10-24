@@ -4,6 +4,7 @@ import command.Command;
 import command.AddCommand;
 import command.ClearCommand;
 import command.DeleteCommand;
+import command.EditCommand;
 import command.ExitCommand;
 import command.ListCommand;
 import command.FindCommand;
@@ -59,6 +60,8 @@ public class Parser {
             return new ClearCommand(printer, fileDestroyer);
         case "/delete":
             return new DeleteCommand(printer, fileDestroyer);
+        case "/edit":
+            return new EditCommand(printer);
         case "/exit":
             return new ExitCommand(printer);
         case "/find":
