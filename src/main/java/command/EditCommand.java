@@ -6,6 +6,8 @@ import exception.CommandException;
 import parser.ArgumentFlagEnum;
 import ui.Printer;
 
+import java.util.concurrent.TimeUnit;
+
 public class EditCommand extends FinderCommand {
     Editor editor;
 
@@ -32,7 +34,7 @@ public class EditCommand extends FinderCommand {
         try {
             CheatSheet desiredCheatSheet = getCheatSheetFromNameOrIndex();
 
-//            callContentEditor(desiredCheatSheet);
+            callContentEditor(desiredCheatSheet);
 
             printer.printViewCheatSheetMessage(desiredCheatSheet);
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
@@ -40,12 +42,11 @@ public class EditCommand extends FinderCommand {
         }
     }
 
-//    private void callContentEditor(CheatSheet desiredCheatSheet) {
-//        String cheatSheetContent = desiredCheatSheet.getDetails();
-//        Editor contentEditor = new Editor(cheatSheetContent);
-//        while (!contentEditor.isEditDone()) {
-//            printer.print("Waiting for user input...");
-//        }
-//        desiredCheatSheet.setDetails(contentEditor.getContent());
-//    }
+    private void callContentEditor(CheatSheet desiredCheatSheet) {
+        editor.open();
+        editor.setContent(desiredCheatSheet.getDetails());
+        editor.waitForClose();
+
+        desiredCheatSheet.setDetails(editor.getContent());
+    }
 }

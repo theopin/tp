@@ -25,30 +25,28 @@ public class AddCommand extends Command {
     @Override
     public void execute() throws CommandException {
         String name = descriptionMap.get(ArgumentFlagEnum.NAME);
-        String subject = descriptionMap.get(ArgumentFlagEnum.SUBJECT);
-
-        editor.open();
-        while (editor.isVisible()) {
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (Exception e) {
-                assert false;
-            }
-        }
-        String description = editor.getContent();
-
         if (checkIfNameAlreadyExist(name)) {
             throw new CommandException("Name already existed, please enter another name");
         }
 
+        String subject = descriptionMap.get(ArgumentFlagEnum.SUBJECT);
         if (subject != null) {
             subject = convertToPascalCaseNoSpace(subject);
         }
+
+        callContentEditor();
+        String description = editor.getContent();
+
         printer.print(description);
         CheatSheet cheatSheet = new CheatSheet(name, subject, description);
         CheatSheetList.add(cheatSheet);
 
         printer.printAddNewCheatSheetMessage(cheatSheet);
+    }
+
+    private void callContentEditor() {
+        editor.open();
+        editor.waitForClose();
     }
 
     private boolean checkIfNameAlreadyExist(String name) {

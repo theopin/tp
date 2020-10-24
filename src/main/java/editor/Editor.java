@@ -8,18 +8,16 @@ import javax.swing.JMenuItem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
 
 public class Editor extends JFrame implements ActionListener {
     private JTextArea textArea;
-    private JFrame editorFrame;
-    private String typedText;
 
     public Editor() {
         generateEditorUI();
     }
 
     private void generateEditorUI() {
-//        editorFrame = new JFrame("editor");
         textArea = new JTextArea();
 
         final JMenuBar menuBar = new JMenuBar();
@@ -50,13 +48,13 @@ public class Editor extends JFrame implements ActionListener {
         String action = a.getActionCommand();
         switch (action) {
         case "Save":
-            typedText = textArea.getText();
             close();
             break;
         case "Clear All":
             textArea.setText("");
             break;
         case "Cancel":
+            textArea.setText("");
             close();
             break;
         default:
@@ -64,17 +62,30 @@ public class Editor extends JFrame implements ActionListener {
         }
     }
 
-    public String getContent() {
-        return typedText;
+    public void setContent(String content) {
+        textArea.setText(content);
     }
 
-    public void open(){
+    public String getContent() {
+        return textArea.getText();
+    }
+
+    public void open() {
         textArea.setText("");
-        typedText = "";
         setVisible(true);
     }
 
-    public void close(){
+    public void waitForClose() {
+        while (isVisible()) {
+            try {
+                TimeUnit.MICROSECONDS.sleep(1000);
+            } catch (Exception e) {
+                assert false;
+            }
+        }
+    }
+    
+    public void close() {
         setVisible(false);
     }
 }
