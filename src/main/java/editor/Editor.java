@@ -13,7 +13,7 @@ public class Editor extends JFrame implements ActionListener {
     JTextArea textArea;
     JFrame editorFrame;
     static String typedText;
-    static boolean isEditDone;
+    boolean isEditing;
 
     public Editor() {
         generateEditorUI();
@@ -25,7 +25,7 @@ public class Editor extends JFrame implements ActionListener {
     }
 
     private void generateEditorUI() {
-        isEditDone = false;
+        isEditing = true;
         editorFrame = new JFrame("editor");
         textArea = new JTextArea();
 
@@ -57,7 +57,7 @@ public class Editor extends JFrame implements ActionListener {
         String action = a.getActionCommand();
         switch (action) {
         case "Save":
-            toggleEdit();
+            setEditingFinish();
             typedText = textArea.getText();
             editorFrame.dispose();
             break;
@@ -65,23 +65,31 @@ public class Editor extends JFrame implements ActionListener {
             textArea.setText(" ");
             break;
         case "Cancel":
+            setEditingFinish();
             textArea.setText(" ");
-            editorFrame.setVisible(false);
+            editorFrame.dispose();
             break;
         default:
             break;
         }
     }
 
-    private void toggleEdit() {
-        isEditDone = true;
-    }
 
-    public boolean isEditDone() {
-        return isEditDone;
+    private void setEditingFinish() {
+        isEditing = false;
     }
 
     public String getContent() {
         return typedText;
     }
+
+    public boolean isEditing() {
+        return isEditing;
+    }
+
+    public void showWindow(){
+        editorFrame.setVisible(true);
+        editorFrame.setAlwaysOnTop(true);
+    }
+
 }

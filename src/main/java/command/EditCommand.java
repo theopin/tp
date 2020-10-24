@@ -1,7 +1,6 @@
 package command;
 
 import cheatsheet.CheatSheet;
-import cheatsheet.CheatSheetList;
 import editor.Editor;
 import exception.CommandException;
 import parser.ArgumentFlagEnum;
@@ -42,9 +41,11 @@ public class EditCommand extends FinderCommand {
     private void callContentEditor(CheatSheet desiredCheatSheet) {
         String cheatSheetContent = desiredCheatSheet.getCheatSheetDetails();
         Editor contentEditor = new Editor(cheatSheetContent);
-        while (!contentEditor.isEditDone()) {
+        contentEditor.showWindow();
+        while (contentEditor.isEditing()) {
             printer.print("Waiting for user input...");
         }
+
         desiredCheatSheet.setCheatSheetDetails(contentEditor.getContent());
     }
 }

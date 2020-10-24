@@ -50,13 +50,13 @@ public class AddCommand extends Command {
     }
 
     private String callContentEditor() {
-        String content;
+        String content = null;
         Editor contentEditor = new Editor();
-        do {
-            // needs to figure out how to stop the infinite loop
+        contentEditor.showWindow();
+        while(contentEditor.isEditing()){
             System.out.println("Waiting for user input...");
             content = contentEditor.getContent();
-        } while (content == null);
+        }
         return content;
     }
 
