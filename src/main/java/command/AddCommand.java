@@ -38,13 +38,4 @@ public class AddCommand extends Command {
         }
         return false;
     }
-
-    private boolean checkIfNameAlreadyExist(String name) {
-        for (CheatSheet cs : CheatSheetList.getCheatSheetList()) {
-            if (cs.getCheatSheetName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }
