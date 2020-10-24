@@ -9,7 +9,8 @@ import parser.ArgumentFlagEnum;
 import ui.Printer;
 
 public class AddCommand extends Command {
-    Editor editor;
+    public static final String invoker = "/add";
+    private Editor editor;
 
     public AddCommand(Printer printer, Editor editor) {
         super(printer);

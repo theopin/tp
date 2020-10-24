@@ -56,25 +56,25 @@ public class Parser {
     private Command parseTypeOfCommand(String userInput) throws CommandException {
         String parsedInput = userInput.split(" ")[0];
         switch (parsedInput) {
-        case "/add":
+        case AddCommand.invoker:
             return new AddCommand(printer, editor);
-        case "/clear":
+        case ClearCommand.invoker:
             return new ClearCommand(printer, fileDestroyer);
-        case "/delete":
+        case DeleteCommand.invoker:
             return new DeleteCommand(printer, fileDestroyer);
-        case "/edit":
+        case EditCommand.invoker:
             return new EditCommand(printer, editor);
-        case "/exit":
+        case ExitCommand.invoker:
             return new ExitCommand(printer);
-        case "/find":
+        case FindCommand.invoker:
             return new FindCommand(printer);
-        case "/help":
+        case HelpCommand.invoker:
             return new HelpCommand(printer);
-        case "/list":
+        case ListCommand.invoker:
             return new ListCommand(printer);
-        case "/view":
+        case ViewCommand.invoker:
             return new ViewCommand(printer);
-        case "/favourite":
+        case FavouriteCommand.invoker:
             return new FavouriteCommand(printer);
         default:
             throw new CommandException("Please enter a valid command");
