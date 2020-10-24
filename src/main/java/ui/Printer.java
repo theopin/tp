@@ -117,7 +117,6 @@ public final class Printer {
                     + (cs.getIsFavourite() ? ConsoleColorsEnum.YELLOW_TEXT : "")
                     + (++i) + ". " + cs.getCheatSheetName()
                     + " (Language: " + cs.getCheatSheetProgrammingLanguage() + ")"
-                    + " (Details: " + cs.getCheatSheetDetails() + ")"
                     + (cs.getIsFavourite() ? " *" + ConsoleColorsEnum.RESET_TEXT : "") + "\n");
         }
     }
