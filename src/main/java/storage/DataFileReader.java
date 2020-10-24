@@ -34,7 +34,6 @@ public class DataFileReader extends DataFile {
      */
     @Override
     public void executeFunction() {
-
         try {
             insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
@@ -91,7 +90,6 @@ public class DataFileReader extends DataFile {
     private void extractCheatSheet(File cheatSheetDocument) throws IOException,
             ParserConfigurationException,
             SAXException {
-
         DocumentBuilder documentBuilder = getDocumentBuilder();
         Document cheatSheetXml = documentBuilder.parse(cheatSheetDocument);
         cheatSheetXml.getDocumentElement().normalize();
@@ -113,7 +111,6 @@ public class DataFileReader extends DataFile {
                 .equals(FAVOURITE_FILE);
 
         createNewCheatSheet(isMarkedFavourite, cheatSheetName, cheatSheetContent);
-
     }
 
     /**
