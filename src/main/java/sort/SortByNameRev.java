@@ -4,7 +4,7 @@ import cheatsheet.CheatSheet;
 
 import java.util.Comparator;
 
-public class SortByName implements Comparator<CheatSheet> {
+public class SortByNameRev implements Comparator<CheatSheet> {
     public int compare(CheatSheet a, CheatSheet b) {
         Boolean cheatSheet1 = a.getIsFavourite();
         Boolean cheatSheet2 = b.getIsFavourite();
@@ -12,6 +12,6 @@ public class SortByName implements Comparator<CheatSheet> {
         if (favComparator != 0) {
             return favComparator;
         }
-        return a.getCheatSheetName().compareTo(b.getCheatSheetName());
+        return b.getCheatSheetName().compareTo(a.getCheatSheetName());
     }
 }

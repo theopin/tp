@@ -23,12 +23,13 @@ public class AddCommand extends Command {
         descriptionMap.put(ArgumentFlagEnum.DESCRIPTION, null);
         requiredArguments.add(ArgumentFlagEnum.NAME);
     }
-/*
+    /*
     @Override
     public boolean hasAllRequiredArguments() {
         return descriptionMap.get(ArgumentFlagEnum.NAME) != null;
     }
-*/
+    */
+
     @Override
     public void execute() throws CommandException {
         String name = descriptionMap.get(ArgumentFlagEnum.NAME);

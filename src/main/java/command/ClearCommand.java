@@ -13,12 +13,13 @@ public class ClearCommand extends Command {
 
         //initCommandDetails(null);
     }
-/*
+    /*
     @Override
     public boolean hasAllRequiredArguments() {
         return true;
     }
-*/
+    */
+
     @Override
     public void execute() {
         printer.printClearCheatSheetMessage(CheatSheetList.getSize());

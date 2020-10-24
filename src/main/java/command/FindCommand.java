@@ -24,13 +24,14 @@ public class FindCommand extends FinderCommand {
         requiredArguments.add(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
         requiredArguments.add(ArgumentFlagEnum.SECTIONKEYWORD);
     }
-/*
+    /*
     @Override
     public boolean hasAllRequiredArguments() {
         return descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE) != null
             || descriptionMap.get(ArgumentFlagEnum.SECTIONKEYWORD) != null;
     }
-*/
+    */
+
     @Override
     public void execute() throws CommandException {
         String programmingLanguage = "";

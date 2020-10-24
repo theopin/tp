@@ -49,12 +49,7 @@ class AddCommandTest {
     void addOneCheatSheet_allFieldsFilled_success() throws CommandException {
         CheatSheetList.clear();
         String userInput = "/add /n FirstTest /l Java /d Content1";
-<<<<<<< HEAD
-
-        Parser parser = new Parser(null, new Printer());;
-=======
         Parser parser = new Parser(null, new Printer(), null);
->>>>>>> d97e78933698cb84dfc644aea69e089d191e4062
         Command addCommand = parser.parse(userInput);
 
         addCommand.execute();
@@ -69,12 +64,7 @@ class AddCommandTest {
     void addOneCheatSheet_nameAndLanguageFilled_success() throws CommandException {
         CheatSheetList.clear();
         String userInput = "/add /n FirstTest /l Java";
-<<<<<<< HEAD
-
-        Parser parser = new Parser(null, new Printer());;
-=======
         Parser parser = new Parser(null, new Printer(), null);
->>>>>>> d97e78933698cb84dfc644aea69e089d191e4062
         Command addCommand = parser.parse(userInput);
 
         addCommand.execute();
@@ -89,12 +79,7 @@ class AddCommandTest {
     void addOneCheatSheet_nameAndDescriptionFilled_success() throws CommandException {
         CheatSheetList.clear();
         String userInput = "/add /n FirstTest /d Content1";
-<<<<<<< HEAD
-
-        Parser parser = new Parser(null, new Printer());;
-=======
         Parser parser = new Parser(null, new Printer(), null);
->>>>>>> d97e78933698cb84dfc644aea69e089d191e4062
         Command addCommand = parser.parse(userInput);
 
         addCommand.execute();
@@ -105,22 +90,6 @@ class AddCommandTest {
         );
     }
 
-<<<<<<< HEAD
-    @Test
-    void addOneCheatSheet_languageAndDescriptionFilled_CommandExceptionThrown() throws CommandException {
-        CheatSheetList.clear();
-        String userInput = "/add /l Java /d Content1";
-
-        Parser parser = new Parser(null, new Printer());;
-        Command addCommand = parser.parse(userInput);
-
-        try {
-            addCommand.execute();
-        } catch (CommandException c) {
-            assertEquals("Please enter a name", c.getMessage());
-        }
-    }
-=======
     //    @Test
     //    void addOneCheatSheet_languageAndDescriptionFilled_CommandExceptionThrown() throws CommandException {
     //        CheatSheetList.clear();
@@ -133,18 +102,12 @@ class AddCommandTest {
     //            assertEquals("Please enter a name", c.getMessage());
     //        }
     //    }
->>>>>>> d97e78933698cb84dfc644aea69e089d191e4062
 
     @Test
     void addOneCheatSheet_nameFilled_CommandExceptionThrown() throws CommandException {
         CheatSheetList.clear();
         String userInput = "/add /n FirstTest";
-<<<<<<< HEAD
-
-        Parser parser = new Parser(null, new Printer());;
-=======
         Parser parser = new Parser(null, new Printer(), null);
->>>>>>> d97e78933698cb84dfc644aea69e089d191e4062
         Command addCommand = parser.parse(userInput);
 
         addCommand.execute();
@@ -155,37 +118,6 @@ class AddCommandTest {
         );
     }
 
-<<<<<<< HEAD
-    @Test
-    void addOneCheatSheet_LanguageFilled_CommandExceptionThrown() throws CommandException {
-        CheatSheetList.clear();
-        String userInput = "/add /l Java";
-
-        Parser parser = new Parser(null, new Printer());;
-        Command addCommand = parser.parse(userInput);
-
-        try {
-            addCommand.execute();
-        } catch (CommandException c) {
-            assertEquals("Please enter a name", c.getMessage());
-        }
-    }
-
-    @Test
-    void addOneCheatSheet_DescriptionFilled_CommandExceptionThrown() throws CommandException {
-        CheatSheetList.clear();
-        String userInput = "/add /d Content1";
-
-        Parser parser = new Parser(null, new Printer());;
-        Command addCommand = parser.parse(userInput);
-
-        try {
-            addCommand.execute();
-        } catch (CommandException c) {
-            assertEquals("Please enter a name", c.getMessage());
-        }
-    }
-=======
     //    @Test
     //    void addOneCheatSheet_LanguageFilled_CommandExceptionThrown() throws CommandException {
     //        CheatSheetList.clear();
@@ -211,7 +143,6 @@ class AddCommandTest {
     //            assertEquals("Please enter a name", c.getMessage());
     //        }
     //    }
->>>>>>> d97e78933698cb84dfc644aea69e089d191e4062
 
     //    @Test
     //    void execute_noName_exceptionThrown() {

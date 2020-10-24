@@ -8,12 +8,13 @@ public class ExitCommand extends Command {
 
         //initCommandDetails(null);
     }
-/*
+    /*
     @Override
     public boolean hasAllRequiredArguments() {
         return true;
     }
-*/
+    */
+
     @Override
     public void execute() {
         isExitCommand = true;

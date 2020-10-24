@@ -8,12 +8,13 @@ public class HelpCommand extends Command {
 
         //initCommandDetails(null);
     }
-/*
+    /*
     @Override
     public boolean hasAllRequiredArguments() {
         return true;
     }
-*/
+    */
+
     @Override
     public void execute() {
         printer.printHelpSheet();

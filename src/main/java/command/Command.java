@@ -7,6 +7,7 @@ import ui.Printer;
 
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
  * The base class for all Commands.
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public abstract class Command {
     //protected ArgumentFlagEnum[] flags;
     protected ArrayList<ArgumentFlagEnum> requiredArguments;
-    protected HashMap<ArgumentFlagEnum, String> descriptionMap;
+    protected LinkedHashMap<ArgumentFlagEnum, String> descriptionMap;
     protected Printer printer;
     public static boolean isExitCommand;
 
@@ -22,7 +23,7 @@ public abstract class Command {
     }
 
     public Command(Printer printer) {
-        this.descriptionMap = new HashMap<>();
+        this.descriptionMap = new LinkedHashMap<>();
         this.requiredArguments = new ArrayList<>();
         //this.flags = new ArgumentFlagEnum[] {};
         this.printer = printer;
@@ -45,7 +46,7 @@ public abstract class Command {
         this.flags = flags;
     }*/
 
-    public HashMap<ArgumentFlagEnum, String> getDescriptionMap() {
+    public LinkedHashMap<ArgumentFlagEnum, String> getDescriptionMap() {
         return descriptionMap;
     }
 

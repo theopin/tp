@@ -22,13 +22,14 @@ public class ViewCommand extends FinderCommand {
         requiredArguments.add(ArgumentFlagEnum.NAME);
         requiredArguments.add(ArgumentFlagEnum.INDEX);
     }
-/*
+    /*
     @Override
     public boolean hasAllRequiredArguments() {
         return descriptionMap.get(ArgumentFlagEnum.NAME) != null
             || descriptionMap.get(ArgumentFlagEnum.INDEX) != null;
     }
-*/
+    */
+
     @Override
     public void execute() throws CommandException {
         try {
