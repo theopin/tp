@@ -2,7 +2,7 @@ package command;
 
 import cheatsheet.CheatSheet;
 import exception.CommandException;
-import parser.ArgumentFlagEnum;
+import parser.CommandFlag;
 import ui.Printer;
 
 public class FavouriteCommand extends FinderCommand {
@@ -11,10 +11,10 @@ public class FavouriteCommand extends FinderCommand {
     public FavouriteCommand(Printer printer) {
         super(printer);
 
-        descriptionMap.put(ArgumentFlagEnum.NAME, null);
-        descriptionMap.put(ArgumentFlagEnum.INDEX, null);
-        alternativeArguments.add(ArgumentFlagEnum.NAME);
-        alternativeArguments.add(ArgumentFlagEnum.INDEX);
+        flagToDescription.put(CommandFlag.NAME, null);
+        flagToDescription.put(CommandFlag.INDEX, null);
+        alternativeArguments.add(CommandFlag.NAME);
+        alternativeArguments.add(CommandFlag.INDEX);
     }
 
     @Override
@@ -28,7 +28,6 @@ public class FavouriteCommand extends FinderCommand {
         } catch (NumberFormatException n) {
             throw new CommandException("Please enter a valid index");
         }
-
     }
 }
 

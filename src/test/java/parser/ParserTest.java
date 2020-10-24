@@ -18,26 +18,26 @@ class ParserTest {
     void parser_completeInput_success() {
         final String userInput = "/add /n name /s subject /d details";
 
-        ArrayList<ArgumentFlagEnum> argEnumList = new ArrayList<>();
-        argEnumList.add(ArgumentFlagEnum.NAME);
-        argEnumList.add(ArgumentFlagEnum.SUBJECT);
-        argEnumList.add(ArgumentFlagEnum.DESCRIPTION);
+        ArrayList<CommandFlag> argEnumList = new ArrayList<>();
+        argEnumList.add(CommandFlag.NAME);
+        argEnumList.add(CommandFlag.SUBJECT);
+        argEnumList.add(CommandFlag.DESCRIPTION);
 
         ArrayList<String> detailsList = new ArrayList<>();
         detailsList.add("name");
         detailsList.add("subject");
         detailsList.add("details");
 
-        HashMap<ArgumentFlagEnum, String> descriptionMap = new HashMap<>();
+        HashMap<CommandFlag, String> flagToDescription = new HashMap<>();
         for (int i = 1; i <= 3; i++) {
-            descriptionMap.put(argEnumList.get(i - 1), detailsList.get(i - 1));
+            flagToDescription.put(argEnumList.get(i - 1), detailsList.get(i - 1));
         }
 
         try {
             Parser parser = new Parser();
             Command command = parser.parse(userInput);
             assertEquals(AddCommand.class, command.getClass());
-            assertEquals(descriptionMap, command.getDescriptionMap());
+            assertEquals(flagToDescription, command.getFlagToDescriptionMap());
         } catch (CommandException e) {
             fail();
         }

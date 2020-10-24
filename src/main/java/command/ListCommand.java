@@ -74,7 +74,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public boolean hasOneAlternativeArgument() {
+    public boolean hasAlternativeArgument() {
         return true;
     }
 

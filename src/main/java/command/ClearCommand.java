@@ -5,8 +5,9 @@ import storage.DataFileDestroyer;
 import ui.Printer;
 
 public class ClearCommand extends Command {
-    public static final String invoker = "/clear";
     protected DataFileDestroyer fileDestroyer;
+
+    public static final String invoker = "/clear";
 
     public ClearCommand(Printer printer, DataFileDestroyer fileDestroyer) {
         super(printer);
@@ -15,8 +16,8 @@ public class ClearCommand extends Command {
 
     @Override
     public void execute() {
-        printer.printClearCheatSheetMessage(CheatSheetList.getSize());
         CheatSheetList.clear();
         fileDestroyer.executeFunction();
+        printer.printClearCheatSheetMessage(CheatSheetList.getSize());
     }
 }

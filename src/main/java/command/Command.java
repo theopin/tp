@@ -2,7 +2,7 @@ package command;
 
 import exception.CommandException;
 
-import parser.ArgumentFlagEnum;
+import parser.CommandFlag;
 import ui.Printer;
 
 import java.util.HashMap;
@@ -13,40 +13,46 @@ import java.util.LinkedHashMap;
  * The base class for all Commands.
  */
 public abstract class Command {
-    protected ArrayList<ArgumentFlagEnum> alternativeArguments;
-    protected LinkedHashMap<ArgumentFlagEnum, String> descriptionMap;
     protected Printer printer;
+
+    protected ArrayList<CommandFlag> alternativeArguments;
+    protected LinkedHashMap<CommandFlag, String> flagToDescription;
     public static boolean isExitCommand;
 
     public Command() {
     }
 
     public Command(Printer printer) {
-        this.descriptionMap = new LinkedHashMap<>();
-        this.alternativeArguments = new ArrayList<>();
         this.printer = printer;
+        this.alternativeArguments = new ArrayList<>();
+        this.flagToDescription = new LinkedHashMap<>();
         isExitCommand = false;
     }
 
-    public LinkedHashMap<ArgumentFlagEnum, String> getDescriptionMap() {
-        return descriptionMap;
+    public LinkedHashMap<CommandFlag, String> getFlagToDescriptionMap() {
+        return flagToDescription;
     }
 
-    public void setDescriptionMap(HashMap<ArgumentFlagEnum, String> descriptionMap) {
-        this.descriptionMap.putAll(descriptionMap);
+    public void setFlagToDescriptionMap(HashMap<CommandFlag, String> flagToDescription) {
+        this.flagToDescription.putAll(flagToDescription);
     }
 
-    public ArrayList<ArgumentFlagEnum> getAlternativeArguments() {
+    public ArrayList<CommandFlag> getAlternativeArguments() {
         return alternativeArguments;
     }
 
-    public boolean hasOneAlternativeArgument() {
-        for (ArgumentFlagEnum arg : alternativeArguments) {
-            if (descriptionMap.get(arg) != null && !descriptionMap.get(arg).isEmpty()) {
+    public boolean hasAlternativeArgument() {
+        if (alternativeArguments.size() == 0) {
+            return true;
+        }
+
+        for (CommandFlag arg : alternativeArguments) {
+            if (flagToDescription.get(arg) != null && !flagToDescription.get(arg).isEmpty()) {
                 return true;
             }
         }
-        return alternativeArguments.size() == 0;
+
+        return false;
     }
 
     public abstract void execute() throws CommandException;

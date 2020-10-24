@@ -17,9 +17,9 @@ public class UserSession {
     DataFileReader fileReader;
     DataFileWriter fileWriter;
     DataFileDestroyer fileDestroyer;
+    Editor editor;
     Ui ui;
     Parser userCommandParser;
-    Editor editor;
 
     public UserSession() {
         printer = new Printer();
@@ -31,14 +31,11 @@ public class UserSession {
         userCommandParser = new Parser(fileDestroyer, printer, ui, editor);
     }
 
-    /**
-     * Runs the program based on a given user commands.
-     */
     public void runProgramSequence() {
         fileReader.executeFunction();
         printer.printWelcomeScreen();
 
-        // Ask for new user input and executes it until user types an exit command
+        // Ask for new user input and executes it until user types the exit command
         do {
             printer.printUserInputPrompt();
             String userInput = ui.getUserInput();
@@ -51,7 +48,9 @@ public class UserSession {
             }
             fileWriter. executeFunction();
         } while (!Command.isExitCommand);
+    }
 
+    public void exit() {
         ui.closeScanner();
         printer.printExitLogo();
     }
