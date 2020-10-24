@@ -79,7 +79,7 @@ public final class Printer {
     }
 
     public void printHelpSheet() {
-        print(ConsoleColorsEnum.BOLD + "/add /n <CHEAT_SHEET_NAME> /l <PROGRAMMING_LANGUAGE> /d <DESCRIPTION>"
+        print(ConsoleColorsEnum.BOLD + "/add /n <CHEAT_SHEET_NAME> /s<PROGRAMMING_LANGUAGE> /d <DESCRIPTION>"
                 + ConsoleColorsEnum.RESET_TEXT + NEWLINE
                 + "\tAdds a new cheat sheet to the application and prompts user to include data" + NEWLINE
                 + "\tinto the cheat sheet." + NEWLINE
@@ -87,7 +87,7 @@ public final class Printer {
                 + ConsoleColorsEnum.RESET_TEXT + NEWLINE
                 + "\tTo be used after using /list, Deletes the cheat sheet at INDEX items down the list." + NEWLINE
                 + "\tThe first cheat sheet has an index of 1." + NEWLINE
-                + ConsoleColorsEnum.BOLD + "/find /l <PROGRAMMING LANGUAGE> k/ <KEYWORD>"
+                + ConsoleColorsEnum.BOLD + "/find /s<PROGRAMMING LANGUAGE> k/ <KEYWORD>"
                 + ConsoleColorsEnum.RESET_TEXT + NEWLINE
                 + "\tFinds a cheat sheet whose names contain any of the given keywords." + NEWLINE
                 + ConsoleColorsEnum.BOLD + "/view /i <CHEAT_SHEET_INDEX>"

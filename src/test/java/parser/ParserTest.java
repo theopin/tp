@@ -5,6 +5,7 @@ import command.Command;
 import exception.CommandException;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,7 +16,7 @@ class ParserTest {
 
     @Test
     void parser_completeInput_success() {
-        final String userInput = "/add /n name /l language /d details";
+        final String userInput = "/add /n name /s subject /d details";
 
         ArrayList<ArgumentFlagEnum> argEnumList = new ArrayList<>();
         argEnumList.add(ArgumentFlagEnum.NAME);
@@ -24,7 +25,7 @@ class ParserTest {
 
         ArrayList<String> detailsList = new ArrayList<>();
         detailsList.add("name");
-        detailsList.add("language");
+        detailsList.add("subject");
         detailsList.add("details");
 
         HashMap<ArgumentFlagEnum, String> descriptionMap = new HashMap<>();
