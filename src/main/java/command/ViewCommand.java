@@ -13,29 +13,18 @@ public class ViewCommand extends FinderCommand {
     public ViewCommand(Printer printer) {
         super(printer);
 
-        /*initCommandDetails(new ArgumentFlagEnum[] {
-            ArgumentFlagEnum.NAME,
-            ArgumentFlagEnum.INDEX,
-        });*/
         descriptionMap.put(ArgumentFlagEnum.NAME, null);
         descriptionMap.put(ArgumentFlagEnum.INDEX, null);
-        requiredArguments.add(ArgumentFlagEnum.NAME);
-        requiredArguments.add(ArgumentFlagEnum.INDEX);
+        alternativeArguments.add(ArgumentFlagEnum.NAME);
+        alternativeArguments.add(ArgumentFlagEnum.INDEX);
     }
-    /*
-    @Override
-    public boolean hasAllRequiredArguments() {
-        return descriptionMap.get(ArgumentFlagEnum.NAME) != null
-            || descriptionMap.get(ArgumentFlagEnum.INDEX) != null;
-    }
-    */
 
     @Override
     public void execute() throws CommandException {
         try {
             CheatSheet desiredCheatSheet = getCheatSheetFromNameOrIndex();
             printer.printViewCheatSheetMessage(desiredCheatSheet);
-            copyTextToClipboard(desiredCheatSheet.getCheatSheetDetails());
+            copyTextToClipboard(desiredCheatSheet.getDetails());
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new CommandException("Please enter a valid index");
         }

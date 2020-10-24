@@ -26,7 +26,7 @@ public class DataFileWriterTest extends DataFileTest {
     public void writeDataFiles_newCheatSheet_success() {
         createDataDir();
         CheatSheetList.clear();
-        CheatSheetList.add(new CheatSheet(fileName, fileProgrammingLanguage,
+        CheatSheetList.add(new CheatSheet(fileName, fileSubject,
                 fileDetails));
 
         testWriter.executeFunction();
@@ -49,7 +49,7 @@ public class DataFileWriterTest extends DataFileTest {
         createDataDir();
         CheatSheetList.clear();
         createSampleFile(sampleFile, dummyFileContent);
-        CheatSheetList.add(new CheatSheet(fileName, fileProgrammingLanguage,
+        CheatSheetList.add(new CheatSheet(fileName, fileSubject,
                 fileDetails));
 
         testWriter.executeFunction();

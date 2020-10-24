@@ -12,16 +12,15 @@ import command.HelpCommand;
 import command.ViewCommand;
 import command.FavouriteCommand;
 
+import editor.Editor;
 import exception.CommandException;
 import storage.DataFileDestroyer;
-import ui.ConsoleColorsEnum;
 import ui.Ui;
 import ui.Printer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,15 +28,18 @@ public class Parser {
     private DataFileDestroyer fileDestroyer;
     private Printer printer;
     private Ui ui;
+    private Editor editor;
+
     private static final String FLAG_REGEX = " /[a-z] ";
 
     public Parser() {
     }
 
-    public Parser(DataFileDestroyer fileDestroyer, Printer printer, Ui ui) {
+    public Parser(DataFileDestroyer fileDestroyer, Printer printer, Ui ui, Editor editor) {
         this.fileDestroyer = fileDestroyer;
         this.printer = printer;
         this.ui = ui;
+        this.editor = editor;
     }
 
     public Command parse(String userInput) throws CommandException {
@@ -55,13 +57,13 @@ public class Parser {
         String parsedInput = userInput.split(" ")[0];
         switch (parsedInput) {
         case "/add":
-            return new AddCommand(printer);
+            return new AddCommand(printer, editor);
         case "/clear":
             return new ClearCommand(printer, fileDestroyer);
         case "/delete":
             return new DeleteCommand(printer, fileDestroyer);
         case "/edit":
-            return new EditCommand(printer);
+            return new EditCommand(printer, editor);
         case "/exit":
             return new ExitCommand(printer);
         case "/find":
@@ -112,40 +114,23 @@ public class Parser {
 
     private void setMissingArguments(Command commandToBeExecuted) {
         LinkedHashMap<ArgumentFlagEnum, String> map = commandToBeExecuted.getDescriptionMap();
-        while (!commandToBeExecuted.hasAllRequiredArguments()) {
-            /*for (Map.Entry<ArgumentFlagEnum, String> entry : commandToBeExecuted.getDescriptionMap().entrySet()) {
-                ArgumentFlagEnum curArg = entry.getKey();
-                String curArgVal = entry.getValue();
-
-                if (curArgVal == null) {
-                    printer.printMissingArgument(curArg);
-                    String newArgVal = ui.getUserInput();
-                    commandToBeExecuted.getDescriptionMap().replace(curArg, newArgVal);
-                    //return;
-                }
-         */
+        while (!commandToBeExecuted.hasOneAlternativeArgument()) {
             for (ArgumentFlagEnum key : map.keySet()) {
                 if (map.get(key) == null) {
                     printer.printMissingArgument(key);
-                    /*if (key == ArgumentFlagEnum.PROGRAMMINGLANGUAGE) {
-                        System.out.println("<<enter>> if you want to skip");
+                    /*if (key == ArgumentFlagEnum.SUBJECT) {
+                        printer.print("<<enter>> if you want to skip");
                     }*/
                     String newArgVal = ui.getUserInput();
                     if (newArgVal.isEmpty()) {
                         newArgVal = null;
                     }
                     commandToBeExecuted.getDescriptionMap().replace(key, newArgVal);
-                    //return;
                 }
             }
-            if (!commandToBeExecuted.hasAllRequiredArguments()) {
-                System.out.println();
-                System.out.print(ConsoleColorsEnum.RED_TEXT + "Please enter at least ");
-                for (ArgumentFlagEnum arg : commandToBeExecuted.getRequiredArguments()) {
-                    System.out.print(arg + " ");
-                }
-                System.out.println(ConsoleColorsEnum.RESET_TEXT);
-                System.out.println();
+
+            if (!commandToBeExecuted.hasOneAlternativeArgument()) {
+                printer.printAlternativeArgumentPrompt(commandToBeExecuted);
             }
         }
     }

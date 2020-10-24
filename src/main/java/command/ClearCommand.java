@@ -10,15 +10,7 @@ public class ClearCommand extends Command {
     public ClearCommand(Printer printer, DataFileDestroyer fileDestroyer) {
         super(printer);
         this.fileDestroyer = fileDestroyer;
-
-        //initCommandDetails(null);
     }
-    /*
-    @Override
-    public boolean hasAllRequiredArguments() {
-        return true;
-    }
-    */
 
     @Override
     public void execute() {

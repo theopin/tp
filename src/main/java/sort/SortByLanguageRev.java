@@ -6,12 +6,12 @@ import java.util.Comparator;
 
 public class SortByLanguageRev implements Comparator<CheatSheet> {
     public int compare(CheatSheet a, CheatSheet b) {
-        Boolean cheatSheet1 = a.getIsFavourite();
-        Boolean cheatSheet2 = b.getIsFavourite();
-        int favComparator = cheatSheet2.compareTo(cheatSheet1);
+        Boolean isAFavorited = a.getIsFavourite();
+        Boolean isBFavorited = b.getIsFavourite();
+        int favComparator = isBFavorited.compareTo(isAFavorited);
         if (favComparator != 0) {
             return favComparator;
         }
-        return b.getCheatSheetProgrammingLanguage().compareTo(a.getCheatSheetProgrammingLanguage());
+        return b.getSubject().compareTo(a.getSubject());
     }
 }

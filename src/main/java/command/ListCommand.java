@@ -15,7 +15,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public boolean hasAllRequiredArguments() {
+    public boolean hasOneAlternativeArgument() {
         return true;
     }
 
@@ -64,24 +64,21 @@ import sort.SortByNameRev;
 import ui.ConsoleColorsEnum;
 import ui.Printer;
 
-import java.util.Collections;
 import java.util.Scanner;
 
 public class ListCommand extends Command {
     public ListCommand(Printer printer) {
         super(printer);
-
-        //initCommandDetails(null);
     }
 
     @Override
-    public boolean hasAllRequiredArguments() {
+    public boolean hasOneAlternativeArgument() {
         return true;
     }
 
     @Override
     public void execute() {
-        CheatSheetList.getCheatSheetList().sort(new SortByName());
+        CheatSheetList.getList().sort(new SortByName());
         printer.printCheatSheetList();
         askForSortingConfigAndPrint();
     }
@@ -97,23 +94,23 @@ public class ListCommand extends Command {
         while (!input.isEmpty()) {
             switch (input) {
             case "na":
-                CheatSheetList.getCheatSheetList().sort(new SortByName());
+                CheatSheetList.getList().sort(new SortByName());
                 printer.print("Sorted name in ascending order");
                 break;
             case "la":
-                CheatSheetList.getCheatSheetList().sort(new SortByLanguage());
+                CheatSheetList.getList().sort(new SortByLanguage());
                 printer.print("Sorted language in ascending order");
                 break;
             case "nd":
-                CheatSheetList.getCheatSheetList().sort(new SortByNameRev());
+                CheatSheetList.getList().sort(new SortByNameRev());
                 printer.print("Sorted name in descending order");
                 break;
             case "ld":
-                CheatSheetList.getCheatSheetList().sort(new SortByLanguageRev());
+                CheatSheetList.getList().sort(new SortByLanguageRev());
                 printer.print("Sorted language in descending order");
                 break;
             default:
-                CheatSheetList.getCheatSheetList().sort(new SortByName());
+                CheatSheetList.getList().sort(new SortByName());
             }
             printer.printCheatSheetList();
             printer.print(promptSortConfig);
