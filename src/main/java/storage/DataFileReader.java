@@ -1,12 +1,19 @@
 package storage;
 
+import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import exception.DirectoryIsEmptyException;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 import ui.Printer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
 
 /**
  * Allows the user to read data from the data directory and use it
@@ -58,7 +65,13 @@ public class DataFileReader extends DataFile {
         File[] cheatSheetFiles = dataDirectory.listFiles();
         assert cheatSheetFiles != null : "File Empty!";
         for (File cheatSheetFile : cheatSheetFiles) {
-            extractCheatSheet(cheatSheetFile);
+            try {
+                if(!cheatSheetFile.isDirectory()) {
+                    extractCheatSheet(cheatSheetFile);
+                }
+            } catch (JDOMException | IOException e) {
+                printer.print(e.getMessage());
+            }
         }
     }
 
@@ -67,12 +80,44 @@ public class DataFileReader extends DataFile {
      *
      * @param cheatSheetDocument File of the cheatSheet
      */
-    private void extractCheatSheet(File cheatSheetDocument) {
-        DataFileParser parsedData = new DataFileParser(printer);
-        parsedData.handleOperation(cheatSheetDocument);
-        if (parsedData.convertedCheatSheet != null) {
-            CheatSheetList.add(parsedData.convertedCheatSheet);
-        }
+    private void extractCheatSheet(File cheatSheetDocument) throws JDOMException, IOException {
+        SAXBuilder saxBuilder = new SAXBuilder();
+        Document cheatSheetXml = saxBuilder.build(cheatSheetDocument);
+        Element mainRoot = cheatSheetXml.getRootElement();
 
+        Element favouriteElement = mainRoot.getChild(FAVOURITE_ELEMENT);
+        Element contentElement = mainRoot.getChild(CONTENTS_ELEMENT);
+
+        String cheatSheetName = cheatSheetDocument
+                .getName()
+                .replace(XML_EXTENSION, "");
+        String cheatSheetContent = contentElement.getText();
+
+        boolean isMarkedFavourite = favouriteElement
+                .getText()
+                .equals(FAVOURITE_FILE);
+
+        createNewCheatSheet(isMarkedFavourite, cheatSheetName, cheatSheetContent);
+
+    }
+
+    /**
+     * Creates a new cheatsheet based on the parameters provided
+     * and adds it to CheatSheetList.
+     *
+     * @param isMarkedFavourite Indicator of the favourite status of the cheatSheet.
+     * @param cheatSheetName Name of the cheatSheet.
+     * @param cheatSheetContent Contents of the cheatSheet.
+     */
+    private void createNewCheatSheet(boolean isMarkedFavourite,
+                                     String cheatSheetName,
+                                     String cheatSheetContent) {
+        CheatSheet newCheatSheet = new CheatSheet(cheatSheetName,
+                "C",
+                cheatSheetContent);
+
+
+        newCheatSheet.setFavourite(isMarkedFavourite);
+        CheatSheetList.add(newCheatSheet);
     }
 }

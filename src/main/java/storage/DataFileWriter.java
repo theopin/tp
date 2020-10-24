@@ -24,8 +24,6 @@ import ui.Printer;
  */
 public class DataFileWriter extends DataFile {
     private ArrayList<CheatSheet> cheatSheets;
-    protected static final String FAVOURITE_FILE = "Yes";
-    protected static final String NOT_FAVOURITE_FILE = "No";
 
     public DataFileWriter(Printer printer) {
         this.printer = printer;
@@ -90,12 +88,12 @@ public class DataFileWriter extends DataFile {
         String favouriteStatus = cheatSheet.getIsFavourite()
                 ? FAVOURITE_FILE
                 : NOT_FAVOURITE_FILE;
-        Element favouriteElement = new Element("favourite");
+        Element favouriteElement = new Element(FAVOURITE_ELEMENT);
         favouriteElement.setText(favouriteStatus);
         xmlFileStructure.getRootElement().addContent(favouriteElement);
 
         String fileContent = cheatSheet.getCheatSheetDetails();
-        Element fileContentElement = new Element("content");
+        Element fileContentElement = new Element(CONTENTS_ELEMENT);
         fileContentElement.setText(fileContent);
         xmlFileStructure.getRootElement().addContent(fileContentElement);
 
