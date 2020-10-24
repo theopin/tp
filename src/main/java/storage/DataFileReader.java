@@ -97,7 +97,7 @@ public class DataFileReader extends DataFile {
         Element mainRoot = cheatSheetXml.getDocumentElement();
         Node favouriteElement = mainRoot.getFirstChild();
         Node contentElement = mainRoot.getLastChild();
-
+        // todo: handle null cheatsheet field
         String cheatSheetName = cheatSheetDocument
                 .getName()
                 .replace(XML_EXTENSION, EMPTY);

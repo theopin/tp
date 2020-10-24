@@ -8,6 +8,8 @@ import parser.ArgumentFlagEnum;
 
 import ui.Printer;
 
+import java.util.concurrent.TimeUnit;
+
 public class AddCommand extends Command {
     public AddCommand(Printer printer) {
         super(printer);
@@ -19,7 +21,7 @@ public class AddCommand extends Command {
         });*/
         descriptionMap.put(ArgumentFlagEnum.NAME, null);
         descriptionMap.put(ArgumentFlagEnum.PROGRAMMINGLANGUAGE, null);
-        descriptionMap.put(ArgumentFlagEnum.DESCRIPTION, null);
+        // descriptionMap.put(ArgumentFlagEnum.DESCRIPTION, null);
         requiredArguments.add(ArgumentFlagEnum.NAME);
     }
     /*
@@ -42,7 +44,7 @@ public class AddCommand extends Command {
         if (programmingLanguage != null) {
             programmingLanguage = convertToPascalCaseNoSpace(programmingLanguage);
         }
-
+        System.out.println(description);
         CheatSheet cheatSheet = new CheatSheet(name, programmingLanguage, description);
         CheatSheetList.add(cheatSheet);
 
@@ -52,11 +54,15 @@ public class AddCommand extends Command {
     private String callContentEditor() {
         String content;
         Editor contentEditor = new Editor();
+        System.out.println("Waiting for user input...");
         do {
-            // needs to figure out how to stop the infinite loop
-            System.out.println("Waiting for user input...");
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (Exception e) {
+                assert false;
+            }
             content = contentEditor.getContent();
-        } while (content == null);
+        } while (!contentEditor.isEditDone());
         return content;
     }
 

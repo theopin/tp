@@ -78,6 +78,7 @@ public class CheatSheetList {
      */
     public static void clear() {
         cheatSheets.clear();
+        assert cheatSheets.size() == 0;
     }
 
     /**
