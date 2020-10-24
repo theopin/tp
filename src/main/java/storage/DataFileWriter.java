@@ -2,7 +2,10 @@ package storage;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
-import ui.Printer;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 import java.io.IOException;
 import java.io.FileWriter;
@@ -12,11 +15,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-import static storage.DataFileParser.PROGRAMMING_LANGUAGE;
-import static storage.DataFileParser.FAVOURITE;
-import static storage.DataFileParser.DETAILS;
-import static storage.DataFileParser.FAVOURITE_FILE;
-import static storage.DataFileParser.NOT_FAVOURITE_FILE;
+import ui.Printer;
+
 
 /**
  * Allows the user to write data based on the cheatSheets currently present
@@ -24,6 +24,8 @@ import static storage.DataFileParser.NOT_FAVOURITE_FILE;
  */
 public class DataFileWriter extends DataFile {
     private ArrayList<CheatSheet> cheatSheets;
+    protected static final String FAVOURITE_FILE = "Yes";
+    protected static final String NOT_FAVOURITE_FILE = "No";
 
     public DataFileWriter(Printer printer) {
         this.printer = printer;
@@ -41,14 +43,14 @@ public class DataFileWriter extends DataFile {
     }
 
     /**
-     * Converts the cheatSheets present in the list of cheatSheets into
-     * a string.
+     * Converts each cheatSheet present in the list of cheatSheets into
+     * a file, provided it its modifiable.
      */
     private void storeCheatSheet() {
         int cheatSheetsSize = cheatSheets.size();
         if (cheatSheetsSize > 0) {
-            for (CheatSheet cs : cheatSheets) {
-                convertStringToFile(cs);
+            for (CheatSheet cheatSheet : cheatSheets) {
+                convertCheatSheetToFile(cheatSheet);
             }
         }
     }
@@ -58,21 +60,17 @@ public class DataFileWriter extends DataFile {
      *
      * @param cheatSheet The cheatSheet that is currently being converted into a file.
      */
-    public void convertStringToFile(CheatSheet cheatSheet) {
-        Path textFile;
-        StringBuilder cheatSheetFileBuild = new StringBuilder();
-
-        // Build cheatsheet content
-        buildFileContents(cheatSheetFileBuild, cheatSheet);
-
-        String fileName = cheatSheet.getCheatSheetName();
-        textFile = Paths.get(USER_DIR, DATA, fileName);
+    public void convertCheatSheetToFile(CheatSheet cheatSheet) {
+        String fileName = cheatSheet.getCheatSheetName() + ".xml";
+        Path textFile = Paths.get(USER_DIR, DATA, fileName);
 
         try {
             if (!Files.exists(textFile)) {
                 Files.createFile(textFile);
             }
-            writeToFile(textFile.toString(), cheatSheetFileBuild.toString());
+            Document cheatSheetFile = buildFileContents(cheatSheet);
+
+            writeToFile(textFile.toString(), cheatSheetFile);
         } catch (IOException e) {
             printer.print(e.getMessage());
         }
@@ -81,32 +79,44 @@ public class DataFileWriter extends DataFile {
     /**
      * Sets the contents for the respective cheatSheet file.
      *
-     * @param cheatSheetFileBuild the stringBuilder used to connect the contents of the file.
      * @param cheatSheet The cheatSheet that is currently being converted into a file.
+     * @return xmlFileStructure A document containing relevant data of the cheatsheet
+     *                          in a .xml file format.
      */
-    private void buildFileContents(StringBuilder cheatSheetFileBuild, CheatSheet cheatSheet) {
-        String favouriteStatus = cheatSheet.getIsFavourite() ? FAVOURITE_FILE : NOT_FAVOURITE_FILE;
-        cheatSheetFileBuild.append(PROGRAMMING_LANGUAGE)
-                .append(cheatSheet.getCheatSheetProgrammingLanguage())
-                .append(System.lineSeparator())
-                .append(FAVOURITE)
-                .append(favouriteStatus)
-                .append(System.lineSeparator())
-                .append(DETAILS)
-                .append(cheatSheet.getCheatSheetDetails());
+    private Document buildFileContents(CheatSheet cheatSheet) {
+        Element mainRoot = new Element("main");
+        Document xmlFileStructure = new Document(mainRoot);
+
+        String favouriteStatus = cheatSheet.getIsFavourite()
+                ? FAVOURITE_FILE
+                : NOT_FAVOURITE_FILE;
+        Element favouriteElement = new Element("favourite");
+        favouriteElement.setText(favouriteStatus);
+        xmlFileStructure.getRootElement().addContent(favouriteElement);
+
+        String fileContent = cheatSheet.getCheatSheetDetails();
+        Element fileContentElement = new Element("content");
+        fileContentElement.setText(fileContent);
+        xmlFileStructure.getRootElement().addContent(fileContentElement);
+
+        return xmlFileStructure;
     }
 
     /**
      * Writes the values of textContent into a File.
      *
-     * @param directory    Name of the file.
-     * @param fileContents Contents of the file
-     * @throws IOException Thrown if there are issues with writing the string
-     *                     into a file.
+     * @param directory       Name of the file.
+     * @param xmlFileContents Contents of the file in xml format.
+     * @throws IOException    Thrown if there are issues with writing the string
+     *                        into a file.
      */
-    private void writeToFile(String directory, String fileContents) throws IOException {
+    private void writeToFile(String directory, Document xmlFileContents) throws IOException {
         FileWriter fileEditor = new FileWriter(directory);
-        fileEditor.write(fileContents);
+
+        XMLOutputter xmlOutput = new XMLOutputter();
+        xmlOutput.setFormat(Format.getPrettyFormat());
+        xmlOutput.output(xmlFileContents, fileEditor);
+
         fileEditor.close();
     }
 }
