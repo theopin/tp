@@ -10,6 +10,8 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 
 public class ViewCommand extends FinderCommand {
+    public static final String invoker = "/view";
+
     public ViewCommand(Printer printer) {
         super(printer);
 

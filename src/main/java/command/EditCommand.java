@@ -7,6 +7,7 @@ import parser.ArgumentFlagEnum;
 import ui.Printer;
 
 public class EditCommand extends FinderCommand {
+    public static final String invoker = "/edit";
     Editor editor;
 
     public EditCommand(Printer printer, Editor editor) {

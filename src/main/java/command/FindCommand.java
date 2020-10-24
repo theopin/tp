@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FindCommand extends FinderCommand {
+    public static final String invoker = "/find";
+
     public FindCommand(Printer printer) {
         super(printer);
         descriptionMap.put(ArgumentFlagEnum.SUBJECT, null);

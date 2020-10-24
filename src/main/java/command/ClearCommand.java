@@ -5,6 +5,7 @@ import storage.DataFileDestroyer;
 import ui.Printer;
 
 public class ClearCommand extends Command {
+    public static final String invoker = "/clear";
     protected DataFileDestroyer fileDestroyer;
 
     public ClearCommand(Printer printer, DataFileDestroyer fileDestroyer) {

@@ -6,6 +6,8 @@ import parser.ArgumentFlagEnum;
 import ui.Printer;
 
 public class FavouriteCommand extends FinderCommand {
+    public static final String invoker = "/favourite";
+
     public FavouriteCommand(Printer printer) {
         super(printer);
 
