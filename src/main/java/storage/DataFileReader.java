@@ -11,8 +11,8 @@ import org.xml.sax.SAXException;
 import ui.Printer;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -70,7 +70,7 @@ public class DataFileReader extends DataFile {
         assert cheatSheetFiles != null : "File Empty!";
         for (File cheatSheetFile : cheatSheetFiles) {
             try {
-                if(!cheatSheetFile.isDirectory()) {
+                if (!cheatSheetFile.isDirectory()) {
                     extractCheatSheet(cheatSheetFile);
                 }
             } catch (IOException | SAXException | ParserConfigurationException e) {
@@ -92,9 +92,8 @@ public class DataFileReader extends DataFile {
             ParserConfigurationException,
             SAXException {
 
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document cheatSheetXml = dBuilder.parse(cheatSheetDocument);
+        DocumentBuilder documentBuilder = getDocumentBuilder();
+        Document cheatSheetXml = documentBuilder.parse(cheatSheetDocument);
         cheatSheetXml.getDocumentElement().normalize();
 
         Element mainRoot = cheatSheetXml.getDocumentElement();
@@ -103,7 +102,7 @@ public class DataFileReader extends DataFile {
 
         String cheatSheetName = cheatSheetDocument
                 .getName()
-                .replace(XML_EXTENSION, "");
+                .replace(XML_EXTENSION, EMPTY);
         String cheatSheetContent = contentElement
                 .getFirstChild()
                 .getTextContent();

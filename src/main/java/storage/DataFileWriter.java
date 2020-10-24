@@ -3,18 +3,16 @@ package storage;
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
+
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import java.io.IOException;
-import java.io.FileWriter;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -91,32 +89,53 @@ public class DataFileWriter extends DataFile {
      * @throws ParserConfigurationException  Thrown if a serious configuration error is detected.
      */
     private Document buildFileContents(CheatSheet cheatSheet) throws ParserConfigurationException {
-        DocumentBuilderFactory dbFactory =
-                DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document xmlFileStructure = dBuilder.newDocument();
+        DocumentBuilder documentBuilder = getDocumentBuilder();
+        Document xmlFileStructure = documentBuilder.newDocument();
 
         Element mainRoot = xmlFileStructure.createElement(MAIN_ELEMENT);
         xmlFileStructure.appendChild(mainRoot);
 
+        insertFavouriteStatus(cheatSheet, xmlFileStructure, mainRoot);
+        insertFileContent(cheatSheet, xmlFileStructure, mainRoot);
+
+        return xmlFileStructure;
+    }
+
+    /**
+     * Sets the favourite status for the respective cheatSheet file.
+     *
+     * @param cheatSheet                     The cheatSheet that is currently being converted into a file.
+     * @param xmlFileStructure               A document containing relevant data of the cheatsheet
+     *                                       in a .xml file format.
+     * @param mainRoot                       The root that the created element needs to be joined to.
+     */
+    private void insertFavouriteStatus(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
         String favouriteStatus = cheatSheet.getIsFavourite()
                 ? FAVOURITE_FILE
                 : NOT_FAVOURITE_FILE;
-
         Element favouriteElement = xmlFileStructure.createElement(FAVOURITE_ELEMENT);
         Text favouriteTextNode = xmlFileStructure.createTextNode(favouriteStatus);
         favouriteElement.appendChild(favouriteTextNode);
         mainRoot.appendChild(favouriteElement);
+    }
 
+    /**
+     * Sets the contents for the respective cheatSheet file.
+     *
+     * @param cheatSheet                     The cheatSheet that is currently being converted into a file.
+     * @param xmlFileStructure               A document containing relevant data of the cheatsheet
+     *                                       in a .xml file format.
+     * @param mainRoot                       The root that the created element needs to be joined to.
+     */
+    private void insertFileContent(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
         String fileContent = cheatSheet.getCheatSheetDetails();
 
         Element fileContentElement = xmlFileStructure.createElement(CONTENTS_ELEMENT);
         Text fileContentTextNode = xmlFileStructure.createTextNode(fileContent);
         fileContentElement.appendChild(fileContentTextNode);
         mainRoot.appendChild(fileContentElement);
-
-        return xmlFileStructure;
     }
+
     /**
      * Writes formatted attributes of the cheatsheet into an xml file.
      *
@@ -129,8 +148,10 @@ public class DataFileWriter extends DataFile {
             throws TransformerException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
+
         DOMSource fileSource = new DOMSource(xmlFileContents);
         StreamResult fileResult = new StreamResult(fileDirectory.toFile());
+
         transformer.transform(fileSource, fileResult);
     }
 }
