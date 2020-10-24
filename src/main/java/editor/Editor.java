@@ -49,7 +49,7 @@ public class Editor extends JFrame implements ActionListener {
 
         editorFrame.setJMenuBar(menuBar);
         editorFrame.add(textArea);
-        editorFrame.setSize(600,800);
+        editorFrame.setSize(600, 800);
         editorFrame.setVisible(true);
     }
 
@@ -59,22 +59,24 @@ public class Editor extends JFrame implements ActionListener {
         case "Save":
             toggleEdit();
             typedText = textArea.getText();
+            // textArea.setText("");
             editorFrame.dispose();
             break;
         case "Clear All":
-            textArea.setText(" ");
+            textArea.setText("");
             break;
         case "Cancel":
-            textArea.setText(" ");
-            editorFrame.setVisible(false);
+            toggleEdit();
+            textArea.setText("");
+            editorFrame.dispose();
             break;
         default:
             break;
         }
     }
 
-    private void toggleEdit() {
-        isEditDone = true;
+    public void toggleEdit() {
+        isEditDone = !isEditDone;
     }
 
     public boolean isEditDone() {
