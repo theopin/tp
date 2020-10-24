@@ -15,21 +15,22 @@ public class FindCommand extends FinderCommand {
     public FindCommand(Printer printer) {
         super(printer);
 
-        initCommandDetails(new ArgumentFlagEnum[] {
+        /*initCommandDetails(new ArgumentFlagEnum[] {
             ArgumentFlagEnum.PROGRAMMINGLANGUAGE,
             ArgumentFlagEnum.SECTIONKEYWORD,
-        });
+        });*/
+        descriptionMap.put(ArgumentFlagEnum.PROGRAMMINGLANGUAGE, null);
+        descriptionMap.put(ArgumentFlagEnum.SECTIONKEYWORD, null);
+        requiredArguments.add(ArgumentFlagEnum.PROGRAMMINGLANGUAGE);
+        requiredArguments.add(ArgumentFlagEnum.SECTIONKEYWORD);
     }
-
+    /*
     @Override
     public boolean hasAllRequiredArguments() {
-        if (descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE) != null
-            || descriptionMap.get(ArgumentFlagEnum.SECTIONKEYWORD) != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return descriptionMap.get(ArgumentFlagEnum.PROGRAMMINGLANGUAGE) != null
+            || descriptionMap.get(ArgumentFlagEnum.SECTIONKEYWORD) != null;
     }
+    */
 
     @Override
     public void execute() throws CommandException {

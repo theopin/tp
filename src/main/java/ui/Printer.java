@@ -157,6 +157,6 @@ public final class Printer {
     }
 
     public void printMissingArgument(ArgumentFlagEnum curArg) {
-        print("Please input data for the following argument: " + curArg.name());
+        System.out.print("Please input " + curArg.name() + ": ");
     }
 }

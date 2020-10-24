@@ -4,6 +4,7 @@ public enum CommandEnum {
     ADD,
     CLEAR,
     DELETE,
+    EDIT,
     EXIT,
     FIND,
     HELP,
