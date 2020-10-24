@@ -21,7 +21,7 @@ public class AddCommand extends Command {
         });*/
         descriptionMap.put(ArgumentFlagEnum.NAME, null);
         descriptionMap.put(ArgumentFlagEnum.PROGRAMMINGLANGUAGE, null);
-//        descriptionMap.put(ArgumentFlagEnum.DESCRIPTION, null);
+        // descriptionMap.put(ArgumentFlagEnum.DESCRIPTION, null);
         requiredArguments.add(ArgumentFlagEnum.NAME);
     }
     /*
