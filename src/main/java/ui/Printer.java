@@ -3,7 +3,7 @@ package ui;
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import command.Command;
-import parser.ArgumentFlagEnum;
+import parser.CommandFlag;
 
 /**
  * This class manages the output of text.
@@ -158,14 +158,14 @@ public final class Printer {
     public void printAlternativeArgumentPrompt(Command command) {
         print(NEWLINE);
         System.out.print(ConsoleColorsEnum.RED_TEXT + "Please enter at least ");
-        for (ArgumentFlagEnum arg :command.getAlternativeArguments()) {
+        for (CommandFlag arg :command.getAlternativeArguments()) {
             System.out.print(arg + " ");
         }
         print(ConsoleColorsEnum.RESET_TEXT);
         print(NEWLINE);
     }
 
-    public void printMissingArgument(ArgumentFlagEnum curArg) {
+    public void printMissingArgument(CommandFlag curArg) {
         System.out.print("Please input " + curArg.name() + ": ");
 
     }

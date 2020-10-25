@@ -3,37 +3,33 @@ package command;
 import cheatsheet.CheatSheet;
 import editor.Editor;
 import exception.CommandException;
-import parser.ArgumentFlagEnum;
+import parser.CommandFlag;
 import ui.Printer;
 
 public class EditCommand extends FinderCommand {
-    Editor editor;
+    private final Editor editor;
+
+    public static final String invoker = "/edit";
 
     public EditCommand(Printer printer, Editor editor) {
         super(printer);
         this.editor = editor;
 
-        descriptionMap.put(ArgumentFlagEnum.NAME, null);
-        descriptionMap.put(ArgumentFlagEnum.INDEX, null);
+        flagsToDescriptions.put(CommandFlag.NAME, null);
+        flagsToDescriptions.put(CommandFlag.INDEX, null);
     }
 
     @Override
-    public boolean hasOneAlternativeArgument() {
-        if (descriptionMap.get(ArgumentFlagEnum.NAME) != null
-                || descriptionMap.get(ArgumentFlagEnum.INDEX) != null) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean hasAlternativeArgument() {
+        return flagsToDescriptions.get(CommandFlag.NAME) != null
+                || flagsToDescriptions.get(CommandFlag.INDEX) != null;
     }
 
     @Override
     public void execute() throws CommandException {
         try {
             CheatSheet desiredCheatSheet = getCheatSheetFromNameOrIndex();
-
             callContentEditor(desiredCheatSheet);
-
             printer.printViewCheatSheetMessage(desiredCheatSheet);
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new CommandException("Please enter a valid index");

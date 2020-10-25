@@ -1,7 +1,5 @@
 package cheatsheet;
 
-import java.time.LocalDateTime;
-
 public class CheatSheet {
     private String name;
     private String subject;

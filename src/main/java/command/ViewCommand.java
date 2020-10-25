@@ -2,7 +2,7 @@ package command;
 
 import cheatsheet.CheatSheet;
 import exception.CommandException;
-import parser.ArgumentFlagEnum;
+import parser.CommandFlag;
 import ui.Printer;
 
 import java.awt.Toolkit;
@@ -10,13 +10,15 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 
 public class ViewCommand extends FinderCommand {
+    public static final String invoker = "/view";
+
     public ViewCommand(Printer printer) {
         super(printer);
 
-        descriptionMap.put(ArgumentFlagEnum.NAME, null);
-        descriptionMap.put(ArgumentFlagEnum.INDEX, null);
-        alternativeArguments.add(ArgumentFlagEnum.NAME);
-        alternativeArguments.add(ArgumentFlagEnum.INDEX);
+        flagsToDescriptions.put(CommandFlag.NAME, null);
+        flagsToDescriptions.put(CommandFlag.INDEX, null);
+        alternativeArguments.add(CommandFlag.NAME);
+        alternativeArguments.add(CommandFlag.INDEX);
     }
 
     @Override

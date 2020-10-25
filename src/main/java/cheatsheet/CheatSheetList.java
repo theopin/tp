@@ -120,4 +120,13 @@ public class CheatSheetList {
         }
         return cheatSheet;
     }
+
+    public static boolean exists(String name) {
+        for (CheatSheet cs : CheatSheetList.getList()) {
+            if (cs.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

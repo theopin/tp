@@ -68,7 +68,7 @@ class AddCommandTest {
     //        addCommand.execute();
     //        Assertions.assertAll(
     //            () -> assertEquals("FirstTest", CheatSheetList.getCheatSheet(1).getName()),
-    //            () -> assertEquals("Java", CheatSheetList.getCheatSheet(1).getSubject()),
+    //            () -> bassertEquals("Java", CheatSheetList.getCheatSheet(1).getSubject()),
     //            () -> assertNull(CheatSheetList.getCheatSheet(1).getDetails())
     //        );
     //    }

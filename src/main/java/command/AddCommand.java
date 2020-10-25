@@ -4,30 +4,32 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import editor.Editor;
 import exception.CommandException;
-import parser.ArgumentFlagEnum;
-
+import parser.CommandFlag;
 import ui.Printer;
 
 public class AddCommand extends Command {
-    Editor editor;
+    private final Editor editor;
+
+    public static final String invoker = "/add";
+
 
     public AddCommand(Printer printer, Editor editor) {
         super(printer);
         this.editor = editor;
 
-        descriptionMap.put(ArgumentFlagEnum.NAME, null);
-        descriptionMap.put(ArgumentFlagEnum.SUBJECT, null);
-        alternativeArguments.add(ArgumentFlagEnum.NAME);
+        flagsToDescriptions.put(CommandFlag.NAME, null);
+        flagsToDescriptions.put(CommandFlag.SUBJECT, null);
+        alternativeArguments.add(CommandFlag.NAME);
     }
 
     @Override
     public void execute() throws CommandException {
-        String name = descriptionMap.get(ArgumentFlagEnum.NAME);
-        if (checkIfNameAlreadyExist(name)) {
+        String name = flagsToDescriptions.get(CommandFlag.NAME);
+        if (CheatSheetList.exists(name)) {
             throw new CommandException("Name already existed, please enter another name");
         }
 
-        String subject = descriptionMap.get(ArgumentFlagEnum.SUBJECT);
+        String subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
         if (subject != null) {
             subject = convertToPascalCaseNoSpace(subject);
         }
@@ -35,10 +37,8 @@ public class AddCommand extends Command {
         callContentEditor();
         String description = editor.getContent();
 
-        printer.print(description);
         CheatSheet cheatSheet = new CheatSheet(name, subject, description);
         CheatSheetList.add(cheatSheet);
-
         printer.printAddNewCheatSheetMessage(cheatSheet);
     }
 
@@ -47,16 +47,7 @@ public class AddCommand extends Command {
         editor.waitForClose();
     }
 
-    private boolean checkIfNameAlreadyExist(String name) {
-        for (CheatSheet cs : CheatSheetList.getList()) {
-            if (cs.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private String convertToPascalCaseNoSpace(String input) throws CommandException {
+    private String convertToPascalCaseNoSpace(String input) {
         String[] splitInput = input.split("\\p{IsWhite_Space}+");
         for (int i = 0; i < splitInput.length; i++) {
             splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();

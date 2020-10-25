@@ -3,7 +3,7 @@ package command;
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import exception.CommandException;
-import parser.ArgumentFlagEnum;
+import parser.CommandFlag;
 import sort.SortByLanguage;
 import sort.SortByName;
 import ui.Printer;
@@ -12,12 +12,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FindCommand extends FinderCommand {
+    public static final String invoker = "/find";
+
     public FindCommand(Printer printer) {
         super(printer);
-        descriptionMap.put(ArgumentFlagEnum.SUBJECT, null);
-        descriptionMap.put(ArgumentFlagEnum.SECTIONKEYWORD, null);
-        alternativeArguments.add(ArgumentFlagEnum.SUBJECT);
-        alternativeArguments.add(ArgumentFlagEnum.SECTIONKEYWORD);
+
+        flagsToDescriptions.put(CommandFlag.SUBJECT, null);
+        flagsToDescriptions.put(CommandFlag.SECTIONKEYWORD, null);
+        alternativeArguments.add(CommandFlag.SUBJECT);
+        alternativeArguments.add(CommandFlag.SECTIONKEYWORD);
     }
 
     @Override
@@ -26,11 +29,11 @@ public class FindCommand extends FinderCommand {
         String keyword = "";
         ArrayList<CheatSheet> cheatSheetArrayList = new ArrayList<>();
 
-        if (descriptionMap.containsKey(ArgumentFlagEnum.SUBJECT)) {
-            subject = descriptionMap.get(ArgumentFlagEnum.SUBJECT);
+        if (flagsToDescriptions.containsKey(CommandFlag.SUBJECT)) {
+            subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
         }
-        if (descriptionMap.containsKey(ArgumentFlagEnum.SECTIONKEYWORD)) {
-            keyword = descriptionMap.get(ArgumentFlagEnum.SECTIONKEYWORD);
+        if (flagsToDescriptions.containsKey(CommandFlag.SECTIONKEYWORD)) {
+            keyword = flagsToDescriptions.get(CommandFlag.SECTIONKEYWORD);
         }
 
         for (CheatSheet cs : CheatSheetList.getList()) {

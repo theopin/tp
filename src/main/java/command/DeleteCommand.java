@@ -3,28 +3,29 @@ package command;
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import exception.CommandException;
-import parser.ArgumentFlagEnum;
+import parser.CommandFlag;
 import storage.DataFileDestroyer;
 import ui.Printer;
 
 public class DeleteCommand extends FinderCommand {
     protected DataFileDestroyer fileDestroyer;
 
+    public static final String invoker = "/delete";
+
     public DeleteCommand(Printer printer, DataFileDestroyer fileDestroyer) {
         super(printer);
         this.fileDestroyer = fileDestroyer;
 
-        descriptionMap.put(ArgumentFlagEnum.NAME, null);
-        descriptionMap.put(ArgumentFlagEnum.INDEX, null);
-        alternativeArguments.add(ArgumentFlagEnum.NAME);
-        alternativeArguments.add(ArgumentFlagEnum.INDEX);
+        flagsToDescriptions.put(CommandFlag.NAME, null);
+        flagsToDescriptions.put(CommandFlag.INDEX, null);
+        alternativeArguments.add(CommandFlag.NAME);
+        alternativeArguments.add(CommandFlag.INDEX);
     }
 
     @Override
     public void execute() throws CommandException {
         try {
             CheatSheet cheatSheetToDelete = getCheatSheetFromNameOrIndex();
-
             CheatSheetList.remove(cheatSheetToDelete.getName());
             fileDestroyer.executeFunction(cheatSheetToDelete.getName());
             printer.printDeleteCheatSheetMessage(cheatSheetToDelete);

@@ -67,12 +67,14 @@ import ui.Printer;
 import java.util.Scanner;
 
 public class ListCommand extends Command {
+    public static final String invoker = "/list";
+
     public ListCommand(Printer printer) {
         super(printer);
     }
 
     @Override
-    public boolean hasOneAlternativeArgument() {
+    public boolean hasAlternativeArgument() {
         return true;
     }
 
