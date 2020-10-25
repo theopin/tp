@@ -23,6 +23,7 @@ public abstract class DataFile {
 
     protected static final String MAIN_ELEMENT = "main";
     protected static final String FAVOURITE_ELEMENT = "favourite";
+    protected static final String SUBJECT_ELEMENT = "subject";
     protected static final String CONTENTS_ELEMENT = "contents";
     protected static final String FAVOURITE_FILE = "Yes";
     protected static final String NOT_FAVOURITE_FILE = "No";

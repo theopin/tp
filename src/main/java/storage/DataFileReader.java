@@ -7,7 +7,9 @@ import exception.DirectoryIsEmptyException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import sort.SortByName;
 import ui.Printer;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -23,6 +25,7 @@ import java.nio.file.Files;
  * to insert the cheatsheets present in the folder to the application.
  */
 public class DataFileReader extends DataFile {
+
     public DataFileReader(Printer printer) {
         this.printer = printer;
     }
@@ -90,22 +93,49 @@ public class DataFileReader extends DataFile {
     private void extractCheatSheet(File cheatSheetDocument) throws IOException,
             ParserConfigurationException,
             SAXException {
+
+
+        Node favouriteElement = null;
+        Node subjectElement = null;
+        Node contentElement = null;
+
         DocumentBuilder documentBuilder = getDocumentBuilder();
         Document cheatSheetXml = documentBuilder.parse(cheatSheetDocument);
         cheatSheetXml.getDocumentElement().normalize();
 
-        Element mainRoot = cheatSheetXml.getDocumentElement();
-        Node favouriteElement = mainRoot.getFirstChild();
-        Node contentElement = mainRoot.getLastChild();
+
+        NodeList sectionNodes = cheatSheetXml.getDocumentElement().getChildNodes();
+
+        int numSections = 3;
+        for (int i = 0; i < numSections; i++) {
+            switch (sectionNodes.item(i).getNodeName()) {
+            case FAVOURITE_ELEMENT:
+                favouriteElement = sectionNodes.item(i);
+                break;
+            case SUBJECT_ELEMENT:
+                subjectElement = sectionNodes.item(i);
+                break;
+            case CONTENTS_ELEMENT:
+                contentElement = sectionNodes.item(i);
+                break;
+            default:
+                break;
+            }
+        }
+
 
         String cheatSheetName = cheatSheetDocument
                 .getName()
                 .replace(XML_EXTENSION, EMPTY);
 
         boolean isMarkedFavourite = extractFavouriteStatus(favouriteElement);
-        String cheatSheetContent = extractCheatSheetContents(contentElement);
+        String cheatSheetSubject = extractCheatSheetSection(subjectElement);
+        String cheatSheetContent = extractCheatSheetSection(contentElement);
 
-        createNewCheatSheet(isMarkedFavourite, cheatSheetName, cheatSheetContent);
+        createNewCheatSheet(isMarkedFavourite,
+                cheatSheetName,
+                cheatSheetSubject,
+                cheatSheetContent);
     }
 
     /**
@@ -128,22 +158,24 @@ public class DataFileReader extends DataFile {
         return isMarkedFavourite;
     }
 
+
+
     /**
-     * Extracts the contents of the referenced cheatSheet.
+     * Extracts the section of the referenced cheatSheet.
      *
-     * @param contentElement  Node containing the contents of the cheatSheet.
+     * @param relevantElement  Node containing the contents of the cheatSheet.
      * @return cheatsheetContent String containing the contents of the cheatSheet.
      */
-    private String extractCheatSheetContents(Node contentElement) {
-        String cheatSheetContent;
+    private String extractCheatSheetSection(Node relevantElement) {
+        String cheatSheetSection;
         try {
-            cheatSheetContent = contentElement
+            cheatSheetSection = relevantElement
                     .getFirstChild()
                     .getTextContent();
         } catch (NullPointerException e) {
-            cheatSheetContent = EMPTY;
+            cheatSheetSection = EMPTY;
         }
-        return cheatSheetContent;
+        return cheatSheetSection;
     }
 
     /**
@@ -156,9 +188,10 @@ public class DataFileReader extends DataFile {
      */
     private void createNewCheatSheet(boolean isMarkedFavourite,
                                      String cheatSheetName,
+                                     String cheatSheetSubject,
                                      String cheatSheetContent) {
         CheatSheet newCheatSheet = new CheatSheet(cheatSheetName,
-                "C",
+                cheatSheetSubject,
                 cheatSheetContent);
 
         newCheatSheet.setFavourite(isMarkedFavourite);
