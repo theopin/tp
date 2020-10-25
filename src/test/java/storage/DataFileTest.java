@@ -12,17 +12,10 @@ public class DataFileTest {
     String userDir = System.getProperty("user.dir");
     String data = "data";
     String empty = "";
+    String sample = "sample";
 
-    String fileName = "Sample1";
-    String fileSubject = "C++";
-    String fileDetails = "Use case statements to check multiple conditions.";
-
-    String sampleFileContent = "Programming Language: C++"
-            + System.lineSeparator()
-            + "Contents: Use case statements to check multiple conditions.";
-
+    Path sampleTest = Paths.get(userDir, data, "sample.xml");
     Path dataDir = Paths.get(userDir, data);
-    Path sampleFile = Paths.get(userDir, data, fileName);
 
     Printer printer = new Printer();
     DataFileWriter testWriter = new DataFileWriter(printer);
