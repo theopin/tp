@@ -13,11 +13,11 @@ public abstract class FinderCommand extends Command {
 
     protected CheatSheet getCheatSheetFromNameOrIndex() throws CommandException {
         CheatSheet desiredCheatSheet = null;
-        if (flagToDescription.get(CommandFlag.NAME) != null) {
-            String name = flagToDescription.get(CommandFlag.NAME);
+        if (flagsToDescriptions.get(CommandFlag.NAME) != null) {
+            String name = flagsToDescriptions.get(CommandFlag.NAME);
             desiredCheatSheet = CheatSheetList.get(name);
-        } else if (flagToDescription.get(CommandFlag.INDEX) != null) {
-            int index = Integer.parseInt(flagToDescription.get(CommandFlag.INDEX));
+        } else if (flagsToDescriptions.get(CommandFlag.INDEX) != null) {
+            int index = Integer.parseInt(flagsToDescriptions.get(CommandFlag.INDEX));
             desiredCheatSheet = CheatSheetList.get(index);
         }
 

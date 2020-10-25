@@ -17,19 +17,19 @@ public class AddCommand extends Command {
         super(printer);
         this.editor = editor;
 
-        flagToDescription.put(CommandFlag.NAME, null);
-        flagToDescription.put(CommandFlag.SUBJECT, null);
+        flagsToDescriptions.put(CommandFlag.NAME, null);
+        flagsToDescriptions.put(CommandFlag.SUBJECT, null);
         alternativeArguments.add(CommandFlag.NAME);
     }
 
     @Override
     public void execute() throws CommandException {
-        String name = flagToDescription.get(CommandFlag.NAME);
+        String name = flagsToDescriptions.get(CommandFlag.NAME);
         if (CheatSheetList.exists(name)) {
             throw new CommandException("Name already existed, please enter another name");
         }
 
-        String subject = flagToDescription.get(CommandFlag.SUBJECT);
+        String subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
         if (subject != null) {
             subject = convertToPascalCaseNoSpace(subject);
         }

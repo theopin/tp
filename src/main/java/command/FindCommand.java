@@ -17,8 +17,8 @@ public class FindCommand extends FinderCommand {
     public FindCommand(Printer printer) {
         super(printer);
 
-        flagToDescription.put(CommandFlag.SUBJECT, null);
-        flagToDescription.put(CommandFlag.SECTIONKEYWORD, null);
+        flagsToDescriptions.put(CommandFlag.SUBJECT, null);
+        flagsToDescriptions.put(CommandFlag.SECTIONKEYWORD, null);
         alternativeArguments.add(CommandFlag.SUBJECT);
         alternativeArguments.add(CommandFlag.SECTIONKEYWORD);
     }
@@ -29,11 +29,11 @@ public class FindCommand extends FinderCommand {
         String keyword = "";
         ArrayList<CheatSheet> cheatSheetArrayList = new ArrayList<>();
 
-        if (flagToDescription.containsKey(CommandFlag.SUBJECT)) {
-            subject = flagToDescription.get(CommandFlag.SUBJECT);
+        if (flagsToDescriptions.containsKey(CommandFlag.SUBJECT)) {
+            subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
         }
-        if (flagToDescription.containsKey(CommandFlag.SECTIONKEYWORD)) {
-            keyword = flagToDescription.get(CommandFlag.SECTIONKEYWORD);
+        if (flagsToDescriptions.containsKey(CommandFlag.SECTIONKEYWORD)) {
+            keyword = flagsToDescriptions.get(CommandFlag.SECTIONKEYWORD);
         }
 
         for (CheatSheet cs : CheatSheetList.getList()) {

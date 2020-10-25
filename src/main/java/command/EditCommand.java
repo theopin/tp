@@ -15,14 +15,14 @@ public class EditCommand extends FinderCommand {
         super(printer);
         this.editor = editor;
 
-        flagToDescription.put(CommandFlag.NAME, null);
-        flagToDescription.put(CommandFlag.INDEX, null);
+        flagsToDescriptions.put(CommandFlag.NAME, null);
+        flagsToDescriptions.put(CommandFlag.INDEX, null);
     }
 
     @Override
     public boolean hasAlternativeArgument() {
-        return flagToDescription.get(CommandFlag.NAME) != null
-                || flagToDescription.get(CommandFlag.INDEX) != null;
+        return flagsToDescriptions.get(CommandFlag.NAME) != null
+                || flagsToDescriptions.get(CommandFlag.INDEX) != null;
     }
 
     @Override

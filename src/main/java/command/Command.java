@@ -16,7 +16,7 @@ public abstract class Command {
     protected Printer printer;
 
     protected ArrayList<CommandFlag> alternativeArguments;
-    protected LinkedHashMap<CommandFlag, String> flagToDescription;
+    protected LinkedHashMap<CommandFlag, String> flagsToDescriptions;
     public static boolean isExitCommand;
 
     public Command() {
@@ -25,16 +25,16 @@ public abstract class Command {
     public Command(Printer printer) {
         this.printer = printer;
         this.alternativeArguments = new ArrayList<>();
-        this.flagToDescription = new LinkedHashMap<>();
+        this.flagsToDescriptions = new LinkedHashMap<>();
         isExitCommand = false;
     }
 
-    public LinkedHashMap<CommandFlag, String> getFlagToDescriptionMap() {
-        return flagToDescription;
+    public LinkedHashMap<CommandFlag, String> getFlagstodescriptionsMap() {
+        return flagsToDescriptions;
     }
 
-    public void setFlagToDescriptionMap(HashMap<CommandFlag, String> flagToDescription) {
-        this.flagToDescription.putAll(flagToDescription);
+    public void setFlagstodescriptionsMap(HashMap<CommandFlag, String> flagstodescriptions) {
+        this.flagsToDescriptions.putAll(flagstodescriptions);
     }
 
     public ArrayList<CommandFlag> getAlternativeArguments() {
@@ -47,7 +47,7 @@ public abstract class Command {
         }
 
         for (CommandFlag arg : alternativeArguments) {
-            if (flagToDescription.get(arg) != null && !flagToDescription.get(arg).isEmpty()) {
+            if (flagsToDescriptions.get(arg) != null && !flagsToDescriptions.get(arg).isEmpty()) {
                 return true;
             }
         }

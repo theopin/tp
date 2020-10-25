@@ -44,9 +44,9 @@ public class Parser {
     public Command parse(String userInput) throws CommandException {
         Command commandToBeExecuted = parseCommandType(userInput);
         ArrayList<CommandFlag> flags = parseFlags(userInput);
-        LinkedHashMap<CommandFlag, String> flagToDescription = parseFlagDescriptions(userInput, flags);
+        LinkedHashMap<CommandFlag, String> flagstodescriptions = parseFlagDescriptions(userInput, flags);
 
-        commandToBeExecuted.setFlagToDescriptionMap(flagToDescription);
+        commandToBeExecuted.setFlagstodescriptionsMap(flagstodescriptions);
         setMissingFlagsDescriptions(commandToBeExecuted);
         return commandToBeExecuted;
     }
@@ -99,21 +99,21 @@ public class Parser {
 
     private LinkedHashMap<CommandFlag, String> parseFlagDescriptions(String userInput, ArrayList<CommandFlag> flags)
             throws CommandException {
-        LinkedHashMap<CommandFlag, String> flagToDescription = new LinkedHashMap<>();
+        LinkedHashMap<CommandFlag, String> flagstodescriptions = new LinkedHashMap<>();
         try {
             String[] details = userInput.split(FLAG_REGEX);
             for (int i = 1; i < details.length; i++) {
-                flagToDescription.put(flags.get(i - 1), details[i].trim());
+                flagstodescriptions.put(flags.get(i - 1), details[i].trim());
             }
         } catch (IndexOutOfBoundsException i) {
             throw new CommandException("Please enter a valid index");
         }
 
-        return flagToDescription;
+        return flagstodescriptions;
     }
 
     private void setMissingFlagsDescriptions(Command commandToBeExecuted) {
-        LinkedHashMap<CommandFlag, String> map = commandToBeExecuted.getFlagToDescriptionMap();
+        LinkedHashMap<CommandFlag, String> map = commandToBeExecuted.getFlagstodescriptionsMap();
         while (!commandToBeExecuted.hasAlternativeArgument()) {
             printer.printAlternativeArgumentPrompt(commandToBeExecuted);
 
@@ -126,7 +126,7 @@ public class Parser {
                         newArgVal = null;
                     }
 
-                    commandToBeExecuted.getFlagToDescriptionMap().replace(key, newArgVal);
+                    commandToBeExecuted.getFlagstodescriptionsMap().replace(key, newArgVal);
                 }
             }
         }

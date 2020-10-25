@@ -28,16 +28,16 @@ class ParserTest {
         detailsList.add("subject");
         detailsList.add("details");
 
-        HashMap<CommandFlag, String> flagToDescription = new HashMap<>();
+        HashMap<CommandFlag, String> flagstodescriptions = new HashMap<>();
         for (int i = 1; i <= 3; i++) {
-            flagToDescription.put(argEnumList.get(i - 1), detailsList.get(i - 1));
+            flagstodescriptions.put(argEnumList.get(i - 1), detailsList.get(i - 1));
         }
 
         try {
             Parser parser = new Parser();
             Command command = parser.parse(userInput);
             assertEquals(AddCommand.class, command.getClass());
-            assertEquals(flagToDescription, command.getFlagToDescriptionMap());
+            assertEquals(flagstodescriptions, command.getFlagstodescriptionsMap());
         } catch (CommandException e) {
             fail();
         }

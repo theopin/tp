@@ -11,8 +11,8 @@ public class FavouriteCommand extends FinderCommand {
     public FavouriteCommand(Printer printer) {
         super(printer);
 
-        flagToDescription.put(CommandFlag.NAME, null);
-        flagToDescription.put(CommandFlag.INDEX, null);
+        flagsToDescriptions.put(CommandFlag.NAME, null);
+        flagsToDescriptions.put(CommandFlag.INDEX, null);
         alternativeArguments.add(CommandFlag.NAME);
         alternativeArguments.add(CommandFlag.INDEX);
     }
