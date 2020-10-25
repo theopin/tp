@@ -8,6 +8,8 @@ import storage.DataFileReader;
 import storage.DataFileWriter;
 import storage.DataFileDestroyer;
 
+import java.io.IOException;
+
 public class UserSession {
     /*
      * These are objects that will be injected to command subclasses
@@ -42,7 +44,7 @@ public class UserSession {
             try {
                 Command parsedUserCommand = userCommandParser.parse(userInput);
                 parsedUserCommand.execute();
-            } catch (CommandException c) {
+            } catch (CommandException | InterruptedException | IOException c) {
                 printer.print(c.getMessage());
                 continue;
             }

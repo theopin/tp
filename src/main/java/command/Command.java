@@ -5,6 +5,7 @@ import exception.CommandException;
 import parser.CommandFlag;
 import ui.Printer;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -55,5 +56,5 @@ public abstract class Command {
         return false;
     }
 
-    public abstract void execute() throws CommandException;
+    public abstract void execute() throws CommandException, InterruptedException, IOException;
 }

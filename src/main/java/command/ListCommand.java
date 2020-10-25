@@ -57,6 +57,7 @@ public class ListCommand extends Command {
 package command;
 
 import cheatsheet.CheatSheetList;
+import exception.CommandException;
 import sort.SortByLanguage;
 import sort.SortByLanguageRev;
 import sort.SortByName;
@@ -64,6 +65,7 @@ import sort.SortByNameRev;
 import ui.ConsoleColorsEnum;
 import ui.Printer;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ListCommand extends Command {
@@ -79,45 +81,11 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InterruptedException, CommandException, IOException {
         CheatSheetList.getList().sort(new SortByName());
         printer.printCheatSheetList();
-        askForSortingConfigAndPrint();
-    }
-
-    private void askForSortingConfigAndPrint() {
-        final String promptSortConfig = ConsoleColorsEnum.RED_TEXT
-            + "Sort filter (na: name ascending, la: language ascending, nd: name descending" + ", ld: "
-            + "language descending or <<enter>> to skip)" + ConsoleColorsEnum.RESET_TEXT;
-
-        printer.print(promptSortConfig);
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        while (!input.isEmpty()) {
-            switch (input) {
-            case "na":
-                CheatSheetList.getList().sort(new SortByName());
-                printer.print("Sorted name in ascending order");
-                break;
-            case "la":
-                CheatSheetList.getList().sort(new SortByLanguage());
-                printer.print("Sorted language in ascending order");
-                break;
-            case "nd":
-                CheatSheetList.getList().sort(new SortByNameRev());
-                printer.print("Sorted name in descending order");
-                break;
-            case "ld":
-                CheatSheetList.getList().sort(new SortByLanguageRev());
-                printer.print("Sorted language in descending order");
-                break;
-            default:
-                CheatSheetList.getList().sort(new SortByName());
-            }
-            printer.printCheatSheetList();
-            printer.print(promptSortConfig);
-            input = scanner.nextLine();
-        }
+        SortFilter sortFilter = new SortFilter();
+        sortFilter.execute();
     }
 }
 

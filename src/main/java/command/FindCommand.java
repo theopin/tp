@@ -8,6 +8,7 @@ import sort.SortByLanguage;
 import sort.SortByName;
 import ui.Printer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,10 +25,11 @@ public class FindCommand extends FinderCommand {
     }
 
     @Override
-    public void execute() throws CommandException {
+    public void execute() throws CommandException, IOException {
         String subject = "";
         String keyword = "";
         ArrayList<CheatSheet> cheatSheetArrayList = new ArrayList<>();
+        SortFilter sortFilter = new SortFilter();
 
         if (flagsToDescriptions.containsKey(CommandFlag.SUBJECT)) {
             subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
@@ -60,37 +62,7 @@ public class FindCommand extends FinderCommand {
         }
 
         printMatches(cheatSheetArrayList);
-        askForSortingConfigAndPrint(cheatSheetArrayList);
-    }
-
-    protected void askForSortingConfigAndPrint(ArrayList<CheatSheet> cheatSheetArrayList) {
-        printer.print("Sort filter (na: name ascending, la: language ascending, nd: name descending"
-            + ", ld: language descending or <enter> to skip)");
-
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        while (!input.isEmpty()) {
-            switch (input) {
-            case "na":
-                cheatSheetArrayList.sort(new SortByName());
-                break;
-            case "la":
-                cheatSheetArrayList.sort(new SortByLanguage());
-                break;
-            case "nd":
-                cheatSheetArrayList.sort(new SortByName().reversed());
-                break;
-            case "ld":
-                cheatSheetArrayList.sort(new SortByLanguage().reversed());
-                break;
-            default:
-                cheatSheetArrayList.sort(new SortByName());
-            }
-
-            printMatches(cheatSheetArrayList);
-            input = scanner.nextLine();
-        }
-        askForSortingConfigAndPrint(cheatSheetArrayList);
+        sortFilter.execute();
     }
 
     private void printMatches(ArrayList<CheatSheet> cheatSheetArrayList) {
