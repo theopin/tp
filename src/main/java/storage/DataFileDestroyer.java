@@ -46,8 +46,7 @@ public class DataFileDestroyer extends DataFile {
      *                     is not existent.
      */
     protected void deleteFile(String unwantedFile) throws IOException {
-        // todo: add XML extension
-        Path unwantedFilePath = Paths.get(USER_DIR, DATA, unwantedFile);
+        Path unwantedFilePath = Paths.get(USER_DIR, DATA, unwantedFile + XML_EXTENSION);
         Files.delete(unwantedFilePath);
     }
 
