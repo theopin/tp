@@ -156,7 +156,10 @@ public class DataFileWriter extends DataFile {
      * @param fileContent        Section of the file that needs to be converted to a text node.
      * @param fileContentElement Element that needs to be appended to the main root.
      */
-    private void appendToFileStructure(Document xmlFileStructure, Element mainRoot, String fileContent, Element fileContentElement) {
+    private void appendToFileStructure(Document xmlFileStructure,
+                                       Element mainRoot,
+                                       String fileContent,
+                                       Element fileContentElement) {
         Text fileContentTextNode = xmlFileStructure.createTextNode(fileContent);
         fileContentElement.appendChild(fileContentTextNode);
         mainRoot.appendChild(fileContentElement);
