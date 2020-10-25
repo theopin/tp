@@ -96,7 +96,8 @@ public class DataFileWriter extends DataFile {
         xmlFileStructure.appendChild(mainRoot);
 
         insertFavouriteStatus(cheatSheet, xmlFileStructure, mainRoot);
-        insertFileContent(cheatSheet, xmlFileStructure, mainRoot);
+        insertFileSubject(cheatSheet, xmlFileStructure, mainRoot);
+        insertFileContents(cheatSheet, xmlFileStructure, mainRoot);
 
         return xmlFileStructure;
     }
@@ -114,9 +115,21 @@ public class DataFileWriter extends DataFile {
                 ? FAVOURITE_FILE
                 : NOT_FAVOURITE_FILE;
         Element favouriteElement = xmlFileStructure.createElement(FAVOURITE_ELEMENT);
-        Text favouriteTextNode = xmlFileStructure.createTextNode(favouriteStatus);
-        favouriteElement.appendChild(favouriteTextNode);
-        mainRoot.appendChild(favouriteElement);
+        appendToFileStructure(xmlFileStructure, mainRoot, favouriteStatus, favouriteElement);
+    }
+
+    /**
+     * Sets the subject for the respective cheatSheet file.
+     *
+     * @param cheatSheet                     The cheatSheet that is currently being converted into a file.
+     * @param xmlFileStructure               A document containing relevant data of the cheatsheet
+     *                                       in a .xml file format.
+     * @param mainRoot                       The root that the created element needs to be joined to.
+     */
+    private void insertFileSubject(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
+        String fileContent = cheatSheet.getDetails();
+        Element fileContentElement = xmlFileStructure.createElement(SUBJECT_ELEMENT);
+        appendToFileStructure(xmlFileStructure, mainRoot, fileContent, fileContentElement);
     }
 
     /**
@@ -127,10 +140,22 @@ public class DataFileWriter extends DataFile {
      *                                       in a .xml file format.
      * @param mainRoot                       The root that the created element needs to be joined to.
      */
-    private void insertFileContent(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
-        String fileContent = cheatSheet.getDetails();
-
+    private void insertFileContents(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
+        String fileContent = cheatSheet.getSubject();
         Element fileContentElement = xmlFileStructure.createElement(CONTENTS_ELEMENT);
+        appendToFileStructure(xmlFileStructure, mainRoot, fileContent, fileContentElement);
+    }
+
+    /**
+     * Sets the contents for the respective cheatSheet file.
+     *
+     * @param xmlFileStructure   A document containing relevant data of the cheatsheet
+     *                           in a .xml file format.
+     * @param mainRoot           The root that the created element needs to be joined to.
+     * @param fileContent        Section of the file that needs to be converted to a text node.
+     * @param fileContentElement Element that needs to be appended to the main root.
+     */
+    private void appendToFileStructure(Document xmlFileStructure, Element mainRoot, String fileContent, Element fileContentElement) {
         Text fileContentTextNode = xmlFileStructure.createTextNode(fileContent);
         fileContentElement.appendChild(fileContentTextNode);
         mainRoot.appendChild(fileContentElement);
