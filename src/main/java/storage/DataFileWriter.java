@@ -6,6 +6,7 @@ import cheatsheet.CheatSheetList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
 
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -112,8 +113,8 @@ public class DataFileWriter extends DataFile {
      */
     private void insertFavouriteStatus(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
         String favouriteStatus = cheatSheet.getIsFavourite()
-                ? FAVOURITE_FILE
-                : NOT_FAVOURITE_FILE;
+                ? YES
+                : NO;
         Element favouriteElement = xmlFileStructure.createElement(FAVOURITE_ELEMENT);
         appendToFileStructure(xmlFileStructure, mainRoot, favouriteStatus, favouriteElement);
     }
@@ -171,9 +172,11 @@ public class DataFileWriter extends DataFile {
      */
     private void writeToFile(Path fileDirectory, Document xmlFileContents)
             throws TransformerException {
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
+        Transformer transformer = TransformerFactory
+                .newInstance()
+                .newTransformer();
 
+        transformer.setOutputProperty(OutputKeys.INDENT, YES);
         DOMSource fileSource = new DOMSource(xmlFileContents);
         StreamResult fileResult = new StreamResult(fileDirectory.toFile());
 

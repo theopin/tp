@@ -93,7 +93,6 @@ public class DataFileReader extends DataFile {
             ParserConfigurationException,
             SAXException {
 
-
         Node favouriteElement = null;
         Node subjectElement = null;
         Node contentElement = null;
@@ -102,10 +101,9 @@ public class DataFileReader extends DataFile {
         Document cheatSheetXml = documentBuilder.parse(cheatSheetDocument);
         cheatSheetXml.getDocumentElement().normalize();
 
-
         NodeList sectionNodes = cheatSheetXml.getDocumentElement().getChildNodes();
 
-        int numSections = 3;
+        int numSections = sectionNodes.getLength();
         for (int i = 0; i < numSections; i++) {
             switch (sectionNodes.item(i).getNodeName()) {
             case FAVOURITE_ELEMENT:
@@ -121,7 +119,6 @@ public class DataFileReader extends DataFile {
                 break;
             }
         }
-
 
         String cheatSheetName = cheatSheetDocument
                 .getName()
@@ -150,7 +147,7 @@ public class DataFileReader extends DataFile {
             isMarkedFavourite = favouriteElement
                     .getFirstChild()
                     .getTextContent()
-                    .equals(FAVOURITE_FILE);
+                    .equals(YES);
         } catch (NullPointerException e) {
             isMarkedFavourite = false;
         }
