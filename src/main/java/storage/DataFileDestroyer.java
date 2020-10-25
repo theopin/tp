@@ -61,7 +61,11 @@ public class DataFileDestroyer extends DataFile {
             throw new IOException();
         }
         for (String dataDirectoryFile : dataDirectoryFiles) {
-            deleteFile(dataDirectoryFile);
+            Path filePath = Paths.get(USER_DIR, DATA, dataDirectoryFile);
+            if (Files.isDirectory(filePath)) {
+                continue;
+            }
+            deleteFile(dataDirectoryFile.replace(XML_EXTENSION, EMPTY));
         }
     }
 

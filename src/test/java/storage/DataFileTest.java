@@ -11,6 +11,7 @@ public class DataFileTest {
 
     String userDir = System.getProperty("user.dir");
     String data = "data";
+    String empty = "";
 
     String fileName = "Sample1";
     String fileSubject = "C++";
@@ -39,7 +40,7 @@ public class DataFileTest {
 
     void createSampleFile(Path fileName, String fileContent) {
         try {
-            //Files.createFile(fileName);
+            Files.createFile(fileName);
             Files.writeString(fileName, fileContent);
         } catch (IOException e) {
             printer.print(e.getMessage());
