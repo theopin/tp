@@ -97,20 +97,53 @@ public class DataFileReader extends DataFile {
         Element mainRoot = cheatSheetXml.getDocumentElement();
         Node favouriteElement = mainRoot.getFirstChild();
         Node contentElement = mainRoot.getLastChild();
-        // todo: handle null cheatsheet field
+
         String cheatSheetName = cheatSheetDocument
                 .getName()
                 .replace(XML_EXTENSION, EMPTY);
-        String cheatSheetContent = contentElement
-                .getFirstChild()
-                .getTextContent();
 
-        boolean isMarkedFavourite = favouriteElement
-                .getFirstChild()
-                .getTextContent()
-                .equals(FAVOURITE_FILE);
+        boolean isMarkedFavourite = extractFavouriteStatus(favouriteElement);
+        String cheatSheetContent = extractCheatSheetContents(contentElement);
 
         createNewCheatSheet(isMarkedFavourite, cheatSheetName, cheatSheetContent);
+    }
+
+    /**
+     * Extracts the favourite status of the referenced cheatSheet.
+     *
+     * @param favouriteElement  Node containing the favourite status of the cheatSheet.
+     * @return isMarkedFavourite Boolean indicating if the cheatSheet should be marked as
+     *                           a favourite.
+     */
+    private boolean extractFavouriteStatus(Node favouriteElement) {
+        boolean isMarkedFavourite;
+        try {
+            isMarkedFavourite = favouriteElement
+                    .getFirstChild()
+                    .getTextContent()
+                    .equals(FAVOURITE_FILE);
+        } catch (NullPointerException e) {
+            isMarkedFavourite = false;
+        }
+        return isMarkedFavourite;
+    }
+
+    /**
+     * Extracts the contents of the referenced cheatSheet.
+     *
+     * @param contentElement  Node containing the contents of the cheatSheet.
+     * @return cheatsheetContent String containing the contents of the cheatSheet.
+     */
+    private String extractCheatSheetContents(Node contentElement) {
+        String cheatSheetContent;
+        try {
+            cheatSheetContent = contentElement
+                    .getFirstChild()
+                    .getTextContent();
+        } catch (NullPointerException e) {
+            cheatSheetContent = EMPTY;
+        }
+        return cheatSheetContent;
     }
 
     /**
