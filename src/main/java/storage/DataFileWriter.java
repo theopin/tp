@@ -79,6 +79,9 @@ public class DataFileWriter extends DataFile {
             if (!Files.exists(textFile)) {
                 Files.createFile(textFile);
             }
+            if (!Files.isWritable(textFile)) {
+                return;
+            }
             Document cheatSheetFile = buildFileContents(cheatSheet);
 
             writeToFile(textFile, cheatSheetFile);

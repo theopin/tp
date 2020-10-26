@@ -91,9 +91,19 @@ public class DataFileReader extends DataFile {
         for (File dataDirectoryFile : dataDirectoryFiles) {
             Path filePath = dataDirectoryFile.toPath();
 
+
             if (Files.isDirectory(filePath)) {
                 extractFromDirectory(filePath);
                 continue;
+            }
+            boolean isPreloadedFile = dataDirectoryFile
+                    .getParentFile()
+                    .getParentFile()
+                    .getName()
+                    .equals(PRELOADED);
+
+            if (isPreloadedFile) {
+                dataDirectoryFile.setReadOnly();
             }
 
             try {
