@@ -62,7 +62,6 @@ public class DataFileDestroyer extends DataFile {
      * Deletes all cheatsheet files from the /data directory in a recursive manner
      *
      * @throws IOException Thrown if the /data directory is missing or empty.
-     * @throws CommandException Thrown if there are issues with the command given.
      */
     private void clearDataDirectory() throws IOException {
         clearDirectory(DATA_DIR);
@@ -80,11 +79,14 @@ public class DataFileDestroyer extends DataFile {
         }
         for (String dataDirectoryFile : dataDirectoryFiles) {
             Path filePath = Paths.get(USER_DIR, DATA, dataDirectoryFile);
-            if (Files.isDirectory(filePath) && !filePath.toFile()
-                    .getName()
-                    .equals("preloaded")) {
-                clearDirectory(filePath);
+
+            if (Files.isDirectory(filePath)) {
+                if(!filePath.toFile().getName().equals(PRELOADED)){
+                    clearDirectory(filePath);
+                }
+                continue;
             }
+
             try {
                 deleteFile(dataDirectoryFile.replace(XML_EXTENSION, EMPTY));
             } catch (CommandException e) {

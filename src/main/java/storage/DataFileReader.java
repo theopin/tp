@@ -2,7 +2,6 @@ package storage;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
-import exception.CommandException;
 import exception.DirectoryIsEmptyException;
 
 import org.w3c.dom.Document;
@@ -20,7 +19,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * Allows the user to read data from the data directory and use it
@@ -90,11 +88,12 @@ public class DataFileReader extends DataFile {
         }
         for (File dataDirectoryFile : dataDirectoryFiles) {
             Path filePath = dataDirectoryFile.toPath();
-            if (Files.isDirectory(filePath) && !filePath.toFile()
-                    .getName()
-                    .equals("preloaded")) {
+
+            if (Files.isDirectory(filePath)) {
                 extractFromDirectory(filePath);
+                continue;
             }
+
             try {
                 extractCheatSheet(dataDirectoryFile);
             } catch (ParserConfigurationException | SAXException e) {
@@ -142,7 +141,28 @@ public class DataFileReader extends DataFile {
                 break;
             }
         }
+        bundleCheatSheetComponents(cheatSheetDocument, favouriteElement, subjectElement, contentElement);
+        if(cheatSheetDocument.getParent().equals(DATA)) {
+            cheatSheetDocument.delete();
+        }
+        
+    }
 
+    /**
+     * Extracts and bundles components together to create a new cheatSheet
+     *
+     * @param cheatSheetDocument  File of the cheatSheet
+     * @param favouriteElement    Node containing the favourite status
+     *                            of the cheatsheet.
+     * @param subjectElement      Node containing the subject of the
+     *                            cheatsheet.
+     * @param contentElement      Node containing the details of the
+     *                            cheatsheet.
+     */
+    private void bundleCheatSheetComponents(File cheatSheetDocument,
+                                            Node favouriteElement,
+                                            Node subjectElement,
+                                            Node contentElement) {
         String cheatSheetName = cheatSheetDocument
                 .getName()
                 .replace(XML_EXTENSION, EMPTY);

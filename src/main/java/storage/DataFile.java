@@ -19,6 +19,7 @@ import java.nio.file.Paths;
 public abstract class DataFile {
     protected static final String USER_DIR = System.getProperty("user.dir");
     protected static final String DATA = "data";
+    protected static final String PRELOADED = "preloaded";
     protected static final String XML_EXTENSION = ".xml";
 
     protected static final String MAIN_ELEMENT = "main";
