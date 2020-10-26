@@ -106,30 +106,30 @@ public final class Printer {
 
     public void printCheatSheet(CheatSheet cheatSheet) {
         print("\tName: " + cheatSheet.getName() + NEWLINE
-                + "\tProgramming Language: " + cheatSheet.getSubject() + NEWLINE
+                + "\tSubject: " + cheatSheet.getSubject() + NEWLINE
                 + "\tDetails: " + cheatSheet.getDetails());
     }
 
-    public void printCheatSheetList() {
+    public void printCheatSheetList(CheatSheetList cheatSheetList) {
         int i = 0;
-        for (CheatSheet cs : CheatSheetList.getList()) {
+        for (CheatSheet cs : cheatSheetList.getList()) {
             print("\t"
                     + (cs.getIsFavourite() ? ConsoleColorsEnum.YELLOW_TEXT : "")
                     + (++i) + ". " + cs.getName()
-                    + " (Language: " + cs.getSubject() + ")"
+                    + " (Subject: " + cs.getSubject() + ")"
                     + (cs.getIsFavourite() ? " *" + ConsoleColorsEnum.RESET_TEXT : "") + "\n");
         }
     }
 
-    public void printCheatSheetSize() {
-        print("Now you have " + CheatSheetList.getSize() + " cheatsheet(s)");
+    public void printCheatSheetSize(CheatSheetList cheatSheetList) {
+        print("Now you have " + cheatSheetList.getSize() + " cheatsheet(s)");
     }
 
-    public void printAddNewCheatSheetMessage(CheatSheet cheatSheet) {
+    public void printAddNewCheatSheetMessage(CheatSheet cheatSheet, CheatSheetList cheatSheetList) {
         print("Added new cheat sheet:");
         printCheatSheet(cheatSheet);
         print(LINE);
-        printCheatSheetSize();
+        printCheatSheetSize(cheatSheetList);
     }
 
     public void printClearCheatSheetMessage(int number) {
@@ -138,11 +138,11 @@ public final class Printer {
         print("Now you have no cheatsheets");
     }
 
-    public void printDeleteCheatSheetMessage(CheatSheet cheatSheet) {
+    public void printDeleteCheatSheetMessage(CheatSheet cheatSheet, CheatSheetList cheatSheetList) {
         print("This cheat sheet has been deleted: ");
         printCheatSheet(cheatSheet);
         print(LINE);
-        printCheatSheetSize();
+        printCheatSheetSize(cheatSheetList);
     }
 
     public void printViewCheatSheetMessage(CheatSheet cheatSheet) {
