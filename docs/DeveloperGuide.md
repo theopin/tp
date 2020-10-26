@@ -1,5 +1,39 @@
 # Developer Guide
 
+# Table of Contents
+<!-- TOC -->
+* [1. Introduction](#1-introduction)
+    + [1.1. Purpose](#11-purpose)
+    + [1.2. Product Scope](#12-product-scope)
+        - [1.2.1. Target User Profile](#121-target-user-profile)
+        - [1.2.2. Value Proposition](#122-value-proposition)
+    + [1.3. Definitions](#13-definitions)
+* [2. Design & Implementation](#2-design--implementation)
+    * [2.1. Project Overview](#21-project-overview)
+        * [2.2. Module Overview](#22-module-overview)
+            * [2.2.1. Record module ](#221-record-module)
+            * [2.2.2. Converter module ](#222-converter-module)
+            * [2.2.3. Storage module ](#223-storage-module)
+            * [2.2.4. Command module ](#224-command-module)
+            * [2.2.5. Parser Module ](#225-parser-module)
+* [3. User Stories](#3-user-stories)
+* [4. Non-functional requirements](#4-non-functional-requirements)
+* [5. Instructions for manual testing](#5-instructions-for-manual-testing)
+    + [5.1. Startup, shutdown and restart](#51-startup-shutdown-and-restart-with-saved-list)
+    + [5.2. Adding a patient](#52-adding-a-patient)
+    + [5.3. Editing a patient](#53-editing-a-patient)
+    + [5.4. Deleting a patient](#54-delete-a-patient)
+    + [5.5. Adding an appointment](#55-add-an-appointment)
+    + [5.6. Editing an appointment](#56-edit-an-appointment)
+    + [5.7. Deleting an appointment](#57-delete-an-appointment)
+    + [5.8. Finding patients and appointments](#58-find-patients-and-find-appointment)
+    + [5.9. Clearing lists](#59-clear-patient-clear-appointment-clear-all-commands)
+        
+<!-- TOC -->
+## 1. Introduction
+
+##
+
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
