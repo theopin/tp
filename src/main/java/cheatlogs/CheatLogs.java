@@ -1,5 +1,6 @@
 package cheatlogs;
 
+import exception.CommandException;
 import ui.UserSession;
 
 public class CheatLogs {
