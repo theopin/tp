@@ -6,9 +6,9 @@ import java.util.Comparator;
 
 public class SortByName implements Comparator<CheatSheet> {
     public int compare(CheatSheet a, CheatSheet b) {
-        Boolean isAFavorited = a.getIsFavourite();
-        Boolean isBFavorited = b.getIsFavourite();
-        int favComparator = isBFavorited.compareTo(isAFavorited);
+        Boolean isAFavourited = a.getIsFavourite();
+        Boolean isBFavourited = b.getIsFavourite();
+        int favComparator = isBFavourited.compareTo(isAFavourited);
         if (favComparator != 0) {
             return favComparator;
         }
