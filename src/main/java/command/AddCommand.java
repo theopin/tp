@@ -4,6 +4,7 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import editor.Editor;
 import exception.CommandException;
+import exception.EditorException;
 import parser.CommandFlag;
 import ui.Printer;
 
@@ -34,11 +35,17 @@ public class AddCommand extends Command {
         }
 
         callContentEditor();
-        String description = editor.getContent();
+        try {
+            String description = editor.getContent();
+            CheatSheet cheatSheet = new CheatSheet(name, subject, description);
+            cheatSheetList.add(cheatSheet);
+            printer.printAddNewCheatSheetMessage(cheatSheet, cheatSheetList);
+        } catch (EditorException e) {
+            throw new CommandException(e.getMessage());
+        }
 
-        CheatSheet cheatSheet = new CheatSheet(name, subject, description);
-        cheatSheetList.add(cheatSheet);
-        printer.printAddNewCheatSheetMessage(cheatSheet, cheatSheetList);
+
+
     }
 
     private void callContentEditor() {
