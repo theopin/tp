@@ -128,7 +128,7 @@ public class DataFileWriter extends DataFile {
      * @param mainRoot                       The root that the created element needs to be joined to.
      */
     private void insertFileSubject(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
-        String fileContent = cheatSheet.getDetails();
+        String fileContent = cheatSheet.getSubject();
         Element fileContentElement = xmlFileStructure.createElement(SUBJECT_ELEMENT);
         appendToFileStructure(xmlFileStructure, mainRoot, fileContent, fileContentElement);
     }
@@ -142,7 +142,7 @@ public class DataFileWriter extends DataFile {
      * @param mainRoot                       The root that the created element needs to be joined to.
      */
     private void insertFileContents(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
-        String fileContent = cheatSheet.getSubject();
+        String fileContent = cheatSheet.getDetails();
         Element fileContentElement = xmlFileStructure.createElement(CONTENTS_ELEMENT);
         appendToFileStructure(xmlFileStructure, mainRoot, fileContent, fileContentElement);
     }

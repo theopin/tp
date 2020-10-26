@@ -16,8 +16,9 @@ public class DataFileReaderTest extends DataFileTest {
             + "<contents>Test Success!</contents>"
             + System.lineSeparator()
             + "</main>";
+
     @Test
-    void addFile_name_success() {
+    void readFile_name_success() {
         CheatSheetList.clear();
         createSampleFile(sampleTest, fileInput);
 
@@ -31,7 +32,7 @@ public class DataFileReaderTest extends DataFileTest {
     }
 
     @Test
-    void addFile_subject_success() {
+    void readFile_subject_success() {
         CheatSheetList.clear();
         createSampleFile(sampleTest, fileInput);
 
@@ -45,7 +46,7 @@ public class DataFileReaderTest extends DataFileTest {
     }
 
     @Test
-    void addFile_details_success() {
+    void readFile_details_success() {
         CheatSheetList.clear();
         createSampleFile(sampleTest, fileInput);
 
