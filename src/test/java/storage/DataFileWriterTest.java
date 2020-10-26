@@ -70,5 +70,17 @@ public class DataFileWriterTest extends DataFileTest {
         }
     }
 
+    @Test
+    public void writeDataFiles_emptyCheatSheetList_success() {
+        createDataDir();
+        CheatSheetList.clear();
+        testWriter.executeFunction();
+
+        String[] userDirectoryFiles = dataDir.toFile().list();
+        eraseFile(dataDir);
+
+        int directoryFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
+        assertEquals(0, directoryFiles);
+    }
     */
 }
