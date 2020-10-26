@@ -99,7 +99,7 @@ public class DataFileWriter extends DataFile {
         if (!Files.exists(DATA_DIR)) {
             Files.createDirectory(DATA_DIR);
         }
-        if(!Files.exists(subjectDirectory)) {
+        if (!Files.exists(subjectDirectory)) {
             Files.createDirectory(subjectDirectory);
         }
     }

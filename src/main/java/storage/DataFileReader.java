@@ -73,7 +73,7 @@ public class DataFileReader extends DataFile {
         try {
             extractFromDirectory(DATA_DIR);
         } catch (IOException e) {
-                printer.print(e.getMessage());
+            printer.print(e.getMessage());
         }
 
     }
@@ -147,7 +147,7 @@ public class DataFileReader extends DataFile {
     }
 
     /**
-     * Extracts and bundles components together to create a new cheatSheet
+     * Extracts and bundles components together to create a new cheatSheet.
      *
      * @param cheatSheetDocument  File of the cheatSheet
      * @param favouriteElement    Node containing the favourite status

@@ -13,6 +13,7 @@ public class DataFileDestroyer extends DataFile {
     public DataFileDestroyer(Printer printer) {
         this.printer = printer;
     }
+
     private CheatSheetList cheatSheetList;
 
     /**
@@ -60,7 +61,7 @@ public class DataFileDestroyer extends DataFile {
     }
 
     /**
-     * Deletes all cheatsheet files from the /data directory in a recursive manner
+     * Deletes all cheatsheet files from the /data directory in a recursive manner.
      *
      * @throws IOException Thrown if the /data directory is missing or empty.
      */
@@ -82,7 +83,7 @@ public class DataFileDestroyer extends DataFile {
             Path filePath = Paths.get(USER_DIR, DATA, dataDirectoryFile);
 
             if (Files.isDirectory(filePath)) {
-                if(!filePath.toFile().getName().equals(PRELOADED)){
+                if (!filePath.toFile().getName().equals(PRELOADED)) {
                     clearDirectory(filePath);
                 }
                 continue;
