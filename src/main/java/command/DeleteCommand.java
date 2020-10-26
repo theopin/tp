@@ -9,11 +9,10 @@ import ui.Printer;
 
 public class DeleteCommand extends FinderCommand {
     protected DataFileDestroyer fileDestroyer;
-
     public static final String invoker = "/delete";
 
-    public DeleteCommand(Printer printer, DataFileDestroyer fileDestroyer) {
-        super(printer);
+    public DeleteCommand(Printer printer, CheatSheetList cheatSheetList, DataFileDestroyer fileDestroyer) {
+        super(printer, cheatSheetList);
         this.fileDestroyer = fileDestroyer;
 
         flagsToDescriptions.put(CommandFlag.NAME, null);
@@ -26,9 +25,9 @@ public class DeleteCommand extends FinderCommand {
     public void execute() throws CommandException {
         try {
             CheatSheet cheatSheetToDelete = getCheatSheetFromNameOrIndex();
-            CheatSheetList.remove(cheatSheetToDelete.getName());
+            cheatSheetList.remove(cheatSheetToDelete.getName());
             fileDestroyer.executeFunction(cheatSheetToDelete.getName());
-            printer.printDeleteCheatSheetMessage(cheatSheetToDelete);
+            printer.printDeleteCheatSheetMessage(cheatSheetToDelete, cheatSheetList);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw new CommandException("Please enter a valid name or index");
         } catch (NumberFormatException n) {

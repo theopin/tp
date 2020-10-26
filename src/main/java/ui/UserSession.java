@@ -1,5 +1,6 @@
 package ui;
 
+import cheatsheet.CheatSheetList;
 import command.Command;
 import editor.Editor;
 import exception.CommandException;
@@ -13,22 +14,24 @@ public class UserSession {
      * These are objects that will be injected to command subclasses
      * that allow them to execute.
      */
-    Printer printer;
+    CheatSheetList cheatSheetList;
     DataFileReader fileReader;
     DataFileWriter fileWriter;
     DataFileDestroyer fileDestroyer;
     Editor editor;
-    Ui ui;
     Parser userCommandParser;
+    Printer printer;
+    Ui ui;
 
     public UserSession() {
-        printer = new Printer();
-        fileReader = new DataFileReader(printer);
-        fileWriter = new DataFileWriter(printer);
-        fileDestroyer = new DataFileDestroyer(printer);
+        cheatSheetList = new CheatSheetList();
         editor = new Editor();
         ui = new Ui();
-        userCommandParser = new Parser(fileDestroyer, printer, ui, editor);
+        printer = new Printer();
+        fileReader = new DataFileReader(printer, cheatSheetList);
+        fileWriter = new DataFileWriter(printer, cheatSheetList);
+        fileDestroyer = new DataFileDestroyer(printer);
+        userCommandParser = new Parser(cheatSheetList, editor, fileDestroyer, printer, ui);
     }
 
     public void runProgramSequence() {
@@ -46,7 +49,7 @@ public class UserSession {
                 printer.print(c.getMessage());
                 continue;
             }
-            fileWriter. executeFunction();
+            fileWriter.executeFunction();
         } while (!Command.isExitCommand);
     }
 

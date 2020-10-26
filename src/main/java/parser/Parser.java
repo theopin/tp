@@ -1,5 +1,6 @@
 package parser;
 
+import cheatsheet.CheatSheetList;
 import command.Command;
 import command.AddCommand;
 import command.ClearCommand;
@@ -24,21 +25,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
+    private CheatSheetList cheatSheetList;
     private DataFileDestroyer fileDestroyer;
+    private Editor editor;
     private Printer printer;
     private Ui ui;
-    private Editor editor;
 
     private static final String FLAG_REGEX = " /[a-z] ";
 
     public Parser() {
     }
 
-    public Parser(DataFileDestroyer fileDestroyer, Printer printer, Ui ui, Editor editor) {
+    public Parser(CheatSheetList cheatSheetList, Editor editor,
+                  DataFileDestroyer fileDestroyer,  Printer printer, Ui ui) {
+        this.cheatSheetList = cheatSheetList;
+        this.editor = editor;
         this.fileDestroyer = fileDestroyer;
         this.printer = printer;
         this.ui = ui;
-        this.editor = editor;
     }
 
     public Command parse(String userInput) throws CommandException {
@@ -55,25 +59,25 @@ public class Parser {
         String parsedInput = userInput.split(" ")[0];
         switch (parsedInput) {
         case AddCommand.invoker:
-            return new AddCommand(printer, editor);
+            return new AddCommand(printer, cheatSheetList, editor);
         case ClearCommand.invoker:
-            return new ClearCommand(printer, fileDestroyer);
+            return new ClearCommand(printer, cheatSheetList, fileDestroyer);
         case DeleteCommand.invoker:
-            return new DeleteCommand(printer, fileDestroyer);
+            return new DeleteCommand(printer, cheatSheetList, fileDestroyer);
         case EditCommand.invoker:
-            return new EditCommand(printer, editor);
+            return new EditCommand(printer, cheatSheetList, editor);
         case ExitCommand.invoker:
             return new ExitCommand(printer);
         case FindCommand.invoker:
-            return new FindCommand(printer);
+            return new FindCommand(printer, cheatSheetList);
         case HelpCommand.invoker:
             return new HelpCommand(printer);
         case ListCommand.invoker:
-            return new ListCommand(printer);
+            return new ListCommand(printer, cheatSheetList);
         case ViewCommand.invoker:
-            return new ViewCommand(printer);
+            return new ViewCommand(printer, cheatSheetList);
         case FavouriteCommand.invoker:
-            return new FavouriteCommand(printer);
+            return new FavouriteCommand(printer, cheatSheetList);
         default:
             throw new CommandException("Please enter a valid command");
         }

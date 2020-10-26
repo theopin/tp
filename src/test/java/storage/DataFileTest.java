@@ -1,5 +1,6 @@
 package storage;
 
+import cheatsheet.CheatSheetList;
 import ui.Printer;
 
 import java.io.IOException;
@@ -18,8 +19,9 @@ public class DataFileTest {
     Path dataDir = Paths.get(userDir, data);
 
     Printer printer = new Printer();
-    DataFileWriter testWriter = new DataFileWriter(printer);
-    DataFileReader testReader = new DataFileReader(printer);
+    CheatSheetList cheatSheetList = new CheatSheetList();
+    DataFileWriter testWriter = new DataFileWriter(printer, cheatSheetList);
+    DataFileReader testReader = new DataFileReader(printer, cheatSheetList);
     DataFileDestroyer testDestroyer = new DataFileDestroyer(printer);
 
     void createDataDir() {

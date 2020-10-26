@@ -4,8 +4,11 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import exception.CommandException;
 import parser.CommandFlag;
-import sort.SortByLanguage;
+import sort.SortBySubject;
+import sort.SortBySubjectRev;
 import sort.SortByName;
+import sort.SortByNameRev;
+import ui.ConsoleColorsEnum;
 import ui.Printer;
 
 import java.util.ArrayList;
@@ -14,8 +17,8 @@ import java.util.Scanner;
 public class FindCommand extends FinderCommand {
     public static final String invoker = "/find";
 
-    public FindCommand(Printer printer) {
-        super(printer);
+    public FindCommand(Printer printer, CheatSheetList cheatSheetList) {
+        super(printer, cheatSheetList);
 
         flagsToDescriptions.put(CommandFlag.SUBJECT, null);
         flagsToDescriptions.put(CommandFlag.SECTIONKEYWORD, null);
@@ -27,7 +30,7 @@ public class FindCommand extends FinderCommand {
     public void execute() throws CommandException {
         String subject = "";
         String keyword = "";
-        ArrayList<CheatSheet> cheatSheetArrayList = new ArrayList<>();
+        ArrayList<CheatSheet> filteredCheatSheetList = new ArrayList<>();
 
         if (flagsToDescriptions.containsKey(CommandFlag.SUBJECT)) {
             subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
@@ -36,61 +39,66 @@ public class FindCommand extends FinderCommand {
             keyword = flagsToDescriptions.get(CommandFlag.SECTIONKEYWORD);
         }
 
-        for (CheatSheet cs : CheatSheetList.getList()) {
+        for (CheatSheet cs : cheatSheetList.getList()) {
             if (!subject.isEmpty() && keyword.isEmpty()) {
                 if (cs.getSubject().contains(subject)) {
-                    cheatSheetArrayList.add(cs);
+                    filteredCheatSheetList.add(cs);
                 }
             } else if (!keyword.isEmpty() && subject.isEmpty()) {
                 if (cs.getDetails().contains(keyword)) {
-                    cheatSheetArrayList.add(cs);
+                    filteredCheatSheetList.add(cs);
                 }
             } else if (!subject.isEmpty() && !keyword.isEmpty()) {
                 if (cs.getSubject().contains(subject)
                         && cs.getDetails().contains(keyword)) {
-                    cheatSheetArrayList.add(cs);
+                    filteredCheatSheetList.add(cs);
                 }
             } else {
                 throw new CommandException("Please enter at least an argument");
             }
         }
 
-        if (cheatSheetArrayList.isEmpty()) {
+        if (filteredCheatSheetList.isEmpty()) {
             throw new CommandException("No matching content found");
         }
 
-        printMatches(cheatSheetArrayList);
-        askForSortingConfigAndPrint(cheatSheetArrayList);
+        printMatches(filteredCheatSheetList);
+        askForSortingConfigAndPrint(filteredCheatSheetList);
     }
 
-    protected void askForSortingConfigAndPrint(ArrayList<CheatSheet> cheatSheetArrayList) {
-        printer.print("Sort filter (na: name ascending, la: language ascending, nd: name descending"
-            + ", ld: language descending or <enter> to skip)");
+    protected void askForSortingConfigAndPrint(ArrayList<CheatSheet> filteredCheatSheetList) {
+        final String promptSortConfig = ConsoleColorsEnum.RED_TEXT
+                + "Sort filter (na: name ascending, sa: subject ascending, nd: name descending" + ", sd: "
+                + "subject descending or <<enter>> to skip)" + ConsoleColorsEnum.RESET_TEXT;
 
+        printer.print(promptSortConfig);
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         while (!input.isEmpty()) {
             switch (input) {
             case "na":
-                cheatSheetArrayList.sort(new SortByName());
+                filteredCheatSheetList.sort(new SortByName());
+                printer.print("Sorted name in ascending order");
                 break;
-            case "la":
-                cheatSheetArrayList.sort(new SortByLanguage());
+            case "sa":
+                filteredCheatSheetList.sort(new SortBySubject());
+                printer.print("Sorted subject in ascending order");
                 break;
             case "nd":
-                cheatSheetArrayList.sort(new SortByName().reversed());
+                filteredCheatSheetList.sort(new SortByNameRev());
+                printer.print("Sorted name in descending order");
                 break;
-            case "ld":
-                cheatSheetArrayList.sort(new SortByLanguage().reversed());
+            case "sd":
+                filteredCheatSheetList.sort(new SortBySubjectRev());
+                printer.print("Sorted subject in descending order");
                 break;
             default:
-                cheatSheetArrayList.sort(new SortByName());
+                filteredCheatSheetList.sort(new SortByName());
             }
-
-            printMatches(cheatSheetArrayList);
+            printer.printCheatSheetList(cheatSheetList);
+            printer.print(promptSortConfig);
             input = scanner.nextLine();
         }
-        askForSortingConfigAndPrint(cheatSheetArrayList);
     }
 
     private void printMatches(ArrayList<CheatSheet> cheatSheetArrayList) {

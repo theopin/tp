@@ -1,6 +1,7 @@
 package command;
 
 import cheatsheet.CheatSheet;
+import cheatsheet.CheatSheetList;
 import exception.CommandException;
 import parser.CommandFlag;
 import ui.Printer;
@@ -12,8 +13,8 @@ import java.awt.datatransfer.StringSelection;
 public class ViewCommand extends FinderCommand {
     public static final String invoker = "/view";
 
-    public ViewCommand(Printer printer) {
-        super(printer);
+    public ViewCommand(Printer printer, CheatSheetList cheatSheetList) {
+        super(printer, cheatSheetList);
 
         flagsToDescriptions.put(CommandFlag.NAME, null);
         flagsToDescriptions.put(CommandFlag.INDEX, null);

@@ -24,9 +24,11 @@ import java.nio.file.Files;
  * to insert the cheatsheets present in the folder to the application.
  */
 public class DataFileReader extends DataFile {
+    private CheatSheetList cheatSheetList;
 
-    public DataFileReader(Printer printer) {
+    public DataFileReader(Printer printer, CheatSheetList cheatSheetList) {
         this.printer = printer;
+        this.cheatSheetList = cheatSheetList;
     }
 
     /**
@@ -83,7 +85,7 @@ public class DataFileReader extends DataFile {
     /**
      * Extracts the contents of the cheatsheet from the specified file.
      *
-     * @param cheatSheetDocument            File of the cheatSheet
+     * @param cheatSheetDocument File of the cheatSheet
      * @throws IOException                  Thrown if an I/O error prevents the file from being fully parsed.
      * @throws ParserConfigurationException Thrown if a serious configuration error is caught.
      * @throws SAXException                 Thrown if a basic error or warning information from either
@@ -137,7 +139,7 @@ public class DataFileReader extends DataFile {
     /**
      * Extracts the favourite status of the referenced cheatSheet.
      *
-     * @param favouriteElement  Node containing the favourite status of the cheatSheet.
+     * @param favouriteElement   Node containing the favourite status of the cheatSheet.
      * @return isMarkedFavourite Boolean indicating if the cheatSheet should be marked as
      *                           a favourite.
      */
@@ -155,11 +157,10 @@ public class DataFileReader extends DataFile {
     }
 
 
-
     /**
      * Extracts the section of the referenced cheatSheet.
      *
-     * @param relevantElement  Node containing the contents of the cheatSheet.
+     * @param relevantElement Node containing the contents of the cheatSheet.
      * @return cheatsheetContent String containing the contents of the cheatSheet.
      */
     private String extractCheatSheetSection(Node relevantElement) {
@@ -178,7 +179,7 @@ public class DataFileReader extends DataFile {
      * Replaces certain characters to conform to the xml file format.
      *
      * @param details The string that needs to be refined.
-     * @return        A string with all the relevant characters replaced.
+     * @return A string with all the relevant characters replaced.
      */
     private String convertSpecialChars(String details) {
         return details.replaceAll(AMPERSAND_XML, AMPERSAND)
@@ -194,7 +195,7 @@ public class DataFileReader extends DataFile {
      * and adds it to CheatSheetList.
      *
      * @param isMarkedFavourite Indicator of the favourite status of the cheatSheet.
-     * @param cheatSheetName Name of the cheatSheet.
+     * @param cheatSheetName    Name of the cheatSheet.
      * @param cheatSheetContent Contents of the cheatSheet.
      */
     private void createNewCheatSheet(boolean isMarkedFavourite,
@@ -206,6 +207,6 @@ public class DataFileReader extends DataFile {
                 cheatSheetContent);
 
         newCheatSheet.setFavourite(isMarkedFavourite);
-        CheatSheetList.add(newCheatSheet);
+        cheatSheetList.add(newCheatSheet);
     }
 }
