@@ -68,10 +68,14 @@ public class DataFileWriter extends DataFile {
      * @param cheatSheet The cheatSheet that is currently being converted into a file.
      */
     public void convertCheatSheetToFile(CheatSheet cheatSheet) {
+        String subjectName = cheatSheet.getSubject();
         String fileName = cheatSheet.getName() + XML_EXTENSION;
-        Path textFile = Paths.get(USER_DIR, DATA, fileName);
+
+        Path subjectDirectory = Paths.get(USER_DIR, DATA, subjectName);
+        Path textFile = Paths.get(USER_DIR, DATA, subjectName, fileName);
 
         try {
+            verifyDirectoryExistence(subjectDirectory);
             if (!Files.exists(textFile)) {
                 Files.createFile(textFile);
             }
@@ -80,6 +84,23 @@ public class DataFileWriter extends DataFile {
             writeToFile(textFile, cheatSheetFile);
         } catch (IOException | ParserConfigurationException | TransformerException e) {
             printer.print(e.getMessage());
+        }
+    }
+
+    /**
+     * Checks if the /data and /subjectName directories exist and creates them if they
+     * are currently non-existent.
+     *
+     * @param subjectDirectory The cheatSheet that is currently being converted into a file.
+     * @throws IOException     Thrown if errors occur when attempting to create the
+     *                         respective directories.
+     */
+    private void verifyDirectoryExistence(Path subjectDirectory) throws IOException {
+        if (!Files.exists(DATA_DIR)) {
+            Files.createDirectory(DATA_DIR);
+        }
+        if (!Files.exists(subjectDirectory)) {
+            Files.createDirectory(subjectDirectory);
         }
     }
 
