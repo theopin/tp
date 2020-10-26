@@ -25,18 +25,12 @@ public class AddCommand extends Command {
 
     @Override
     public void execute() throws CommandException {
-        String name = flagsToDescriptions.get(CommandFlag.NAME).trim();
+        String name = flagsToDescriptions.get(CommandFlag.NAME);
         if (cheatSheetList.exists(name)) {
             throw new CommandException("Name already existed, please enter another name");
         }
-        if (name.isEmpty() || name.isBlank()) {
-            throw new CommandException("Name cannot be blank");
-        }
 
-        String subject = flagsToDescriptions.get(CommandFlag.SUBJECT).trim();
-        if (subject.isEmpty() || subject.isBlank()) {
-            throw new CommandException("Subject cannot be blank");
-        }
+        String subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
         if (subject != null) {
             subject = convertToPascalCaseNoSpace(subject);
         } else {
@@ -49,13 +43,9 @@ public class AddCommand extends Command {
             CheatSheet cheatSheet = new CheatSheet(name, subject, description);
             cheatSheetList.add(cheatSheet);
             printer.printAddNewCheatSheetMessage(cheatSheet, cheatSheetList);
-        } catch (EditorException e) {
+        } catch (EditorException | NullPointerException e) {
             throw new CommandException(e.getMessage());
         }
-
-        CheatSheet cheatSheet = new CheatSheet(name.trim(), subject.trim(), description);
-        cheatSheetList.add(cheatSheet);
-        printer.printAddNewCheatSheetMessage(cheatSheet, cheatSheetList);
     }
 
     private void callContentEditor() {
