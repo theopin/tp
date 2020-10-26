@@ -103,7 +103,7 @@ public class DataFileReader extends DataFile {
                     .equals(PRELOADED);
 
             if (isPreloadedFile) {
-                dataDirectoryFile.setReadOnly();
+                preloadedCheatSheets.add(dataDirectoryFile.toPath());
             }
 
             try {

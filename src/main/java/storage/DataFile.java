@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 /**
  * A general class that stores certain constants regarding the
@@ -47,6 +48,7 @@ public abstract class DataFile {
     protected static final Path DATA_DIR = Paths.get(USER_DIR, DATA);
 
     protected Printer printer;
+    protected static ArrayList<Path> preloadedCheatSheets = new ArrayList<>();
 
     /**
      * A method that is to be run based on its subclass.

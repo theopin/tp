@@ -72,16 +72,43 @@ public class DataFileWriter extends DataFile {
         String fileName = cheatSheet.getName() + XML_EXTENSION;
 
         Path subjectDirectory = Paths.get(USER_DIR, DATA, subjectName);
+        Path possiblePreloadedFile = Paths.get(USER_DIR, DATA,
+                PRELOADED, subjectName, fileName);
         Path textFile = Paths.get(USER_DIR, DATA, subjectName, fileName);
 
         try {
-            verifyDirectoryExistence(subjectDirectory);
-            if (!Files.exists(textFile)) {
-                Files.createFile(textFile);
+            if (preloadedCheatSheets.contains(possiblePreloadedFile)) {
+                textFile = possiblePreloadedFile;
             }
-            if (!Files.isWritable(textFile)) {
-                return;
+            else {
+                verifyDirectoryExistence(subjectDirectory);
+                if (!Files.exists(textFile)) {
+                    Files.createFile(textFile);
+                }
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             Document cheatSheetFile = buildFileContents(cheatSheet);
 
             writeToFile(textFile, cheatSheetFile);
