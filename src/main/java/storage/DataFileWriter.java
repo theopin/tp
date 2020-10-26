@@ -72,13 +72,42 @@ public class DataFileWriter extends DataFile {
         String fileName = cheatSheet.getName() + XML_EXTENSION;
 
         Path subjectDirectory = Paths.get(USER_DIR, DATA, subjectName);
+        Path possiblePreloadedFile = Paths.get(USER_DIR, DATA,
+                PRELOADED, subjectName, fileName);
         Path textFile = Paths.get(USER_DIR, DATA, subjectName, fileName);
 
         try {
-            verifyDirectoryExistence(subjectDirectory);
-            if (!Files.exists(textFile)) {
-                Files.createFile(textFile);
+            if (preloadedCheatSheets.contains(possiblePreloadedFile)) {
+                textFile = possiblePreloadedFile;
+            } else {
+                verifyDirectoryExistence(subjectDirectory);
+                if (!Files.exists(textFile)) {
+                    Files.createFile(textFile);
+                }
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             Document cheatSheetFile = buildFileContents(cheatSheet);
 
             writeToFile(textFile, cheatSheetFile);
@@ -165,23 +194,9 @@ public class DataFileWriter extends DataFile {
      * @param mainRoot                      The root that the created element needs to be joined to.
      */
     private void insertFileContents(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
-        String fileContent = convertSpecialChars(cheatSheet.getDetails());
+        String fileContent = cheatSheet.getDetails();
         Element fileContentElement = xmlFileStructure.createElement(CONTENTS_ELEMENT);
         appendToFileStructure(xmlFileStructure, mainRoot, fileContent, fileContentElement);
-    }
-
-    /**
-     * Replaces certain characters to conform to the xml file format.
-     *
-     * @param details The string that needs to be refined.
-     * @return        A string with all the relevant characters replaced.
-     */
-    private String convertSpecialChars(String details) {
-        return details.replaceAll(AMPERSAND, AMPERSAND_XML)
-                .replaceAll(LESS_THAN, LESS_THAN_XML)
-                .replaceAll(MORE_THAN, MORE_THAN_XML)
-                .replaceAll(SINGLE_QUOTE, SINGLE_QUOTE_XML)
-                .replaceAll(DOUBLE_QUOTE, DOUBLE_QUOTE_XML);
     }
 
     /**

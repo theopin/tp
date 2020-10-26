@@ -4,6 +4,7 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import editor.Editor;
 import exception.CommandException;
+import exception.EditorException;
 import parser.CommandFlag;
 import ui.Printer;
 
@@ -19,6 +20,7 @@ public class AddCommand extends Command {
         flagsToDescriptions.put(CommandFlag.NAME, null);
         flagsToDescriptions.put(CommandFlag.SUBJECT, null);
         alternativeArguments.add(CommandFlag.NAME);
+        alternativeArguments.add(CommandFlag.SUBJECT);
     }
 
     @Override
@@ -26,6 +28,9 @@ public class AddCommand extends Command {
         String name = flagsToDescriptions.get(CommandFlag.NAME);
         if (cheatSheetList.exists(name)) {
             throw new CommandException("Name already existed, please enter another name");
+        }
+        if (name.isEmpty() || name.isBlank()) {
+            throw new CommandException("Name cannot be blank");
         }
 
         String subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
@@ -36,11 +41,15 @@ public class AddCommand extends Command {
         }
 
         callContentEditor();
-        String description = editor.getContent();
 
-        CheatSheet cheatSheet = new CheatSheet(name.trim(), subject.trim(), description);
-        cheatSheetList.add(cheatSheet);
-        printer.printAddNewCheatSheetMessage(cheatSheet, cheatSheetList);
+        try {
+            String description = editor.getContent();
+            CheatSheet cheatSheet = new CheatSheet(name, subject, description);
+            cheatSheetList.add(cheatSheet);
+            printer.printAddNewCheatSheetMessage(cheatSheet, cheatSheetList);
+        } catch (EditorException | NullPointerException e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 
     private void callContentEditor() {

@@ -43,7 +43,6 @@ public abstract class FinderCommand extends Command {
             return cs.getDetails().contains(keyword);
         } else if (subject != null && keyword != null && name == null) {
             return cs.getSubject().contains(subject) && cs.getDetails().contains(keyword);
-        } else if ()
         } else {
             throw new CommandException("Please enter at least an argument");
         }
