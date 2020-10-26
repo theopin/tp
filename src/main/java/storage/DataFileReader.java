@@ -30,8 +30,8 @@ public class DataFileReader extends DataFile {
     }
 
     /**
-     * Converts the file contents into tasks that can be added into
-     * the list of tasks. Also handles an exception arising
+     * Converts the file contents into cheatsheets that can be added into
+     * the list of cheatsheets. Also handles an exception arising
      * from missing directory at the specified location.
      */
     @Override
