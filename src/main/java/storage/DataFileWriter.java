@@ -79,8 +79,7 @@ public class DataFileWriter extends DataFile {
         try {
             if (preloadedCheatSheets.contains(possiblePreloadedFile)) {
                 textFile = possiblePreloadedFile;
-            }
-            else {
+            } else {
                 verifyDirectoryExistence(subjectDirectory);
                 if (!Files.exists(textFile)) {
                     Files.createFile(textFile);
