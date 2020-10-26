@@ -37,12 +37,13 @@ public abstract class FinderCommand extends Command {
 
     public boolean checkCheatSheetExistsInCheatSheetList(CheatSheet cs, String name, String subject,
                                                             String keyword) throws CommandException {
-        if (subject != null && keyword == null) {
+        if (subject != null && keyword == null && name == null) {
             return cs.getSubject().contains(subject);
-        } else if (keyword != null && subject == null) {
+        } else if (keyword != null && subject == null && name == null) {
             return cs.getDetails().contains(keyword);
-        } else if (subject != null) {
+        } else if (subject != null && keyword != null && name == null) {
             return cs.getSubject().contains(subject) && cs.getDetails().contains(keyword);
+        } else if ()
         } else {
             throw new CommandException("Please enter at least an argument");
         }
