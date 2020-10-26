@@ -195,23 +195,9 @@ public class DataFileWriter extends DataFile {
      * @param mainRoot                      The root that the created element needs to be joined to.
      */
     private void insertFileContents(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
-        String fileContent = convertSpecialChars(cheatSheet.getDetails());
+        String fileContent = cheatSheet.getDetails();
         Element fileContentElement = xmlFileStructure.createElement(CONTENTS_ELEMENT);
         appendToFileStructure(xmlFileStructure, mainRoot, fileContent, fileContentElement);
-    }
-
-    /**
-     * Replaces certain characters to conform to the xml file format.
-     *
-     * @param details The string that needs to be refined.
-     * @return        A string with all the relevant characters replaced.
-     */
-    private String convertSpecialChars(String details) {
-        return details.replaceAll(AMPERSAND, AMPERSAND_XML)
-                .replaceAll(LESS_THAN, LESS_THAN_XML)
-                .replaceAll(MORE_THAN, MORE_THAN_XML)
-                .replaceAll(SINGLE_QUOTE, SINGLE_QUOTE_XML)
-                .replaceAll(DOUBLE_QUOTE, DOUBLE_QUOTE_XML);
     }
 
     /**
