@@ -9,18 +9,21 @@ import ui.Printer;
 import java.util.ArrayList;
 
 public abstract class FinderCommand extends Command {
-    public FinderCommand(Printer printer) {
+    protected CheatSheetList cheatSheetList;
+
+    public FinderCommand(Printer printer, CheatSheetList cheatSheetList) {
         super(printer);
+        this.cheatSheetList = cheatSheetList;
     }
 
     protected CheatSheet getCheatSheetFromNameOrIndex() throws CommandException {
         CheatSheet desiredCheatSheet = null;
         if (flagsToDescriptions.get(CommandFlag.NAME) != null) {
             String name = flagsToDescriptions.get(CommandFlag.NAME);
-            desiredCheatSheet = CheatSheetList.get(name);
+            desiredCheatSheet = cheatSheetList.get(name);
         } else if (flagsToDescriptions.get(CommandFlag.INDEX) != null) {
             int index = Integer.parseInt(flagsToDescriptions.get(CommandFlag.INDEX));
-            desiredCheatSheet = CheatSheetList.get(index);
+            desiredCheatSheet = cheatSheetList.get(index);
         }
 
         if (desiredCheatSheet == null) {
@@ -30,7 +33,7 @@ public abstract class FinderCommand extends Command {
         return desiredCheatSheet;
     }
 
-    protected boolean checkCheatSheetExistsInCheatSheetList(CheatSheet cs, String subject,
+    public boolean checkCheatSheetExistsInCheatSheetList(CheatSheet cs, String subject,
                                                             String keyword) throws CommandException {
         if (subject != null && keyword == null) {
             return cs.getSubject().contains(subject);

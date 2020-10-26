@@ -9,12 +9,13 @@ import ui.Printer;
 
 public class AddCommand extends Command {
     private final Editor editor;
-
+    private CheatSheetList cheatSheetList;
     public static final String invoker = "/add";
 
 
-    public AddCommand(Printer printer, Editor editor) {
+    public AddCommand(Printer printer, CheatSheetList cheatSheetList, Editor editor) {
         super(printer);
+        this.cheatSheetList = cheatSheetList;
         this.editor = editor;
 
         flagsToDescriptions.put(CommandFlag.NAME, null);
@@ -25,7 +26,7 @@ public class AddCommand extends Command {
     @Override
     public void execute() throws CommandException {
         String name = flagsToDescriptions.get(CommandFlag.NAME);
-        if (CheatSheetList.exists(name)) {
+        if (cheatSheetList.exists(name)) {
             throw new CommandException("Name already existed, please enter another name");
         }
 
@@ -38,8 +39,8 @@ public class AddCommand extends Command {
         String description = editor.getContent();
 
         CheatSheet cheatSheet = new CheatSheet(name, subject, description);
-        CheatSheetList.add(cheatSheet);
-        printer.printAddNewCheatSheetMessage(cheatSheet);
+        cheatSheetList.add(cheatSheet);
+        printer.printAddNewCheatSheetMessage(cheatSheet, cheatSheetList);
     }
 
     private void callContentEditor() {

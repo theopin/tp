@@ -4,17 +4,19 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import exception.CommandException;
 import parser.CommandFlag;
+
 import ui.Printer;
 import ui.TablePrinter;
 
 import java.util.ArrayList;
 
 public class FindCommand extends FinderCommand {
+    private CheatSheetList cheatSheetList;
     public static final String invoker = "/find";
 
-    public FindCommand(Printer printer) {
-        super(printer);
-
+    public FindCommand(Printer printer, CheatSheetList cheatSheetList) {
+        super(printer, cheatSheetList);
+        this.cheatSheetList = cheatSheetList;
         flagsToDescriptions.put(CommandFlag.SUBJECT, null);
         flagsToDescriptions.put(CommandFlag.SECTIONKEYWORD, null);
         alternativeArguments.add(CommandFlag.SUBJECT);
@@ -23,13 +25,12 @@ public class FindCommand extends FinderCommand {
 
     @Override
     public void execute() throws CommandException {
-
         ArrayList<CheatSheet> matchedContents = new ArrayList<>();
 
         String subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
         String keyword = flagsToDescriptions.get(CommandFlag.SECTIONKEYWORD);
 
-        for (CheatSheet cs : CheatSheetList.getList()) {
+        for (CheatSheet cs : cheatSheetList.getList()) {
             if (checkCheatSheetExistsInCheatSheetList(cs, subject, keyword)) {
                 matchedContents.add(cs);
             }
@@ -42,7 +43,7 @@ public class FindCommand extends FinderCommand {
         //printMatches(matchedContents);
         TablePrinter tp = new TablePrinter(matchedContents);
         tp.execute();
-        SortFilter sortFilter = new SortFilter();
+        SortFilter sortFilter = new SortFilter(cheatSheetList);
         sortFilter.execute(tp);
     }
 

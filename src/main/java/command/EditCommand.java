@@ -1,6 +1,7 @@
 package command;
 
 import cheatsheet.CheatSheet;
+import cheatsheet.CheatSheetList;
 import editor.Editor;
 import exception.CommandException;
 import parser.CommandFlag;
@@ -11,8 +12,8 @@ public class EditCommand extends FinderCommand {
 
     public static final String invoker = "/edit";
 
-    public EditCommand(Printer printer, Editor editor) {
-        super(printer);
+    public EditCommand(Printer printer, CheatSheetList cheatSheetList, Editor editor) {
+        super(printer, cheatSheetList);
         this.editor = editor;
 
         flagsToDescriptions.put(CommandFlag.NAME, null);

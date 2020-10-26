@@ -16,8 +16,8 @@ public class TablePrinter {
     int maxWidth = 30;
     boolean leftJustifiedRows = true;
 
-    public TablePrinter() throws CommandException {
-        makeRawTable(CheatSheetList.getList());
+    public TablePrinter(CheatSheetList cheatSheetList) throws CommandException {
+        makeRawTable(cheatSheetList.getList());
     }
 
     public TablePrinter(ArrayList<CheatSheet> cheatSheetToBePrinted) throws CommandException {
