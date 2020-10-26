@@ -32,6 +32,7 @@ public class TablePrinter {
         rawTable[0][3] = "DETAILS";
         for (int i = 1; i <= cheatSheetsToBePrinted.size(); i++) {
             CheatSheet cs = cheatSheetsToBePrinted.get(i - 1);
+            assert cs != null;
             rawTable[i][0] = String.valueOf(i);
             rawTable[i][1] = cs.getName().trim();
             try {

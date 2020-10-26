@@ -6,8 +6,6 @@ import exception.CommandException;
 import parser.CommandFlag;
 import ui.Printer;
 
-import java.util.ArrayList;
-
 public abstract class FinderCommand extends Command {
     protected CheatSheetList cheatSheetList;
 
