@@ -142,10 +142,6 @@ public class DataFileReader extends DataFile {
             }
         }
         bundleCheatSheetComponents(cheatSheetDocument, favouriteElement, subjectElement, contentElement);
-        if(cheatSheetDocument.getParent().equals(DATA)) {
-            cheatSheetDocument.delete();
-        }
-        
     }
 
     /**
