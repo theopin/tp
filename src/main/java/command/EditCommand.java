@@ -4,6 +4,7 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import editor.Editor;
 import exception.CommandException;
+import exception.EditorException;
 import parser.CommandFlag;
 import ui.Printer;
 
@@ -42,6 +43,10 @@ public class EditCommand extends FinderCommand {
         editor.setContent(desiredCheatSheet.getDetails());
         editor.waitForClose();
 
-        desiredCheatSheet.setDetails(editor.getContent());
+        try {
+            desiredCheatSheet.setDetails(editor.getContent());
+        } catch (EditorException e) {
+            printer.print(e.getMessage());
+        }
     }
 }
