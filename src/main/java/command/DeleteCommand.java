@@ -9,6 +9,7 @@ import ui.Printer;
 
 public class DeleteCommand extends FinderCommand {
     protected DataFileDestroyer fileDestroyer;
+
     public static final String invoker = "/delete";
 
     public DeleteCommand(Printer printer, CheatSheetList cheatSheetList, DataFileDestroyer fileDestroyer) {

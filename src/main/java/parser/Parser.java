@@ -48,10 +48,10 @@ public class Parser {
     public Command parse(String userInput) throws CommandException {
         Command commandToBeExecuted = parseCommandType(userInput);
         ArrayList<CommandFlag> flags = parseFlags(userInput);
-        LinkedHashMap<CommandFlag, String> flagstodescriptions = parseFlagDescriptions(userInput, flags);
+        LinkedHashMap<CommandFlag, String> flagsToDescriptions = parseFlagDescriptions(userInput, flags);
 
-        commandToBeExecuted.setFlagstodescriptionsMap(flagstodescriptions);
-        setMissingFlagsDescriptions(commandToBeExecuted);
+        commandToBeExecuted.setFlagstodescriptionsMap(flagsToDescriptions);
+        setMissingDescriptions(commandToBeExecuted);
         return commandToBeExecuted;
     }
 
@@ -103,20 +103,20 @@ public class Parser {
 
     private LinkedHashMap<CommandFlag, String> parseFlagDescriptions(String userInput, ArrayList<CommandFlag> flags)
             throws CommandException {
-        LinkedHashMap<CommandFlag, String> flagstodescriptions = new LinkedHashMap<>();
+        LinkedHashMap<CommandFlag, String> flagsToDescriptions = new LinkedHashMap<>();
         try {
             String[] details = userInput.split(FLAG_REGEX);
             for (int i = 1; i < details.length; i++) {
-                flagstodescriptions.put(flags.get(i - 1), details[i].trim());
+                flagsToDescriptions.put(flags.get(i - 1), details[i].trim());
             }
         } catch (IndexOutOfBoundsException i) {
             throw new CommandException("Please enter a valid index");
         }
 
-        return flagstodescriptions;
+        return flagsToDescriptions;
     }
 
-    private void setMissingFlagsDescriptions(Command commandToBeExecuted) {
+    private void setMissingDescriptions(Command commandToBeExecuted) {
         LinkedHashMap<CommandFlag, String> map = commandToBeExecuted.getFlagstodescriptionsMap();
         while (!commandToBeExecuted.hasAlternativeArgument()) {
             printer.printAlternativeArgumentPrompt(commandToBeExecuted);
