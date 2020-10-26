@@ -4,6 +4,7 @@ import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
 import editor.Editor;
 import exception.CommandException;
+import exception.EditorException;
 import parser.CommandFlag;
 import ui.Printer;
 
@@ -43,11 +44,14 @@ public class AddCommand extends Command {
         }
 
         callContentEditor();
-        String description = editor.getContent();
-
-        CheatSheet cheatSheet = new CheatSheet(name.trim(), subject.trim(), description);
-        cheatSheetList.add(cheatSheet);
-        printer.printAddNewCheatSheetMessage(cheatSheet, cheatSheetList);
+        try {
+            String description = editor.getContent();
+            CheatSheet cheatSheet = new CheatSheet(name, subject, description);
+            cheatSheetList.add(cheatSheet);
+            printer.printAddNewCheatSheetMessage(cheatSheet, cheatSheetList);
+        } catch (EditorException | NullPointerException e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 
     private void callContentEditor() {
