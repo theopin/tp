@@ -10,7 +10,6 @@ import ui.TablePrinter;
 
 public class ListCommand extends Command {
     public static final String invoker = "/list";
-    private CheatSheetList cheatSheetList;
 
     public ListCommand(Printer printer, CheatSheetList cheatSheetList) {
         super(printer);

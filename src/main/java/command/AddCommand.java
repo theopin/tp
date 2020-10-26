@@ -9,9 +9,7 @@ import ui.Printer;
 
 public class AddCommand extends Command {
     private final Editor editor;
-    private CheatSheetList cheatSheetList;
     public static final String invoker = "/add";
-
 
     public AddCommand(Printer printer, CheatSheetList cheatSheetList, Editor editor) {
         super(printer);

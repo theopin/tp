@@ -1,5 +1,6 @@
 package command;
 
+import cheatsheet.CheatSheetList;
 import exception.CommandException;
 
 import parser.CommandFlag;
@@ -15,10 +16,11 @@ import java.util.LinkedHashMap;
  */
 public abstract class Command {
     protected Printer printer;
+    protected CheatSheetList cheatSheetList;
 
     protected ArrayList<CommandFlag> alternativeArguments;
     protected LinkedHashMap<CommandFlag, String> flagsToDescriptions;
-    public static boolean isExitCommand;
+    public boolean isExitCommand;
 
     public Command() {
     }

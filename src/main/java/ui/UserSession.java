@@ -47,12 +47,16 @@ public class UserSession {
             try {
                 Command parsedUserCommand = userCommandParser.parse(userInput);
                 parsedUserCommand.execute();
+
+                if (parsedUserCommand.isExitCommand) {
+                    return;
+                }
             } catch (CommandException | InterruptedException | IOException c) {
                 printer.print(c.getMessage());
                 continue;
             }
-            fileWriter.executeFunction();
-        } while (!Command.isExitCommand);
+            fileWriter. executeFunction();
+        } while (true);
     }
 
     public void exit() {
