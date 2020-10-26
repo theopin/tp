@@ -16,12 +16,16 @@ public abstract class FinderCommand extends Command {
 
     protected CheatSheet getCheatSheetFromNameOrIndex() throws CommandException {
         CheatSheet desiredCheatSheet = null;
-        if (flagsToDescriptions.get(CommandFlag.NAME) != null) {
-            String name = flagsToDescriptions.get(CommandFlag.NAME);
+        String name = flagsToDescriptions.get(CommandFlag.NAME);
+        String index = flagsToDescriptions.get(CommandFlag.INDEX);
+        if (name != null && index == null) {
             desiredCheatSheet = cheatSheetList.get(name);
-        } else if (flagsToDescriptions.get(CommandFlag.INDEX) != null) {
-            int index = Integer.parseInt(flagsToDescriptions.get(CommandFlag.INDEX));
-            desiredCheatSheet = cheatSheetList.get(index);
+        } else if (index != null && name == null) {
+            desiredCheatSheet = cheatSheetList.get(Integer.parseInt(index));
+        } else if (index != null) {
+            if (cheatSheetList.get(name).equals(cheatSheetList.get(Integer.parseInt(index)))) {
+                desiredCheatSheet = cheatSheetList.get(name);
+            }
         }
 
         if (desiredCheatSheet == null) {
@@ -31,7 +35,7 @@ public abstract class FinderCommand extends Command {
         return desiredCheatSheet;
     }
 
-    public boolean checkCheatSheetExistsInCheatSheetList(CheatSheet cs, String subject,
+    public boolean checkCheatSheetExistsInCheatSheetList(CheatSheet cs, String name, String subject,
                                                             String keyword) throws CommandException {
         if (subject != null && keyword == null) {
             return cs.getSubject().contains(subject);
