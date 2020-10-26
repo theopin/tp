@@ -13,6 +13,7 @@ public class DataFileDestroyer extends DataFile {
     public DataFileDestroyer(Printer printer) {
         this.printer = printer;
     }
+    private CheatSheetList cheatSheetList;
 
     /**
      * Constructor that executes the operation to delete all cheatsheet files.
@@ -48,7 +49,7 @@ public class DataFileDestroyer extends DataFile {
      *                     is not existent.
      */
     private void deleteFile(String unwantedFile) throws IOException, CommandException {
-        String subjectDirectory = CheatSheetList
+        String subjectDirectory = cheatSheetList
                 .get(unwantedFile)
                 .getSubject();
         Path unwantedFilePath = Paths.get(USER_DIR,
