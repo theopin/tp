@@ -1,7 +1,6 @@
 # Developer Guide
 
 # Table of Contents
-<!-- TOC -->
 * [1. Introduction](#1-introduction)
     + [1.1. Purpose](#11-purpose)
     + [1.2. Product Scope](#12-product-scope)
@@ -11,11 +10,11 @@
 * [2. Design & Implementation](#2-design--implementation)
     * [2.1. Project Overview](#21-project-overview)
         * [2.2. Module Overview](#22-module-overview)
-            * [2.2.1. Record module ](#221-record-module)
-            * [2.2.2. Converter module ](#222-converter-module)
-            * [2.2.3. Storage module ](#223-storage-module)
-            * [2.2.4. Command module ](#224-command-module)
-            * [2.2.5. Parser Module ](#225-parser-module)
+            * [2.2.1. User Interface module](#221-record-module)
+            * [2.2.2. Command Parser module](#222-converter-module)
+            * [2.2.3. Cheat Sheet Structure module](#223-storage-module)
+            * [2.2.4. Cheat Sheet Management module](#224-command-module)
+            * [2.2.5. Data Storage Module](#225-parser-module)
 * [3. User Stories](#3-user-stories)
 * [4. Non-functional requirements](#4-non-functional-requirements)
 * [5. Instructions for manual testing](#5-instructions-for-manual-testing)
@@ -29,10 +28,37 @@
     + [5.8. Finding patients and appointments](#58-find-patients-and-find-appointment)
     + [5.9. Clearing lists](#59-clear-patient-clear-appointment-clear-all-commands)
         
-<!-- TOC -->
 ## 1. Introduction
 
-##
+### 1.1. Purpose
+
+### 1.2. Product Scope
+
+#### 1.2.1. Target User Profile
+
+#### 1.2.2. Value Proposition
+
+#### 1.3. Definitions
+
+## 2. Design & Implementation
+
+### 2.1. Project Overview
+
+### 2.2. Module Overview
+
+#### 2.2.1. User Interface module
+
+#### 2.2.2. Command Parser module
+
+#### 2.2.3. Cheat Sheet Structure module
+
+#### 2.2.4. Cheat Sheet Management module
+
+#### 2.2.5. Data Storage module
+
+## 3. User Stories
+
+## 4. Non-functional requirements
 
 ## Design & implementation
 
