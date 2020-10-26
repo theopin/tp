@@ -31,12 +31,14 @@ public class AddCommand extends Command {
         String subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
         if (subject != null) {
             subject = convertToPascalCaseNoSpace(subject);
+        } else {
+            subject = "Unsorted";
         }
 
         callContentEditor();
         String description = editor.getContent();
 
-        CheatSheet cheatSheet = new CheatSheet(name, subject, description);
+        CheatSheet cheatSheet = new CheatSheet(name.trim(), subject.trim(), description);
         cheatSheetList.add(cheatSheet);
         printer.printAddNewCheatSheetMessage(cheatSheet, cheatSheetList);
     }

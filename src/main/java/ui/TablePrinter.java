@@ -29,7 +29,7 @@ public class TablePrinter {
         rawTable[0][0] = "INDEX";
         rawTable[0][1] = "NAME";
         rawTable[0][2] = "SUBJECT";
-        rawTable[0][3] = "DETAILS";
+        rawTable[0][3] = "PREVIEW";
         for (int i = 1; i <= cheatSheetsToBePrinted.size(); i++) {
             CheatSheet cs = cheatSheetsToBePrinted.get(i - 1);
             assert cs != null;
@@ -40,7 +40,14 @@ public class TablePrinter {
             } catch (NullPointerException n) {
                 rawTable[i][2] = "";
             }
-            rawTable[i][3] = cs.getDetails().trim();
+            try {
+                rawTable[i][3] = cs.getDetails().split("\n")[0].trim();
+                if (rawTable[i][3].isEmpty()) {
+                    rawTable[i][3] = cs.getDetails().split("\n")[1].trim();
+                }
+            } catch (ArrayIndexOutOfBoundsException a) {
+                rawTable[i][3] = cs.getDetails().trim();
+            }
         }
     }
 
