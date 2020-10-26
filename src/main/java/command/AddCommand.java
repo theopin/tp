@@ -12,7 +12,6 @@ public class AddCommand extends Command {
 
     public static final String invoker = "/add";
 
-
     public AddCommand(Printer printer, Editor editor) {
         super(printer);
         this.editor = editor;

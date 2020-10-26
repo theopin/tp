@@ -9,9 +9,9 @@ import parser.CommandFlag;
  * This class manages the output of text.
  */
 public final class Printer {
-    private static final String LINE = "----------------------------------------------------------------"
+    private final String LINE = "----------------------------------------------------------------"
             + "----------------------------------------";
-    private static final String NEWLINE = System.lineSeparator();
+    private final String NEWLINE = System.lineSeparator();
 
     public Printer() {
     }

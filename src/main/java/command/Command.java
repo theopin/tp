@@ -17,7 +17,8 @@ public abstract class Command {
 
     protected ArrayList<CommandFlag> alternativeArguments;
     protected LinkedHashMap<CommandFlag, String> flagsToDescriptions;
-    public static boolean isExitCommand;
+
+    public boolean isExitCommand;
 
     public Command() {
     }

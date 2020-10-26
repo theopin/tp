@@ -80,6 +80,5 @@ public class DataFileWriterTest extends DataFileTest {
         assertEquals(0, directoryFiles);
     }
 
-
     */
 }
