@@ -161,6 +161,7 @@ public final class Printer {
         for (CommandFlag arg :command.getAlternativeArguments()) {
             System.out.print(arg + " ");
         }
+        System.out.print("\n<<enter>> to skip that field");
         print(ConsoleColorsEnum.RESET_TEXT);
         print(NEWLINE);
     }

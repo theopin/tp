@@ -24,9 +24,9 @@ public class ListCommand extends Command {
     @Override
     public void execute() throws CommandException {
         cheatSheetList.getList().sort(new SortByName());
-        TablePrinter tp = new TablePrinter(cheatSheetList);
+        TablePrinter tp = new TablePrinter(cheatSheetList.getList());
         tp.execute();
-        SortFilter sortFilter = new SortFilter(cheatSheetList);
+        SortFilter sortFilter = new SortFilter(cheatSheetList.getList());
         sortFilter.execute();
     }
 }
