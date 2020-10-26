@@ -107,6 +107,9 @@ public class Parser {
         try {
             String[] details = userInput.split(FLAG_REGEX);
             for (int i = 1; i < details.length; i++) {
+                //if (flags.get(i-1).equals(CommandFlag.SUBJECT) && (details[i].isBlank() || details[i] == null)) {
+                //    details[i] = "Unsorted";
+                //}
                 flagsToDescriptions.put(flags.get(i - 1), details[i].trim());
             }
         } catch (IndexOutOfBoundsException i) {
@@ -124,12 +127,10 @@ public class Parser {
             for (CommandFlag key : map.keySet()) {
                 if (map.get(key) == null) {
                     printer.printMissingArgument(key);
-
                     String newArgVal = ui.getUserInput();
-                    if (newArgVal.isEmpty()) {
+                    if (newArgVal.isBlank()) {
                         newArgVal = null;
                     }
-
                     commandToBeExecuted.getFlagstodescriptionsMap().replace(key, newArgVal);
                 }
             }
