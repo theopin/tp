@@ -17,8 +17,10 @@ public class FindCommand extends FinderCommand {
     public FindCommand(Printer printer, CheatSheetList cheatSheetList) {
         super(printer, cheatSheetList);
         this.cheatSheetList = cheatSheetList;
+        flagsToDescriptions.put(CommandFlag.NAME, null);
         flagsToDescriptions.put(CommandFlag.SUBJECT, null);
         flagsToDescriptions.put(CommandFlag.SECTIONKEYWORD, null);
+        alternativeArguments.add(CommandFlag.NAME);
         alternativeArguments.add(CommandFlag.SUBJECT);
         alternativeArguments.add(CommandFlag.SECTIONKEYWORD);
     }
@@ -27,11 +29,12 @@ public class FindCommand extends FinderCommand {
     public void execute() throws CommandException {
         ArrayList<CheatSheet> matchedContents = new ArrayList<>();
 
+        String name = flagsToDescriptions.get(CommandFlag.NAME);
         String subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
         String keyword = flagsToDescriptions.get(CommandFlag.SECTIONKEYWORD);
 
         for (CheatSheet cs : cheatSheetList.getList()) {
-            if (checkCheatSheetExistsInCheatSheetList(cs, subject, keyword)) {
+            if (checkCheatSheetExistsInCheatSheetList(cs, name, subject, keyword)) {
                 matchedContents.add(cs);
             }
         }

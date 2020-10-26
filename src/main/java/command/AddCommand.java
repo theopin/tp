@@ -41,6 +41,7 @@ public class AddCommand extends Command {
         }
 
         callContentEditor();
+
         try {
             String description = editor.getContent();
             CheatSheet cheatSheet = new CheatSheet(name, subject, description);
