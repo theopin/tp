@@ -64,6 +64,7 @@ import sort.SortByName;
 import sort.SortByNameRev;
 import ui.ConsoleColorsEnum;
 import ui.Printer;
+import ui.TablePrinter;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -81,9 +82,10 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute() throws InterruptedException, CommandException, IOException {
+    public void execute() throws CommandException, IOException {
         CheatSheetList.getList().sort(new SortByName());
-        printer.printCheatSheetList();
+        TablePrinter tp = new TablePrinter();
+        tp.execute();
         SortFilter sortFilter = new SortFilter();
         sortFilter.execute();
     }

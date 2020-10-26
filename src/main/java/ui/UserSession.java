@@ -33,7 +33,7 @@ public class UserSession {
         userCommandParser = new Parser(fileDestroyer, printer, ui, editor);
     }
 
-    public void runProgramSequence() {
+    public void runProgramSequence(){
         fileReader.executeFunction();
         printer.printWelcomeScreen();
 

@@ -52,7 +52,6 @@ public abstract class Command {
                 return true;
             }
         }
-
         return false;
     }
 

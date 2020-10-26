@@ -8,6 +8,7 @@ import sort.SortByName;
 import sort.SortByNameRev;
 import ui.ConsoleColorsEnum;
 import ui.Printer;
+import ui.TablePrinter;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -22,14 +23,23 @@ public class SortFilter {
         printer = new Printer();
     }
 
-    public void execute() throws CommandException, IOException {
-        printer.print(promptSortConfig);
+    public void execute(TablePrinter tp) throws CommandException {
         do {
             askForInput();
+            tp.execute();
         } while (true);
     }
 
-    private void askForInput() throws CommandException, IOException {
+    public void execute() throws CommandException {
+        do {
+            askForInput();
+            TablePrinter tp = new TablePrinter(CheatSheetList.getList());
+            tp.execute();
+        } while (true);
+    }
+
+    private void askForInput() throws CommandException {
+        printer.print(promptSortConfig);
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         switch (input) {
@@ -52,7 +62,5 @@ public class SortFilter {
         default:
             throw new CommandException("Exiting list command ...");
         }
-        printer.printCheatSheetList();
-        printer.print(promptSortConfig);
     }
 }
