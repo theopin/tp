@@ -17,7 +17,7 @@
     Actually, you do not place the null character at the end of a string constant. The C compiler automatically places the '\0' at the end of the string when it initializes the array. Let us try to print the above mentioned string −
 
     ```
-    #include &#60;stdio.h&#62;
+    #include &lt;stdio.h&gt;
 
     int main () {
 
@@ -30,7 +30,7 @@
     Greeting message: Hello
     C supports a wide range of functions that manipulate null-terminated strings −
 
-    Sr.No.	Function &#38; Purpose
+    Sr.No.	Function &amp; Purpose
     1   strcpy(s1, s2);
         Copies string s2 into string s1.
 
@@ -41,7 +41,7 @@
         Returns the length of string s1.
 
     4   strcmp(s1, s2);
-        Returns 0 if s1 and s2 are the same; less than 0 if s1&#60;s2; greater than 0 if s1>s2.
+        Returns 0 if s1 and s2 are the same; less than 0 if s1&lt;s2; greater than 0 if s1>s2.
 
     5   strchr(s1, ch);
         Returns a pointer to the first occurrence of character ch in string s1.
@@ -52,8 +52,8 @@
     The following example uses some of the above-mentioned functions −
 
     ```
-    #include &#60;stdio.h&#62;
-    #include &#60;string.h&#62;
+    #include &lt;stdio.h&gt;
+    #include &lt;string.h&gt;
 
     int main () {
 

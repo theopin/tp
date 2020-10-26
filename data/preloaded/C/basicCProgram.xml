@@ -10,13 +10,13 @@
        -Preprocessor Commands
        -Functions
        -Variables
-       -Statements &#38; Expressions
+       -Statements &amp; Expressions
        -Comments
 
    Let us look at a simple code that would print the words "Hello World" −
 
    ```
-   #include &#60;stdio.h&#62;
+   #include &lt;stdio.h&gt;
 
    int main() {
       /* my first program in C */
@@ -27,7 +27,7 @@
    ```
    Let us take a look at the various parts of the above program −
 
-   The first line of the program #include &#60;stdio.h&#62; is a preprocessor command, which tells a C compiler to include stdio.h file before going to actual compilation.
+   The first line of the program #include &lt;stdio.h&gt; is a preprocessor command, which tells a C compiler to include stdio.h file before going to actual compilation.
    The next line int main() is the main function where the program execution begins.
    The next line /*...*/ will be ignored by the compiler and it has been put to add additional comments in the program. So such lines are called comments in the program.
    The next line printf(...) is another function available in C which causes the message "Hello, World!" to be displayed on the screen.

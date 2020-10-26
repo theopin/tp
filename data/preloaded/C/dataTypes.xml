@@ -18,10 +18,10 @@
         12. long double     | 3.4E-4932 to 1.1E+4932 (19 decimal places)
 
     ```
-    #include &#60;stdio.h&#62;
-    #include &#60;stdlib.h&#62;
-    #include &#60;limits.h&#62;
-    #include &#60;float.h&#62;
+    #include &lt;stdio.h&gt;
+    #include &lt;stdlib.h&gt;
+    #include &lt;limits.h&gt;
+    #include &lt;float.h&gt;
 
     int main(int argc, char** argv) {
 

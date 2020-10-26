@@ -32,16 +32,16 @@ public abstract class DataFile {
     protected static final String EMPTY = "";
 
     protected static final String LESS_THAN = "<";
-    protected static final String LESS_THAN_XML = "&#60;";
+    protected static final String LESS_THAN_XML = "&lt;";
     protected static final String MORE_THAN = ">";
-    protected static final String MORE_THAN_XML = "&#62;";
+    protected static final String MORE_THAN_XML = "&gt;";
     protected static final String AMPERSAND = "&";
-    protected static final String AMPERSAND_XML = "&#38;";
+    protected static final String AMPERSAND_XML = "&amp;";
 
     protected static final String SINGLE_QUOTE = "'";
-    protected static final String SINGLE_QUOTE_XML = "&#39;";
+    protected static final String SINGLE_QUOTE_XML = "&apos;";
     protected static final String DOUBLE_QUOTE = "\"";
-    protected static final String DOUBLE_QUOTE_XML = "&#34;";
+    protected static final String DOUBLE_QUOTE_XML = "&quot;";
 
     protected static final Path DATA_DIR = Paths.get(USER_DIR, DATA);
 

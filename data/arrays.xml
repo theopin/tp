@@ -41,7 +41,7 @@
    The above statement will take the 10th element from the array and assign the value to salary variable. The following example Shows how to use all the three above mentioned concepts viz. declaration, assignment, and accessing arrays −
 
    Live Demo
-   #include &#60;stdio.h&#62;
+   #include &lt;stdio.h&gt;
 
    int main () {
 
@@ -49,12 +49,12 @@
       int i,j;
 
       /* initialize elements of array n to 0 */
-      for ( i = 0; i &#60; 10; i++ ) {
+      for ( i = 0; i &lt; 10; i++ ) {
          n[ i ] = i + 100; /* set element at location i to i + 100 */
       }
 
       /* output each array element's value */
-      for (j = 0; j &#60; 10; j++ ) {
+      for (j = 0; j &lt; 10; j++ ) {
          printf("Element[%d] = %d\n", j, n[j] );
       }
 
@@ -75,7 +75,7 @@
    Arrays in Detail
    Arrays are important to C and should need a lot more attention. The following important concepts related to array should be clear to a C programmer −
 
-   Sr.No.	Concept &#38; Description
+   Sr.No.	Concept &amp; Description
    1	Multi-dimensional arrays
    C supports multidimensional arrays. The simplest form of the multidimensional array is the two-dimensional array.
 

@@ -10,7 +10,7 @@
     Loop Architecture
     C programming language provides the following types of loops to handle looping requirements.
 
-    Sr.No.	Loop Type &#38; Description
+    Sr.No.	Loop Type &amp; Description
         1	while loop
             Repeats a statement or group of statements while a given condition is true. It tests the condition before executing the loop body.
 
@@ -28,7 +28,7 @@
 
     C supports the following control statements.
 
-    Sr.No.	Control Statement &#38; Description
+    Sr.No.	Control Statement &amp; Description
     1	break statement
         Terminates the loop or switch statement and transfers execution to the statement immediately following the loop or switch.
 

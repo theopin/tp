@@ -31,9 +31,9 @@
         ```
         scanf function will take in the user input from the keyboard and puts it into an address
         ```
-        scanf("%d, &#38;a)
-        scanf("%c, &#38;b)
-        scanf("%f, &#38;c);
+        scanf("%d, &amp;a)
+        scanf("%c, &amp;b)
+        scanf("%f, &amp;c);
         ```
         In the scanf and printf function, you need to specify the datatype of variables you want to print.
         %d denotes an int

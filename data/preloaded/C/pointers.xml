@@ -5,18 +5,18 @@
    <contents>
    Pointers in C are easy and fun to learn. Some C programming tasks are performed more easily with pointers, and other tasks, such as dynamic memory allocation, cannot be performed without using pointers. So it becomes necessary to learn pointers to become a perfect C programmer. Let's start learning them in simple and easy steps.
 
-   As you know, every variable is a memory location and every memory location has its address defined which can be accessed using ampersand (&#38;) operator, which denotes an address in memory. Consider the following example, which prints the address of the variables defined −
+   As you know, every variable is a memory location and every memory location has its address defined which can be accessed using ampersand (&amp;) operator, which denotes an address in memory. Consider the following example, which prints the address of the variables defined −
 
    Live Demo
-   #include &#60;stdio.h&#62;
+   #include &lt;stdio.h&gt;
 
    int main () {
 
       int  var1;
       char var2[10];
 
-      printf("Address of var1 variable: %x\n", &#38;var1  );
-      printf("Address of var2 variable: %x\n", &#38;var2  );
+      printf("Address of var1 variable: %x\n", &amp;var1  );
+      printf("Address of var2 variable: %x\n", &amp;var2  );
 
       return 0;
    }
@@ -40,16 +40,16 @@
    There are a few important operations, which we will do with the help of pointers very frequently. (a) We define a pointer variable, (b) assign the address of a variable to a pointer and (c) finally access the value at the address available in the pointer variable. This is done by using unary operator * that returns the value of the variable located at the address specified by its operand. The following example makes use of these operations −
 
    Live Demo
-   #include &#60;stdio.h&#62;
+   #include &lt;stdio.h&gt;
 
    int main () {
 
       int  var = 20;   /* actual variable declaration */
       int  *ip;        /* pointer variable declaration */
 
-      ip = &#38;var;  /* store address of var in pointer variable*/
+      ip = &amp;var;  /* store address of var in pointer variable*/
 
-      printf("Address of var variable: %x\n", &#38;var);
+      printf("Address of var variable: %x\n", &amp;var);
 
       /* address stored in pointer variable */
       printf("Address stored in ip variable: %x\n", ip);
@@ -70,7 +70,7 @@
    The NULL pointer is a constant with a value of zero defined in several standard libraries. Consider the following program −
 
    Live Demo
-   #include &#60;stdio.h&#62;
+   #include &lt;stdio.h&gt;
 
    int main () {
 
@@ -92,7 +92,7 @@
    Pointers in Detail
    Pointers have many but easy concepts and they are very important to C programming. The following important pointer concepts should be clear to any C programmer −
 
-   Sr.No.	Concept &#38; Description
+   Sr.No.	Concept &amp; Description
    1	Pointer arithmetic
    There are four arithmetic operators that can be used in pointers: ++, --, +, -
 
