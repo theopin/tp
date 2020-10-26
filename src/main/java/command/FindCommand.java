@@ -7,7 +7,6 @@ import parser.CommandFlag;
 import ui.Printer;
 import ui.TablePrinter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class FindCommand extends FinderCommand {
@@ -31,21 +30,8 @@ public class FindCommand extends FinderCommand {
         String keyword = flagsToDescriptions.get(CommandFlag.SECTIONKEYWORD);
 
         for (CheatSheet cs : CheatSheetList.getList()) {
-            if (subject != null && keyword == null) {
-                if (cs.getSubject().contains(subject)) {
-                    matchedContents.add(cs);
-                }
-            } else if (keyword != null && subject == null) {
-                if (cs.getDetails().contains(keyword)) {
-                    matchedContents.add(cs);
-                }
-            } else if (subject != null) {
-                if (cs.getSubject().contains(subject)
-                        && cs.getDetails().contains(keyword)) {
-                    matchedContents.add(cs);
-                }
-            } else {
-                throw new CommandException("Please enter at least an argument");
+            if (checkCheatSheetExistsInCheatSheetList(cs, subject, keyword)) {
+                matchedContents.add(cs);
             }
         }
 
