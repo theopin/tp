@@ -10,11 +10,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class DataFileDestroyer extends DataFile {
-    public DataFileDestroyer(Printer printer) {
-        this.printer = printer;
-    }
 
     private CheatSheetList cheatSheetList;
+
+    public DataFileDestroyer(Printer printer, CheatSheetList cheatSheetList) {
+        this.printer = printer;
+        this.cheatSheetList = cheatSheetList;
+    }
 
     /**
      * Constructor that executes the operation to delete all cheatsheet files.
@@ -95,6 +97,7 @@ public class DataFileDestroyer extends DataFile {
                 printer.print(e.getMessage());
             }
         }
+        directoryPath.toFile().delete();
     }
 
 }

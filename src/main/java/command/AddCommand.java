@@ -19,16 +19,23 @@ public class AddCommand extends Command {
         flagsToDescriptions.put(CommandFlag.NAME, null);
         flagsToDescriptions.put(CommandFlag.SUBJECT, null);
         alternativeArguments.add(CommandFlag.NAME);
+        alternativeArguments.add(CommandFlag.SUBJECT);
     }
 
     @Override
     public void execute() throws CommandException {
-        String name = flagsToDescriptions.get(CommandFlag.NAME);
+        String name = flagsToDescriptions.get(CommandFlag.NAME).trim();
         if (cheatSheetList.exists(name)) {
             throw new CommandException("Name already existed, please enter another name");
         }
+        if (name.isEmpty() || name.isBlank()) {
+            throw new CommandException("Name cannot be blank");
+        }
 
-        String subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
+        String subject = flagsToDescriptions.get(CommandFlag.SUBJECT).trim();
+        if (subject.isEmpty() || subject.isBlank()) {
+            throw new CommandException("Subject cannot be blank");
+        }
         if (subject != null) {
             subject = convertToPascalCaseNoSpace(subject);
         } else {
