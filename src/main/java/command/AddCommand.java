@@ -19,6 +19,7 @@ public class AddCommand extends Command {
         flagsToDescriptions.put(CommandFlag.NAME, null);
         flagsToDescriptions.put(CommandFlag.SUBJECT, null);
         alternativeArguments.add(CommandFlag.NAME);
+        alternativeArguments.add(CommandFlag.SUBJECT);
     }
 
     @Override
