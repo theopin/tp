@@ -1,5 +1,7 @@
 package storage;
 
+import cheatsheet.CheatSheetList;
+import exception.CommandException;
 import ui.Printer;
 
 import java.io.IOException;
@@ -18,7 +20,7 @@ public class DataFileDestroyer extends DataFile {
     @Override
     public void executeFunction() {
         try {
-            clearDirectory();
+            clearDataDirectory();
         } catch (IOException e) {
             printer.print(e.getMessage());
         }
@@ -33,7 +35,7 @@ public class DataFileDestroyer extends DataFile {
     public void executeFunction(String unwantedFile) {
         try {
             deleteFile(unwantedFile);
-        } catch (IOException e) {
+        } catch (IOException | CommandException e) {
             printer.print(e.getMessage());
         }
     }
@@ -45,27 +47,49 @@ public class DataFileDestroyer extends DataFile {
      * @throws IOException Thrown if the path of the unwanted file specified
      *                     is not existent.
      */
-    protected void deleteFile(String unwantedFile) throws IOException {
-        Path unwantedFilePath = Paths.get(USER_DIR, DATA, unwantedFile + XML_EXTENSION);
+    private void deleteFile(String unwantedFile) throws IOException, CommandException {
+        String subjectDirectory = CheatSheetList
+                .get(unwantedFile)
+                .getSubject();
+        Path unwantedFilePath = Paths.get(USER_DIR,
+                DATA,
+                subjectDirectory,
+                unwantedFile + XML_EXTENSION);
         Files.delete(unwantedFilePath);
     }
 
     /**
-     * Deletes all cheatsheet files from the /data directory.
+     * Deletes all cheatsheet files from the /data directory in a recursive manner
+     *
+     * @throws IOException Thrown if the /data directory is missing or empty.
+     * @throws CommandException Thrown if there are issues with the command given.
+     */
+    private void clearDataDirectory() throws IOException {
+        clearDirectory(DATA_DIR);
+    }
+
+    /**
+     * Deletes all cheatsheet files from the given directory.
      *
      * @throws IOException Thrown if the /data directory is missing or empty.
      */
-    protected void clearDirectory() throws IOException {
-        String[] dataDirectoryFiles = DATA_DIR.toFile().list();
+    private void clearDirectory(Path directoryPath) throws IOException {
+        String[] dataDirectoryFiles = directoryPath.toFile().list();
         if (dataDirectoryFiles == null) {
             throw new IOException();
         }
         for (String dataDirectoryFile : dataDirectoryFiles) {
             Path filePath = Paths.get(USER_DIR, DATA, dataDirectoryFile);
-            if (Files.isDirectory(filePath)) {
-                continue;
+            if (Files.isDirectory(filePath) && !filePath.toFile()
+                    .getName()
+                    .equals("preloaded")) {
+                clearDirectory(filePath);
             }
-            deleteFile(dataDirectoryFile.replace(XML_EXTENSION, EMPTY));
+            try {
+                deleteFile(dataDirectoryFile.replace(XML_EXTENSION, EMPTY));
+            } catch (CommandException e) {
+                printer.print(e.getMessage());
+            }
         }
     }
 

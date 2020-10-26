@@ -2,6 +2,7 @@ package storage;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
+import exception.CommandException;
 import exception.DirectoryIsEmptyException;
 
 import org.w3c.dom.Document;
@@ -18,6 +19,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Allows the user to read data from the data directory and use it
@@ -67,14 +70,34 @@ public class DataFileReader extends DataFile {
             throw new DirectoryIsEmptyException();
         }
 
-        File[] cheatSheetFiles = dataDirectory.listFiles();
-        assert cheatSheetFiles != null : "File Empty!";
-        for (File cheatSheetFile : cheatSheetFiles) {
+        try {
+            extractFromDirectory(DATA_DIR);
+        } catch (IOException e) {
+                printer.print(e.getMessage());
+        }
+
+    }
+
+    /**
+     * Extracts all cheatsheet files from the given directory.
+     *
+     * @throws IOException Thrown if the /data directory is missing or empty.
+     */
+    private void extractFromDirectory(Path directoryPath) throws IOException {
+        File[] dataDirectoryFiles = directoryPath.toFile().listFiles();
+        if (dataDirectoryFiles == null) {
+            throw new IOException();
+        }
+        for (File dataDirectoryFile : dataDirectoryFiles) {
+            Path filePath = dataDirectoryFile.toPath();
+            if (Files.isDirectory(filePath) && !filePath.toFile()
+                    .getName()
+                    .equals("preloaded")) {
+                extractFromDirectory(filePath);
+            }
             try {
-                if (!cheatSheetFile.isDirectory()) {
-                    extractCheatSheet(cheatSheetFile);
-                }
-            } catch (IOException | SAXException | ParserConfigurationException e) {
+                extractCheatSheet(dataDirectoryFile);
+            } catch (ParserConfigurationException | SAXException e) {
                 printer.print(e.getMessage());
             }
         }
@@ -153,8 +176,6 @@ public class DataFileReader extends DataFile {
         }
         return isMarkedFavourite;
     }
-
-
 
     /**
      * Extracts the section of the referenced cheatSheet.
