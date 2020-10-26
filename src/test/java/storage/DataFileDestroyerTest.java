@@ -12,7 +12,7 @@ public class DataFileDestroyerTest extends DataFileTest {
 
 
     Path sampleTest2 = Paths.get(userDir, data, "sample2.xml");
-
+    /*
     @Test
     void clearSingleFile_singleSampleTest_success() {
 
@@ -46,5 +46,5 @@ public class DataFileDestroyerTest extends DataFileTest {
 
         assertTrue(isSampleRemoved);
     }
-
+    */
 }
