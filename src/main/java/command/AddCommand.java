@@ -32,6 +32,8 @@ public class AddCommand extends Command {
         String subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
         if (subject != null) {
             subject = convertToPascalCaseNoSpace(subject);
+        } else {
+            subject = "Unsorted";
         }
 
         callContentEditor();
@@ -44,8 +46,9 @@ public class AddCommand extends Command {
             throw new CommandException(e.getMessage());
         }
 
-
-
+        CheatSheet cheatSheet = new CheatSheet(name.trim(), subject.trim(), description);
+        cheatSheetList.add(cheatSheet);
+        printer.printAddNewCheatSheetMessage(cheatSheet, cheatSheetList);
     }
 
     private void callContentEditor() {
