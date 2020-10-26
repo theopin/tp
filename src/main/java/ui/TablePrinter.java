@@ -6,6 +6,8 @@ import exception.CommandException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class TablePrinter {
@@ -22,9 +24,6 @@ public class TablePrinter {
         makeRawTable(cheatSheetToBePrinted);
     }
 
-    /*
-     * Table to print in console in 2-dimensional array. Each sub-array is a row.
-     */
     private void makeRawTable(ArrayList<CheatSheet> cheatSheetsToBePrinted) throws CommandException {
         rawTable = new String[cheatSheetsToBePrinted.size() + 1][4];
         rawTable[0][0] = "INDEX";
@@ -32,7 +31,7 @@ public class TablePrinter {
         rawTable[0][2] = "SUBJECT";
         rawTable[0][3] = "DETAILS";
         for (int i = 1; i <= cheatSheetsToBePrinted.size(); i++) {
-            CheatSheet cs = cheatSheetsToBePrinted.get(i-1);
+            CheatSheet cs = cheatSheetsToBePrinted.get(i - 1);
             rawTable[i][0] = String.valueOf(i);
             rawTable[i][1] = cs.getName().trim();
             try {
@@ -44,49 +43,59 @@ public class TablePrinter {
         }
     }
 
-    /*
-     * Create new table array with wrapped rows
-     */
-    private void makeTableWithWrapping() {
+    private int calculateNoOfNewRowsNeededByCell(String cell) {
+        int rowsNeeded = 0;
+        if (cell.contains("\n"))  {
+            String [] splittedCell = cell.split("\n");
+            for (String s : splittedCell) {
+                rowsNeeded += (s.length() / maxWidth) + 1;
+            }
+            return rowsNeeded;
+        } else {
+            return (cell.length() / maxWidth) + 1;
+        }
+    }
+
+    private int calculateNoOfNewRowsNeededByRow(String [] row) {
+        int rowsNeeded = 0;
+        for (String cell : row) {
+            if (rowsNeeded < calculateNoOfNewRowsNeededByCell(cell)) {
+                rowsNeeded = calculateNoOfNewRowsNeededByCell(cell);
+            }
+        }
+        return rowsNeeded;
+    }
+
+    private String[] contentsByColAfterWrapping(String cell) {
+        if (cell.contains("\n")) {
+            return cell.split("\n");
+        } else {
+            return cell.split("(?<=\\G.{30})");
+        }
+    }
+
+    private void makeFinalTable() {
         finalTable = new ArrayList<>();
-        int test = 0;
-        for (String[] row : rawTable) {
-            // If any cell data is more than max width, then it will need extra row.
-            boolean needExtraRow = false;
-            // Count of extra split row.
-            int splitRow = 0;
-            do {
-                needExtraRow = false;
-                String[] newRow = new String[row.length];
-                for (int i = 0; i < row.length; i++) {
-                    // If data is less than max width, use that as it is.
-                    if (row[i].length() < maxWidth) {
-                        newRow[i] = splitRow == 0 ? row[i] : "";
-                    } else if ((row[i].length() > (splitRow * maxWidth))) {
-                        // If data is more than max width, then crop data at maxwidth.
-                        // Remaining cropped data will be part of next row.
-                        int end = Math.min(row[i].length(), ((splitRow * maxWidth) + maxWidth));
-                        newRow[i] = row[i].substring((splitRow * maxWidth), end);
-                        needExtraRow = true;
+        int rowsNeeded = 0;
+
+        for (String[] rows : rawTable) {
+            rowsNeeded = calculateNoOfNewRowsNeededByRow(rows);
+            for (int k = 0; k < rowsNeeded; k++) {
+                String[] newRow = new String[rows.length];
+                for (int i = 0; i < rows.length; i++) {
+                    String [] cellArray = contentsByColAfterWrapping(rows[i]);
+                    if (k < cellArray.length) {
+                        newRow[i] = cellArray[k];
                     } else {
                         newRow[i] = "";
                     }
                 }
                 finalTable.add(newRow);
-                if (needExtraRow) {
-                    splitRow++;
-                }
-            } while (needExtraRow);
+            }
         }
     }
 
-    /*
-     * Calculate appropriate Length of each column by looking at width of data in
-     * each column.
-     *
-     * Map columnLengths is <column_number, column_length>
-     */
-    public HashMap<Integer, Integer> calculateLengthOfEachCol() {
+    public HashMap<Integer, Integer> calculateLengthOfIndividualCol() {
         HashMap<Integer, Integer> columnLengths = new HashMap<>();
         for (String[] row : finalTable) {
             for (int i = 0; i < row.length; i++) {
@@ -106,7 +115,6 @@ public class TablePrinter {
             stringFormat.append("| %").append(flag).append(e.getValue()).append("s ");
         }
         stringFormat.append("|\n");
-        //System.out.println("stringFormat = " + stringFormat.toString());
         return stringFormat;
     }
 
@@ -118,23 +126,27 @@ public class TablePrinter {
         }
 
         line.append("+\n");
-        //System.out.println("Line = " + line);
         return line;
     }
 
     public void printFinalTable(StringBuilder stringFormat, StringBuilder line) {
         System.out.print(line);
         System.out.printf(stringFormat.toString(), rawTable[0][0], rawTable[0][1], rawTable[0][2], rawTable[0][3]);
-        System.out.print(line);
         for (int i = 1; i < finalTable.size(); i++) {
-            System.out.printf(stringFormat.toString(), finalTable.get(i)[0], finalTable.get(i)[1], finalTable.get(i)[2], finalTable.get(i)[3]);
+            Pattern regex = Pattern.compile("[0-9]{1,2}");
+            Matcher regexMatcher = regex.matcher(finalTable.get(i)[0]);
+            if (regexMatcher.find()) {
+                System.out.print(line);
+            }
+            System.out.printf(stringFormat.toString(), finalTable.get(i)[0], finalTable.get(i)[1],
+                finalTable.get(i)[2], finalTable.get(i)[3]);
         }
-        System.out.println(line);
+        System.out.print(line);
     }
 
-    public void execute() throws CommandException {
-        makeTableWithWrapping();
-        HashMap<Integer, Integer> columnLengths = calculateLengthOfEachCol();
+    public void execute() {
+        makeFinalTable();
+        HashMap<Integer, Integer> columnLengths = calculateLengthOfIndividualCol();
         StringBuilder stringFormat = prepareStringFormatForEachRow(columnLengths);
         StringBuilder line = prepareLine(columnLengths);
         printFinalTable(stringFormat, line);

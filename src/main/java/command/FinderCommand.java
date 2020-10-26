@@ -30,7 +30,8 @@ public abstract class FinderCommand extends Command {
         return desiredCheatSheet;
     }
 
-    protected boolean checkCheatSheetExistsInCheatSheetList(CheatSheet cs, String subject, String keyword) throws CommandException {
+    protected boolean checkCheatSheetExistsInCheatSheetList(CheatSheet cs, String subject,
+                                                            String keyword) throws CommandException {
         if (subject != null && keyword == null) {
             return cs.getSubject().contains(subject);
         } else if (keyword != null && subject == null) {
