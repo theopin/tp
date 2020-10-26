@@ -17,13 +17,13 @@ public class FindCommand extends FinderCommand {
         super(printer);
 
         flagsToDescriptions.put(CommandFlag.SUBJECT, null);
-        //flagsToDescriptions.put(CommandFlag.SECTIONKEYWORD, null);
+        flagsToDescriptions.put(CommandFlag.SECTIONKEYWORD, null);
         alternativeArguments.add(CommandFlag.SUBJECT);
-        //alternativeArguments.add(CommandFlag.SECTIONKEYWORD);
+        alternativeArguments.add(CommandFlag.SECTIONKEYWORD);
     }
 
     @Override
-    public void execute() throws CommandException, IOException {
+    public void execute() throws CommandException {
 
         ArrayList<CheatSheet> matchedContents = new ArrayList<>();
 
@@ -31,15 +31,15 @@ public class FindCommand extends FinderCommand {
         String keyword = flagsToDescriptions.get(CommandFlag.SECTIONKEYWORD);
 
         for (CheatSheet cs : CheatSheetList.getList()) {
-            if (!(subject == null) && keyword == null) {
+            if (subject != null && keyword == null) {
                 if (cs.getSubject().contains(subject)) {
                     matchedContents.add(cs);
                 }
-            } else if (!(keyword == null) && subject == null) {
+            } else if (keyword != null && subject == null) {
                 if (cs.getDetails().contains(keyword)) {
                     matchedContents.add(cs);
                 }
-            } else if (!(subject == null) && !(keyword == null)) {
+            } else if (subject != null) {
                 if (cs.getSubject().contains(subject)
                         && cs.getDetails().contains(keyword)) {
                     matchedContents.add(cs);
@@ -55,10 +55,12 @@ public class FindCommand extends FinderCommand {
 
         //printMatches(matchedContents);
         TablePrinter tp = new TablePrinter(matchedContents);
+        tp.execute();
         SortFilter sortFilter = new SortFilter();
         sortFilter.execute(tp);
     }
 
+    /*
     private void printMatches(ArrayList<CheatSheet> cheatSheetArrayList) {
         printer.print("Showing all matches: ");
         for (CheatSheet cs : cheatSheetArrayList) {
@@ -66,4 +68,5 @@ public class FindCommand extends FinderCommand {
             printer.printWhiteSpace();
         }
     }
+    */
 }
