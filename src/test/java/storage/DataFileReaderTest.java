@@ -17,6 +17,7 @@ public class DataFileReaderTest extends DataFileTest {
             + System.lineSeparator()
             + "</main>";
 
+    /*
     @Test
     void readFile_name_success() {
         CheatSheetList.clear();
@@ -58,4 +59,5 @@ public class DataFileReaderTest extends DataFileTest {
 
         assertEquals("Test Success!", testSubject);
     }
+    */
 }

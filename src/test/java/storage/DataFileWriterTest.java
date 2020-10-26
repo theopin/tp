@@ -25,6 +25,7 @@ public class DataFileWriterTest extends DataFileTest {
             + "</main>"
             + System.lineSeparator();
 
+    /*
     @Test
     void writeFileExists_sampleCheatsheet_success() {
         CheatSheetList.clear();
@@ -68,4 +69,6 @@ public class DataFileWriterTest extends DataFileTest {
             assertEquals(fileInput, writtenFile);
         }
     }
+
+    */
 }
