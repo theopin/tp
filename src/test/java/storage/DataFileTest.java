@@ -22,7 +22,8 @@ public class DataFileTest {
     CheatSheetList cheatSheetList = new CheatSheetList();
     DataFileWriter testWriter = new DataFileWriter(printer, cheatSheetList);
     DataFileReader testReader = new DataFileReader(printer, cheatSheetList);
-    DataFileDestroyer testDestroyer = new DataFileDestroyer(printer);
+    DataFileDestroyer testDestroyer = new DataFileDestroyer(printer, cheatSheetList);
+
 
     void createDataDir() {
         try {

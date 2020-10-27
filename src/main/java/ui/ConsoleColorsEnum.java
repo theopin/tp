@@ -10,6 +10,24 @@ public enum ConsoleColorsEnum {
     CYAN_TEXT("\u001B[36m"),
     WHITE_TEXT("\u001B[37m"),
 
+    BOLD_BLACK_TEXT("\u001B[30;1m"),
+    BOLD_RED_TEXT("\u001B[31;1m"),
+    BOLD_GREEN_TEXT("\u001B[32;1m"),
+    BOLD_YELLOW_TEXT("\u001B[33;1m"),
+    BOLD_BLUE_TEXT("\u001B[34;1m"),
+    BOLD_MAGENTA_TEXT("\u001B[35;1m"),
+    BOLD_CYAN_TEXT("\u001B[36;1m"),
+    BOLD_WHITE_TEXT("\u001B[37;1m"),
+
+    BRIGHT_BLACK_TEXT("\u001B[90m"),
+    BRIGHT_RED_TEXT("\u001B[91m"),
+    BRIGHT_GREEN_TEXT("\u001B[92m"),
+    BRIGHT_YELLOW_TEXT("\u001B[93m"),
+    BRIGHT_BLUE_TEXT("\u001B[94m"),
+    BRIGHT_MAGENTA_TEXT("\u001B[95m"),
+    BRIGHT_CYAN_TEXT("\u001B[96m"),
+    BRIGHT_WHITE_TEXT("\u001B[97m"),
+
     BLACK_TEXT_BG("\u001B[40m"),
     RED_TEXT_BG("\u001B[41m"),
     GREEN_TEXT_BG("\u001B[42m"),
@@ -21,7 +39,8 @@ public enum ConsoleColorsEnum {
 
     BOLD("\u001B[1m"),
 
-    RESET_TEXT("\u001b[0m");
+    // RESET_TEXT("\u001b[0m");
+    RESET_TEXT("\u001b[30m");
 
     private String ansiCode = null;
 

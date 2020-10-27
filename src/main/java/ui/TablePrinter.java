@@ -11,16 +11,19 @@ import java.util.regex.Pattern;
 
 
 public class TablePrinter {
-    String [][] rawTable;
+    String[][] rawTable;
     ArrayList<String[]> finalTable;
     int maxWidth = 30;
     boolean leftJustifiedRows = true;
+    Printer printer;
 
-    public TablePrinter(CheatSheetList cheatSheetList) throws CommandException {
+    public TablePrinter(Printer printer, CheatSheetList cheatSheetList) throws CommandException {
+        this.printer = printer;
         makeRawTable(cheatSheetList.getList());
     }
 
-    public TablePrinter(ArrayList<CheatSheet> cheatSheetToBePrinted) throws CommandException {
+    public TablePrinter(Printer printer, ArrayList<CheatSheet> cheatSheetToBePrinted) throws CommandException {
+        this.printer = printer;
         makeRawTable(cheatSheetToBePrinted);
     }
 
@@ -29,7 +32,7 @@ public class TablePrinter {
         rawTable[0][0] = "INDEX";
         rawTable[0][1] = "NAME";
         rawTable[0][2] = "SUBJECT";
-        rawTable[0][3] = "DETAILS";
+        rawTable[0][3] = "PREVIEW";
         for (int i = 1; i <= cheatSheetsToBePrinted.size(); i++) {
             CheatSheet cs = cheatSheetsToBePrinted.get(i - 1);
             assert cs != null;
@@ -40,14 +43,21 @@ public class TablePrinter {
             } catch (NullPointerException n) {
                 rawTable[i][2] = "";
             }
-            rawTable[i][3] = cs.getDetails().trim();
+            try {
+                rawTable[i][3] = cs.getDetails().split("\n")[0].trim();
+                if (rawTable[i][3].isEmpty()) {
+                    rawTable[i][3] = cs.getDetails().split("\n")[1].trim();
+                }
+            } catch (ArrayIndexOutOfBoundsException a) {
+                rawTable[i][3] = cs.getDetails().trim();
+            }
         }
     }
 
     private int calculateNoOfNewRowsNeededByCell(String cell) {
         int rowsNeeded = 0;
-        if (cell.contains("\n"))  {
-            String [] splittedCell = cell.split("\n");
+        if (cell.contains("\n")) {
+            String[] splittedCell = cell.split("\n");
             for (String s : splittedCell) {
                 rowsNeeded += (s.length() / maxWidth) + 1;
             }
@@ -57,7 +67,7 @@ public class TablePrinter {
         }
     }
 
-    private int calculateNoOfNewRowsNeededByRow(String [] row) {
+    private int calculateNoOfNewRowsNeededByRow(String[] row) {
         int rowsNeeded = 0;
         for (String cell : row) {
             if (rowsNeeded < calculateNoOfNewRowsNeededByCell(cell)) {
@@ -84,7 +94,7 @@ public class TablePrinter {
             for (int k = 0; k < rowsNeeded; k++) {
                 String[] newRow = new String[rows.length];
                 for (int i = 0; i < rows.length; i++) {
-                    String [] cellArray = contentsByColAfterWrapping(rows[i]);
+                    String[] cellArray = contentsByColAfterWrapping(rows[i]);
                     if (k < cellArray.length) {
                         newRow[i] = cellArray[k];
                     } else {
@@ -112,8 +122,27 @@ public class TablePrinter {
     public StringBuilder prepareStringFormatForEachRow(HashMap<Integer, Integer> columnLengths) {
         final StringBuilder stringFormat = new StringBuilder("");
         String flag = leftJustifiedRows ? "-" : "";
+        int col = 0;
+        String color = "";
         for (HashMap.Entry<Integer, Integer> e : columnLengths.entrySet()) {
-            stringFormat.append("| %").append(flag).append(e.getValue()).append("s ");
+            if (col % 4 == 0) {
+                color = printer.favColor.toString();
+            } else if (col % 4 == 1) {
+                color = printer.nameColor.toString();
+            } else if (col % 4 == 2) {
+                color = printer.subjectColor.toString();
+            } else {
+                color = printer.detailsColor.toString();
+            }
+            stringFormat
+                    .append("| ")
+                    .append(color)
+                    .append("%")
+                    .append(flag)
+                    .append(e.getValue())
+                    .append("s ")
+                    .append(printer.reset.toString());
+            col++;
         }
         stringFormat.append("|\n");
         return stringFormat;
@@ -140,7 +169,7 @@ public class TablePrinter {
                 System.out.print(line);
             }
             System.out.printf(stringFormat.toString(), finalTable.get(i)[0], finalTable.get(i)[1],
-                finalTable.get(i)[2], finalTable.get(i)[3]);
+                    finalTable.get(i)[2], finalTable.get(i)[3]);
         }
         System.out.print(line);
     }
