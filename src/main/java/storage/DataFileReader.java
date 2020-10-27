@@ -56,6 +56,13 @@ public class DataFileReader extends DataFile {
         }
     }
 
+    /**
+     * Shifts the preloaded cheatSheet directory to the user defined
+     * /data folder once the application is run for the first time.
+     *
+     * @throws IOException Thrown if there are issues detected during
+     *                     the I/O operation.
+     */
     private void shiftPreloadedCheatsheets() throws IOException {
         if (!Files.exists(PRELOADED_ORIG_DIR)) {
             return;
@@ -63,8 +70,7 @@ public class DataFileReader extends DataFile {
         if (!Files.exists(DATA_DIR)) {
             new File(DATA_DIR.toString());
         }
-        Files.g
-
+        //Files.move(PRELOADED_ORIG_DIR, DATA_PRELOADED_DIR);
     }
 
 
