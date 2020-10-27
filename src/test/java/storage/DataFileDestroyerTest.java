@@ -10,7 +10,6 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DataFileDestroyerTest extends DataFileTest {
-
     Path sampleTest2 = Paths.get(userDir, data, test, "sample2.xml");
     Path sampleTest3 = Paths.get(userDir, data, test, "sample3.xml");
     String sample2 = "sample2";
