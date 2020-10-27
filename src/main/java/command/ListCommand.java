@@ -27,7 +27,7 @@ public class ListCommand extends Command {
         cheatSheetList.getList().sort(new SortByName());
         TablePrinter tp = new TablePrinter(printer, cheatSheetList);
         tp.execute();
-        SortFilter sortFilter = new SortFilter(cheatSheetList.getList());
+        SortFilter sortFilter = new SortFilter(cheatSheetList.getList(), printer);
         sortFilter.execute();
     }
 }
