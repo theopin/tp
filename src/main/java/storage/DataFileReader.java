@@ -67,7 +67,7 @@ public class DataFileReader extends DataFile {
             return;
         }
         if (!Files.exists(DATA_DIR)) {
-            new File(DATA_DIR.toString());
+            createNewDirectory();
         }
         Files.move(PRELOADED_ORIG_DIR, DATA_PRELOADED_DIR);
     }
