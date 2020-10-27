@@ -35,7 +35,7 @@ public class SortFilter {
     public void execute() throws CommandException {
         do {
             askForInput();
-            TablePrinter tp = new TablePrinter(cheatSheetArrayList);
+            TablePrinter tp = new TablePrinter(printer, cheatSheetArrayList);
             tp.execute();
         } while (true);
     }

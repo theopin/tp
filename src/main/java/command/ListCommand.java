@@ -10,6 +10,7 @@ import ui.TablePrinter;
 
 public class ListCommand extends Command {
     public static final String invoker = "/list";
+    private CheatSheetList cheatSheetList;
 
     public ListCommand(Printer printer, CheatSheetList cheatSheetList) {
         super(printer);
@@ -24,7 +25,7 @@ public class ListCommand extends Command {
     @Override
     public void execute() throws CommandException {
         cheatSheetList.getList().sort(new SortByName());
-        TablePrinter tp = new TablePrinter(cheatSheetList.getList());
+        TablePrinter tp = new TablePrinter(printer, cheatSheetList);
         tp.execute();
         SortFilter sortFilter = new SortFilter(cheatSheetList.getList());
         sortFilter.execute();
