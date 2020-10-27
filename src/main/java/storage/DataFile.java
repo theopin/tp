@@ -22,7 +22,7 @@ public abstract class DataFile {
     protected static final String DATA = "data";
     protected static final String SRC = "src";
     protected static final String MAIN = "main";
-    private static final String JAVA = "java";
+    private static final String RESOURCES = "resources";
     protected static final String PRELOADED = "preloaded";
     protected static final String XML_EXTENSION = ".xml";
 
@@ -37,7 +37,7 @@ public abstract class DataFile {
 
     protected static final Path DATA_DIR = Paths.get(USER_DIR, DATA);
     protected static final Path DATA_PRELOADED_DIR = Paths.get(USER_DIR, DATA, PRELOADED);
-    protected static final Path PRELOADED_ORIG_DIR = Paths.get(SRC, MAIN, JAVA, PRELOADED);
+    protected static final Path PRELOADED_ORIG_DIR = Paths.get(SRC, MAIN, RESOURCES, PRELOADED);
 
     protected Printer printer;
     protected static ArrayList<Path> preloadedCheatSheets = new ArrayList<>();
