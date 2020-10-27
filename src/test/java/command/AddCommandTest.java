@@ -162,7 +162,7 @@ class AddCommandTest {
 
     @Test
     void execute_noNameGotSubject_exceptionThrown() {
-        final CheatSheetList cheatSheetList= new CheatSheetList();
+        final CheatSheetList cheatSheetList = new CheatSheetList();
         try {
             Command addCommand = new AddCommand(null, cheatSheetList,null);
             LinkedHashMap linkedHashMap = new LinkedHashMap();
