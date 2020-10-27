@@ -82,7 +82,7 @@ public class DataFileDestroyer extends DataFile {
             throw new IOException();
         }
         for (String dataDirectoryFile : dataDirectoryFiles) {
-            Path filePath = Paths.get(USER_DIR, DATA, dataDirectoryFile);
+            Path filePath = Paths.get(directoryPath.toString(), dataDirectoryFile);
 
             if (Files.isDirectory(filePath)) {
                 if (!filePath.toFile().getName().equals(PRELOADED)) {
