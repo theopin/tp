@@ -69,5 +69,4 @@ public class DataFileReaderTest extends DataFileTest {
 
         assertEquals("Test Success!", testSubject);
     }
-    
 }
