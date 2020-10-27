@@ -108,7 +108,7 @@ public class Parser {
             String[] details = userInput.split(FLAG_REGEX);
             for (int i = 1; i < details.length; i++) {
                 if (details[i].contains("/")) {
-                    throw new CommandException("\"/\" is not allowed in name");
+                    throw new CommandException("Invalid command");
                 }
                 flagsToDescriptions.put(flags.get(i - 1), details[i].trim());
             }
