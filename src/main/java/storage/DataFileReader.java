@@ -19,6 +19,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static java.nio.file.StandardCopyOption.COPY_ATTRIBUTES;
 
 /**
  * Allows the user to read data from the data directory and use it
@@ -26,6 +30,7 @@ import java.nio.file.Path;
  */
 public class DataFileReader extends DataFile {
     private CheatSheetList cheatSheetList;
+    private Logger logger = Logger.getLogger("Foo");
 
     public DataFileReader(Printer printer, CheatSheetList cheatSheetList) {
         this.printer = printer;
@@ -43,6 +48,7 @@ public class DataFileReader extends DataFile {
             shiftPreloadedCheatsheets();
             insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
+            logger.log(Level.WARNING, "processing error");
             printer.print(e.getMessage());
             createNewDirectory();
         } catch (DirectoryIsEmptyException | IOException d) {
@@ -57,7 +63,7 @@ public class DataFileReader extends DataFile {
         if (!Files.exists(DATA_DIR)) {
             new File(DATA_DIR.toString());
         }
-        Files.copy(PRELOADED_ORIG_DIR, DATA_DIR);
+        Files.g
 
     }
 

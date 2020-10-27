@@ -34,6 +34,7 @@ public abstract class DataFile {
     protected static final String EMPTY = "";
 
     protected static final Path DATA_DIR = Paths.get(USER_DIR, DATA);
+    protected static final Path DATA_PRELOADED_DIR = Paths.get(USER_DIR, DATA, PRELOADED);
     protected static final Path PRELOADED_ORIG_DIR = Paths.get("src", "main", PRELOADED);
 
 
