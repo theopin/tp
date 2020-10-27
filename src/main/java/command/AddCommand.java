@@ -58,7 +58,6 @@ public class AddCommand extends Command {
     }
 
     private String convertToPascalCaseNoSpace(String input) {
-        System.out.println(input.length());
         String[] splitInput = input.split("\\p{IsWhite_Space}+");
         for (int i = 0; i < splitInput.length; i++) {
             splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();
