@@ -69,8 +69,4 @@ public class DataFileReaderTest extends DataFileTest {
 
         assertEquals("Test Success!", testSubject);
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> d8ed25340e9a1c0e29e8ec2847e12a3b457cffa4
 }
