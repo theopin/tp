@@ -146,7 +146,7 @@ public class DataFileReader extends DataFile {
 
         while (countGenerations != 0) {
             currentFile = currentFile.getParentFile();
-            if(currentFile.getName().equals(RESOURCES)) {
+            if (currentFile.getName().equals(RESOURCES)) {
                 dataDirectoryFile.delete();
                 return;
             }

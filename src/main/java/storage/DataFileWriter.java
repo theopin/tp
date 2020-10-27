@@ -72,18 +72,27 @@ public class DataFileWriter extends DataFile {
         String fileName = cheatSheet.getName() + XML_EXTENSION;
 
         Path subjectDirectory = Paths.get(USER_DIR, DATA, subjectName);
+
+        Path possibleOriginalFile = Paths.get(SRC, MAIN, RESOURCES, PRELOADED, subjectName, fileName);
         Path possiblePreloadedFile = Paths.get(USER_DIR, DATA,
                 PRELOADED, subjectName, fileName);
+        Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, PRELOADED, subjectName);
+
+
         Path textFile = Paths.get(USER_DIR, DATA, subjectName, fileName);
 
         try {
-            if (preloadedCheatSheets.contains(possiblePreloadedFile)) {
+            boolean isPreloadedFile = preloadedCheatSheets.contains(possiblePreloadedFile)
+                    || preloadedCheatSheets.contains(possibleOriginalFile);
+
+            if (isPreloadedFile) {
                 textFile = possiblePreloadedFile;
-            } else {
-                verifyDirectoryExistence(subjectDirectory);
-                if (!Files.exists(textFile)) {
-                    Files.createFile(textFile);
-                }
+            }
+            verifyDirectoryExistence(subjectDirectory,
+                    preloadedSubjectDirectory,
+                    isPreloadedFile);
+            if (!Files.exists(textFile)) {
+                Files.createFile(textFile);
             }
 
             Document cheatSheetFile = buildFileContents(cheatSheet);
@@ -98,14 +107,28 @@ public class DataFileWriter extends DataFile {
      * Checks if the /data and /subjectName directories exist and creates them if they
      * are currently non-existent.
      *
-     * @param subjectDirectory The cheatSheet that is currently being converted into a file.
-     * @throws IOException     Thrown if errors occur when attempting to create the
-     *                         respective directories.
+     * @param subjectDirectory          The directory to store a non-preloaded cheatSheet.
+     * @param preloadedSubjectDirectory The directory to store a preloaded cheatSheet
+     * @param isPreloadedFile           Boolean indicating if the file is preloaded or not.
+     * @throws IOException              Thrown if errors occur when attempting to create the
+     *                                  respective directories.
      */
-    private void verifyDirectoryExistence(Path subjectDirectory) throws IOException {
+    private void verifyDirectoryExistence(Path subjectDirectory,
+                                          Path preloadedSubjectDirectory,
+                                          boolean isPreloadedFile) throws IOException {
         if (!Files.exists(DATA_DIR)) {
             Files.createDirectory(DATA_DIR);
         }
+
+        if (isPreloadedFile) {
+            if (!Files.exists(PRELOADED_DIR)) {
+                Files.createDirectory(PRELOADED_DIR);
+            }
+            if (!Files.exists(preloadedSubjectDirectory)) {
+                Files.createDirectory(preloadedSubjectDirectory);
+            }
+        }
+
         if (!Files.exists(subjectDirectory)) {
             Files.createDirectory(subjectDirectory);
         }
