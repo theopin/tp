@@ -115,7 +115,7 @@ public class CheatSheetList {
         try {
             cheatSheet = get(index + 1);
         } catch (CommandException e) {
-            throw new CommandException("Please enter a valid name11");
+            throw new CommandException("Please enter a valid name");
         }
         return cheatSheet;
     }
