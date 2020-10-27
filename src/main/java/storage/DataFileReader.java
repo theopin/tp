@@ -114,7 +114,6 @@ public class DataFileReader extends DataFile {
         for (File dataDirectoryFile : dataDirectoryFiles) {
             Path filePath = dataDirectoryFile.toPath();
 
-
             if (Files.isDirectory(filePath)) {
                 extractFromDirectory(filePath);
                 continue;

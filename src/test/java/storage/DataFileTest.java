@@ -12,17 +12,19 @@ public class DataFileTest {
 
     String userDir = System.getProperty("user.dir");
     String data = "data";
+    String test = "test";
     String empty = "";
     String sample = "sample";
 
-    Path sampleTest = Paths.get(userDir, data, "sample.xml");
+    Path sampleTestDir = Paths.get(userDir, data, test);
+    Path sampleTest = Paths.get(userDir, data, test, "sample.xml");
     Path dataDir = Paths.get(userDir, data);
 
     Printer printer = new Printer();
-    CheatSheetList cheatSheetList = new CheatSheetList();
-    DataFileWriter testWriter = new DataFileWriter(printer, cheatSheetList);
-    DataFileReader testReader = new DataFileReader(printer, cheatSheetList);
-    DataFileDestroyer testDestroyer = new DataFileDestroyer(printer, cheatSheetList);
+    CheatSheetList testCheatSheetList = new CheatSheetList();
+    DataFileReader testReader = new DataFileReader(printer, testCheatSheetList);
+    DataFileWriter testWriter = new DataFileWriter(printer, testCheatSheetList);
+    DataFileDestroyer testDestroyer = new DataFileDestroyer(printer, testCheatSheetList);
 
     void createDataDir() {
         try {

@@ -1,7 +1,6 @@
 package storage;
 
 import cheatsheet.CheatSheet;
-import cheatsheet.CheatSheetList;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -25,34 +24,34 @@ public class DataFileWriterTest extends DataFileTest {
             + "</main>"
             + System.lineSeparator();
 
-    /*
+    
     @Test
     void writeFileExists_sampleCheatsheet_success() {
-        CheatSheetList.clear();
 
         CheatSheet testCheatSheet = new CheatSheet(sample,
                 "Test",
                 "Test Success!");
-        CheatSheetList.add(testCheatSheet);
+        testCheatSheetList.add(testCheatSheet);
 
         testWriter.executeFunction();
         boolean isSampleAdded = sampleTest.toFile().exists();
         if (isSampleAdded) {
             eraseFile(sampleTest);
+            eraseFile(sampleTestDir);
         }
 
-        CheatSheetList.clear();
+        testCheatSheetList.clear();
         assertTrue(isSampleAdded);
     }
 
     @Test
     void writeFileContents_sampleCheatsheet_success() {
-        CheatSheetList.clear();
+        testCheatSheetList.clear();
 
         CheatSheet testCheatSheet = new CheatSheet(sample,
                 "Test",
                 "Test Success!");
-        CheatSheetList.add(testCheatSheet);
+        testCheatSheetList.add(testCheatSheet);
 
         testWriter.executeFunction();
 
@@ -64,23 +63,23 @@ public class DataFileWriterTest extends DataFileTest {
         } finally {
             if (sampleTest.toFile().exists()) {
                 eraseFile(sampleTest);
+                eraseFile(sampleTestDir);
             }
-            CheatSheetList.clear();
+            testCheatSheetList.clear();
             assertEquals(fileInput, writtenFile);
         }
     }
 
     @Test
-    public void writeDataFiles_emptyCheatSheetList_success() {
+    public void writeDataFiles_emptytestCheatSheetList_success() {
         createDataDir();
-        CheatSheetList.clear();
+        testCheatSheetList.clear();
         testWriter.executeFunction();
 
         String[] userDirectoryFiles = dataDir.toFile().list();
-        eraseFile(dataDir);
 
         int directoryFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
         assertEquals(0, directoryFiles);
     }
-    */
+    
 }
