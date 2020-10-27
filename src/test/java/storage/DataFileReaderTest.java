@@ -30,6 +30,7 @@ public class DataFileReaderTest extends DataFileTest {
 
         testReader.executeFunction();
         eraseFile(sampleTest4);
+        eraseFile(sampleTestDir);
 
         String testName = testCheatSheetList.getList().get(0).getName();
         testCheatSheetList.clear();
@@ -45,6 +46,7 @@ public class DataFileReaderTest extends DataFileTest {
 
         testReader.executeFunction();
         eraseFile(sampleTest4);
+        eraseFile(sampleTestDir);
 
         String testSubject = testCheatSheetList.getList().get(0).getSubject();
         testCheatSheetList.clear();
@@ -60,6 +62,7 @@ public class DataFileReaderTest extends DataFileTest {
 
         testReader.executeFunction();
         eraseFile(sampleTest4);
+        eraseFile(sampleTestDir);
 
         String testSubject = testCheatSheetList.getList().get(0).getDetails();
         testCheatSheetList.clear();
