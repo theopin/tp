@@ -29,7 +29,7 @@ public class Parser {
     private Printer printer;
     private Ui ui;
 
-        private static final String FLAG_REGEX = "(?=(/[a-z]))";
+    private static final String FLAG_REGEX = "(?=(/[a-z]))";
 
     public Parser() {
     }
