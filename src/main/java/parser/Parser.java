@@ -29,7 +29,7 @@ public class Parser {
     private Printer printer;
     private Ui ui;
 
-    private static final String FLAG_REGEX = "(?=(/[a-z]))";
+        private static final String FLAG_REGEX = "(?=(/[a-z]))";
 
     public Parser() {
     }
@@ -106,7 +106,7 @@ public class Parser {
 
                 // Validate that <flag> matches required Command flags
                 boolean isValidFlag = false;
-                for (CommandFlag c : command.getFlagstodescriptionsMap().keySet()){
+                for (CommandFlag c : command.getFlagstodescriptionsMap().keySet()) {
                     if (c.getFlag().equals(flag)) {
                         flagsToDescriptions.put(c, flagDescription.trim());
                         isValidFlag = true;
