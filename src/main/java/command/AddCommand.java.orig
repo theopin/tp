@@ -59,9 +59,16 @@ public class AddCommand extends Command {
 
     private String convertToPascalCaseNoSpace(String input) {
         if (input.length() == 0) {
+<<<<<<< HEAD
+            return "unsorted";
+        }
+
+        String[] splitInput = input.split("\\s+");
+=======
             return "Unsorted";
         }
         String[] splitInput = input.split("\\p{IsWhite_Space}+");
+>>>>>>> 7def9dc6eb112a96de607a8c9273351408e38b35
         for (int i = 0; i < splitInput.length; i++) {
             splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();
         }
