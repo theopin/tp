@@ -20,6 +20,7 @@ public class SortFilter {
     Printer printer;
     ArrayList<CheatSheet> cheatSheetArrayList;
 
+
     public SortFilter(ArrayList<CheatSheet> cheatSheetArrayList, Printer printer) {
         this.cheatSheetArrayList = cheatSheetArrayList;
         this.printer = printer;

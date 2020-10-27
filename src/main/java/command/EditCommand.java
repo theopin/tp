@@ -16,9 +16,10 @@ public class EditCommand extends FinderCommand {
     public EditCommand(Printer printer, CheatSheetList cheatSheetList, Editor editor) {
         super(printer, cheatSheetList);
         this.editor = editor;
-
         flagsToDescriptions.put(CommandFlag.NAME, null);
         flagsToDescriptions.put(CommandFlag.INDEX, null);
+        alternativeArguments.add(CommandFlag.NAME);
+        alternativeArguments.add(CommandFlag.INDEX);
     }
 
     @Override
