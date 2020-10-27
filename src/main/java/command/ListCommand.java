@@ -31,4 +31,3 @@ public class ListCommand extends Command {
         sortFilter.execute();
     }
 }
-
