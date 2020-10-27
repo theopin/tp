@@ -19,6 +19,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  * Allows the user to read data from the data directory and use it
@@ -26,6 +29,7 @@ import java.nio.file.Path;
  */
 public class DataFileReader extends DataFile {
     private CheatSheetList cheatSheetList;
+    private Logger logger = Logger.getLogger("Foo");
 
     public DataFileReader(Printer printer, CheatSheetList cheatSheetList) {
         this.printer = printer;
@@ -40,14 +44,34 @@ public class DataFileReader extends DataFile {
     @Override
     public void executeFunction() {
         try {
+            shiftPreloadedCheatsheets();
             insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
+            logger.log(Level.WARNING, "processing error");
             printer.print(e.getMessage());
             createNewDirectory();
-        } catch (DirectoryIsEmptyException d) {
+        } catch (DirectoryIsEmptyException | IOException d) {
             printer.print(d.getMessage());
         }
     }
+
+    /**
+     * Shifts the preloaded cheatSheet directory to the user defined
+     * /data folder once the application is run for the first time.
+     *
+     * @throws IOException Thrown if there are issues detected during
+     *                     the I/O operation.
+     */
+    private void shiftPreloadedCheatsheets() throws IOException {
+        if (!Files.exists(PRELOADED_ORIG_DIR)) {
+            return;
+        }
+        if (!Files.exists(DATA_DIR)) {
+            new File(DATA_DIR.toString());
+        }
+        //Files.move(PRELOADED_ORIG_DIR, DATA_PRELOADED_DIR);
+    }
+
 
     /**
      * Converts the data obtained from the /data folder into cheatsheets and adds
@@ -75,7 +99,6 @@ public class DataFileReader extends DataFile {
         } catch (IOException e) {
             printer.print(e.getMessage());
         }
-
     }
 
     /**
@@ -90,7 +113,6 @@ public class DataFileReader extends DataFile {
         }
         for (File dataDirectoryFile : dataDirectoryFiles) {
             Path filePath = dataDirectoryFile.toPath();
-
 
             if (Files.isDirectory(filePath)) {
                 extractFromDirectory(filePath);

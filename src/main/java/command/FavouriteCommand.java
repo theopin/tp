@@ -7,7 +7,7 @@ import parser.CommandFlag;
 import ui.Printer;
 
 public class FavouriteCommand extends FinderCommand {
-    public static final String invoker = "/favourite";
+    public static final String invoker = "/fav";
 
     public FavouriteCommand(Printer printer, CheatSheetList cheatSheetList) {
         super(printer, cheatSheetList);
