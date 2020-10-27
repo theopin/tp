@@ -92,6 +92,7 @@ public class Parser {
             String[] details = userInput.split(FLAG_REGEX);
 
             for (int i = 1; i < details.length; i++) {
+<<<<<<< HEAD
                 int descriptionStartIdx = getDescriptionStartIdx(details[i]);
                 String flag = details[i].substring(0, descriptionStartIdx);
                 String flagDescription = details[i].substring(descriptionStartIdx).trim();
@@ -108,6 +109,15 @@ public class Parser {
                 if (!isValidFlag) {
                     throw new CommandException("Please input the correct flag");
                 }
+=======
+                if (details[i].contains("/")) {
+                    throw new CommandException("Invalid command");
+                }
+                if (flags.get(i - 1).equals(CommandFlag.NAME) || flags.get(i - 1).equals(CommandFlag.SUBJECT)) {
+                    details[i].replaceAll("\t", "");
+                }
+                flagsToDescriptions.put(flags.get(i - 1), details[i].trim());
+>>>>>>> 55dc9ca4cf9170c077caf6ad0d27f5e56001bd18
             }
         } catch (IndexOutOfBoundsException i) {
             throw new CommandException("Flag indexing error");
