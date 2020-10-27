@@ -29,7 +29,7 @@ public class ViewCommand extends FinderCommand {
             printer.printViewCheatSheetMessage(desiredCheatSheet);
             copyTextToClipboard(desiredCheatSheet.getDetails());
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            throw new CommandException("Please enter a valid index");
+            throw new CommandException("Please enter a valid name or/and index");
         }
     }
 

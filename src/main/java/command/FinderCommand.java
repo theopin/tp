@@ -29,9 +29,8 @@ public abstract class FinderCommand extends Command {
         }
 
         if (desiredCheatSheet == null) {
-            throw new CommandException("Please enter a valid name or an index");
+            throw new CommandException("Please enter a valid name or/and an index");
         }
-
         return desiredCheatSheet;
     }
 
@@ -39,10 +38,19 @@ public abstract class FinderCommand extends Command {
                                                             String keyword) throws CommandException {
         if (subject != null && keyword == null && name == null) {
             return cs.getSubject().contains(subject);
-        } else if (keyword != null && subject == null && name == null) {
+        } else if (subject == null && keyword != null && name == null) {
             return cs.getDetails().contains(keyword);
         } else if (subject != null && keyword != null && name == null) {
             return cs.getSubject().contains(subject) && cs.getDetails().contains(keyword);
+        } else if (subject == null && keyword == null && name != null) {
+            return cs.getName().contains(name);
+        } else if (subject != null && keyword == null) {
+            return cs.getSubject().contains(subject) && cs.getName().contains(name);
+        } else if (subject == null && keyword != null) {
+            return cs.getDetails().contains(keyword) && cs.getName().contains(name);
+        } else if (subject != null) {
+            return cs.getSubject().contains(subject) && cs.getDetails().contains(keyword)
+                && cs.getName().contains(name);
         } else {
             throw new CommandException("Please enter at least an argument");
         }

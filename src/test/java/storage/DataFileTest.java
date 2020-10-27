@@ -46,5 +46,4 @@ public class DataFileTest {
     void eraseFile(Path fileName) {
         fileName.toFile().delete();
     }
-
 }

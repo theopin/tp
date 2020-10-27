@@ -1,18 +1,19 @@
 package parser;
 
 import cheatsheet.CheatSheetList;
+
 import command.Command;
 import command.AddCommand;
 import command.ClearCommand;
 import command.DeleteCommand;
 import command.EditCommand;
 import command.ExitCommand;
-import command.ListCommand;
+import command.FavouriteCommand;
 import command.FindCommand;
 import command.HelpCommand;
+import command.ListCommand;
+import command.SettingsCommand;
 import command.ViewCommand;
-import command.FavouriteCommand;
-
 import editor.Editor;
 import exception.CommandException;
 import storage.DataFileDestroyer;
@@ -68,16 +69,18 @@ public class Parser {
             return new EditCommand(printer, cheatSheetList, editor);
         case ExitCommand.invoker:
             return new ExitCommand(printer);
+        case FavouriteCommand.invoker:
+            return new FavouriteCommand(printer, cheatSheetList);
         case FindCommand.invoker:
             return new FindCommand(printer, cheatSheetList);
         case HelpCommand.invoker:
             return new HelpCommand(printer);
         case ListCommand.invoker:
             return new ListCommand(printer, cheatSheetList);
+        case SettingsCommand.invoker:
+            return new SettingsCommand(printer);
         case ViewCommand.invoker:
             return new ViewCommand(printer, cheatSheetList);
-        case FavouriteCommand.invoker:
-            return new FavouriteCommand(printer, cheatSheetList);
         default:
             throw new CommandException("Please enter a valid command");
         }
@@ -107,9 +110,12 @@ public class Parser {
         try {
             String[] details = userInput.split(FLAG_REGEX);
             for (int i = 1; i < details.length; i++) {
-                //if (flags.get(i-1).equals(CommandFlag.SUBJECT) && (details[i].isBlank() || details[i] == null)) {
-                //    details[i] = "Unsorted";
-                //}
+                if (details[i].contains("/")) {
+                    throw new CommandException("Invalid command");
+                }
+                if (flags.get(i - 1).equals(CommandFlag.NAME) || flags.get(i - 1).equals(CommandFlag.SUBJECT)) {
+                    details[i].replaceAll("\t", "");
+                }
                 flagsToDescriptions.put(flags.get(i - 1), details[i].trim());
             }
         } catch (IndexOutOfBoundsException i) {
