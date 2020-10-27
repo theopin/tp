@@ -40,14 +40,27 @@ public class DataFileReader extends DataFile {
     @Override
     public void executeFunction() {
         try {
+            shiftPreloadedCheatsheets();
             insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
             printer.print(e.getMessage());
             createNewDirectory();
-        } catch (DirectoryIsEmptyException d) {
+        } catch (DirectoryIsEmptyException | IOException d) {
             printer.print(d.getMessage());
         }
     }
+
+    private void shiftPreloadedCheatsheets() throws IOException {
+        if (!Files.exists(PRELOADED_ORIG_DIR)) {
+            return;
+        }
+        if (!Files.exists(DATA_DIR)) {
+            new File(DATA_DIR.toString());
+        }
+        Files.copy(PRELOADED_ORIG_DIR, DATA_DIR);
+
+    }
+
 
     /**
      * Converts the data obtained from the /data folder into cheatsheets and adds
