@@ -28,6 +28,7 @@ import java.util.logging.Logger;
  * to insert the cheatsheets present in the folder to the application.
  */
 public class DataFileReader extends DataFile {
+    public static final int COUNT_GENERATIONS = 3;
     private CheatSheetList cheatSheetList;
     private Logger logger = Logger.getLogger("Foo");
 
@@ -44,7 +45,9 @@ public class DataFileReader extends DataFile {
     @Override
     public void executeFunction() {
         try {
-            shiftPreloadedCheatsheets();
+            if (Files.exists(PRELOADED_ORIG_DIR)) {
+                shiftPreloadedCheatsheets();
+            }
             insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
             logger.log(Level.WARNING, "processing error");
@@ -63,13 +66,10 @@ public class DataFileReader extends DataFile {
      *                     the I/O operation.
      */
     private void shiftPreloadedCheatsheets() throws IOException {
-        if (!Files.exists(PRELOADED_ORIG_DIR)) {
-            return;
-        }
         if (!Files.exists(DATA_DIR)) {
             createNewDirectory();
         }
-        Files.move(PRELOADED_ORIG_DIR, DATA_PRELOADED_DIR);
+        extractFromDirectory(RESOURCES_DIR);
     }
 
 
@@ -116,13 +116,15 @@ public class DataFileReader extends DataFile {
 
             if (Files.isDirectory(filePath)) {
                 extractFromDirectory(filePath);
+                checkPathParent(dataDirectoryFile);
                 continue;
             }
-            boolean isPreloadedFile = dataDirectoryFile
+            String preloadedFileName = dataDirectoryFile
                     .getParentFile()
                     .getParentFile()
-                    .getName()
-                    .equals(PRELOADED);
+                    .getName();
+
+            boolean isPreloadedFile = preloadedFileName.equals(PRELOADED);
 
             if (isPreloadedFile) {
                 preloadedCheatSheets.add(dataDirectoryFile.toPath());
@@ -132,7 +134,23 @@ public class DataFileReader extends DataFile {
                 extractCheatSheet(dataDirectoryFile);
             } catch (ParserConfigurationException | SAXException e) {
                 printer.print(e.getMessage());
+            } finally {
+                checkPathParent(dataDirectoryFile);
             }
+        }
+    }
+
+    private void checkPathParent(File dataDirectoryFile) {
+        int countGenerations = COUNT_GENERATIONS;
+        File currentFile = dataDirectoryFile;
+
+        while (countGenerations != 0) {
+            currentFile = currentFile.getParentFile();
+            if(currentFile.getName().equals(RESOURCES)) {
+                dataDirectoryFile.delete();
+                return;
+            }
+            countGenerations--;
         }
     }
 
