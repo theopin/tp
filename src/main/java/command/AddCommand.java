@@ -29,7 +29,7 @@ public class AddCommand extends Command {
         if (cheatSheetList.exists(name)) {
             throw new CommandException("Name already existed, please enter another name");
         }
-        if (name.isEmpty() || name.isBlank()) {
+        if (name == null || name.isEmpty() || name.isBlank()) {
             throw new CommandException("Name cannot be blank");
         }
 
