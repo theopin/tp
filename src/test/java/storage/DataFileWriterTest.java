@@ -29,8 +29,23 @@ public class DataFileWriterTest extends DataFileTest {
     Path sampleTest = Paths.get(userDir, data, test, "sample.xml");
 
     @Test
-    void writeFileExists_sampleCheatsheet_success() {
+    public void writeDataFiles_emptyTestCheatSheetList_success() {
+        testCheatSheetList.clear();
+        String[] userDirectoryFiles = dataDir.toFile().list();
+        final int expectedFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
 
+        testWriter.executeFunction();
+
+        userDirectoryFiles = dataDir.toFile().list();
+
+        testCheatSheetList.clear();
+        int directoryFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
+        assertEquals(expectedFiles, directoryFiles);
+    }
+
+    @Test
+    void writeFileExists_sampleCheatsheet_success() {
+        testCheatSheetList.clear();
         CheatSheet testCheatSheet = new CheatSheet(sample,
                 "Test",
                 "Test Success!");
@@ -73,17 +88,5 @@ public class DataFileWriterTest extends DataFileTest {
         }
     }
 
-    @Test
-    public void writeDataFiles_emptyTestCheatSheetList_success() {
-        String[] userDirectoryFiles = dataDir.toFile().list();
-        final int expectedFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
 
-        testCheatSheetList.clear();
-        testWriter.executeFunction();
-
-        userDirectoryFiles = dataDir.toFile().list();
-
-        int directoryFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
-        assertEquals(expectedFiles, directoryFiles);
-    }
 }
