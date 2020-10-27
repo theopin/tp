@@ -203,9 +203,8 @@ public final class Printer {
 
     public void printAlternativeArgumentPrompt(Command command) {
         print(NEWLINE);
-        print(ConsoleColorsEnum.RED_TEXT + "Please enter at least ONE of these:");
+        System.out.print(ConsoleColorsEnum.RED_TEXT + "Please enter at least ONE of these: ");
         for (CommandFlag arg : command.getAlternativeArguments()) {
-
             System.out.print(arg + " ");
         }
         print(reset);
@@ -213,7 +212,7 @@ public final class Printer {
     }
 
     public void printMissingArgument(CommandFlag curArg) {
-        print(textColor + "Please input " + curArg.name() + ": " + reset);
+        System.out.print(textColor + "Please input " + curArg.name() + ": " + reset);
     }
 
     public void setColor(int option) {

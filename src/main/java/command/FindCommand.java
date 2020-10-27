@@ -17,7 +17,6 @@ public class FindCommand extends FinderCommand {
         super(printer, cheatSheetList);
         this.cheatSheetList = cheatSheetList;
         flagsToDescriptions.put(CommandFlag.NAME, null);
-
         flagsToDescriptions.put(CommandFlag.SUBJECT, null);
         flagsToDescriptions.put(CommandFlag.SECTIONKEYWORD, null);
         alternativeArguments.add(CommandFlag.NAME);

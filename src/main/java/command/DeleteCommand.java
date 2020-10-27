@@ -7,6 +7,8 @@ import parser.CommandFlag;
 import storage.DataFileDestroyer;
 import ui.Printer;
 
+import javax.naming.Name;
+
 public class DeleteCommand extends FinderCommand {
     protected DataFileDestroyer fileDestroyer;
     public static final String invoker = "/delete";
@@ -25,13 +27,11 @@ public class DeleteCommand extends FinderCommand {
     public void execute() throws CommandException {
         try {
             CheatSheet cheatSheetToDelete = getCheatSheetFromNameOrIndex();
-            cheatSheetList.remove(cheatSheetToDelete.getName());
             fileDestroyer.executeFunction(cheatSheetToDelete.getName());
+            cheatSheetList.remove(cheatSheetToDelete.getName());
             printer.printDeleteCheatSheetMessage(cheatSheetToDelete, cheatSheetList);
-        } catch (NullPointerException | IndexOutOfBoundsException e) {
-            throw new CommandException("Please enter a valid name or index");
-        } catch (NumberFormatException n) {
-            throw new CommandException("Please enter a valid index");
+        } catch (NullPointerException | IndexOutOfBoundsException | NumberFormatException e) {
+            throw new CommandException("Please enter a valid name or/and index");
         }
     }
 }
