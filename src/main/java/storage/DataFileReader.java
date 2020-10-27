@@ -220,7 +220,6 @@ public class DataFileReader extends DataFile {
         } catch (NullPointerException e) {
             cheatSheetSection = EMPTY;
         }
-
         return cheatSheetSection;
     }
 

@@ -24,6 +24,7 @@ public class DataFileTest {
     DataFileReader testReader = new DataFileReader(printer, cheatSheetList);
     DataFileDestroyer testDestroyer = new DataFileDestroyer(printer, cheatSheetList);
 
+
     void createDataDir() {
         try {
             Files.createDirectories(dataDir);

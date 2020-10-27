@@ -32,6 +32,7 @@ public class UserSession {
         printer = new Printer();
         fileReader = new DataFileReader(printer, cheatSheetList);
         fileWriter = new DataFileWriter(printer, cheatSheetList);
+
         fileDestroyer = new DataFileDestroyer(printer, cheatSheetList);
         userCommandParser = new Parser(cheatSheetList, editor, fileDestroyer, printer, ui);
     }
@@ -55,7 +56,8 @@ public class UserSession {
                 printer.print(c.getMessage());
                 continue;
             }
-            fileWriter. executeFunction();
+
+            fileWriter.executeFunction();
         } while (true);
     }
 
