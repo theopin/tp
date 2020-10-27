@@ -8,6 +8,7 @@ import parser.Parser;
 import storage.DataFileReader;
 import storage.DataFileWriter;
 import storage.DataFileDestroyer;
+import org.fusesource.jansi.AnsiConsole;
 
 import java.io.IOException;
 
@@ -38,6 +39,7 @@ public class UserSession {
     }
 
     public void runProgramSequence() {
+        AnsiConsole.systemInstall();
         fileReader.executeFunction();
         printer.printWelcomeScreen();
 
@@ -65,5 +67,6 @@ public class UserSession {
         ui.closeScanner();
         editor.dispose();
         printer.printExitLogo();
+        AnsiConsole.systemUninstall();
     }
 }
