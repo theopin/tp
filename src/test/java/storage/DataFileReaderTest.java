@@ -40,6 +40,7 @@ public class DataFileReaderTest extends DataFileTest {
     @Test
     void readFile_subject_success() {
         testCheatSheetList.clear();
+        createDirectory(sampleTestDir);
         createSampleFile(sampleTest4, fileInput);
 
         testReader.executeFunction();
@@ -54,6 +55,7 @@ public class DataFileReaderTest extends DataFileTest {
     @Test
     void readFile_details_success() {
         testCheatSheetList.clear();
+        createDirectory(sampleTestDir);
         createSampleFile(sampleTest4, fileInput);
 
         testReader.executeFunction();
