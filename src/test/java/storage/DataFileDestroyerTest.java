@@ -17,6 +17,7 @@ public class DataFileDestroyerTest extends DataFileTest {
 
     @Test
     void clearSingleFile_singleSampleTest_success() {
+        testCheatSheetList.clear();
         createDirectory(sampleTestDir);
         CheatSheet testCheatSheet = new CheatSheet(sample3,
                 "Test",
@@ -32,12 +33,13 @@ public class DataFileDestroyerTest extends DataFileTest {
             eraseFile(sampleTest3);
             eraseFile(sampleTestDir);
         }
-
+        testCheatSheetList.clear();
         assertTrue(isSampleRemoved);
     }
 
     @Test
     void clearDirectory_multipleSampleTest_success() {
+        testCheatSheetList.clear();
         createDirectory(sampleTestDir);
 
         CheatSheet testCheatSheet2 = new CheatSheet(sample2,
@@ -63,7 +65,7 @@ public class DataFileDestroyerTest extends DataFileTest {
             eraseFile(sampleTest3);
             eraseFile(sampleTestDir);
         }
-
+        testCheatSheetList.clear();
         assertTrue(isSampleRemoved);
     }
 }

@@ -77,7 +77,7 @@ public class DataFileWriterTest extends DataFileTest {
         try {
             writtenFile = Files.readString(sampleTest);
         } catch (IOException e) {
-            e.printStackTrace();
+            printer.print(e.getMessage());
         } finally {
             if (sampleTest.toFile().exists()) {
                 eraseFile(sampleTest);
