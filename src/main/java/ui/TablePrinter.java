@@ -37,7 +37,7 @@ public class TablePrinter {
             CheatSheet cs = cheatSheetsToBePrinted.get(i - 1);
             assert cs != null;
             rawTable[i][0] = String.valueOf(i);
-            rawTable[i][1] = cs.getName().trim();
+            rawTable[i][1] = cs.getName().trim() + (cs.getIsFavourite() ? " [*]" : "");
             try {
                 rawTable[i][2] = cs.getSubject().trim();
             } catch (NullPointerException n) {

@@ -20,6 +20,8 @@ import java.util.ArrayList;
 public abstract class DataFile {
     protected static final String USER_DIR = System.getProperty("user.dir");
     protected static final String DATA = "data";
+    protected static final String SRC = "src";
+    protected static final String MAIN = "main";
     protected static final String PRELOADED = "preloaded";
     protected static final String XML_EXTENSION = ".xml";
 
@@ -28,24 +30,13 @@ public abstract class DataFile {
     protected static final String SUBJECT_ELEMENT = "subject";
     protected static final String CONTENTS_ELEMENT = "contents";
 
-
     protected static final String YES = "Yes";
     protected static final String NO = "No";
     protected static final String EMPTY = "";
 
-    protected static final String LESS_THAN = "<";
-    protected static final String LESS_THAN_XML = "&lt;";
-    protected static final String MORE_THAN = ">";
-    protected static final String MORE_THAN_XML = "&gt;";
-    protected static final String AMPERSAND = "&";
-    protected static final String AMPERSAND_XML = "&amp;";
-
-    protected static final String SINGLE_QUOTE = "'";
-    protected static final String SINGLE_QUOTE_XML = "&apos;";
-    protected static final String DOUBLE_QUOTE = "\"";
-    protected static final String DOUBLE_QUOTE_XML = "&quot;";
-
     protected static final Path DATA_DIR = Paths.get(USER_DIR, DATA);
+    protected static final Path DATA_PRELOADED_DIR = Paths.get(USER_DIR, DATA, PRELOADED);
+    protected static final Path PRELOADED_ORIG_DIR = Paths.get(SRC, MAIN, PRELOADED);
 
     protected Printer printer;
     protected static ArrayList<Path> preloadedCheatSheets = new ArrayList<>();
