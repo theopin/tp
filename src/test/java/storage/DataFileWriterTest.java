@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,7 +26,8 @@ public class DataFileWriterTest extends DataFileTest {
             + "</main>"
             + System.lineSeparator();
 
-    
+    Path sampleTest = Paths.get(userDir, data, test, "sample.xml");
+
     @Test
     void writeFileExists_sampleCheatsheet_success() {
 
@@ -71,15 +74,16 @@ public class DataFileWriterTest extends DataFileTest {
     }
 
     @Test
-    public void writeDataFiles_emptytestCheatSheetList_success() {
-        createDataDir();
+    public void writeDataFiles_emptyTestCheatSheetList_success() {
+        String[] userDirectoryFiles = dataDir.toFile().list();
+        final int expectedFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
+
         testCheatSheetList.clear();
         testWriter.executeFunction();
 
-        String[] userDirectoryFiles = dataDir.toFile().list();
+        userDirectoryFiles = dataDir.toFile().list();
 
         int directoryFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
-        assertEquals(0, directoryFiles);
+        assertEquals(expectedFiles, directoryFiles);
     }
-    
 }

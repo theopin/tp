@@ -17,7 +17,6 @@ public class DataFileTest {
     String sample = "sample";
 
     Path sampleTestDir = Paths.get(userDir, data, test);
-    Path sampleTest = Paths.get(userDir, data, test, "sample.xml");
     Path dataDir = Paths.get(userDir, data);
 
     Printer printer = new Printer();
@@ -26,9 +25,9 @@ public class DataFileTest {
     DataFileWriter testWriter = new DataFileWriter(printer, testCheatSheetList);
     DataFileDestroyer testDestroyer = new DataFileDestroyer(printer, testCheatSheetList);
 
-    void createDataDir() {
+    void createDirectory(Path directoryPath) {
         try {
-            Files.createDirectories(dataDir);
+            Files.createDirectories(directoryPath);
         } catch (IOException e) {
             printer.print(e.getMessage());
 
