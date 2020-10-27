@@ -22,7 +22,6 @@ import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static java.nio.file.StandardCopyOption.COPY_ATTRIBUTES;
 
 /**
  * Allows the user to read data from the data directory and use it
@@ -100,7 +99,6 @@ public class DataFileReader extends DataFile {
         } catch (IOException e) {
             printer.print(e.getMessage());
         }
-
     }
 
     /**
