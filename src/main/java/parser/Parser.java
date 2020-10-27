@@ -113,6 +113,9 @@ public class Parser {
                 if (details[i].contains("/")) {
                     throw new CommandException("Invalid command");
                 }
+                if (flags.get(i - 1).equals(CommandFlag.NAME) || flags.get(i - 1).equals(CommandFlag.SUBJECT)) {
+                    details[i].replaceAll("\t", "");
+                }
                 flagsToDescriptions.put(flags.get(i - 1), details[i].trim());
             }
         } catch (IndexOutOfBoundsException i) {
