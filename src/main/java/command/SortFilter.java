@@ -20,9 +20,9 @@ public class SortFilter {
     Printer printer;
     ArrayList<CheatSheet> cheatSheetArrayList;
 
-    public SortFilter(ArrayList<CheatSheet> cheatSheetArrayList) {
+    public SortFilter(ArrayList<CheatSheet> cheatSheetArrayList, Printer printer) {
         this.cheatSheetArrayList = cheatSheetArrayList;
-        printer = new Printer();
+        this.printer = printer;
     }
 
     public void execute(TablePrinter tp) throws CommandException {

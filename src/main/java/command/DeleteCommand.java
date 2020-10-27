@@ -25,8 +25,8 @@ public class DeleteCommand extends FinderCommand {
     public void execute() throws CommandException {
         try {
             CheatSheet cheatSheetToDelete = getCheatSheetFromNameOrIndex();
-            cheatSheetList.remove(cheatSheetToDelete.getName());
             fileDestroyer.executeFunction(cheatSheetToDelete.getName());
+            cheatSheetList.remove(cheatSheetToDelete.getName());
             printer.printDeleteCheatSheetMessage(cheatSheetToDelete, cheatSheetList);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             throw new CommandException("Please enter a valid name or index");
