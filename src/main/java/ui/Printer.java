@@ -22,13 +22,13 @@ public final class Printer {
     public ConsoleColorsEnum reset;
 
     public Printer() {
-        textColor = ConsoleColorsEnum.BLACK_TEXT;
+        textColor = ConsoleColorsEnum.WHITE_TEXT;
         favColor = ConsoleColorsEnum.BRIGHT_YELLOW_TEXT;
         logoColor = ConsoleColorsEnum.BRIGHT_CYAN_TEXT;
         nameColor = ConsoleColorsEnum.BRIGHT_CYAN_TEXT;
         subjectColor = ConsoleColorsEnum.BRIGHT_BLUE_TEXT;
-        detailsColor = ConsoleColorsEnum.BLACK_TEXT;
-        reset = ConsoleColorsEnum.BLACK_TEXT;
+        detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+        reset = ConsoleColorsEnum.WHITE_TEXT;
     }
 
     public void print(Object obj) {
@@ -140,7 +140,8 @@ public final class Printer {
 
                 + ConsoleColorsEnum.BOLD + "" + logoColor + "/set /c <OPTION_NUMBER>"
                 + reset + NEWLINE
-                + "\tChanges the color scheme of the application. Available options: 1 - 3." + NEWLINE
+                + "\tChanges the color scheme of the application. Available options: 1 - 3."
+                + "Type 0 to reset to default color scheme" + NEWLINE
 
                 + ConsoleColorsEnum.BOLD + "" + logoColor + "/view /i <CHEAT_SHEET_INDEX>"
                 + reset + NEWLINE
@@ -218,40 +219,40 @@ public final class Printer {
     public void setColor(int option) {
         switch (option) {
         case 1:
-            textColor = ConsoleColorsEnum.BLACK_TEXT;
+            textColor = ConsoleColorsEnum.WHITE_TEXT;
             favColor = ConsoleColorsEnum.BRIGHT_GREEN_TEXT;
             logoColor = ConsoleColorsEnum.BRIGHT_GREEN_TEXT;
             nameColor = ConsoleColorsEnum.BRIGHT_MAGENTA_TEXT;
             subjectColor = ConsoleColorsEnum.BOLD_MAGENTA_TEXT;
-            detailsColor = ConsoleColorsEnum.BLACK_TEXT;
-            reset = ConsoleColorsEnum.BLACK_TEXT;
+            detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+            reset = ConsoleColorsEnum.WHITE_TEXT;
             break;
         case 2:
-            textColor = ConsoleColorsEnum.BLACK_TEXT;
+            textColor = ConsoleColorsEnum.WHITE_TEXT;
             favColor = ConsoleColorsEnum.BRIGHT_BLUE_TEXT;
             logoColor = ConsoleColorsEnum.BRIGHT_BLUE_TEXT;
             nameColor = ConsoleColorsEnum.BRIGHT_RED_TEXT;
             subjectColor = ConsoleColorsEnum.BOLD_YELLOW_TEXT;
-            detailsColor = ConsoleColorsEnum.BLACK_TEXT;
-            reset = ConsoleColorsEnum.BLACK_TEXT;
+            detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+            reset = ConsoleColorsEnum.WHITE_TEXT;
             break;
         case 3:
-            textColor = ConsoleColorsEnum.BLACK_TEXT;
-            favColor = ConsoleColorsEnum.BOLD_BLACK_TEXT;
-            logoColor = ConsoleColorsEnum.BLACK_TEXT;
-            nameColor = ConsoleColorsEnum.BOLD_BLACK_TEXT;
-            subjectColor = ConsoleColorsEnum.BLACK_TEXT;
-            detailsColor = ConsoleColorsEnum.BLACK_TEXT;
-            reset = ConsoleColorsEnum.BLACK_TEXT;
+            textColor = ConsoleColorsEnum.WHITE_TEXT;
+            favColor = ConsoleColorsEnum.BOLD_WHITE_TEXT;
+            logoColor = ConsoleColorsEnum.WHITE_TEXT;
+            nameColor = ConsoleColorsEnum.BOLD_WHITE_TEXT;
+            subjectColor = ConsoleColorsEnum.WHITE_TEXT;
+            detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+            reset = ConsoleColorsEnum.WHITE_TEXT;
             break;
         default:
-            textColor = ConsoleColorsEnum.BLACK_TEXT;
+            textColor = ConsoleColorsEnum.WHITE_TEXT;
             favColor = ConsoleColorsEnum.BRIGHT_YELLOW_TEXT;
             logoColor = ConsoleColorsEnum.BRIGHT_CYAN_TEXT;
             nameColor = ConsoleColorsEnum.BRIGHT_CYAN_TEXT;
             subjectColor = ConsoleColorsEnum.BRIGHT_BLUE_TEXT;
-            detailsColor = ConsoleColorsEnum.BLACK_TEXT;
-            reset = ConsoleColorsEnum.BLACK_TEXT;
+            detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+            reset = ConsoleColorsEnum.WHITE_TEXT;
             break;
         }
         print("Changed color scheme to option " + option + ":\n"

@@ -1,14 +1,20 @@
 package command;
 
 import cheatsheet.CheatSheetList;
+import editor.Editor;
 import exception.CommandException;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestTemplate;
+import parser.CommandFlag;
 import parser.Parser;
 import ui.Printer;
 import ui.Ui;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -153,4 +159,22 @@ class AddCommandTest {
     //            assertEquals("Please enter a name", e.getMessage());
     //        }
     //    }
+
+    @Test
+    void execute_noNameGotSubject_exceptionThrown() {
+        final CheatSheetList cheatSheetList = new CheatSheetList();
+        try {
+            Command addCommand = new AddCommand(null, cheatSheetList,null);
+            LinkedHashMap linkedHashMap = new LinkedHashMap();
+            linkedHashMap.put(CommandFlag.SUBJECT, null);
+            addCommand.setFlagstodescriptionsMap(linkedHashMap);
+            addCommand.execute();
+            fail();
+        } catch (CommandException e) {
+            assertEquals("Name cannot be blank", e.getMessage());
+        } catch (InterruptedException | IOException e) {
+           assert false;
+        }
+        assert true;
+    }
 }

@@ -40,9 +40,9 @@ public enum ConsoleColorsEnum {
     BOLD("\u001B[1m"),
 
     // RESET_TEXT("\u001b[0m");
-    RESET_TEXT("\u001b[30m");
+    RESET_TEXT("\u001b[37m");
 
-    private String ansiCode = null;
+    private String ansiCode;
 
     ConsoleColorsEnum(String ansiCode) {
         this.ansiCode = ansiCode;

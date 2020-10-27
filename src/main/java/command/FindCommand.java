@@ -45,6 +45,7 @@ public class FindCommand extends FinderCommand {
             throw new CommandException("No matching content found");
         }
 
+
         TablePrinter tp = new TablePrinter(printer, matchedContents);
         tp.execute();
         SortFilter sortFilter = new SortFilter(matchedContents, printer);
