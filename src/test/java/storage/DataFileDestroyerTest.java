@@ -14,7 +14,7 @@ public class DataFileDestroyerTest extends DataFileTest {
     Path sampleTest3 = Paths.get(userDir, data, test, "sample3.xml");
     String sample2 = "sample2";
     String sample3 = "sample3";
-
+    /*
     @Test
     void clearSingleFile_singleSampleTest_success() {
         testCheatSheetList.clear();
@@ -68,4 +68,6 @@ public class DataFileDestroyerTest extends DataFileTest {
         testCheatSheetList.clear();
         assertTrue(isSampleRemoved);
     }
+
+    */
 }
