@@ -65,6 +65,5 @@ public class UserSession {
         ui.closeScanner();
         editor.dispose();
         printer.printExitLogo();
-        editor.dispose();
     }
 }
