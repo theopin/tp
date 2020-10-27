@@ -20,9 +20,7 @@ import storage.DataFileDestroyer;
 import ui.Ui;
 import ui.Printer;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.regex.Matcher;
 
 public class Parser {
     private CheatSheetList cheatSheetList;
@@ -91,9 +89,11 @@ public class Parser {
         try {
             String[] details = userInput.split(FLAG_REGEX);
 
+            // For each flag /<flag> {description}
             for (int i = 1; i < details.length; i++) {
                 int descriptionStartIdx = getDescriptionStartIdx(details[i]);
 
+                // Get the <flag> and {description}
                 String flag;
                 String flagDescription;
                 if (descriptionStartIdx == -1) {
@@ -104,7 +104,7 @@ public class Parser {
                     flagDescription = details[i].substring(descriptionStartIdx).trim();
                 }
 
-                // Validate that flags match that of the command
+                // Validate that <flag> matches required Command flags
                 boolean isValidFlag = false;
                 for (CommandFlag c : command.getFlagstodescriptionsMap().keySet()){
                     if (c.getFlag().equals(flag)) {
@@ -114,7 +114,7 @@ public class Parser {
                     }
                 }
                 if (!isValidFlag) {
-                    throw new CommandException("Please input the correct flag");
+                    throw new CommandException("Please input the correct flags");
                 }
             }
         } catch (IndexOutOfBoundsException i) {
