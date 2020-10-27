@@ -110,9 +110,12 @@ public class Parser {
         try {
             String[] details = userInput.split(FLAG_REGEX);
             for (int i = 1; i < details.length; i++) {
-                //if (flags.get(i-1).equals(CommandFlag.SUBJECT) && (details[i].isBlank() || details[i] == null)) {
-                //    details[i] = "Unsorted";
-                //}
+                if (details[i].contains("/")) {
+                    throw new CommandException("Invalid command");
+                }
+                if (flags.get(i - 1).equals(CommandFlag.NAME) || flags.get(i - 1).equals(CommandFlag.SUBJECT)) {
+                    details[i].replaceAll("\t", "");
+                }
                 flagsToDescriptions.put(flags.get(i - 1), details[i].trim());
             }
         } catch (IndexOutOfBoundsException i) {

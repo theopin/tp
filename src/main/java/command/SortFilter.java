@@ -1,6 +1,6 @@
 package command;
 
-import cheatsheet.CheatSheetList;
+import cheatsheet.CheatSheet;
 import exception.CommandException;
 import sort.SortBySubject;
 import sort.SortBySubjectRev;
@@ -10,6 +10,7 @@ import ui.ConsoleColorsEnum;
 import ui.Printer;
 import ui.TablePrinter;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SortFilter {
@@ -17,10 +18,10 @@ public class SortFilter {
         + "Sort filter (1: name ascending, 2: language ascending, 3: name descending" + ", 4: "
         + "language descending or anything else to skip)" + ConsoleColorsEnum.RESET_TEXT;
     Printer printer;
-    CheatSheetList cheatSheetList;
+    ArrayList<CheatSheet> cheatSheetArrayList;
 
-    public SortFilter(CheatSheetList cheatSheetList) {
-        this.cheatSheetList = cheatSheetList;
+    public SortFilter(ArrayList<CheatSheet> cheatSheetArrayList) {
+        this.cheatSheetArrayList = cheatSheetArrayList;
         printer = new Printer();
     }
 
@@ -34,7 +35,7 @@ public class SortFilter {
     public void execute() throws CommandException {
         do {
             askForInput();
-            TablePrinter tp = new TablePrinter(printer, cheatSheetList.getList());
+            TablePrinter tp = new TablePrinter(printer, cheatSheetArrayList);
             tp.execute();
         } while (true);
     }
@@ -45,19 +46,19 @@ public class SortFilter {
         String input = scanner.nextLine();
         switch (input) {
         case "1":
-            cheatSheetList.getList().sort(new SortByName());
+            cheatSheetArrayList.sort(new SortByName());
             printer.print("Sorted name in ascending order");
             break;
         case "2":
-            cheatSheetList.getList().sort(new SortBySubject());
+            cheatSheetArrayList.sort(new SortBySubject());
             printer.print("Sorted language in ascending order");
             break;
         case "3":
-            cheatSheetList.getList().sort(new SortByNameRev());
+            cheatSheetArrayList.sort(new SortByNameRev());
             printer.print("Sorted name in descending order");
             break;
         case "4":
-            cheatSheetList.getList().sort(new SortBySubjectRev());
+            cheatSheetArrayList.sort(new SortBySubjectRev());
             printer.print("Sorted language in descending order");
             break;
         default:

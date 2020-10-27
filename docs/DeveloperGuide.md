@@ -105,6 +105,7 @@ This section will elaborate on the architecture and component design of CheatLog
 The image below illustrates the high-level design of CheatLogs.
 
 ![](Images/Image3.PNG)
+
 Image 1: General Architecture of CheatLogs
 
 CheatLogs is split into 5 major components, each handling distinct features of the application. The components and a brief description of them is listed below.
@@ -118,6 +119,7 @@ CheatLogs is split into 5 major components, each handling distinct features of t
 The UML diagram below illustrates an extensive version of the various classes present in CheatLogs as well as their interactions with each other.
 
 ![](Images/Image4.PNG)
+
 Image 2: In-Depth Architecture of CheatLogs
 
 For each component, it can be further split into different classes which have a unique responsibility. They will be further elaborated upon in the next section.
@@ -133,6 +135,7 @@ Each component has a unique function and contributes to the functionality of thi
 This component handles interactions with the user and manages the input and output of the programme. 
 
 ![](Images/Image5.PNG)
+
 Image 3: User Session class fields and methods
 
 One of the classes is UserSession which contains the main loop of the program. 
@@ -150,9 +153,11 @@ Most of the programmes’ output is made via calls to the same common printer ob
 This component would parse the user input to produce useful information which would be used to construct a Command and executed the command. 
 
 ![](Images/Image6.PNG)
+
 Image 4: Interaction between components to parse and execute command
 
 ![](Images/Image7.PNG)
+
 Image 5: Sequence Diagram from parsing input to command execution
 
 Image 4 and 5 illustrates the interactions between Parser, CommandExecutor and Command when a user inputs an instruction. 
@@ -187,6 +192,7 @@ Each of the CheatSheet object has:
 7. 	Date Modified
 
 ![](Images/Image8.PNG)
+
 Image 6: class diagram of the cheatsheet class
 
 ##### Development Goals
@@ -196,6 +202,7 @@ XML files provide inbuilt tags to differentiate and classify members of the docu
 With the use of XML file, it simplifies the parsing process of the cheatsheet files into the cheatsheet class, and vice versa.
 
 ![](Images/Image9.PNG)
+
 Image 7: XML file showing the content of a cheatsheet file
 
 #### 3.2.4. Cheat Sheet Management (Adhy)
@@ -205,6 +212,7 @@ Upon receiving a valid input from the user, the execute() method from Command cl
 and then DataFileWriter will use the information in CheatSheetList to save it to the memory in the form of a txt file.
 
 ![](Images/Image10.PNG)
+
 Image 8: Class diagram of CheatSheetList class
 
 The cheatSheets ArrayList is of type private, and setter/getter methods must be invoked to access the list. 
