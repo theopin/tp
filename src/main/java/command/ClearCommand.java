@@ -19,7 +19,7 @@ public class ClearCommand extends Command {
     @Override
     public void execute() {
         fileDestroyer.executeFunction();
-        cheatSheetList.clear();
         printer.printClearCheatSheetMessage(cheatSheetList.getSize());
+        cheatSheetList.clear();
     }
 }

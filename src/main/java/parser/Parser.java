@@ -20,10 +20,7 @@ import storage.DataFileDestroyer;
 import ui.Ui;
 import ui.Printer;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Parser {
     private CheatSheetList cheatSheetList;
@@ -32,7 +29,7 @@ public class Parser {
     private Printer printer;
     private Ui ui;
 
-    private static final String FLAG_REGEX = " /[a-z] ";
+    private static final String FLAG_REGEX = "(?=(/[a-z]))";
 
     public Parser() {
     }
@@ -48,8 +45,7 @@ public class Parser {
 
     public Command parse(String userInput) throws CommandException {
         Command commandToBeExecuted = parseCommandType(userInput);
-        ArrayList<CommandFlag> flags = parseFlags(userInput);
-        LinkedHashMap<CommandFlag, String> flagsToDescriptions = parseFlagDescriptions(userInput, flags);
+        LinkedHashMap<CommandFlag, String> flagsToDescriptions = parseFlagDescriptions(commandToBeExecuted, userInput);
 
         commandToBeExecuted.setFlagstodescriptionsMap(flagsToDescriptions);
         setMissingDescriptions(commandToBeExecuted);
@@ -86,40 +82,43 @@ public class Parser {
         }
     }
 
-    private ArrayList<CommandFlag> parseFlags(String userInput) {
-        ArrayList<CommandFlag> flags = new ArrayList<>();
-        Pattern flagPattern = Pattern.compile(FLAG_REGEX);
-        Matcher flagMatcher = flagPattern.matcher(userInput);
-        ArrayList<String> matchedFlagNames = getMatches(flagMatcher);
-
-        for (String flag : matchedFlagNames) {
-            for (CommandFlag ae : CommandFlag.values()) {
-                if (flag.equals(ae.getFlag())) {
-                    flags.add(ae);
-                    break;
-                }
-            }
-        }
-
-        return flags;
-    }
-
-    private LinkedHashMap<CommandFlag, String> parseFlagDescriptions(String userInput, ArrayList<CommandFlag> flags)
+    private LinkedHashMap<CommandFlag, String> parseFlagDescriptions(Command command, String userInput)
             throws CommandException {
         LinkedHashMap<CommandFlag, String> flagsToDescriptions = new LinkedHashMap<>();
+
         try {
             String[] details = userInput.split(FLAG_REGEX);
+
+            // For each flag /<flag> {description}
             for (int i = 1; i < details.length; i++) {
-                if (details[i].contains("/")) {
-                    throw new CommandException("Invalid command");
+                int descriptionStartIdx = getDescriptionStartIdx(details[i]);
+
+                // Get the <flag> and {description}
+                String flag;
+                String flagDescription;
+                if (descriptionStartIdx == -1) {
+                    flag = details[i];
+                    flagDescription = "";
+                } else {
+                    flag = details[i].substring(0, descriptionStartIdx);
+                    flagDescription = details[i].substring(descriptionStartIdx).trim();
                 }
-                if (flags.get(i - 1).equals(CommandFlag.NAME) || flags.get(i - 1).equals(CommandFlag.SUBJECT)) {
-                    details[i].replaceAll("\t", "");
+
+                // Validate that <flag> matches required Command flags
+                boolean isValidFlag = false;
+                for (CommandFlag c : command.getFlagstodescriptionsMap().keySet()) {
+                    if (c.getFlag().equals(flag)) {
+                        flagsToDescriptions.put(c, flagDescription.trim());
+                        isValidFlag = true;
+                        break;
+                    }
                 }
-                flagsToDescriptions.put(flags.get(i - 1), details[i].trim());
+                if (!isValidFlag) {
+                    throw new CommandException("Please input the correct flags");
+                }
             }
         } catch (IndexOutOfBoundsException i) {
-            throw new CommandException("Please enter a valid index");
+            throw new CommandException("Flag indexing error");
         }
 
         return flagsToDescriptions;
@@ -137,19 +136,18 @@ public class Parser {
                     if (newArgVal.isBlank()) {
                         newArgVal = null;
                     }
-                    commandToBeExecuted.getFlagstodescriptionsMap().replace(key, newArgVal);
+                    map.replace(key, newArgVal);
                 }
             }
         }
     }
 
-    private ArrayList<String> getMatches(Matcher flagMatcher) {
-        ArrayList<String> argList = new ArrayList<>();
-
-        while (flagMatcher.find()) {
-            argList.add(flagMatcher.group().trim());
+    private int getDescriptionStartIdx(String input) {
+        for (int i = 0; i < input.length(); i++) {
+            if (Character.isWhitespace(input.charAt(i))) {
+                return i;
+            }
         }
-
-        return argList;
+        return -1;
     }
 }
