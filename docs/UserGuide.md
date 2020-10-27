@@ -8,23 +8,23 @@ It has a text based interface that allows the user to
 access cheat sheets and notes for various programming syntax and functions.
 
 ## Index
-* [Quick Start](#quick-start) 
-* [Features](#features)
-  * [Adding a cheat sheet: `/add`](#adding-a-cheat-sheet-add)
-  * [Clearing all entries: `/clear`](#clearing-all-entries-clear)
-  * [Deleting a cheat sheet: `/delete`](#deleting-a-cheat-sheet-delete)
-  * [Editing a cheat sheet: `/edit` [coming in v2.0]](#editing-a-cheat-sheet-edit-coming-in-v20)
-  * [Exiting the program: `/exit`](#exiting-the-program-exit)
-  * [Locating a cheat sheet by name: `/find`](#locating-a-cheat-sheet-by-name-find)
-  * [Viewing help: `/help`](#viewing-help-help)
-  * [Listing all cheat sheets: `/list`](#listing-all-cheat-sheets-list)
-  * [Viewing the cheatsheet: `/view`](#viewing-the-cheatsheet-view)
-  * [Data storage](#data-storage)
-  * [Archiving data files [coming in v2.0]](#archiving-data-files-coming-in-v20)
-* FAQ
-* Command Summary
+* [1. Quick Start](#1-quick-start)
+* [2. Features](#2-features)
+  * [2.1. Adding a cheat sheet: `/add`](#21-adding-a-cheat-sheet-add)
+  * [2.2. Clearing all entries: `/clear`](#22-clearing-all-entries-clear)
+  * [2.3. Deleting a cheat sheet: `/delete`](#23-deleting-a-cheat-sheet-delete)
+  * [2.4. Editing a cheat sheet: `/edit` [coming in v2.0]](#24-editing-a-cheat-sheet-edit-coming-in-v20)
+  * [2.5. Exiting the program: `/exit`](#25-exiting-the-program-exit)
+  * [2.6. Locating a cheat sheet by name: `/find`](#26-locating-a-cheat-sheet-by-name-find)
+  * [2.7. Viewing help: `/help`](#27-listing-all-cheat-sheets-list)
+  * [2.8. Listing all cheat sheets: `/list`](#28-viewing-help-help)
+  * [2.9. Viewing the cheatsheet: `/view`](#29-archiving-data-files-coming-in-v20)
+  * [2.9 Data storage](#210-data-storage)
+  * [2.10 Archiving data files [coming in v2.0]]
+* [3. FAQ](#3-faq)
+* [4. Command Summary](#4-command-summary)
 
-## Quick Start
+## 1. Quick Start
 
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download the latest `cheatlogs.jar` from here.
@@ -60,9 +60,9 @@ Please Enter a Command:
    * `/find CS2113`: Find cheat sheet containing “CS2113T” in the name field. 
    * `/exit`: Exits the app.
    
-## Features 
+## 2. Features 
 
-### Adding a cheat sheet: `/add`
+### 2.1. Adding a cheat sheet: `/add`
 Adds a new cheat sheet to the application and prompts user to include data into the cheat sheet. <br>
 This cheat sheet will be added to the `/data` folder.
  
@@ -73,12 +73,12 @@ Examples:
 * `/add n/Java d/version11`
 * `/add n/Cpp`
 
-### Clearing all entries: `/clear`
+### 2.2. Clearing all entries: `/clear`
 Clears all entries from the cheat sheet.
  
 Format: `/clear`
   
-### Deleting a cheat sheet: `/delete`
+### 2.3. Deleting a cheat sheet: `/delete`
 To be used after using /list, Deletes the cheat sheet at INDEX items down the list. The first cheat sheet has an index of 1. This cheatsheet will be deleted from the /data folder.
  
 Format 1: `/delete i/INDEX`
@@ -94,15 +94,15 @@ Format 2: `/delete n/CHEAT_SHEET_NAME`
 Examples:
 * `/delete n/MyPythonCheatSheet`
 
-### Editing a cheat sheet: `/edit` [coming in v2.0]
+### 2.4. Editing a cheat sheet: `/edit` [coming in v2.0]
 TBC
 
-### Exiting the program: `/exit`
+### 2.5. Exiting the program: `/exit`
 Exits the application.
  
 Format: `/exit`
 
-### Locating a cheat sheet by name: `/find`
+### 2.6. Locating a cheat sheet by name: `/find`
 Finds a cheat sheet whose names contain any of the given keywords.
  
 Format: `/find l/PROGRAMMING LANGUAGE k/KEYWORDS`
@@ -118,17 +118,17 @@ Notes:
 Examples:
 * `/find Java` returns `java - cheatsheet` and `JAVA11`
 
-### Listing all cheat sheets: `/list`
+### 2.7. Listing all cheat sheets: `/list`
 Shows of all the cheat sheets that are stored in the application.
  
 Format: `/list`
 
-### Viewing help: `/help`
+### 2.8. Viewing help: `/help`
 Lists all the possible commands that can be executed in the application.
 
 Format: `/help`
 
-### Viewing the cheatsheet: `/view`
+### 2.8. Viewing the cheatsheet: `/view`
 View the contents of a cheat sheet either by the name or index
 
 Format 1: `/view n/NAME` 
@@ -149,10 +149,10 @@ Examples:
 * `/view i/2`
 
 
-### Archiving data files [coming in v2.0]
+### 2.9. Archiving data files [coming in v2.0]
 TBC
 
-### Data storage
+### 2.10. Data storage
 Data related to this application is saved in the `/data` folder automatically after 
 any command that changes it is given. 
 There is no need to save manually. 
@@ -162,13 +162,13 @@ To allow the application to safely read the files stored in the `/data` folder,
 please refrain from modifying them externally. 
 You can edit attributes associated to that cheatsheet through the application itself.
 
-## FAQ
+## 3. FAQ
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Drag and drop the `cheatlogs.jar` file as well as the `/data` directory into the other
     computer.
 
-## Command Summary
+## 4. Command Summary
 Action | Format | Examples
 -------- | ---------- | ------------
 Add | `/add n/CHEAT_SHEET_NAME d/”DESCRIPTION”` | `/add n/Python d/”This my secret cheat sheet to success”` `/add n/Java d/version11` `/add n/Cpp`

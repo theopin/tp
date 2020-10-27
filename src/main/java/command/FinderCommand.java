@@ -16,29 +16,41 @@ public abstract class FinderCommand extends Command {
 
     protected CheatSheet getCheatSheetFromNameOrIndex() throws CommandException {
         CheatSheet desiredCheatSheet = null;
-        if (flagsToDescriptions.get(CommandFlag.NAME) != null) {
-            String name = flagsToDescriptions.get(CommandFlag.NAME);
+        String name = flagsToDescriptions.get(CommandFlag.NAME);
+        String index = flagsToDescriptions.get(CommandFlag.INDEX);
+        if (name != null && index == null) {
             desiredCheatSheet = cheatSheetList.get(name);
-        } else if (flagsToDescriptions.get(CommandFlag.INDEX) != null) {
-            int index = Integer.parseInt(flagsToDescriptions.get(CommandFlag.INDEX));
-            desiredCheatSheet = cheatSheetList.get(index);
+        } else if (index != null && name == null) {
+            desiredCheatSheet = cheatSheetList.get(Integer.parseInt(index));
+        } else if (index != null) {
+            if (cheatSheetList.get(name).equals(cheatSheetList.get(Integer.parseInt(index)))) {
+                desiredCheatSheet = cheatSheetList.get(name);
+            }
         }
 
         if (desiredCheatSheet == null) {
-            throw new CommandException("Please enter a valid name or an index");
+            throw new CommandException("Please enter a valid name or/and an index");
         }
-
         return desiredCheatSheet;
     }
 
-    public boolean checkCheatSheetExistsInCheatSheetList(CheatSheet cs, String subject,
+    public boolean checkCheatSheetExistsInCheatSheetList(CheatSheet cs, String name, String subject,
                                                             String keyword) throws CommandException {
-        if (subject != null && keyword == null) {
+        if (subject != null && keyword == null && name == null) {
             return cs.getSubject().contains(subject);
-        } else if (keyword != null && subject == null) {
+        } else if (subject == null && keyword != null && name == null) {
             return cs.getDetails().contains(keyword);
-        } else if (subject != null) {
+        } else if (subject != null && keyword != null && name == null) {
             return cs.getSubject().contains(subject) && cs.getDetails().contains(keyword);
+        } else if (subject == null && keyword == null && name != null) {
+            return cs.getName().contains(name);
+        } else if (subject != null && keyword == null) {
+            return cs.getSubject().contains(subject) && cs.getName().contains(name);
+        } else if (subject == null && keyword != null) {
+            return cs.getDetails().contains(keyword) && cs.getName().contains(name);
+        } else if (subject != null) {
+            return cs.getSubject().contains(subject) && cs.getDetails().contains(keyword)
+                && cs.getName().contains(name);
         } else {
             throw new CommandException("Please enter at least an argument");
         }

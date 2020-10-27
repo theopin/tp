@@ -13,7 +13,22 @@ public final class Printer {
             + "----------------------------------------";
     private static final String NEWLINE = System.lineSeparator();
 
+    public ConsoleColorsEnum textColor;
+    public ConsoleColorsEnum favColor;
+    public ConsoleColorsEnum logoColor;
+    public ConsoleColorsEnum nameColor;
+    public ConsoleColorsEnum subjectColor;
+    public ConsoleColorsEnum detailsColor;
+    public ConsoleColorsEnum reset;
+
     public Printer() {
+        textColor = ConsoleColorsEnum.WHITE_TEXT;
+        favColor = ConsoleColorsEnum.BRIGHT_YELLOW_TEXT;
+        logoColor = ConsoleColorsEnum.BRIGHT_CYAN_TEXT;
+        nameColor = ConsoleColorsEnum.BRIGHT_CYAN_TEXT;
+        subjectColor = ConsoleColorsEnum.BRIGHT_BLUE_TEXT;
+        detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+        reset = ConsoleColorsEnum.WHITE_TEXT;
     }
 
     public void print(Object obj) {
@@ -21,7 +36,7 @@ public final class Printer {
     }
 
     public void printWelcomeScreen() {
-        print(ConsoleColorsEnum.CYAN_TEXT
+        print(logoColor
                 + " ________  ___  ___  _______   ________  _________  ________  "
                 + "___  ___  _______   _______  _________" + NEWLINE
                 + "|\\   ____\\|\\  \\|\\  \\|\\  ___ \\ |\\   __  \\|\\___   ___\\"
@@ -46,12 +61,12 @@ public final class Printer {
                 + LINE + NEWLINE
                 + "Welcome to CheatLogs, the one stop cheat sheet management systems" + NEWLINE
                 + "Your CAP is our upmost priority"
-                + ConsoleColorsEnum.RESET_TEXT
+                + reset
         );
     }
 
     public void printExitLogo() {
-        print(ConsoleColorsEnum.CYAN_TEXT
+        print(logoColor
                 + " ________  ________  ________  ________  ________      ___    ___ _______" + NEWLINE
                 + "|\\   ____\\|\\   __  \\|\\   __  \\|\\   ___ \\|\\   __  "
                 + "\\    |\\  \\  /  /|\\  ___ \\" + NEWLINE
@@ -66,7 +81,7 @@ public final class Printer {
                 + "    \\|_______|\\|_______|\\|_______|\\|_______|\\|_______|\\___"
                 + "/ /        \\|_______|" + NEWLINE
                 + "                                                     \\|___|/" + NEWLINE
-                + ConsoleColorsEnum.RESET_TEXT
+                + reset
         );
     }
 
@@ -79,94 +94,206 @@ public final class Printer {
     }
 
     public void printHelpSheet() {
-        print(ConsoleColorsEnum.BOLD + "/add /n <CHEAT_SHEET_NAME> /s<PROGRAMMING_LANGUAGE> /d <DESCRIPTION>"
-                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
+        print(ConsoleColorsEnum.BOLD + "" + logoColor + "/add /n <CHEAT_SHEET_NAME> /s<SUBJECT> /d <DESCRIPTION>"
+                + reset + NEWLINE
                 + "\tAdds a new cheat sheet to the application and prompts user to include data" + NEWLINE
                 + "\tinto the cheat sheet." + NEWLINE
-                + ConsoleColorsEnum.BOLD + "/delete /i <CHEAT_SHEET_INDEX>"
-                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
+
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/clear"
+                + reset + NEWLINE
+                + "\tClears all entries from the cheat sheet." + NEWLINE
+
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/delete /i <CHEAT_SHEET_INDEX>"
+                + reset + NEWLINE
+                + ConsoleColorsEnum.BOLD + "" + favColor + "/delete /n <CHEAT_SHEET_NAME>"
+                + reset + NEWLINE
                 + "\tTo be used after using /list, Deletes the cheat sheet at INDEX items down the list." + NEWLINE
                 + "\tThe first cheat sheet has an index of 1." + NEWLINE
-                + ConsoleColorsEnum.BOLD + "/find /s<PROGRAMMING LANGUAGE> k/ <KEYWORD>"
-                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
+
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/edit /i <CHEAT_SHEET_INDEX>"
+                + reset + NEWLINE
+                + ConsoleColorsEnum.BOLD + "" + favColor + "/edit /n <CHEAT_SHEET_NAME>"
+                + reset + NEWLINE
+                + "\tEdits the details/content of the cheat sheet." + NEWLINE
+
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/exit"
+                + reset + NEWLINE
+                + "\tExits the application." + NEWLINE
+
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/fav /i <CHEAT_SHEET_INDEX>"
+                + reset + NEWLINE
+                + ConsoleColorsEnum.BOLD + "" + favColor + "/fav /n <CHEAT_SHEET_NAME>"
+                + reset + NEWLINE
+                + "\tMarks the cheat sheet as favourite." + NEWLINE
+
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/find /s <PROGRAMMING LANGUAGE> k/ <KEYWORD>"
+                + reset + NEWLINE
                 + "\tFinds a cheat sheet whose names contain any of the given keywords." + NEWLINE
-                + ConsoleColorsEnum.BOLD + "/view /i <CHEAT_SHEET_INDEX>"
-                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
-                + "\tView the contents of a cheat sheet either by the name or index" + NEWLINE
-                + ConsoleColorsEnum.BOLD + "/list"
-                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
+
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/help"
+                + reset + NEWLINE
+                + "\tDisplays this help message." + NEWLINE
+
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/list"
+                + reset + NEWLINE
                 + "\tLists all the possible commands that can be executed in the application." + NEWLINE
-                + ConsoleColorsEnum.BOLD + "/clear"
-                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
-                + "\tClears all entries from the cheat sheet." + NEWLINE
-                + ConsoleColorsEnum.BOLD + "/exit"
-                + ConsoleColorsEnum.RESET_TEXT + NEWLINE
-                + "\tExits the application." + NEWLINE);
+
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/set /c <OPTION_NUMBER>"
+                + reset + NEWLINE
+                + "\tChanges the color scheme of the application. Available options: 1 - 3."
+                + "Type 0 to reset to default color scheme" + NEWLINE
+
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/view /i <CHEAT_SHEET_INDEX>"
+                + reset + NEWLINE
+                + ConsoleColorsEnum.BOLD + "" + favColor + "/view /n <CHEAT_SHEET_NAME>"
+                + reset + NEWLINE
+                + "\tView the contents of a cheat sheet either by the name or index." + NEWLINE);
     }
 
     public void printCheatSheet(CheatSheet cheatSheet) {
-        print("\tName: " + cheatSheet.getName() + NEWLINE
-                + "\tSubject: " + cheatSheet.getSubject() + NEWLINE
-                + "\tDetails: " + cheatSheet.getDetails());
+        print(nameColor + "\tName: " + cheatSheet.getName() + NEWLINE
+                + subjectColor + "\tSubject: " + cheatSheet.getSubject() + NEWLINE
+                + detailsColor + "\tDetails: " + cheatSheet.getDetails() + reset);
     }
 
     public void printCheatSheetList(CheatSheetList cheatSheetList) {
         int i = 0;
         for (CheatSheet cs : cheatSheetList.getList()) {
             print("\t"
-                    + (cs.getIsFavourite() ? ConsoleColorsEnum.YELLOW_TEXT : "")
-                    + (++i) + ". " + cs.getName()
-                    + " (Subject: " + cs.getSubject() + ")"
-                    + (cs.getIsFavourite() ? " *" + ConsoleColorsEnum.RESET_TEXT : "") + "\n");
+                    + (++i) + ". " + nameColor + cs.getName() + reset
+                    + " (Subject: " + subjectColor
+                    + cs.getSubject() + reset + ")"
+                    + (cs.getIsFavourite() ? favColor + " *\n" : "\n")
+                    + reset);
         }
     }
 
     public void printCheatSheetSize(CheatSheetList cheatSheetList) {
-        print("Now you have " + cheatSheetList.getSize() + " cheatsheet(s)");
+        print(textColor + "Now you have " + cheatSheetList.getSize() + " cheatsheet(s)" + reset);
     }
 
     public void printAddNewCheatSheetMessage(CheatSheet cheatSheet, CheatSheetList cheatSheetList) {
-        print("Added new cheat sheet:");
+        print(textColor + "Added new cheat sheet:" + reset);
         printCheatSheet(cheatSheet);
-        print(LINE);
+        print(textColor + LINE + reset);
         printCheatSheetSize(cheatSheetList);
     }
 
     public void printClearCheatSheetMessage(int number) {
-        print("Cleared total of " + number + " cheat sheets");
+        print(textColor + "Cleared total of " + number + " cheat sheets");
         print(LINE);
-        print("Now you have no cheatsheets");
+        print("Now you have no cheatsheets" + reset);
     }
 
     public void printDeleteCheatSheetMessage(CheatSheet cheatSheet, CheatSheetList cheatSheetList) {
-        print("This cheat sheet has been deleted: ");
+        print(textColor + "This cheat sheet has been deleted: " + reset);
         printCheatSheet(cheatSheet);
-        print(LINE);
+        print(textColor + LINE + reset);
         printCheatSheetSize(cheatSheetList);
     }
 
     public void printViewCheatSheetMessage(CheatSheet cheatSheet) {
-        print("This is your content for " + cheatSheet.getName() + ": ");
+        print(textColor + "This is your content for " + cheatSheet.getName() + ": " + reset);
         printCheatSheet(cheatSheet);
     }
 
     public void printFavouritedCheatSheetMessage(CheatSheet cheatSheet) {
-        print("This cheat sheet has been favourited: ");
+        print(textColor + "This cheat sheet has been favourited: " + reset);
         printCheatSheet(cheatSheet);
     }
 
     public void printAlternativeArgumentPrompt(Command command) {
         print(NEWLINE);
         System.out.print(ConsoleColorsEnum.RED_TEXT + "Please enter at least ONE of these: ");
-        for (CommandFlag arg :command.getAlternativeArguments()) {
+        for (CommandFlag arg : command.getAlternativeArguments()) {
             System.out.print(arg + " ");
         }
-        print(ConsoleColorsEnum.RESET_TEXT);
+        print(reset);
         print(NEWLINE);
     }
 
     public void printMissingArgument(CommandFlag curArg) {
-        System.out.print("Please input " + curArg.name() + ": ");
+        System.out.print(textColor + "Please input " + curArg.name() + ": " + reset);
+    }
 
+    public void setColor(int option) {
+        switch (option) {
+        case 1:
+            textColor = ConsoleColorsEnum.WHITE_TEXT;
+            favColor = ConsoleColorsEnum.BRIGHT_GREEN_TEXT;
+            logoColor = ConsoleColorsEnum.BRIGHT_GREEN_TEXT;
+            nameColor = ConsoleColorsEnum.BRIGHT_MAGENTA_TEXT;
+            subjectColor = ConsoleColorsEnum.BOLD_MAGENTA_TEXT;
+            detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+            reset = ConsoleColorsEnum.WHITE_TEXT;
+            break;
+        case 2:
+            textColor = ConsoleColorsEnum.WHITE_TEXT;
+            favColor = ConsoleColorsEnum.BRIGHT_BLUE_TEXT;
+            logoColor = ConsoleColorsEnum.BRIGHT_BLUE_TEXT;
+            nameColor = ConsoleColorsEnum.BRIGHT_RED_TEXT;
+            subjectColor = ConsoleColorsEnum.BOLD_YELLOW_TEXT;
+            detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+            reset = ConsoleColorsEnum.WHITE_TEXT;
+            break;
+        case 3:
+            textColor = ConsoleColorsEnum.WHITE_TEXT;
+            favColor = ConsoleColorsEnum.BOLD_WHITE_TEXT;
+            logoColor = ConsoleColorsEnum.WHITE_TEXT;
+            nameColor = ConsoleColorsEnum.BOLD_WHITE_TEXT;
+            subjectColor = ConsoleColorsEnum.WHITE_TEXT;
+            detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+            reset = ConsoleColorsEnum.WHITE_TEXT;
+            break;
+        default:
+            textColor = ConsoleColorsEnum.WHITE_TEXT;
+            favColor = ConsoleColorsEnum.BRIGHT_YELLOW_TEXT;
+            logoColor = ConsoleColorsEnum.BRIGHT_CYAN_TEXT;
+            nameColor = ConsoleColorsEnum.BRIGHT_CYAN_TEXT;
+            subjectColor = ConsoleColorsEnum.BRIGHT_BLUE_TEXT;
+            detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+            reset = ConsoleColorsEnum.WHITE_TEXT;
+            break;
+        }
+        print("Changed color scheme to option " + option + ":\n"
+                + favColor + "\tColor 1\n"
+                + nameColor + "\tColor 2\n"
+                + subjectColor + "\tColor 3\n"
+                + reset);
+    }
+
+    // prints all colors, for debugging purposes only
+    public void printColors() {
+        print(ConsoleColorsEnum.BLACK_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BRIGHT_BLACK_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BOLD_BLACK_TEXT + "TEST\n" + reset);
+
+        print(ConsoleColorsEnum.WHITE_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BRIGHT_WHITE_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BOLD_WHITE_TEXT + "TEST\n" + reset);
+
+        print(ConsoleColorsEnum.BLUE_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BRIGHT_BLUE_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BOLD_BLUE_TEXT + "TEST\n" + reset);
+
+        print(ConsoleColorsEnum.RED_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BRIGHT_RED_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BOLD_RED_TEXT + "TEST\n" + reset);
+
+        print(ConsoleColorsEnum.CYAN_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BRIGHT_CYAN_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BOLD_CYAN_TEXT + "TEST\n" + reset);
+
+        print(ConsoleColorsEnum.YELLOW_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BRIGHT_YELLOW_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BOLD_YELLOW_TEXT + "TEST\n" + reset);
+
+        print(ConsoleColorsEnum.GREEN_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BRIGHT_GREEN_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BOLD_GREEN_TEXT + "TEST\n" + reset);
+
+        print(ConsoleColorsEnum.MAGENTA_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BRIGHT_MAGENTA_TEXT + "TEST\n" + reset);
+        print(ConsoleColorsEnum.BOLD_MAGENTA_TEXT + "TEST\n" + reset);
     }
 }

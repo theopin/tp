@@ -8,6 +8,7 @@ import parser.Parser;
 import storage.DataFileReader;
 import storage.DataFileWriter;
 import storage.DataFileDestroyer;
+import org.fusesource.jansi.AnsiConsole;
 
 import java.io.IOException;
 
@@ -32,11 +33,13 @@ public class UserSession {
         printer = new Printer();
         fileReader = new DataFileReader(printer, cheatSheetList);
         fileWriter = new DataFileWriter(printer, cheatSheetList);
+
         fileDestroyer = new DataFileDestroyer(printer, cheatSheetList);
         userCommandParser = new Parser(cheatSheetList, editor, fileDestroyer, printer, ui);
     }
 
     public void runProgramSequence() {
+        AnsiConsole.systemInstall();
         fileReader.executeFunction();
         printer.printWelcomeScreen();
 
@@ -55,7 +58,8 @@ public class UserSession {
                 printer.print(c.getMessage());
                 continue;
             }
-            fileWriter. executeFunction();
+
+            fileWriter.executeFunction();
         } while (true);
     }
 
@@ -63,5 +67,6 @@ public class UserSession {
         ui.closeScanner();
         editor.dispose();
         printer.printExitLogo();
+        AnsiConsole.systemUninstall();
     }
 }

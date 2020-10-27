@@ -50,7 +50,7 @@ public abstract class Command {
         }
 
         for (CommandFlag arg : alternativeArguments) {
-            if (flagsToDescriptions.get(arg) != null && !flagsToDescriptions.get(arg).isEmpty()) {
+            if (flagsToDescriptions.get(arg) != null) {
                 return true;
             }
         }
