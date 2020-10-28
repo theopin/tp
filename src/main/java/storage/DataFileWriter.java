@@ -73,7 +73,7 @@ public class DataFileWriter extends DataFile {
 
         Path subjectDirectory = Paths.get(USER_DIR, DATA, subjectName);
 
-        Path possibleOriginalFile = Paths.get(SRC, MAIN, RESOURCES, PRELOADED, subjectName, fileName);
+        Path possibleOriginalFile = Paths.get(DOT, PRELOADED, subjectName, fileName);
         Path possiblePreloadedFile = Paths.get(USER_DIR, DATA,
                 PRELOADED, subjectName, fileName);
         Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, PRELOADED, subjectName);
@@ -100,37 +100,6 @@ public class DataFileWriter extends DataFile {
             writeToFile(textFile, cheatSheetFile);
         } catch (IOException | ParserConfigurationException | TransformerException e) {
             printer.print(e.getMessage());
-        }
-    }
-
-    /**
-     * Checks if the /data and /subjectName directories exist and creates them if they
-     * are currently non-existent.
-     *
-     * @param subjectDirectory          The directory to store a non-preloaded cheatSheet.
-     * @param preloadedSubjectDirectory The directory to store a preloaded cheatSheet
-     * @param isPreloadedFile           Boolean indicating if the file is preloaded or not.
-     * @throws IOException              Thrown if errors occur when attempting to create the
-     *                                  respective directories.
-     */
-    private void verifyDirectoryExistence(Path subjectDirectory,
-                                          Path preloadedSubjectDirectory,
-                                          boolean isPreloadedFile) throws IOException {
-        if (!Files.exists(DATA_DIR)) {
-            Files.createDirectory(DATA_DIR);
-        }
-
-        if (isPreloadedFile) {
-            if (!Files.exists(PRELOADED_DIR)) {
-                Files.createDirectory(PRELOADED_DIR);
-            }
-            if (!Files.exists(preloadedSubjectDirectory)) {
-                Files.createDirectory(preloadedSubjectDirectory);
-            }
-        }
-
-        if (!Files.exists(subjectDirectory)) {
-            Files.createDirectory(subjectDirectory);
         }
     }
 

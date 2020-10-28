@@ -14,13 +14,24 @@ import ui.Printer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.FileOutputStream;
+
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Enumeration;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 
 /**
@@ -45,17 +56,43 @@ public class DataFileReader extends DataFile {
     @Override
     public void executeFunction() {
         try {
+            extractXmlFilesFromJar();
             if (Files.exists(PRELOADED_ORIG_DIR)) {
+                printer.print(2222222);
                 shiftPreloadedCheatsheets();
+            } else {
+                insertStoredCheatSheets();
             }
-            insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
             logger.log(Level.WARNING, "processing error");
             printer.print(e.getMessage());
             createNewDirectory();
-        } catch (DirectoryIsEmptyException | IOException d) {
-            printer.print(d.getMessage());
+        } catch (DirectoryIsEmptyException | IOException | NullPointerException d) {
+            printer.print(1111 + d.getMessage());
         }
+    }
+
+    private void extractXmlFilesFromJar() throws IOException {
+        JarFile jarFile = new JarFile(JAR_DIR);
+
+        Enumeration<JarEntry> enumEntries = jarFile.entries();
+        while (enumEntries.hasMoreElements()) {
+            JarEntry currentFile =  enumEntries.nextElement();
+            printer.print(5555);
+            String subjectName = "C";
+            Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, PRELOADED, subjectName);
+            verifyDirectoryExistence(null, preloadedSubjectDirectory, true);
+            
+            File newFileLocation = new File(preloadedSubjectDirectory.toString());
+            InputStream inputStream = jarFile.getInputStream(currentFile); // get the input stream
+            FileOutputStream outputStream = new FileOutputStream(newFileLocation);
+            while (inputStream.available() > 0) {  // write contents of 'is' to 'outputStream'
+                outputStream.write(inputStream.read());
+            }
+            outputStream.close();
+            inputStream.close();
+        }
+        jarFile.close();
     }
 
     /**
@@ -69,7 +106,7 @@ public class DataFileReader extends DataFile {
         if (!Files.exists(DATA_DIR)) {
             createNewDirectory();
         }
-        extractFromDirectory(RESOURCES_DIR);
+        extractFromDirectory(PRELOADED_ORIG_DIR);
     }
 
 
@@ -111,6 +148,7 @@ public class DataFileReader extends DataFile {
         if (dataDirectoryFiles == null) {
             throw new IOException();
         }
+
         for (File dataDirectoryFile : dataDirectoryFiles) {
             Path filePath = dataDirectoryFile.toPath();
 
