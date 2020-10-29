@@ -6,6 +6,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -106,6 +107,29 @@ public abstract class DataFile {
 
         if (subjectDirectory != null && !Files.exists(subjectDirectory)) {
             Files.createDirectory(subjectDirectory);
+        }
+    }
+
+    /**
+     * Deletes the input directory if it is found to be empty.
+     *
+     * @param queriedDirFile Directory file that the method is looking at.
+     */
+    protected void removeDirectoryIfEmpty(File queriedDirFile) {
+        if (!queriedDirFile.isDirectory()) {
+            return;
+        }
+        File[] queriedDirSubFiles = queriedDirFile.listFiles();
+        assert queriedDirSubFiles != null;
+
+        if (queriedDirSubFiles.length == 0 && queriedDirFile != DATA_DIR.toFile()) {
+            queriedDirFile.delete();
+        } else {
+            for (File queriedDirSubFile : queriedDirSubFiles) {
+                if (queriedDirFile.isDirectory()) {
+                    removeDirectoryIfEmpty(queriedDirSubFile);
+                }
+            }
         }
     }
 }

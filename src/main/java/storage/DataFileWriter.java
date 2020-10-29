@@ -208,27 +208,4 @@ public class DataFileWriter extends DataFile {
         transformer.transform(fileSource, fileResult);
     }
 
-    /**
-     * Deletes the input directory if it is found to be empty.
-     *
-     * @param queriedDirFile Directory file that the method is looking at.
-     */
-    private void removeDirectoryIfEmpty(File queriedDirFile) {
-        if (!queriedDirFile.isDirectory()) {
-            return;
-        }
-        File[] queriedDirSubFiles = queriedDirFile.listFiles();
-        assert queriedDirSubFiles != null;
-
-        if (queriedDirSubFiles.length == 0) {
-            queriedDirFile.delete();
-        } else {
-            for (File queriedDirSubFile : queriedDirSubFiles) {
-                if (queriedDirFile.isDirectory()) {
-                    removeDirectoryIfEmpty(queriedDirSubFile);
-                }
-            }
-        }
-
-    }
 }
