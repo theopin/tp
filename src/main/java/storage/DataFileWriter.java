@@ -85,10 +85,13 @@ public class DataFileWriter extends DataFile {
 
             if (isPreloadedFile) {
                 textFile = possiblePreloadedFile;
+                subjectDirectory = null;
             }
+
             verifyDirectoryExistence(subjectDirectory,
                     preloadedSubjectDirectory,
                     isPreloadedFile);
+
             if (!Files.exists(textFile)) {
                 Files.createFile(textFile);
             }
