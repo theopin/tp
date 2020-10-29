@@ -13,6 +13,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.nio.file.Files;
@@ -72,17 +73,14 @@ public class DataFileWriter extends DataFile {
         String fileName = cheatSheet.getName() + XML_EXTENSION;
 
         Path subjectDirectory = Paths.get(USER_DIR, DATA, subjectName);
-
         Path possiblePreloadedFile = Paths.get(USER_DIR, DATA,
                 PRELOADED, subjectName, fileName);
+
         Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, PRELOADED, subjectName);
-
-
         Path textFile = Paths.get(USER_DIR, DATA, subjectName, fileName);
 
         try {
             boolean isPreloadedFile = preloadedCheatSheets.contains(possiblePreloadedFile);
-
             if (isPreloadedFile) {
                 textFile = possiblePreloadedFile;
                 subjectDirectory = null;
@@ -99,6 +97,7 @@ public class DataFileWriter extends DataFile {
             Document cheatSheetFile = buildFileContents(cheatSheet);
 
             writeToFile(textFile, cheatSheetFile);
+            removeDirectoryIfEmpty(DATA_DIR.toFile());
         } catch (IOException | ParserConfigurationException | TransformerException e) {
             printer.print(e.getMessage());
         }
@@ -193,7 +192,7 @@ public class DataFileWriter extends DataFile {
      *
      * @param fileDirectory             Name of the file.
      * @param xmlFileContents           Contents of the file in xml format.
-     * @throws TransformerException     Thrown if there an exceptional condition occurrs
+     * @throws TransformerException     Thrown if there an exceptional condition occurs
      *                                  during the transformation process.
      */
     private void writeToFile(Path fileDirectory, Document xmlFileContents)
@@ -207,5 +206,29 @@ public class DataFileWriter extends DataFile {
         StreamResult fileResult = new StreamResult(fileDirectory.toFile());
 
         transformer.transform(fileSource, fileResult);
+    }
+
+    /**
+     * Deletes the input directory if it is found to be empty.
+     *
+     * @param queriedDirFile Directory file that the method is looking at.
+     */
+    private void removeDirectoryIfEmpty(File queriedDirFile) {
+        if (!queriedDirFile.isDirectory()) {
+            return;
+        }
+        File[] queriedDirSubFiles = queriedDirFile.listFiles();
+        assert queriedDirSubFiles != null;
+
+        if (queriedDirSubFiles.length == 0) {
+            queriedDirFile.delete();
+        } else {
+            for (File queriedDirSubFile : queriedDirSubFiles) {
+                if (queriedDirFile.isDirectory()) {
+                    removeDirectoryIfEmpty(queriedDirSubFile);
+                }
+            }
+        }
+
     }
 }
