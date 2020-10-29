@@ -107,7 +107,7 @@ public abstract class DataFile {
             }
         }
 
-        if (!Files.exists(subjectDirectory)) {
+        if (subjectDirectory != null && !Files.exists(subjectDirectory)) {
             Files.createDirectory(subjectDirectory);
         }
     }

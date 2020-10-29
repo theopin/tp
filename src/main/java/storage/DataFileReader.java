@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.FileOutputStream;
 
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,8 +29,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
+
 
 
 /**
@@ -57,12 +55,7 @@ public class DataFileReader extends DataFile {
     public void executeFunction() {
         try {
             extractXmlFilesFromJar();
-            if (Files.exists(PRELOADED_ORIG_DIR)) {
-                printer.print(2222222);
-                shiftPreloadedCheatsheets();
-            } else {
-                insertStoredCheatSheets();
-            }
+            insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
             logger.log(Level.WARNING, "processing error");
             printer.print(e.getMessage());
@@ -78,37 +71,45 @@ public class DataFileReader extends DataFile {
         Enumeration<JarEntry> enumEntries = jarFile.entries();
         while (enumEntries.hasMoreElements()) {
             JarEntry currentFile =  enumEntries.nextElement();
-            printer.print(5555);
-            String subjectName = "C";
-            Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, PRELOADED, subjectName);
-            verifyDirectoryExistence(null, preloadedSubjectDirectory, true);
-            
-            File newFileLocation = new File(preloadedSubjectDirectory.toString());
-            InputStream inputStream = jarFile.getInputStream(currentFile); // get the input stream
-            FileOutputStream outputStream = new FileOutputStream(newFileLocation);
-            while (inputStream.available() > 0) {  // write contents of 'is' to 'outputStream'
-                outputStream.write(inputStream.read());
+            String currentFileName = currentFile.getName();
+            printer.print(55 + currentFileName);
+            if (!currentFileName.contains(PRELOADED) || !currentFileName.contains(".xml")) {
+                continue;
             }
-            outputStream.close();
-            inputStream.close();
+            printer.print(66);
+
+            String currentFileDir = filterDir(currentFileName);
+            createNewFile(jarFile, currentFile, currentFileName, currentFileDir);
         }
         jarFile.close();
     }
 
-    /**
-     * Shifts the preloaded cheatSheet directory to the user defined
-     * /data folder once the application is run for the first time.
-     *
-     * @throws IOException Thrown if there are issues detected during
-     *                     the I/O operation.
-     */
-    private void shiftPreloadedCheatsheets() throws IOException {
-        if (!Files.exists(DATA_DIR)) {
-            createNewDirectory();
+    private String filterDir(String currentFileName) {
+        String[] splitPathNames = currentFileName.split("/");
+        String xmlPathName = EMPTY;
+        for(String splitPathName : splitPathNames) {
+            if (splitPathName.contains(".xml")) {
+                xmlPathName = splitPathName;
+            }
         }
-        extractFromDirectory(PRELOADED_ORIG_DIR);
+        return currentFileName.replace(xmlPathName, EMPTY);
     }
 
+    private void createNewFile(JarFile jarFile, JarEntry currentFile, String currentFileName, String currentFileDir) throws IOException {
+        Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, currentFileDir);
+        Path preloadedFileDirectory = Paths.get(USER_DIR, DATA, currentFileName);
+        verifyDirectoryExistence(null, preloadedSubjectDirectory, true);
+
+        File newFileLocation = new File(preloadedFileDirectory.toString());
+        InputStream inputStream = jarFile.getInputStream(currentFile); // get the input stream
+        FileOutputStream outputStream = new FileOutputStream(newFileLocation);
+
+        while (inputStream.available() > 0) {  // write contents of 'is' to 'outputStream'
+            outputStream.write(inputStream.read());
+        }
+        outputStream.close();
+        inputStream.close();
+    }
 
     /**
      * Converts the data obtained from the /data folder into cheatsheets and adds
