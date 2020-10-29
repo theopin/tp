@@ -73,7 +73,6 @@ public class DataFileWriter extends DataFile {
 
         Path subjectDirectory = Paths.get(USER_DIR, DATA, subjectName);
 
-        Path possibleOriginalFile = Paths.get(DOT, PRELOADED, subjectName, fileName);
         Path possiblePreloadedFile = Paths.get(USER_DIR, DATA,
                 PRELOADED, subjectName, fileName);
         Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, PRELOADED, subjectName);
@@ -82,8 +81,7 @@ public class DataFileWriter extends DataFile {
         Path textFile = Paths.get(USER_DIR, DATA, subjectName, fileName);
 
         try {
-            boolean isPreloadedFile = preloadedCheatSheets.contains(possiblePreloadedFile)
-                    || preloadedCheatSheets.contains(possibleOriginalFile);
+            boolean isPreloadedFile = preloadedCheatSheets.contains(possiblePreloadedFile);
 
             if (isPreloadedFile) {
                 textFile = possiblePreloadedFile;

@@ -22,7 +22,7 @@ public abstract class DataFile {
     protected static final String YES = "Yes";
     protected static final String NO = "No";
     protected static final String EMPTY = "";
-    protected static final String DOT = ".";
+    protected static final String SLASH = "/";
 
     protected static final String USER_DIR = System.getProperty("user.dir");
     protected static final String JAR_DIR = "CheatLogs.jar";
@@ -39,11 +39,8 @@ public abstract class DataFile {
     protected static final String SUBJECT_ELEMENT = "subject";
     protected static final String CONTENTS_ELEMENT = "contents";
 
-
-
     protected static final Path PRELOADED_DIR = Paths.get(USER_DIR, DATA, PRELOADED);
     protected static final Path DATA_DIR = Paths.get(USER_DIR, DATA);
-    protected static final Path PRELOADED_ORIG_DIR = Paths.get(DOT, PRELOADED);
 
     protected Printer printer;
     protected static ArrayList<Path> preloadedCheatSheets = new ArrayList<>();

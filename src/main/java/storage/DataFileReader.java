@@ -37,7 +37,6 @@ import java.util.logging.Logger;
  * to insert the cheatsheets present in the folder to the application.
  */
 public class DataFileReader extends DataFile {
-    public static final int COUNT_GENERATIONS = 3;
     private CheatSheetList cheatSheetList;
     private Logger logger = Logger.getLogger("Foo");
 
@@ -48,8 +47,8 @@ public class DataFileReader extends DataFile {
 
     /**
      * Converts the file contents into cheatsheets that can be added into
-     * the list of cheatsheets. Also handles an exception arising
-     * from missing directory at the specified location.
+     * the list of cheatsheets. Handles exceptions arising from issues when
+     * loading files or relevant directories.
      */
     @Override
     public void executeFunction() {
@@ -60,44 +59,74 @@ public class DataFileReader extends DataFile {
             logger.log(Level.WARNING, "processing error");
             printer.print(e.getMessage());
             createNewDirectory();
-        } catch (DirectoryIsEmptyException | IOException | NullPointerException d) {
-            printer.print(1111 + d.getMessage());
+        } catch (DirectoryIsEmptyException | IOException d) {
+            printer.print(d.getMessage());
         }
     }
 
+    /**
+     * Extracts the preloaded cheatsheet .xml files from CheatLogs.jar
+     * and transfers them to the /data dir.
+     *
+     * @throws IOException thrown if there are issues with reading and
+     *                     writing the transferred .xml file as well as
+     *                     the files inside CheatLogs.jar.
+     */
     private void extractXmlFilesFromJar() throws IOException {
         JarFile jarFile = new JarFile(JAR_DIR);
 
         Enumeration<JarEntry> enumEntries = jarFile.entries();
         while (enumEntries.hasMoreElements()) {
             JarEntry currentFile =  enumEntries.nextElement();
-            String currentFileName = currentFile.getName();
-            printer.print(55 + currentFileName);
-            if (!currentFileName.contains(PRELOADED) || !currentFileName.contains(".xml")) {
+            String currentFilePath = currentFile.getName();
+            if (!currentFilePath.contains(PRELOADED)
+                    || !currentFilePath.contains(XML_EXTENSION)) {
                 continue;
             }
-            printer.print(66);
 
-            String currentFileDir = filterDir(currentFileName);
-            createNewFile(jarFile, currentFile, currentFileName, currentFileDir);
+            String currentFileDir = filterDir(currentFilePath);
+            createNewFile(jarFile, currentFile, currentFilePath, currentFileDir);
         }
         jarFile.close();
     }
 
-    private String filterDir(String currentFileName) {
-        String[] splitPathNames = currentFileName.split("/");
+    /**
+     * Extracts a string containing the path to the directory in
+     * CheatLogs.jar containing the .xml file.
+     *
+     * @param currentFilePath A string that denotes the path of the file.
+     * @return                    A string that denotes the path of the file
+     *                            directory.
+     */
+    private String filterDir(String currentFilePath) {
+        String[] splitPathNames = currentFilePath.split(SLASH);
         String xmlPathName = EMPTY;
-        for(String splitPathName : splitPathNames) {
-            if (splitPathName.contains(".xml")) {
+
+        for (String splitPathName : splitPathNames) {
+            if (splitPathName.contains(XML_EXTENSION)) {
                 xmlPathName = splitPathName;
             }
         }
-        return currentFileName.replace(xmlPathName, EMPTY);
+        return currentFilePath.replace(xmlPathName, EMPTY);
     }
 
-    private void createNewFile(JarFile jarFile, JarEntry currentFile, String currentFileName, String currentFileDir) throws IOException {
-        Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, currentFileDir);
-        Path preloadedFileDirectory = Paths.get(USER_DIR, DATA, currentFileName);
+    /**
+     * Creates a new file within the specified path in the
+     * /data directory.
+     *
+     * @param jarFile Jarfile which is loading CheatLogs.jar.
+     * @param currentFile JarEntry of the file being process.
+     * @param currentFilePath    String denoting the path to which the
+     *                           file should be written to
+     * @param currentFileDirPath String denoting the path to the directory
+     *                           the relevant file should be stored in.
+     */
+    private void createNewFile(JarFile jarFile,
+                               JarEntry currentFile,
+                               String currentFilePath,
+                               String currentFileDirPath) throws IOException {
+        Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, currentFileDirPath);
+        Path preloadedFileDirectory = Paths.get(USER_DIR, DATA, currentFilePath);
         verifyDirectoryExistence(null, preloadedSubjectDirectory, true);
 
         File newFileLocation = new File(preloadedFileDirectory.toString());
@@ -107,6 +136,7 @@ public class DataFileReader extends DataFile {
         while (inputStream.available() > 0) {  // write contents of 'is' to 'outputStream'
             outputStream.write(inputStream.read());
         }
+
         outputStream.close();
         inputStream.close();
     }
@@ -155,7 +185,6 @@ public class DataFileReader extends DataFile {
 
             if (Files.isDirectory(filePath)) {
                 extractFromDirectory(filePath);
-                checkPathParent(dataDirectoryFile);
                 continue;
             }
             String preloadedFileName = dataDirectoryFile
@@ -173,23 +202,7 @@ public class DataFileReader extends DataFile {
                 extractCheatSheet(dataDirectoryFile);
             } catch (ParserConfigurationException | SAXException e) {
                 printer.print(e.getMessage());
-            } finally {
-                checkPathParent(dataDirectoryFile);
             }
-        }
-    }
-
-    private void checkPathParent(File dataDirectoryFile) {
-        int countGenerations = COUNT_GENERATIONS;
-        File currentFile = dataDirectoryFile;
-
-        while (countGenerations != 0) {
-            currentFile = currentFile.getParentFile();
-            if (currentFile.getName().equals(RESOURCES)) {
-                dataDirectoryFile.delete();
-                return;
-            }
-            countGenerations--;
         }
     }
 
