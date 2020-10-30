@@ -60,35 +60,35 @@ Please Enter a Command:
    * `/find CS2113`: Find cheat sheet containing “CS2113T” in the name field. 
    * `/exit`: Exits the app.
 
-## 2. Features
-/add /n <CHEAT_SHEET_NAME> /s<SUBJECT> /d <DESCRIPTION>
-	Adds a new cheat sheet to the application and prompts user to include data
-	into the cheat sheet.
-/clear
-	Clears all entries from the cheat sheet.
-/delete /i <CHEAT_SHEET_INDEX>
-/delete /n <CHEAT_SHEET_NAME>
-	To be used after using /list, Deletes the cheat sheet at INDEX items down the list.
-	The first cheat sheet has an index of 1.
-/edit /i <CHEAT_SHEET_INDEX>
-/edit /n <CHEAT_SHEET_NAME>
-	Edits the details/content of the cheat sheet.
-/exit
-	Exits the application.
-/fav /i <CHEAT_SHEET_INDEX>
-/fav /n <CHEAT_SHEET_NAME>
-	Marks the cheat sheet as favourite.
-/find /s <PROGRAMMING LANGUAGE> k/ <KEYWORD>
-	Finds a cheat sheet whose names contain any of the given keywords.
-/help
-	Displays this help message.
-/list
-	Lists all the possible commands that can be executed in the application.
-/set /c <OPTION_NUMBER>
-	Changes the color scheme of the application. Available options: 1 - 3.Type 0 to reset to default color scheme
-/view /i <CHEAT_SHEET_INDEX>
-/view /n <CHEAT_SHEET_NAME>
-	View the contents of a cheat sheet either by the name or index.
+## 2. Features/add /n <CHEAT_SHEET_NAME> /s<SUBJECT> /d <DESCRIPTION><br>
+	Adds a new cheat sheet to the application and prompts user to include data<br>
+	into the cheat sheet.<br>
+/clear<br>
+	Clears all entries from the cheat sheet.<br>
+/delete /i <CHEAT_SHEET_INDEX><br>
+/delete /n <CHEAT_SHEET_NAME><br>
+	To be used after using /list, Deletes the cheat sheet at INDEX items down the list.<br>
+	The first cheat sheet has an index of 1.<br>
+/edit /i <CHEAT_SHEET_INDEX><br>
+/edit /n <CHEAT_SHEET_NAME><br>
+	Edits the details/content of the cheat sheet.<br>
+/exit<br>
+	Exits the application.<br>
+/fav /i <CHEAT_SHEET_INDEX><br>
+/fav /n <CHEAT_SHEET_NAME><br>
+	Marks the cheat sheet as favourite.<br>
+/find /s <PROGRAMMING LANGUAGE> k/ <KEYWORD><br>
+	Finds a cheat sheet whose names contain any of the given keywords.<br>
+/help<br>
+	Displays this help message.<br>
+/list<br>
+	Lists all the possible commands that can be executed in the application.<br>
+/set /c <OPTION_NUMBER><br>
+	Changes the color scheme of the application. Available options: 1 - 3.Type 0 to reset to default color scheme<br>
+/view /i <CHEAT_SHEET_INDEX><br>
+/view /n <CHEAT_SHEET_NAME><br>
+	View the contents of a cheat sheet either by the name or index.<br>
+<br>
 
    
 ## 2. Features [Depracated]
