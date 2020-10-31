@@ -152,6 +152,9 @@ If a non-empty description is saved, the cheatsheet is added to the List and sto
 Else if the description is blank or the text editor was canceled, the error message below is shown and the cheatsheet is not saved.
  ![image](https://i.ibb.co/qxkMwtV/image.png)
 
+If you try to enter a cheatsheet with a name already in the List. You will get a message to other another one, this is depicteted below.
+![image](https://i.ibb.co/mhgrwN0/image.png)
+
 Examples:
 * `/add /n classes s/Java`
 * `/add /n Cppthings`
