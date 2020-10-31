@@ -12,14 +12,16 @@ This user guide serves as a reference for using the features of CheatLogs. The l
 
 The table of contents below lets you easily access the documentation for installation, specific features, and frequently asked questions. 
 
-> <font size = "5" >:bulb: Here are some icons  and patterns you will come across and their meanings.
+> <font size = "5" >:bulb: Here are some patterns you will come across and their meanings.
 > ------
-> :bulb:&nbsp;&nbsp;&nbsp; Tip on current section <br>
-> &nbsp;:exclamation:&nbsp;&nbsp;&nbsp;&nbsp; Warning of potential misuse<br>
-> <font size="3"> [:arrow_up_small:](#table-of-contents)</font>&nbsp;&nbsp; Returns to table of contents on left click<br>
->**bold** &nbsp;&nbsp; &nbsp;Key terms specific to CheatLogs<br>
->*italics*	&nbsp;&nbsp;Files<br>
->`Snippets`  &nbsp;Typed input to CheatLogs
+>|Pattern|Meaning  |
+>|--|--|
+>| :bulb: |Tip on current section  |
+>|:exclamation:|Warning of potential error|
+>|<font size="3"> [:arrow_up_small:](#table-of-contents)</font>| Returns to table of contents on left click|
+>|**bold**|Key terms specific to CheatLogs|
+>|*italics*|Files|
+>|`Snippets`|Typed input to CheatLogs|
 
 <br>
 
@@ -59,8 +61,8 @@ CheatLogs requires Java 11 or above installed on your computer. To install Java 
  1. Download Java JDK 11 for your system from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
  2. Run and follow the installation instruction in the wizard.
  3. Check the Java version.
-	 a. For computers on Windows, invoke`java -version` on the command prompt.
-	 b. For MacOs or Linux distros, invoke `java -version` on the terminal.
+	 * For computers on Windows, invoke`java -version` on the command prompt.
+	 * For MacOs or Linux distros, invoke `java -version` on the terminal.
 4. Verify that the version installed follows the "11.x.x" format. Refer to the image below for what you should expect to see.
 ![Java 11 installed message](https://i.ibb.co/tzV9GX3/image.png)
 
@@ -70,8 +72,8 @@ CheatLogs requires Java 11 or above installed on your computer. To install Java 
 ##  2. Running CheatLogs<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 CheatLogs is easy to get running. You can follow the  steps below to do so.
 1.  You can download the latest version of CheatLogs from [here](https://github.com/AY2021S1-CS2113T-W11-3/tp/releases).
-	a. Scroll to the latest release.
-	b. Download only the *CheatLogs.jar* file highlighted in the orange box below.
+2. Scroll to the latest release.
+3. Download only the *CheatLogs.jar* file highlighted in the orange box below.
 
 	![](https://i.ibb.co/C24vhGg/image.png)
 2. Create a new directory anywhere on your PC, This is the home folder where CheatLogs will be creating its own subdirectories to store cheatsheets. 
@@ -92,7 +94,7 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
  
 <a id="editor"></a>
 ##  3. GUI text editor<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-CheatLogs provides a simple graphical user interface (GUI) text editor than is automatically popped up on certain commands. These comands include: `add` and `edit`. This allow you to have an easier time manipulating of data allow you to perform simple features such cut, copy and paste or using your mouse which are typically unavailable on the CLI. Below is what you can expect to see when it pops up. 
+CheatLogs provides a simple graphical user interface (GUI) text editor that automatically pops up on certain commands. These comands include: `add` and `edit`. This allow you to have an easier time manipulating of data allow you to perform simple features such cut, copy and paste or using your mouse which are typically unavailable on the CLI. Below is what you can expect to see and be able to do when it pops up.
 <p align="center">
    <img width="500" height="350" src="https://i.ibb.co/YbC11XB/ezgif-6-567f275ee84a.gif">
 </p>
@@ -103,16 +105,16 @@ Additional functionalities of the editor above are found in the tabs.
 |--|--|
 |  ![image](https://i.ibb.co/1TB0F3L/image.png))| ![image](https://i.ibb.co/jRwTQB3/image.png)|
 
-Here are a brief explnation to the above tabs.
+Here are brief explanations to the above tabs. <br>
 Action tab
  - Save : Save the text inputed, exits the text editor
  - Clear All : Remove all text, remains in the text editor.
  - Cancel : Remove all text, exit the text editor.
 
 Edit tab
-  - Copy : copies the text higlighted in the editor to the system clipboard.
- -  Cut : cuts the text higlighted in the editor to the system clipboard.
- -  Paste : paste from the system clipboard to the position of the text cursor.
+  - Copy : Copies the text higlighted in the editor to the system clipboard.
+ -  Cut : Cuts the text higlighted in the editor to the system clipboard.
+ -  Paste : Pastes from the system clipboard to the position of the text cursor.
 
 <br>
   
@@ -124,12 +126,14 @@ Commands are how you interact with Cheatlogs. To understand the terminology bein
    <img width="540" height="390" src="https://i.ibb.co/r3JjNZs/Sprite-0005.png">
 </p>
 
-The anatomy of the command is broken down to color coded sections that are all used to execute the command itself. The elements are elaborated below:
+The anatomy of the command is broken down to color coded sections in the picture. These elements are all that are all used to execute the command and are elaborated below:
 * **Command identifier**: Every command needs one. It isused to exactly what type of command needs to be run. Above `/add` is the command identifier for adding cheatsheets
 * **Flag**: Akin to options or parameters of the command, these are additional information passed to CheatLogs to use. Flags are sometimes optional and you don't always need to type them. Above, `/n`  and `/s` are used to indicate the names and subject of the cheatsheet respectively with `/s` being an optional flag.
 * **Flag description**: When the flag itself is not information, CheatLogs takes in additional information for each flag that is the flag description. Not all flags have flag description but all flags description need to accompany a flag. Above, it is the  name flag `n` is decribed by `help` and the subject flag `s` is decribed by `me`.
 
 > :bulb: You need not worry if you forget the exact flags for each command. CheatLogs prompts you to enter the flag description for any missing neccesary flags.
+
+<br>
 
 <a id="storage-command-type"></a>
 ### 4.1. Storage Commands:  <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
@@ -138,7 +142,7 @@ These are a type of command that are most used in CheatLogs. They allow you mana
 <a id="add-command"></a>
 #### 4.1.1. Adding a cheatsheet: `/add` <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-Format: `/add /n \<CHEATSHEET_NAME> /s \<SUBJECT>` <br>
+Format: `/add /n <CHEATSHEET_NAME> /s <SUBJECT>` <br>
 Flag optionality: `/n` (required)`/s` (optional)
 
 A cheatsheet is first constructed with the name `CHEATSHEET_NAME` and subject `SUBJECT`. The text editor will then pop up for you to enter the description of the cheatsheet.
@@ -149,9 +153,8 @@ Else if the description is blank or the text editor was canceled, the error mess
  ![image](https://i.ibb.co/qxkMwtV/image.png)
 
 Examples:
-* `/add n/Python d/”This my secret cheatsheet to success”`
-* `/add n/Java d/version11`
-* `/add n/Cpp`
+* `/add /n classes s/Java`
+* `/add /n Cppthings`
 
  <a id="delete-command"></a>
 #### 4.1.2. Deleting a cheatsheet: `/delete`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
@@ -299,12 +302,12 @@ q"></a>
 The table below is for quick and easy reference to the CheatLogs commands with examples of use.
 Action | Format | Examples
 -------- | ---------- | ------------
-Add | /add /n <CHEATSHEET_NAME> /s \<SUBJECT> | /add /n List /s Java
+Add | /add /n <CHEATSHEET_NAME> /s <SUBJECT> | /add /n List /s Java
 Delete | /delete /i <CHEATSHEET_INDEX> <br> /delete /n <CHEATSHEET_NAME> | /delete /n List , /delete /i 1
 Clear | /clear |
 Edit | /edit /i <CHEATSHEET_INDEX> <br> /edit /n <CHEATSHEET_NAME> | /edit /i 1 , /edit /n List
 Favourite | /fav /i <CHEATSHEET_INDEX> <br> /fav /n <CHEATSHEET_NAME> | /fav /i 2 , /fav /n Cheat
-Find | /find /s \<SUBJECT> /k \<KEYWORD> | /find /s Java , /find /s Java /k cheater
+Find | /find /s <SUBJECT> /k <KEYWORD> | /find /s Java , /find /s Java /k cheater
 View | /view /i <CHEATSHEET_INDEX> <br>/view /n <CHEATSHEET_NAME> | /fav /i 3 , /fav /n List
 List | /list |
 Help | /help |
