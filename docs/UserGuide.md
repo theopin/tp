@@ -6,7 +6,7 @@
 
 ![Our Logo](https://i.ibb.co/VxzKbbz/a1.png)
 
-Welcome to the official user guide of CheatLogs, a free and open-source cheatsheet manager that with blazing fast organization and searching via a command-line interface (CLI). 	
+Welcome to the official user guide of CheatLogs, a free and open-source cheatsheet manager with blazing fast organization and searching via a command-line interface (CLI). 	
 
 This user guide serves as a reference for using the features of CheatLogs. The level of technicality within this document is tailored towards our target audience, novice programmers. For new users, we recommend reading this from the very [start](#before-start).
 
@@ -94,7 +94,7 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
  
 <a id="editor"></a>
 ##  3. GUI text editor<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-CheatLogs provides a simple graphical user interface (GUI) text editor that automatically pops up on certain commands. These comands include: `add` and `edit`. This allow you to have an easier time manipulating of data allow you to perform simple features such cut, copy and paste or using your mouse which are typically unavailable on the CLI. Below is what you can expect to see and be able to do when it pops up.
+CheatLogs provides a simple graphical user interface (GUI) text editor that automatically pops up on certain commands. These comands include: `add` and `edit`. This allow you to have an easier time manipulating of data, perform simple operations such as cut, copy and paste or even using your mouse which are typically unavailable on the CLI. Below is what you can expect to see and be able to do when it pops up.
 <p align="center">
    <img width="500" height="350" src="https://i.ibb.co/YbC11XB/ezgif-6-567f275ee84a.gif">
 </p>
@@ -103,9 +103,9 @@ CheatLogs provides a simple graphical user interface (GUI) text editor that auto
 Additional functionalities of the editor above are found in the tabs.
 | Actions tab | Edit tab |
 |--|--|
-|  ![image](https://i.ibb.co/1TB0F3L/image.png))| ![image](https://i.ibb.co/jRwTQB3/image.png)|
+|  ![image](https://i.ibb.co/1TB0F3L/image.png)| ![image](https://i.ibb.co/jRwTQB3/image.png)|
 
-Here are brief explanations to the above tabs. <br>
+Here are brief explanations for the above tabs. <br>
 Action tab
  - Save : Save the text inputed, exits the text editor
  - Clear All : Remove all text, remains in the text editor.
@@ -127,17 +127,17 @@ Commands are how you interact with Cheatlogs. To understand the terminology bein
 </p>
 
 The anatomy of the command is broken down to color coded sections in the picture. These elements are all that are all used to execute the command and are elaborated below:
-* **Command identifier**: Every command needs one. It isused to exactly what type of command needs to be run. Above `/add` is the command identifier for adding cheatsheets
-* **Flag**: Akin to options or parameters of the command, these are additional information passed to CheatLogs to use. Flags are sometimes optional and you don't always need to type them. Above, `/n`  and `/s` are used to indicate the names and subject of the cheatsheet respectively with `/s` being an optional flag.
-* **Flag description**: When the flag itself is not information, CheatLogs takes in additional information for each flag that is the flag description. Not all flags have flag description but all flags description need to accompany a flag. Above, it is the  name flag `n` is decribed by `help` and the subject flag `s` is decribed by `me`.
+* **Command identifier**: Every command needs one. It isused to exactly what type of command needs to be run. In the commmand above, `/add` is the command identifier for adding cheatsheets
+* **Flag**: Akin to options or parameters of the command, these are additional information passed to CheatLogs to use. Flags are sometimes optional and you don't always need to type them. In the commmand above, `/n`  and `/s` are used to indicate the names and subject of the cheatsheet respectively with `/s` being an optional flag.
+* **Flag description**: Used when the flag itself is does not provide enough information, CheatLogs takes in additional information for each flag through that flag's description. Not all flags have flag descriptions but each flags description need to accompany a flag. In the commmand above, it is the  name flag `n` is decribed by `help` and the subject flag `s` is decribed by `me`.
 
-> :bulb: You need not worry if you forget the exact flags for each command. CheatLogs prompts you to enter the flag description for any missing neccesary flags.
+> :bulb: You need not worry if you forget the exact flags for each command. CheatLogs prompts you to enter the flag description for each missing neccesary flags.
 
 <br>
 
 <a id="storage-command-type"></a>
 ### 4.1. Storage Commands:  <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-These are a type of command that are most used in CheatLogs. They allow you manage the input and ouput of cheatsheets to and from the entire list of cheatsheets. CheatLogs only has one list of cheatsheets and the following storage commands all refer to this as **the List**.
+These are are some of the most used command type in CheatLogs. They allow you manage the input and ouput of cheatsheets to and from the entire list of cheatsheets. CheatLogs only has one list of cheatsheets and the following storage commands all refer to this as **the List**.
 
 <a id="add-command"></a>
 #### 4.1.1. Adding a cheatsheet: `/add` <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
