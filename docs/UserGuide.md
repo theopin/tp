@@ -4,11 +4,7 @@
 
 <h1 align="center">  CheatLogs User Guide </h1>
 
-<p align="center">
-   <img width="692" height="500" src="https://i.ibb.co/x7d1bGx/a.png">
-</p>
-
-<p align="center">
+![Our Logo](https://i.ibb.co/VxzKbbz/a1.png)
 
 Welcome to the official user guide of CheatLogs, a free and open-source cheatsheet manager that with blazing fast organization and searching via a command-line interface (CLI). 	
 
@@ -16,14 +12,16 @@ This user guide serves as a reference for using the features of CheatLogs. The l
 
 The table of contents below lets you easily access the documentation for installation, specific features, and frequently asked questions. 
 
-> <font size = "5" >:bulb: Here are some icons  and patterns you may come across and their meanings.
+> <font size = "5" >:bulb: Here are some icons  and patterns you will come across and their meanings.
 > ------
-> :bulb:&nbsp;&nbsp;&nbsp; Tip on current section
-> &nbsp;:exclamation:&nbsp;&nbsp;&nbsp;&nbsp; Warning of potential misuse
-> <font size="3"> [:arrow_up_small:](#table-of-contents)</font>&nbsp;&nbsp; Returns to table of contents on left click
->**bold** &nbsp;&nbsp; &nbsp;Key terms specific to CheatLogs
->*italics*	&nbsp;&nbsp;Files
+> :bulb:&nbsp;&nbsp;&nbsp; Tip on current section <br>
+> &nbsp;:exclamation:&nbsp;&nbsp;&nbsp;&nbsp; Warning of potential misuse<br>
+> <font size="3"> [:arrow_up_small:](#table-of-contents)</font>&nbsp;&nbsp; Returns to table of contents on left click<br>
+>**bold** &nbsp;&nbsp; &nbsp;Key terms specific to CheatLogs<br>
+>*italics*	&nbsp;&nbsp;Files<br>
 >`Snippets`  &nbsp;Typed input to CheatLogs
+
+<br>
 
 ## Table of contents
 
@@ -51,23 +49,29 @@ The table of contents below lets you easily access the documentation for install
 * [7. FAQ](#faq)
 * [8. Command Cheatsheet](#command-cheatsheet)
 
+<br>
+
 <a id="before-start"></a>
 ##  1. Before you start<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 CheatLogs requires Java 11 or above installed on your computer. To install Java 11 and verify:
 > &nbsp;:exclamation: If you use earlier versions of Java, there may be compatibility issues. Thus, we recommend using the same one we developed on, Java 11. 
+> 
  1. Download Java JDK 11 for your system from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
  2. Run and follow the installation instruction in the wizard.
  3. Check the Java version.
-	 3a. For computers on Windows, invoke`java -version` on the command prompt.
-	 3b. For MacOs or Linux distros, invoke `java -version` on the terminal.
+	 a. For computers on Windows, invoke`java -version` on the command prompt.
+	 b. For MacOs or Linux distros, invoke `java -version` on the terminal.
 4. Verify that the version installed follows the "11.x.x" format. Refer to the image below for what you should expect to see.
 ![Java 11 installed message](https://i.ibb.co/tzV9GX3/image.png)
+
+<br>
+
 <a id="start"></a>
 ##  2. Running CheatLogs<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-CheatLogs is very quick to get running. You can follow the  steps below to do so.
+CheatLogs is easy to get running. You can follow the  steps below to do so.
 1.  You can download the latest version of CheatLogs from [here](https://github.com/AY2021S1-CS2113T-W11-3/tp/releases).
-	1a. Scroll to the latest release.
-	1b. Download only the *CheatLogs.jar* file highlighted in the orange box below.
+	a. Scroll to the latest release.
+	b. Download only the *CheatLogs.jar* file highlighted in the orange box below.
 
 	![](https://i.ibb.co/C24vhGg/image.png)
 2. Create a new directory anywhere on your PC, This is the home folder where CheatLogs will be creating its own subdirectories to store cheatsheets. 
@@ -84,11 +88,13 @@ CheatLogs is very quick to get running. You can follow the  steps below to do so
    * `/list`: Lists all cheatsheets.
    * `/exit`: Exits the app.
    
+ <br>
+ 
 <a id="editor"></a>
 ##  3. GUI text editor<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 CheatLogs provides a simple graphical user interface (GUI) text editor than is automatically popped up on certain commands. These comands include: `add` and `edit`. This allow you to have an easier time manipulating of data allow you to perform simple features such cut, copy and paste or using your mouse which are typically unavailable on the CLI. Below is what you can expect to see when it pops up. 
 <p align="center">
-   <img width="400" height="350" src="https://i.ibb.co/b76sgjq/image.png">
+   <img width="500" height="350" src="https://i.ibb.co/YbC11XB/ezgif-6-567f275ee84a.gif">
 </p>
 
 ### Tab functions
@@ -96,6 +102,7 @@ Additional functionalities of the editor above are found in the tabs.
 | Actions tab | Edit tab |
 |--|--|
 |  ![image](https://i.ibb.co/1TB0F3L/image.png))| ![image](https://i.ibb.co/jRwTQB3/image.png)|
+
 Here are a brief explnation to the above tabs.
 Action tab
  - Save : Save the text inputed, exits the text editor
@@ -106,6 +113,9 @@ Edit tab
   - Copy : copies the text higlighted in the editor to the system clipboard.
  -  Cut : cuts the text higlighted in the editor to the system clipboard.
  -  Paste : paste from the system clipboard to the position of the text cursor.
+
+<br>
+  
 <a id="commands"></a>
 ## 4. Commands<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 Commands are how you interact with Cheatlogs. To understand the terminology being used in the later sections, we want to you to undestand the typical structure of a command, illustrated below.
@@ -128,7 +138,7 @@ These are a type of command that are most used in CheatLogs. They allow you mana
 <a id="add-command"></a>
 #### 4.1.1. Adding a cheatsheet: `/add` <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-Format: `/add /n \<CHEATSHEET_NAME> /s \<SUBJECT>`
+Format: `/add /n \<CHEATSHEET_NAME> /s \<SUBJECT>` <br>
 Flag optionality: `/n` (required)`/s` (optional)
 
 A cheatsheet is first constructed with the name `CHEATSHEET_NAME` and subject `SUBJECT`. The text editor will then pop up for you to enter the description of the cheatsheet.
@@ -247,6 +257,8 @@ Exits the application.
  
 Format: `/exit`
 
+<br>
+
 <a id="data-storage"></a>
 ### 5. Data storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
@@ -259,21 +271,29 @@ To allow the application to safely read the files stored in the `/data` folder,
 please refrain from modifying them externally. 
 You can edit attributes associated with that cheatsheet through the application itself.
 
+<br>
+
 <a id="archiving-data-files"></a>
 ### 6. Archiving data files [coming in v2.0]<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 TBC
+
+<br>
+
 <a id="fa
 q"></a>
 ## 7. FAQ<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-**Q**: How do I transfer my data to another computer? 
+**Q**: How do I transfer my data to another computer? <br>
 
 **A**: You can simply drag and drop the `cheatlogs.jar`  and the `/data` directory in that same folder into the other computer.
 
-**Q**: Why is CheatLogs so strict on formatting!?
+**Q**: Why is CheatLogs so strict on formatting!?<br>
 **A**: CheatLogs is still under development but we plan to provide better ways for you to input ways in the future.
 
-**Q**: Will future updates break my current cheatsheets?
+**Q**: Will future updates break my current cheatsheets?<br>
 **A**: The current structure of cheatsheets may change in the future, but we plan to provide you ways to convert so that you can enjoy the new features. 
+
+<br>
+
 <a id="command-cheatsheet"></a>
 ## 8. Command Cheatsheet<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 The table below is for quick and easy reference to the CheatLogs commands with examples of use.
