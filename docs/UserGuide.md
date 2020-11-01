@@ -94,6 +94,7 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
    * `/exit`: Exits the app.
 
 A bit confused? Here is a video guide on doing steps 4-9 using the terminal (not cmd). Note that CheatLogs.jar already been placed in the Desktop folder.
+
 ![ezgif-6-63beb94eab4e](https://i.ibb.co/Q9FShJt/ezgif-6-63beb94eab4e.gif)
  <br>
  
