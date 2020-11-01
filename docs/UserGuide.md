@@ -216,7 +216,7 @@ ___
 >Format: `/edit /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-The Editor pops up to edit the cheatsheet in the List with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both. After you are done editing and close the editor, the expected result is similar to below if a matching cheatsheet is found and the edited description is not blank.
+The Editor pops up to edit the cheatsheet in the List with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both. After you are done editing and close the Editor, the expected result is similar to below if a matching cheatsheet is found and the edited description is not blank.
 ![image](https://i.ibb.co/c8xq2wY/image.png)
 When either the name or index do not match, the Editor does not pop up and CheatLogs will specify the error as shown below.
 ![image](https://i.ibb.co/rZ6Rhgn/image.png)
@@ -327,7 +327,7 @@ These are useful general purpose commands that don't fit into the other categori
 ---
 
 <a id="help-command"></a>
-#### 4.4.1 Viewing help: `/help`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+### 4.4.1 Viewing help: `/help`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 >Format: `/help`
 >
 Lists all the possible commands that can be executed in the application and formating information. Below is what you should expect to see.
@@ -339,7 +339,7 @@ Examples:
 ---
 
 <a id="settings-command"></a>
-#### 4.4.2 Change program settings: `/set`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+### 4.4.2 Change program settings: `/set`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 >Format: `/set /c COLORSCHEME`
 >Flag optionality: `/c`(required) 
 
@@ -357,7 +357,7 @@ Settings outside the available range default to color scheme 0.(this behavior is
 ---
 
 <a id="exit-command"></a>
-#### 4.4.3 Exiting the program: `/exit`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+### 4.4.3 Exiting the program: `/exit`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 >Format: `/exit`
 
 Exits the application. CheatLogs hopes you will open it again.
