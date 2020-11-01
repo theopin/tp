@@ -1,7 +1,6 @@
 package command;
 
 import cheatsheet.CheatSheet;
-import cheatsheet.CheatSheetList;
 import editor.Editor;
 import exception.CommandException;
 import exception.EditorException;
