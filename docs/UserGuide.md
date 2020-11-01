@@ -320,6 +320,11 @@ Lists all the cheatsheets in the List in a table. CheatLogs then enters sorting 
 Examples:
  *  `/list`
 
+<a id="list-command"></a>
+#### 4.3.3. Listing all cheatsheets: `/list`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+Shows of all the cheatsheets that are stored in the application.
+ 
+Format: `/list`
 
 <a id="general-command-type"></a>
 ## 4.4. General Commands:  <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
