@@ -110,7 +110,7 @@ public final class Printer {
                 + "\tTo be used after using /list, Deletes the cheat sheet at INDEX items down the list." + NEWLINE
                 + "\tThe first cheat sheet has an index of 1." + NEWLINE
 
-                + ConsoleColorsEnum.BOLD + "" + logoColor + "/edit /i <CHEAT_SHEET_INDEX>"
+                + ConsoleColorsEnum.BOLD + "" + logoColo    r + "/edit /i <CHEAT_SHEET_INDEX>"
                 + reset + NEWLINE
                 + ConsoleColorsEnum.BOLD + "" + favColor + "/edit /n <CHEAT_SHEET_NAME>"
                 + reset + NEWLINE
@@ -126,7 +126,7 @@ public final class Printer {
                 + reset + NEWLINE
                 + "\tMarks the cheat sheet as favourite." + NEWLINE
 
-                + ConsoleColorsEnum.BOLD + "" + logoColor + "/find /s <PROGRAMMING LANGUAGE> /k <KEYWORD>"
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/find /s <SUBJECTE> /k <KEYWORD>"
                 + reset + NEWLINE
                 + "\tFinds a cheat sheet whose names contain any of the given keywords." + NEWLINE
 
