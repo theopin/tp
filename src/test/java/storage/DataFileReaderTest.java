@@ -21,7 +21,7 @@ public class DataFileReaderTest extends DataFileTest {
 
     Path sampleTest4 = Paths.get(userDir, data, test, "sample4.xml");
     String sample4 = "sample4";
-
+    /*
     @Test
     void readFile_name_success() {
         testCheatSheetList.clear();
@@ -68,5 +68,8 @@ public class DataFileReaderTest extends DataFileTest {
         testCheatSheetList.clear();
 
         assertEquals("Test Success!", testSubject);
+
     }
+
+    */
 }

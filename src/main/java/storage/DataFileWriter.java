@@ -13,6 +13,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.nio.file.Files;
@@ -74,40 +75,31 @@ public class DataFileWriter extends DataFile {
         Path subjectDirectory = Paths.get(USER_DIR, DATA, subjectName);
         Path possiblePreloadedFile = Paths.get(USER_DIR, DATA,
                 PRELOADED, subjectName, fileName);
+
+        Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, PRELOADED, subjectName);
         Path textFile = Paths.get(USER_DIR, DATA, subjectName, fileName);
 
         try {
-            if (preloadedCheatSheets.contains(possiblePreloadedFile)) {
+            boolean isPreloadedFile = preloadedCheatSheets.contains(possiblePreloadedFile);
+            if (isPreloadedFile) {
                 textFile = possiblePreloadedFile;
-            } else {
-                verifyDirectoryExistence(subjectDirectory);
-                if (!Files.exists(textFile)) {
-                    Files.createFile(textFile);
-                }
+                subjectDirectory = null;
+            }
+
+            verifyDirectoryExistence(subjectDirectory,
+                    preloadedSubjectDirectory,
+                    isPreloadedFile);
+
+            if (!Files.exists(textFile)) {
+                Files.createFile(textFile);
             }
 
             Document cheatSheetFile = buildFileContents(cheatSheet);
 
             writeToFile(textFile, cheatSheetFile);
+            removeDirectoryIfEmpty(DATA_DIR.toFile());
         } catch (IOException | ParserConfigurationException | TransformerException e) {
             printer.print(e.getMessage());
-        }
-    }
-
-    /**
-     * Checks if the /data and /subjectName directories exist and creates them if they
-     * are currently non-existent.
-     *
-     * @param subjectDirectory The cheatSheet that is currently being converted into a file.
-     * @throws IOException     Thrown if errors occur when attempting to create the
-     *                         respective directories.
-     */
-    private void verifyDirectoryExistence(Path subjectDirectory) throws IOException {
-        if (!Files.exists(DATA_DIR)) {
-            Files.createDirectory(DATA_DIR);
-        }
-        if (!Files.exists(subjectDirectory)) {
-            Files.createDirectory(subjectDirectory);
         }
     }
 
@@ -200,7 +192,7 @@ public class DataFileWriter extends DataFile {
      *
      * @param fileDirectory             Name of the file.
      * @param xmlFileContents           Contents of the file in xml format.
-     * @throws TransformerException     Thrown if there an exceptional condition occurrs
+     * @throws TransformerException     Thrown if there an exceptional condition occurs
      *                                  during the transformation process.
      */
     private void writeToFile(Path fileDirectory, Document xmlFileContents)
@@ -215,4 +207,5 @@ public class DataFileWriter extends DataFile {
 
         transformer.transform(fileSource, fileResult);
     }
+
 }
