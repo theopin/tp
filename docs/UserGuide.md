@@ -55,12 +55,12 @@ The table of contents below lets you easily access the documentation for install
 
 <a id="before-start"></a>
 ##  1. Before you start<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-CheatLogs requires Java 11 or above installed on your computer. To install Java 11 and verify:
+CheatLogs requires Java 11 or above installed on your computer. You can follow the the following instructions to install Java 11:
 > &nbsp;:exclamation: If you use earlier versions of Java, there may be compatibility issues. Thus, we recommend using the same one we developed on, Java 11. 
 > 
  1. Download Java JDK 11 for your system from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
  2. Run and follow the installation instruction in the wizard.
- 3. Check the Java version.
+ 3. Check your Java version.
 	 * For computers on Windows, invoke`java -version` on the command prompt.
 	 * For MacOs or Linux distros, invoke `java -version` on your terminal of choice.
 4. Verify that the version installed follows the "11.x.x" format. Refer to the image below for what you should expect to see.
@@ -76,7 +76,7 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
 3. Download only the *CheatLogs.jar* file highlighted in the orange box below.
 
 	![](https://i.ibb.co/C24vhGg/image.png)
-4. Create a new directory anywhere on your PC, This is the home folder where CheatLogs will be creating its own subdirectories to store cheatsheets. 
+5. Create a new directory anywhere on your PC, This is the home folder where CheatLogs will be creating its own subdirectories to store cheatsheets. 
 
 > :bulb: Unfamiliar with navigating the terminal? Click [here](https://www.digitaltrends.com/computing/how-to-use-command-prompt/) for a basic introduction for Windows cmd and [here](https://www.pluralsight.com/guides/beginner-linux-navigation-manual) for macOS/Linux bash terminal.
 
@@ -92,7 +92,9 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
    * `/help`: Shows help info on how to use the application.
    * `/list`: Lists all cheatsheets.
    * `/exit`: Exits the app.
-   
+
+A bit confused? Here is a video guide on doing steps 4-9 using the terminal (not cmd). Note that CheatLogs.jar already been placed in the Desktop folder.
+![ezgif-6-63beb94eab4e](https://i.ibb.co/Q9FShJt/ezgif-6-63beb94eab4e.gif)
  <br>
  
 <a id="editor"></a>
@@ -141,7 +143,7 @@ The anatomy of the command is broken down to color coded sections in the picture
 
 * **Flag description**: Used when the flag itself does not provide enough information, CheatLogs takes in additional information for each flag through that flag's description. Not all flags have flag descriptions but each flag description needs to accompany a flag. In the command above, it is the name flag `n` is described by `help` and the subject flag `s` is described by `me`.
 
-> :bulb: You need not worry if you forget the exact flags for each command. CheatLogs prompts you to enter the flag description for each missing necessary flags.
+> :bulb: You need not worry if you forget the exact flags for each command. CheatLogs prompts you to enter the flag description for each missing necessary flags. <br>
 > :exclamation: CheatLogs is case-sensitive, be sure to match the case for flags about names.
 
 <br>
@@ -179,7 +181,7 @@ ____
 >Format: `/delete /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-Deletes the matching cheatsheet from the List with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever is included or both if both are included. The expected result is similar to below if a matching cheatsheet is found.
+Deletes the matching cheatsheet from the List with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or you included both. The expected result is similar to below if a matching cheatsheet is found.
 ![image](https://i.ibb.co/jLrwh03/image.png)
 When either the name or index do not match, CheatLogs will specify the error as shown below.
 ![image](https://i.ibb.co/xHW7tLf/image.png)
@@ -196,7 +198,7 @@ ___
 ### 4.1.3. Clearing all entries: `/clear`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 >Format: `/clear`
 >
-Deletes all cheatsheets from the List. Below is the expected result.![image](https://i.ibb.co/sq8nkp8/image.png)
+Deletes all cheatsheets from the List on your CheatLogs. Below is the expected result.![image](https://i.ibb.co/sq8nkp8/image.png)
 Examples:
 * `/clear`
 ___
@@ -214,12 +216,12 @@ ___
 >Format: `/edit /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-The Editor pops up to edit the cheatsheet in the List with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever is included or both if both are included. After the Editor closes, the expected result is similar to below if a matching cheatsheet is found and the edited description is not blank.
+The Editor pops up to edit the cheatsheet in the List with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both. After you are done editing and close the editor, the expected result is similar to below if a matching cheatsheet is found and the edited description is not blank.
 ![image](https://i.ibb.co/c8xq2wY/image.png)
 When either the name or index do not match, the Editor does not pop up and CheatLogs will specify the error as shown below.
 ![image](https://i.ibb.co/rZ6Rhgn/image.png)
 
-CheatLogs does not allow empty saved descriptions. In this case, the cheatsheet is not saved and maintains its previous details. Below is the error message shown on the CLI.
+CheatLogs does not allow you to save empty saved descriptions. In this case, the cheatsheet is not saved and maintains its previous details. Below is the error message shown on the CLI.
 ![image](https://i.ibb.co/5k953cy/image.png)
 Examples:
 * `/edit/n switch /i 2`
@@ -234,11 +236,11 @@ ____
 >Format: `/fav /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-Marks as favourite the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever is included or both if both are included.  The expected result is similar to below if a matching cheatsheet is found.
+Marks as favourite the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both.  The expected result is similar to below if a matching cheatsheet is found.
 ![image](https://i.ibb.co/VW5JZNx/image.png)
 When either the name or index do not match, Cheatlogs will specify the error as shown below.
 ![image](https://i.ibb.co/vPgbnbW/image.png)
-Favourted cheatsheets show up in the `/list` command table, with an [*] beside it's name as shown below beside `loops`.  
+Favourted cheatsheets show up a the top of  `/list` command table, with an [*] beside it's name as shown below beside `loops`.  This allows you to easily identify your favourite cheatsheets. 
 ![image](https://i.ibb.co/XWztfyX/image.png)
 Examples:
 * `/fav/n Integer /i 2`
@@ -272,9 +274,9 @@ In Sorting Mode, cheat sheets are originally shown in the order they were found 
 >Format: `/find /s <SUBJECT> /k <KEYWORD>` <br>
 >Flag optionality: [`/s`, `/k`] (At least one)
 
-Matches and displays a table of cheatsheets from the List whose subject contains `SUBJECT` or description contains `KEYWORD` whichever is included or both if both are included. The expected result is similar to below if matching cheatsheets are found.![image](https://i.ibb.co/7N3w0wQ/image.png)
+Matches and displays a table of cheatsheets from the List whose subject contains `SUBJECT` or description contains `KEYWORD` whichever you included or both if you included both. The expected result is similar to below if matching cheatsheets are found.![image](https://i.ibb.co/7N3w0wQ/image.png)
 
-CheatLogs then enters Sorting Mode. And resumes after it is done.![image](https://i.ibb.co/7N3w0wQ/image.png)
+CheatLogs then enters Sorting Mode. And resumes after you end it.![image](https://i.ibb.co/7N3w0wQ/image.png)
 
 If there are no matches, the output is similar to below and CheatLogs does not enter Sorting Mode.
 ![image](https://i.ibb.co/t2MT44f/image.png)
@@ -295,7 +297,7 @@ Examples:
 >Format: `/view/n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-Views and prints the details of the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever is included or both if both are included.  The expected result is similar to below if a matching cheatsheet is found.
+Views and prints the details of the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both.  The expected result is similar to below if a matching cheatsheet is found.
 
 ![image](https://i.ibb.co/9ZttT68/image.png)
 When either the name or index do not match, CheatLogs will specify the error as shown below.
@@ -320,7 +322,7 @@ Examples:
 
 <a id="general-command-type"></a>
 ## 4.4. General Commands:  <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-These are useful general purpose commands that don't fit into the other categories.
+These are useful general purpose commands that don't fit into the other categories but are still very useful for you to know.
 
 ---
 
@@ -328,7 +330,7 @@ These are useful general purpose commands that don't fit into the other categori
 #### 4.4.1 Viewing help: `/help`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 >Format: `/help`
 >
-Lists all the possible commands that can be executed in the application and helpers. Below is what you should expect to see.
+Lists all the possible commands that can be executed in the application and formating information. Below is what you should expect to see.
 
 ![image](https://i.ibb.co/ZYn38J5/image.png)
 
@@ -341,7 +343,7 @@ Examples:
 >Format: `/set /c COLORSCHEME`
 >Flag optionality: `/c`(required) 
 
-Changes the settings of CheatLogs. Currently, only the color scheme of output text can be changed. There are 3 additional color scheme options available numbering from 1 to 3 and CheatLogs switch to the one matching `COLORSCHEME`. The image below shows the result of a successful change.
+Changes the settings of CheatLogs. Currently, only the color scheme of output text can be changed. You can change to any of the 3 additional color scheme options available numbering from 1 to 3 and CheatLogs switch to the one matching `COLORSCHEME`. The image below shows the result of a successful change.
 
 ![image](https://i.ibb.co/5GFvnHb/image.png)
 
@@ -358,7 +360,7 @@ Settings outside the available range default to color scheme 0.(this behavior is
 #### 4.4.3 Exiting the program: `/exit`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 >Format: `/exit`
 
-Exits the application.
+Exits the application. CheatLogs hopes you will open it again.
 
  Examples:   
  * `/exit`
