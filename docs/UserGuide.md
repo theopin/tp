@@ -249,8 +249,6 @@ Examples:
 ___
 
 <a id="viewing-command-type"></a>
-## 4.3. Viewing Commands:  <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-
 ## 4.3. Viewing Commands: <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 These are commands that allow you to quickly look up the List for the cheatsheets you want.
@@ -277,7 +275,6 @@ In Sorting Mode, cheat sheets are originally shown in the order they were found 
 Matches and displays a table of cheatsheets from the List whose subject contains `SUBJECT` or description contains `KEYWORD` whichever is included or both if both are included. The expected result is similar to below if matching cheatsheets are found.![image](https://i.ibb.co/7N3w0wQ/image.png)
 
 CheatLogs then enters Sorting Mode. And resumes after it is done.![image](https://i.ibb.co/7N3w0wQ/image.png)
-CheatLogs then enters Sorting Mode. And resumes after it is done.
 
 If there are no matches, the output is similar to below and CheatLogs does not enter Sorting Mode.
 ![image](https://i.ibb.co/t2MT44f/image.png)
