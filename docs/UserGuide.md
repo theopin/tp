@@ -173,7 +173,7 @@ Examples:
 * `/add /n classes s/Java`
 * `/add /n Cppthings`
 
-Shortly after, a window will pop up to show the editing window.
+Shortly after, an editing window will pop up to show the editing window.
 Enter the details of your cheatsheet there, then click `Actions` then `Save`
 
 If you want to clear the editing area, clck `Actions` then click `Clear All`
