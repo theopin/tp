@@ -126,9 +126,9 @@ You can use commands to interact with our totally user-friendly CHEATLOGS. Let m
    <img width="540" height="390" src="https://i.ibb.co/r3JjNZs/Sprite-0005.png">
 </p>
 
-The anatomy of the command is broken down to color coded sections in the picture. These elements are all that are all used to execute the command and are elaborated below:
-* **Command identifier**: Every command needs one. It is used to exactly what type of command needs to be run. In the commmand above, `/add` is the command identifier used for adding cheatsheets
-* **Flag**: Akin to options or parameters of the command, these are additional information passed to CheatLogs to use. Flags are sometimes optional and you don't always need to type them. In the commmand above, `/n`  and `/s` are used to indicate the names and subject of the cheatsheet respectively with `/s` being an optional flag.
+The anatomy of the command can be broken down to color coded sections seen in the picture above. These elements are all that are all used to execute the command and are elaborated below:
+* **Command identifier**: Every command needs one command identifier. It is used to exactly what type of command needs to be run. In the commmand above, `/add` is the command identifier used for adding cheatsheets
+* **Flag**: Akin to options or parameters of the command, these are additional information passed to CheatLogs to use. In some commands, flags are optional and you don't always need to type them. In the commmand above, `/n`  and `/s` are used to indicate the names and subject of the cheatsheet respectively with `/s` being an optional flag.
 * **Flag description**: Used when the flag itself is does not provide enough information, CheatLogs takes in additional information for each flag through that flag's description. Not all flags have flag descriptions but each flags description need to accompany a flag. In the commmand above, it is the  name flag `n` is decribed by `help` and the subject flag `s` is decribed by `me`.
 
 > :bulb: You need not worry if you forget the exact flags for each command. CheatLogs prompts you to enter the flag description for each missing neccesary flags.
@@ -137,10 +137,24 @@ The anatomy of the command is broken down to color coded sections in the picture
 
 <a id="storage-command-type"></a>
 ### 4.1. Storage Commands:  <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-These are are some of the most used command type in CheatLogs. They allow you manage the input and ouput of cheatsheets to and from the entire list of cheatsheets. CheatLogs only has one list of cheatsheets and the following storage commands all refer to this as **the List**.
+The storage commands are some of the most used command type in CheatLogs. They allow you to manage the input and output of cheatsheets to and from the entire list of cheatsheets. CheatLogs only has one list of cheat sheets and the following storage commands all refer to this as **the CheatSheet List**.
 
 <a id="add-command"></a>
 #### 4.1.1. Adding a cheatsheet: `/add` <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+You can easily use the **/add** command to add your own cheat sheets to the list by using 2 different methods **easy** and **hard** mode.
+#### 4.1.1.1 Adding a cheatsheet using the easy command
+The first method that you can use to add cheatsheet is the easy command. Just type `/add` without adding any flag or description. 
+Format: `add`
+
+You will be prompted to fill in the `NAME` and the `SUBJECT` of your cheatsheet.
+
+Shortly after, a window will pop up to show the editing window.
+Enter the details of your cheatsheet there, then click `Actions` then `Save`
+![image](https://i.ibb.co/n01kQ4Y/carbon.png)
+Congratulations! You have added your first cheatsheet into CheatLogs.
+
+#### 4.1.1.2 Adding a cheatsheet using the advanced mode
+For the more advanced users, you can also add cheatsheets using the advanced command
 
 Format: `/add /n <CHEATSHEET_NAME> /s <SUBJECT>` <br>
 Flag optionality: `/n` (required)`/s` (optional)
@@ -159,8 +173,17 @@ Examples:
 * `/add /n classes s/Java`
 * `/add /n Cppthings`
 
+Shortly after, a window will pop up to show the editing window.
+Enter the details of your cheatsheet there, then click `Actions` then `Save`
+
+If you want to clear the editing area, clck `Actions` then click `Clear All`
  <a id="delete-command"></a>
+ 
 #### 4.1.2. Deleting a cheatsheet: `/delete`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+From the previous subsection, we learned how to add a cheatsheet into CheatLogs. 
+
+In this section, you can learn how to use the `/delete` function.
+
 To be used after using /list, Deletes the cheatsheet at INDEX items down the list. The first cheatsheet has an index of 1. This cheatsheet will be deleted from the /data folder.
  
 Format 1: `/delete i/INDEX`
