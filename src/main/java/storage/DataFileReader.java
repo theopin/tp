@@ -14,13 +14,22 @@ import ui.Printer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.FileOutputStream;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Enumeration;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 
 /**
@@ -38,13 +47,13 @@ public class DataFileReader extends DataFile {
 
     /**
      * Converts the file contents into cheatsheets that can be added into
-     * the list of cheatsheets. Also handles an exception arising
-     * from missing directory at the specified location.
+     * the list of cheatsheets. Handles exceptions arising from issues when
+     * loading files or relevant directories.
      */
     @Override
     public void executeFunction() {
         try {
-            shiftPreloadedCheatsheets();
+            extractXmlFilesFromJar();
             insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
             logger.log(Level.WARNING, "processing error");
@@ -56,22 +65,81 @@ public class DataFileReader extends DataFile {
     }
 
     /**
-     * Shifts the preloaded cheatSheet directory to the user defined
-     * /data folder once the application is run for the first time.
+     * Extracts the preloaded cheatsheet .xml files from CheatLogs.jar
+     * and transfers them to the /data dir.
      *
-     * @throws IOException Thrown if there are issues detected during
-     *                     the I/O operation.
+     * @throws IOException thrown if there are issues with reading and
+     *                     writing the transferred .xml file as well as
+     *                     the files inside CheatLogs.jar.
      */
-    private void shiftPreloadedCheatsheets() throws IOException {
-        if (!Files.exists(PRELOADED_ORIG_DIR)) {
-            return;
+    private void extractXmlFilesFromJar() throws IOException {
+        JarFile jarFile = new JarFile(JAR_DIR);
+
+        Enumeration<JarEntry> enumEntries = jarFile.entries();
+        while (enumEntries.hasMoreElements()) {
+            JarEntry currentFile =  enumEntries.nextElement();
+            String currentFilePath = currentFile.getName();
+            if (!currentFilePath.contains(PRELOADED)
+                    || !currentFilePath.contains(XML_EXTENSION)) {
+                continue;
+            }
+
+            String currentFileDir = filterDir(currentFilePath);
+            createNewFile(jarFile, currentFile, currentFilePath, currentFileDir);
         }
-        if (!Files.exists(DATA_DIR)) {
-            new File(DATA_DIR.toString());
-        }
-        //Files.move(PRELOADED_ORIG_DIR, DATA_PRELOADED_DIR);
+        jarFile.close();
     }
 
+    /**
+     * Extracts a string containing the path to the directory in
+     * CheatLogs.jar containing the .xml file.
+     *
+     * @param currentFilePath A string that denotes the path of the file.
+     * @return                    A string that denotes the path of the file
+     *                            directory.
+     */
+    private String filterDir(String currentFilePath) {
+        String[] splitPathNames = currentFilePath.split(SLASH);
+        String xmlPathName = EMPTY;
+
+        for (String splitPathName : splitPathNames) {
+            if (splitPathName.contains(XML_EXTENSION)) {
+                xmlPathName = splitPathName;
+            }
+        }
+        return currentFilePath.replace(xmlPathName, EMPTY);
+    }
+
+    /**
+     * Creates a new file within the specified path in the
+     * /data directory.
+     *
+     * @param jarFile Jarfile which is loading CheatLogs.jar.
+     * @param currentFile JarEntry of the file being process.
+     * @param currentFilePath    String denoting the path to which the
+     *                           file should be written to
+     * @param currentFileDirPath String denoting the path to the directory
+     *                           the relevant file should be stored in.
+     */
+    private void createNewFile(JarFile jarFile,
+                               JarEntry currentFile,
+                               String currentFilePath,
+                               String currentFileDirPath) throws IOException {
+        Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, currentFileDirPath);
+        Path preloadedFileDirectory = Paths.get(USER_DIR, DATA, currentFilePath);
+        verifyDirectoryExistence(null, preloadedSubjectDirectory, true);
+
+        File newFileLocation = new File(preloadedFileDirectory.toString());
+        InputStream inputStream = jarFile.getInputStream(currentFile); // get the input stream
+        FileOutputStream outputStream = new FileOutputStream(newFileLocation);
+
+        while (inputStream.available() > 0) {  // write contents of 'is' to 'outputStream'
+            outputStream.write(inputStream.read());
+        }
+
+        outputStream.close();
+        inputStream.close();
+    }
 
     /**
      * Converts the data obtained from the /data folder into cheatsheets and adds
@@ -111,6 +179,7 @@ public class DataFileReader extends DataFile {
         if (dataDirectoryFiles == null) {
             throw new IOException();
         }
+
         for (File dataDirectoryFile : dataDirectoryFiles) {
             Path filePath = dataDirectoryFile.toPath();
 
@@ -118,11 +187,12 @@ public class DataFileReader extends DataFile {
                 extractFromDirectory(filePath);
                 continue;
             }
-            boolean isPreloadedFile = dataDirectoryFile
+            String preloadedFileName = dataDirectoryFile
                     .getParentFile()
                     .getParentFile()
-                    .getName()
-                    .equals(PRELOADED);
+                    .getName();
+
+            boolean isPreloadedFile = preloadedFileName.equals(PRELOADED);
 
             if (isPreloadedFile) {
                 preloadedCheatSheets.add(dataDirectoryFile.toPath());

@@ -25,6 +25,7 @@ public class DataFileDestroyer extends DataFile {
     public void executeFunction() {
         try {
             clearDataDirectory();
+            removeDirectoryIfEmpty(DATA_DIR.toFile());
         } catch (IOException e) {
             printer.print(e.getMessage());
         }
@@ -39,6 +40,7 @@ public class DataFileDestroyer extends DataFile {
     public void executeFunction(String unwantedFile) {
         try {
             deleteFile(unwantedFile);
+            removeDirectoryIfEmpty(DATA_DIR.toFile());
         } catch (IOException | CommandException e) {
             printer.print(e.getMessage());
         }
