@@ -120,14 +120,14 @@ Edit tab
   
 <a id="commands"></a>
 ## 4. Commands<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-Commands are how you interact with Cheatlogs. To understand the terminology being used in the later sections, we want to you to undestand the typical structure of a command, illustrated below.
+You can use commands to interact with our totally user-friendly CHEATLOGS. Let me guide you through on how to understand the terminology that is used in the commands, so that you too can be an expert in using CHEATLOGS.
 
 <p align="center">
    <img width="540" height="390" src="https://i.ibb.co/r3JjNZs/Sprite-0005.png">
 </p>
 
 The anatomy of the command is broken down to color coded sections in the picture. These elements are all that are all used to execute the command and are elaborated below:
-* **Command identifier**: Every command needs one. It isused to exactly what type of command needs to be run. In the commmand above, `/add` is the command identifier for adding cheatsheets
+* **Command identifier**: Every command needs one. It is used to exactly what type of command needs to be run. In the commmand above, `/add` is the command identifier used for adding cheatsheets
 * **Flag**: Akin to options or parameters of the command, these are additional information passed to CheatLogs to use. Flags are sometimes optional and you don't always need to type them. In the commmand above, `/n`  and `/s` are used to indicate the names and subject of the cheatsheet respectively with `/s` being an optional flag.
 * **Flag description**: Used when the flag itself is does not provide enough information, CheatLogs takes in additional information for each flag through that flag's description. Not all flags have flag descriptions but each flags description need to accompany a flag. In the commmand above, it is the  name flag `n` is decribed by `help` and the subject flag `s` is decribed by `me`.
 
