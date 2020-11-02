@@ -239,7 +239,7 @@ ____
 >Format: `/fav /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-If you have some cheat sheets which are used frequently, you can mark them as favourite so that those cheat sheets will be always displayed on the top of the List. `/fav` marks the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both.  The expected result is similar to below if a matching cheatsheet is found.
+If you have some cheat sheets which are used frequently, you can mark them as favourite so that those cheat sheets will always be displayed on the top of the List. `/fav` marks the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both.  The expected result is similar to below if a matching cheatsheet is found.
 ![image](https://i.ibb.co/VW5JZNx/image.png)
 When either the name or index do not match, Cheatlogs will specify the error as shown below.
 ![image](https://i.ibb.co/vPgbnbW/image.png)
