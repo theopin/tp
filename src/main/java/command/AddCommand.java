@@ -10,6 +10,7 @@ import ui.Printer;
 
 public class AddCommand extends Command {
     private final Editor editor;
+    private static final String NO_SPECIAL_CHAR = "^[^`~!@#$%^&*()_+={}\\[\\]|\\\\:;“’<,>.?]*$";
     public static final String invoker = "/add";
 
     public AddCommand(Printer printer, CheatSheetList cheatSheetList, Editor editor) {
@@ -26,11 +27,19 @@ public class AddCommand extends Command {
     @Override
     public void execute() throws CommandException {
         String name = flagsToDescriptions.get(CommandFlag.NAME);
+
+        if (name == null || name.isEmpty() || name.isBlank()) {
+            throw new CommandException("Name cannot be blank");
+        }
+
+        name = name.trim();
         if (cheatSheetList.exists(name)) {
             throw new CommandException("Name already existed, please enter another name");
         }
-        if (name == null || name.isEmpty() || name.isBlank()) {
-            throw new CommandException("Name cannot be blank");
+
+
+        if (!name.matches(NO_SPECIAL_CHAR)) {
+            throw new CommandException("Name can only contain alphanumeric characters");
         }
 
         String subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
