@@ -113,7 +113,7 @@ Additional functionalities of the editor above are found in the tabs.
 
 Here are brief explanations for the above tabs. <br>
 Actions tab
- - Save : Save the text inputted, exits the text editor
+ - Save : Save the text inputted, exits the text editor.
  - Clear All : Remove all text, remains in the text editor.
  - Cancel : Remove all text, exit the text editor.
 
@@ -132,10 +132,8 @@ Commands are how you interact with Cheatlogs. To understand the terminology bein
    <img width="540" height="390" src="https://i.ibb.co/r3JjNZs/Sprite-0005.png">
 </p>
 
-The anatomy of the command can be broken down to color coded sections seen in the picture above. These elements are all that are all used to execute the command and are elaborated below:
-* **Command identifier**: Every command needs one command identifier. It is used to exactly what type of command needs to be run. In the commmand above, `/add` is the command identifier used for adding cheatsheets
-* **Flag**: Akin to options or parameters of the command, these are additional information passed to CheatLogs to use. In some commands, flags are optional and you don't always need to type them. In the commmand above, `/n`  and `/s` are used to indicate the names and subject of the cheatsheet respectively with `/s` being an optional flag.
-* **Flag description**: Used when the flag itself is does not provide enough information, CheatLogs takes in additional information for each flag through that flag's description. Not all flags have flag descriptions but each flags description need to accompany a flag. In the commmand above, it is the  name flag `n` is decribed by `help` and the subject flag `s` is decribed by `me`.
+The anatomy of the command is broken down to color coded sections in the picture. These elements are all that are all used to execute the command and are elaborated below:
+ * **Command identifier**: Every command needs one. It is used to determine exactly what type of command needs to be run. In the commmand above, `/add` is the command identifier for adding cheatsheets.
 
  * **Flag**: Akin to options or parameters of the command, these are additional information passed to CheatLogs to use. Flags are sometimes optional and you don't always need to type them. In the command above, `/n`  and `/s` are used to indicate the names and subject of the cheatsheet respectively with `/s` being an optional flag.
 	
@@ -225,8 +223,10 @@ ___
 ### 4.1.3. Clearing all entries: `/clear`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 >Format: `/clear`
 >
-Deletes all cheatsheets from the List on your CheatLogs. Below is the expected result.![image](https://i.ibb.co/sq8nkp8/image.png)
-Examples:
+If you want to reset everything to its original state, you can simply use the `/clear` command instead of using `/delete` multiple times.
+This command will delete all cheatsheets from the List on your CheatLogs. No need to worry, `/clear` command will not remove the preloaded cheat sheets.
+Here is the expected result if currently you have two cheat sheets stored in the application.![image](https://i.ibb.co/sq8nkp8/image.png)
+Example:
 * `/clear`
 ___
 
@@ -243,7 +243,7 @@ ___
 >Format: `/edit /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-The Editor pops up to edit the cheatsheet in the List with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both. After you are done editing and close the Editor, the expected result is similar to below if a matching cheatsheet is found and the edited description is not blank.
+After `/edit` command is called, the Editor will pop up and then you can edit the cheatsheet in the List with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included (it will try to match the name if you included both). After you are done editing and close the Editor, the expected result is similar to below if a matching cheatsheet is found and the edited description is not blank.
 ![image](https://i.ibb.co/c8xq2wY/image.png)
 When either the name or index do not match, the Editor does not pop up and CheatLogs will specify the error as shown below.
 ![image](https://i.ibb.co/rZ6Rhgn/image.png)
@@ -263,7 +263,7 @@ ____
 >Format: `/fav /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-Marks as favourite the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both.  The expected result is similar to below if a matching cheatsheet is found.
+If you have some cheat sheets which are used frequently, you can mark them as favourite so that those cheat sheets will be always displayed on the top of the List. `/fav` marks the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both.  The expected result is similar to below if a matching cheatsheet is found.
 ![image](https://i.ibb.co/VW5JZNx/image.png)
 When either the name or index do not match, Cheatlogs will specify the error as shown below.
 ![image](https://i.ibb.co/vPgbnbW/image.png)
@@ -343,14 +343,8 @@ Examples:
 
 Lists all the cheatsheets in the List in a table. CheatLogs then enters sorting mode. The program continues after returning. The image below illustrated what you may see after executing the command successfully.
  ![image](https://i.ibb.co/C7ztqZz/image.png)
-Examples:
+Example:
  *  `/list`
-
-<a id="list-command"></a>
-#### 4.3.3. Listing all cheatsheets: `/list`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-Shows of all the cheatsheets that are stored in the application.
- 
-Format: `/list`
 
 <a id="general-command-type"></a>
 ## 4.4. General Commands:  <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
@@ -366,7 +360,7 @@ Lists all the possible commands that can be executed in the application and form
 
 ![image](https://i.ibb.co/ZYn38J5/image.png)
 
-Examples:
+Example:
 * `/help`
 ---
 
@@ -383,7 +377,7 @@ Settings outside the available range default to color scheme 0.(this behavior is
 
 > :exclamation: The colors will likely vary depending on the terminal that you use and differ from the one shown. We suggest simply picking the most readable one.
  
-  Examples:   
+  Example:   
  * `/set /c 2`
 
 ---
@@ -422,7 +416,6 @@ TBC
 <a id="faq"></a>
 ## 7. FAQ<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 **Q**: How do I transfer my data to another computer? <br>
-
 **A**: You can simply drag and drop the `cheatlogs.jar`  and the `/data` directory in that same folder into the other computer.
 
 **Q**: Why is CheatLogs so strict on formatting!?<br>
