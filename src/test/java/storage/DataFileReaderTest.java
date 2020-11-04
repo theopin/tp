@@ -2,8 +2,6 @@ package storage;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -28,14 +26,8 @@ public class DataFileReaderTest extends DataFileTest {
     void readFile_name_success() {
         final boolean isDataDirPresent = checkDataDirectoryExistence();
         if (isDataDirPresent) {
-            createDirectory(tempDir);
-            try {
-                Files.move(dataDir, tempDataDir);
-            } catch (IOException e) {
-                printer.print(e.getMessage());
-            }
+            shiftExistingDataFiles();
         }
-
         testCheatSheetList.clear();
 
         createDirectory(sampleTestDir);
@@ -47,12 +39,7 @@ public class DataFileReaderTest extends DataFileTest {
         eraseFile(dataDir);
 
         if (isDataDirPresent) {
-            try {
-                Files.move(tempDataDir, dataDir);
-                eraseFile(tempDir);
-            } catch (IOException e) {
-                printer.print(e.getMessage());
-            }
+            restoreDataDir();
         }
 
         String testName = testCheatSheetList.getList().get(0).getName();
@@ -61,17 +48,11 @@ public class DataFileReaderTest extends DataFileTest {
         assertEquals(sample4, testName);
     }
 
-
     @Test
     void readFile_subject_success() {
         final boolean isDataDirPresent = checkDataDirectoryExistence();
         if (isDataDirPresent) {
-            createDirectory(tempDir);
-            try {
-                Files.move(dataDir, tempDataDir);
-            } catch (IOException e) {
-                printer.print(e.getMessage());
-            }
+            shiftExistingDataFiles();
         }
 
         testCheatSheetList.clear();
@@ -83,17 +64,11 @@ public class DataFileReaderTest extends DataFileTest {
         eraseFile(sampleTestDir);
         eraseFile(dataDir);
         if (isDataDirPresent) {
-            try {
-                Files.move(tempDataDir, dataDir);
-                eraseFile(tempDir);
-            } catch (IOException e) {
-                printer.print(e.getMessage());
-            }
+            restoreDataDir();
         }
 
         String testSubject = testCheatSheetList.getList().get(0).getSubject();
         testCheatSheetList.clear();
-
         assertEquals("Test", testSubject);
     }
 
@@ -101,12 +76,7 @@ public class DataFileReaderTest extends DataFileTest {
     void readFile_details_success() {
         final boolean isDataDirPresent = checkDataDirectoryExistence();
         if (isDataDirPresent) {
-            createDirectory(tempDir);
-            try {
-                Files.move(dataDir, tempDataDir);
-            } catch (IOException e) {
-                printer.print(e.getMessage());
-            }
+            shiftExistingDataFiles();
         }
 
         testCheatSheetList.clear();
@@ -119,17 +89,11 @@ public class DataFileReaderTest extends DataFileTest {
         eraseFile(dataDir);
 
         if (isDataDirPresent) {
-            try {
-                Files.move(tempDataDir, dataDir);
-                eraseFile(tempDir);
-            } catch (IOException e) {
-                printer.print(e.getMessage());
-            }
+            restoreDataDir();
         }
 
         String testSubject = testCheatSheetList.getList().get(0).getDetails();
         testCheatSheetList.clear();
-
         assertEquals("Test Success!", testSubject);
     }
 
@@ -137,12 +101,7 @@ public class DataFileReaderTest extends DataFileTest {
     void readFile_invalidFile_notAdded() {
         final boolean isDataDirPresent = checkDataDirectoryExistence();
         if (isDataDirPresent) {
-            createDirectory(tempDir);
-            try {
-                Files.move(dataDir, tempDataDir);
-            } catch (IOException e) {
-                printer.print(e.getMessage());
-            }
+            shiftExistingDataFiles();
         }
 
         testCheatSheetList.clear();
@@ -156,17 +115,10 @@ public class DataFileReaderTest extends DataFileTest {
         eraseFile(dataDir);
 
         if (isDataDirPresent) {
-            try {
-                Files.move(tempDataDir, dataDir);
-                eraseFile(tempDir);
-            } catch (IOException e) {
-                printer.print(e.getMessage());
-            }
+            restoreDataDir();
         }
 
-
         int finalListSize = testCheatSheetList.getSize();
-
         assertEquals(0, finalListSize);
     }
 }

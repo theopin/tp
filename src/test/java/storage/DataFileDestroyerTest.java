@@ -4,8 +4,6 @@ import cheatsheet.CheatSheet;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -50,12 +48,7 @@ public class DataFileDestroyerTest extends DataFileTest {
         final boolean isDataDirPresent = checkDataDirectoryExistence();
 
         if (isDataDirPresent) {
-            createDirectory(tempDir);
-            try {
-                Files.move(dataDir, tempDataDir);
-            } catch (IOException e) {
-                printer.print(e.getMessage());
-            }
+            shiftExistingDataFiles();
         }
         createDirectory(sampleTestDir);
         createSampleFile(sampleTest2, empty);
@@ -85,15 +78,12 @@ public class DataFileDestroyerTest extends DataFileTest {
         eraseFile(dataDir);
 
         if (isDataDirPresent) {
-            try {
-                Files.move(tempDataDir, dataDir);
-                eraseFile(tempDir);
-            } catch (IOException e) {
-                printer.print(e.getMessage());
-            }
+            restoreDataDir();
         }
 
         testCheatSheetList.clear();
         assertTrue(isSampleRemoved);
     }
+
+
 }

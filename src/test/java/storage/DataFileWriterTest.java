@@ -133,12 +133,7 @@ public class DataFileWriterTest extends DataFileTest {
     void writeFileExists_missingUserDir_success() {
         final boolean isDataDirPresent = checkDataDirectoryExistence();
         if (isDataDirPresent) {
-            createDirectory(tempDir);
-            try {
-                Files.move(dataDir, tempDataDir);
-            } catch (IOException e) {
-                printer.print(e.getMessage());
-            }
+            shiftExistingDataFiles();
         }
 
         testCheatSheetList.clear();

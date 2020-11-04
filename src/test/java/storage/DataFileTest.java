@@ -50,6 +50,24 @@ public class DataFileTest {
         fileName.toFile().delete();
     }
 
+    void shiftExistingDataFiles() {
+        createDirectory(tempDir);
+        try {
+            Files.move(dataDir, tempDataDir);
+        } catch (IOException e) {
+            printer.print(e.getMessage());
+        }
+    }
+
+    void restoreDataDir() {
+        try {
+            Files.move(tempDataDir, dataDir);
+            eraseFile(tempDir);
+        } catch (IOException e) {
+            printer.print(e.getMessage());
+        }
+    }
+
     boolean checkDataDirectoryExistence() {
         return Files.exists(dataDir);
     }
