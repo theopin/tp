@@ -131,10 +131,10 @@ public class DataFileReader extends DataFile {
         verifyDirectoryExistence(null, preloadedSubjectDirectory, true);
 
         File newFileLocation = new File(preloadedFileDirectory.toString());
-        InputStream inputStream = jarFile.getInputStream(currentFile); // get the input stream
+        InputStream inputStream = jarFile.getInputStream(currentFile);
         FileOutputStream outputStream = new FileOutputStream(newFileLocation);
 
-        while (inputStream.available() > 0) {  // write contents of 'is' to 'outputStream'
+        while (inputStream.available() > 0) {
             outputStream.write(inputStream.read());
         }
 
