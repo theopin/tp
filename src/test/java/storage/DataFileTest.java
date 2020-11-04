@@ -12,12 +12,15 @@ public class DataFileTest {
 
     String userDir = System.getProperty("user.dir");
     String data = "data";
+    String temp = "temp";
     String test = "Test";
     String empty = "";
     String sample = "sample";
 
     Path sampleTestDir = Paths.get(userDir, data, test);
     Path dataDir = Paths.get(userDir, data);
+    Path tempDir = Paths.get(userDir, temp);
+    Path tempDataDir = Paths.get(userDir, temp, data);
 
     Printer printer = new Printer();
     CheatSheetList testCheatSheetList = new CheatSheetList();
