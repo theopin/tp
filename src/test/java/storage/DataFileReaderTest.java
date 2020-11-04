@@ -18,7 +18,7 @@ public class DataFileReaderTest extends DataFileTest {
             + "<contents>Test Success!</contents>"
             + System.lineSeparator()
             + "</main>";
-
+    String invalidFileInput  = "garble garble garble ";
     Path sampleTest4 = Paths.get(userDir, data, test, "sample4.xml");
     String sample4 = "sample4";
 
@@ -80,11 +80,28 @@ public class DataFileReaderTest extends DataFileTest {
             eraseFile(dataDir);
         }
 
-
         String testSubject = testCheatSheetList.getList().get(0).getDetails();
         testCheatSheetList.clear();
 
         assertEquals("Test Success!", testSubject);
+    }
 
+    @Test
+    void readFile_invalidFile_notAdded() {
+        final boolean isDataDirPresent = checkDataDirectoryExistence();
+        testCheatSheetList.clear();
+
+        createDirectory(sampleTestDir);
+        createSampleFile(sampleTest4, invalidFileInput);
+
+        testReader.executeFunction();
+        eraseFile(sampleTest4);
+        eraseFile(sampleTestDir);
+        if (!isDataDirPresent) {
+            eraseFile(dataDir);
+        }
+        int finalListSize = testCheatSheetList.getSize();
+
+        assertEquals(0, finalListSize);
     }
 }
