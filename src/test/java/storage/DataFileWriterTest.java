@@ -42,7 +42,7 @@ public class DataFileWriterTest extends DataFileTest {
     Path sampleTest = Paths.get(userDir, data, test, "sample.xml");
 
     @Test
-    public void writeDataFiles_emptyTestCheatSheetList_success() {
+    void writeDataFiles_emptyTestCheatSheetList_success() {
         final boolean isDataDirPresent = checkDataDirectoryExistence();
         if (!isDataDirPresent) {
             createDirectory(dataDir);
