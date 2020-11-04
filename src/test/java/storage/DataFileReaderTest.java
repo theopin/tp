@@ -24,7 +24,7 @@ public class DataFileReaderTest extends DataFileTest {
 
     @Test
     void readFile_name_success() {
-        boolean isDataDirPresent = checkDataDirectoryExistence();
+        final boolean isDataDirPresent = checkDataDirectoryExistence();
         testCheatSheetList.clear();
 
         createDirectory(sampleTestDir);
@@ -33,7 +33,7 @@ public class DataFileReaderTest extends DataFileTest {
         testReader.executeFunction();
         eraseFile(sampleTest4);
         eraseFile(sampleTestDir);
-        if(!isDataDirPresent) {
+        if (!isDataDirPresent) {
             eraseFile(dataDir);
         }
 
@@ -46,7 +46,7 @@ public class DataFileReaderTest extends DataFileTest {
 
     @Test
     void readFile_subject_success() {
-        boolean isDataDirPresent = checkDataDirectoryExistence();
+        final boolean isDataDirPresent = checkDataDirectoryExistence();
 
         testCheatSheetList.clear();
         createDirectory(sampleTestDir);
@@ -55,7 +55,7 @@ public class DataFileReaderTest extends DataFileTest {
         testReader.executeFunction();
         eraseFile(sampleTest4);
         eraseFile(sampleTestDir);
-        if(!isDataDirPresent) {
+        if (!isDataDirPresent) {
             eraseFile(dataDir);
         }
 
@@ -67,7 +67,7 @@ public class DataFileReaderTest extends DataFileTest {
 
     @Test
     void readFile_details_success() {
-        boolean isDataDirPresent = checkDataDirectoryExistence();
+        final boolean isDataDirPresent = checkDataDirectoryExistence();
 
         testCheatSheetList.clear();
         createDirectory(sampleTestDir);
@@ -76,7 +76,7 @@ public class DataFileReaderTest extends DataFileTest {
         testReader.executeFunction();
         eraseFile(sampleTest4);
         eraseFile(sampleTestDir);
-        if(!isDataDirPresent) {
+        if (!isDataDirPresent) {
             eraseFile(dataDir);
         }
 
