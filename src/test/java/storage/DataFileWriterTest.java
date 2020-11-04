@@ -60,7 +60,7 @@ public class DataFileWriterTest extends DataFileTest {
 
         testCheatSheetList.clear();
         CheatSheet testCheatSheet = new CheatSheet(sample,
-                "Test",
+                "test",
                 "Test Success!");
         testCheatSheetList.add(testCheatSheet);
 
@@ -89,7 +89,7 @@ public class DataFileWriterTest extends DataFileTest {
         testCheatSheetList.clear();
 
         CheatSheet testCheatSheet = new CheatSheet(sample,
-                "Test",
+                "test",
                 "Test Success!");
         testCheatSheetList.add(testCheatSheet);
 
