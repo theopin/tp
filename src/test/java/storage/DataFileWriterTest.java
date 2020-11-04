@@ -27,24 +27,37 @@ public class DataFileWriterTest extends DataFileTest {
             + System.lineSeparator();
 
     Path sampleTest = Paths.get(userDir, data, test, "sample.xml");
-    /*
+
     @Test
     public void writeDataFiles_emptyTestCheatSheetList_success() {
+        final boolean isDataDirPresent = checkDataDirectoryExistence();
+        if (!isDataDirPresent) {
+            createDirectory(dataDir);
+        }
+
         testCheatSheetList.clear();
         String[] userDirectoryFiles = dataDir.toFile().list();
         final int expectedFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
 
         testWriter.executeFunction();
-
         userDirectoryFiles = dataDir.toFile().list();
-
+        if (!isDataDirPresent) {
+            eraseFile(dataDir);
+        }
         testCheatSheetList.clear();
+
         int directoryFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
         assertEquals(expectedFiles, directoryFiles);
     }
 
+
     @Test
     void writeFileExists_sampleCheatsheet_success() {
+        final boolean isDataDirPresent = checkDataDirectoryExistence();
+        if (!isDataDirPresent) {
+            createDirectory(dataDir);
+        }
+
         testCheatSheetList.clear();
         CheatSheet testCheatSheet = new CheatSheet(sample,
                 "Test",
@@ -53,9 +66,14 @@ public class DataFileWriterTest extends DataFileTest {
 
         testWriter.executeFunction();
         boolean isSampleAdded = sampleTest.toFile().exists();
+
         if (isSampleAdded) {
             eraseFile(sampleTest);
             eraseFile(sampleTestDir);
+        }
+
+        if (!isDataDirPresent) {
+            eraseFile(dataDir);
         }
 
         testCheatSheetList.clear();
@@ -64,6 +82,10 @@ public class DataFileWriterTest extends DataFileTest {
 
     @Test
     void writeFileContents_sampleCheatsheet_success() {
+        final boolean isDataDirPresent = checkDataDirectoryExistence();
+        if (!isDataDirPresent) {
+            createDirectory(dataDir);
+        }
         testCheatSheetList.clear();
 
         CheatSheet testCheatSheet = new CheatSheet(sample,
@@ -83,9 +105,12 @@ public class DataFileWriterTest extends DataFileTest {
                 eraseFile(sampleTest);
                 eraseFile(sampleTestDir);
             }
+            if (!isDataDirPresent) {
+                eraseFile(dataDir);
+            }
             testCheatSheetList.clear();
             assertEquals(fileInput, writtenFile);
         }
     }
-    */
+
 }
