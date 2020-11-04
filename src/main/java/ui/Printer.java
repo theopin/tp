@@ -255,11 +255,19 @@ public final class Printer {
             reset = ConsoleColorsEnum.WHITE_TEXT;
             break;
         }
-        print("Changed color scheme to option " + option + ":\n"
-                + favColor + "\tColor 1\n"
-                + nameColor + "\tColor 2\n"
-                + subjectColor + "\tColor 3\n"
-                + reset);
+        if (option < 0 || option > 3) {
+            print("Invalid option " + option + ". Changed color scheme to default colors:\n"
+                    + favColor + "\tColor 1\n"
+                    + nameColor + "\tColor 2\n"
+                    + subjectColor + "\tColor 3\n"
+                    + reset);
+        } else {
+            print("Changed color scheme to option " + option + ":\n"
+                    + favColor + "\tColor 1\n"
+                    + nameColor + "\tColor 2\n"
+                    + subjectColor + "\tColor 3\n"
+                    + reset);
+        }
     }
 
     // prints all colors, for debugging purposes only
