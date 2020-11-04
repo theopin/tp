@@ -12,7 +12,7 @@ public class DataFileTest {
 
     String userDir = System.getProperty("user.dir");
     String data = "data";
-    String test = "test";
+    String test = "Test";
     String empty = "";
     String sample = "sample";
 
