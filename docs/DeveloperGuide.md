@@ -37,6 +37,11 @@
 
 ## 1. Introduction
 
+**CheatLogs** is a Command Line Interface Application that is targeted at novice or beginner programmers to help them develop their own applications. 
+It has a text based interface that allows the user to access cheat sheets and notes for various programming syntax and functions. 
+
+The user can quickly `find` and `view` the preloaded cheat sheets and it will be displayed with nice color coding for better readability.
+Moreover, the user can `add`, `edit`, and `delete` their own cheat sheets.
 
 
 ### 1.1. Purpose
@@ -49,12 +54,13 @@ Targeted towards developers who are or want to work on CheatLogs.
 This document will cover the high-level architecture of the program, as well as the details for the implementation of the features.
 
 #### 1.2.1. Target User Profile
-
-{Describe the target user profile}
+- has a need to store and manage a significant number of cheat sheets
+- is willing to learn/is comfortable using CLI application
 
 #### 1.2.2. Value Proposition
 
-{Describe the value proposition: what problem does it solve?}
+The motivation behind CheatLogs is to reduce the time spent to scroll through pages of stack overflow posts or online documentation sites to find a syntax for a programming language,
+which is very common for novice programmers. The user can find the desired syntax by using `/find` command and the result will show up instantly.
 
 #### 1.3. Design Goals
 
@@ -82,9 +88,9 @@ You are free to use any java file editor and run the program by following the st
 ### 2.2. Running the Project
 
 1. Ensure you have Java 11 or above installed in your Computer.
-2. Download the latest cheatlogs.jar from here.
+2. Download the latest CheatLogs.jar from [here](https://github.com/AY2021S1-CS2113T-W11-3/tp/releases).
 3. Move the file to a folder you want to use as the home folder for this application.
-4. Invoke java -jar cheatlogs.jar on the command line to run the program. A welcome message should appear, as shown below.
+4. Invoke java -jar CheatLogs.jar on the command line to run the program. A welcome message should appear, as shown below.
 
 ![](Images/Image1.PNG)
 
@@ -207,18 +213,24 @@ Image 7: XML file showing the content of a cheatsheet file
 
 #### 3.2.4. Cheat Sheet Management (Adhy)
 
-All cheat sheets, both pre-loaded and user-defined, are stored in one static class called CheatSheetList during runtime. 
-Upon receiving a valid input from the user, the execute() method from Command class will invoke the mutation of CheatSheetList, 
-and then DataFileWriter will use the information in CheatSheetList to save it to the memory in the form of a txt file.
+All cheat sheets, both pre-loaded and user-defined, are stored in a class called `CheatSheetList` during runtime. 
+Upon receiving a valid input from the user, the `execute()` method from `Command` class will invoke the mutation of `CheatSheetList`, 
+and then `DataFileWriter` will use the information in `CheatSheetList` to save it to the memory in the form of a `xml` file.
 
 ![](Images/Image10.PNG)
 
 Image 8: Class diagram of CheatSheetList class
 
 The cheatSheets ArrayList is of type private, and setter/getter methods must be invoked to access the list. 
-For these setter and getter methods, it accepts both accessing by index and accessing by name to allow the user to easily search and fetch the cheat sheet. 
-When /list or /find command is invoked, printCheatSheetNames will return a string consisting all relevant cheat sheets to be printed by Printer class.
-
+For these setter and getter methods, it accepts both accessing by its index and accessing by its name to allow the user to easily search and fetch the cheat sheet.
+Here is the list of `Commands` that invokes a method call of CheatSheetList:
+- `/add`
+- `/clear`
+- `/delete`
+- `/fav`
+- `/find`
+- `/list`
+- `/view`
 
 #### 3.2.5. Data Storage (Theo)
 
