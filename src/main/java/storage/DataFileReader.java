@@ -53,7 +53,7 @@ public class DataFileReader extends DataFile {
     @Override
     public void executeFunction() {
         try {
-            extractXmlFilesFromJar();
+            //extractXmlFilesFromJar();
             insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
             logger.log(Level.WARNING, "processing error");

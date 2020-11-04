@@ -21,16 +21,21 @@ public class DataFileReaderTest extends DataFileTest {
 
     Path sampleTest4 = Paths.get(userDir, data, test, "sample4.xml");
     String sample4 = "sample4";
-    /*
+
     @Test
     void readFile_name_success() {
+        boolean isDataDirPresent = checkDataDirectoryExistence();
         testCheatSheetList.clear();
+
         createDirectory(sampleTestDir);
         createSampleFile(sampleTest4, fileInput);
 
         testReader.executeFunction();
         eraseFile(sampleTest4);
         eraseFile(sampleTestDir);
+        if(!isDataDirPresent) {
+            eraseFile(dataDir);
+        }
 
         String testName = testCheatSheetList.getList().get(0).getName();
         testCheatSheetList.clear();
@@ -38,8 +43,11 @@ public class DataFileReaderTest extends DataFileTest {
         assertEquals(sample4, testName);
     }
 
+
     @Test
     void readFile_subject_success() {
+        boolean isDataDirPresent = checkDataDirectoryExistence();
+
         testCheatSheetList.clear();
         createDirectory(sampleTestDir);
         createSampleFile(sampleTest4, fileInput);
@@ -47,6 +55,9 @@ public class DataFileReaderTest extends DataFileTest {
         testReader.executeFunction();
         eraseFile(sampleTest4);
         eraseFile(sampleTestDir);
+        if(!isDataDirPresent) {
+            eraseFile(dataDir);
+        }
 
         String testSubject = testCheatSheetList.getList().get(0).getSubject();
         testCheatSheetList.clear();
@@ -56,6 +67,8 @@ public class DataFileReaderTest extends DataFileTest {
 
     @Test
     void readFile_details_success() {
+        boolean isDataDirPresent = checkDataDirectoryExistence();
+
         testCheatSheetList.clear();
         createDirectory(sampleTestDir);
         createSampleFile(sampleTest4, fileInput);
@@ -63,6 +76,10 @@ public class DataFileReaderTest extends DataFileTest {
         testReader.executeFunction();
         eraseFile(sampleTest4);
         eraseFile(sampleTestDir);
+        if(!isDataDirPresent) {
+            eraseFile(dataDir);
+        }
+
 
         String testSubject = testCheatSheetList.getList().get(0).getDetails();
         testCheatSheetList.clear();
@@ -70,6 +87,4 @@ public class DataFileReaderTest extends DataFileTest {
         assertEquals("Test Success!", testSubject);
 
     }
-
-    */
 }

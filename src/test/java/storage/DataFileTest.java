@@ -46,4 +46,8 @@ public class DataFileTest {
     void eraseFile(Path fileName) {
         fileName.toFile().delete();
     }
+
+    boolean checkDataDirectoryExistence() {
+        return Files.exists(dataDir);
+    }
 }
