@@ -15,7 +15,7 @@ public class ListCommand extends Command {
     public ListCommand(Printer printer, CheatSheetList cheatSheetList) {
         super(printer);
         this.cheatSheetList = cheatSheetList;
-        if(printer.getDisplayingHelpMessages()) {
+        if (printer.getDisplayingHelpMessages()) {
             printer.printListCommandHelpMessage();
         }
     }

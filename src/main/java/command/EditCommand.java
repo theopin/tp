@@ -20,7 +20,7 @@ public class EditCommand extends FinderCommand {
         flagsToDescriptions.put(CommandFlag.INDEX, null);
         alternativeArguments.add(CommandFlag.NAME);
         alternativeArguments.add(CommandFlag.INDEX);
-        if(printer.getDisplayingHelpMessages()) {
+        if (printer.getDisplayingHelpMessages()) {
             printer.printEditCommandHelpMessage();
         }
     }
