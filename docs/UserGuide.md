@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-<h1 align="center">  CheatLogs User Guide </h1>
-=======
+
 
 <h1 align="center">  CheatLogs User Guide </h1>
 
@@ -200,55 +198,8 @@ From the previous subsection, we learned how to add a cheatsheet into CheatLogs.
 In this section, you can learn how to use the `/delete` function.
 
 To be used after using /list, Deletes the cheatsheet at INDEX items down the list. The first cheatsheet has an index of 1. This cheatsheet will be deleted from the /data folder.
->>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
-=======
->>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
  
-<a id="commands"></a>
-## 4. Commands<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-Commands are how you interact with Cheatlogs. To understand the terminology being used in the later sections, we would like you to understand the typical structure of a command, illustrated below.
-
-<p align="center">
-   <img width="540" height="390" src="https://i.ibb.co/r3JjNZs/Sprite-0005.png">
-</p>
-
-The anatomy of the command is broken down to color coded sections in the picture. These elements are all that are all used to execute the command and are elaborated below:
- * **Command identifier**: Every command needs one. It is used to determine exactly what type of command needs to be run. In the commmand above, `/add` is the command identifier for adding cheatsheets
-
- * **Flag**: Akin to options or parameters of the command, these are additional information passed to CheatLogs to use. Flags are sometimes optional and you don't always need to type them. In the command above, `/n`  and `/s` are used to indicate the names and subject of the cheatsheet respectively with `/s` being an optional flag.
-	
-	Types of flags:
-	 * Optional: Flag does not need to be included
-	 * Necessary: Flag must be included
-	 * At least one: At least one of the a set of flags must be included
-
-* **Flag description**: Used when the flag itself does not provide enough information, CheatLogs takes in additional information for each flag through that flag's description. Not all flags have flag descriptions but each flag description needs to accompany a flag. In the command above, it is the name flag `n` is described by `help` and the subject flag `s` is described by `me`.
-
-> :bulb: You need not worry if you forget the exact flags for each command. CheatLogs prompts you to enter the flag description for each missing necessary flags. <br>
-> :exclamation: CheatLogs is case-sensitive, be sure to match the case for flags about names.
-
-<br>
-
-<a id="storage-command-type"></a>
-## 4.1. Storage Commands:  <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-This is one of the most used command type in CheatLogs. They allow you to manage the input and output of cheatsheets to and from the entire list of cheatsheets. CheatLogs only has one list of cheatsheets and the following storage commands all refer to this as **the List**.
-___
-
-<a id="add-command"></a>
-### 4.1.1. Adding a cheatsheet: `/add` <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-
->Format: `/add /n CHEATSHEET_NAME /s SUBJECT` <br>
->Flag optionality: `/n`(required), `/s` (optional)
-
-A cheatsheet is first constructed with the name `CHEATSHEET_NAME` and subject `SUBJECT`. The Editor will then pop up for you to enter the description of the cheatsheet.
-
-If a non-empty description is saved, the cheatsheet is added to the List and stored to the */data* folder in the jar file directory. The expected outcome should be similar to below.
-![image](https://i.ibb.co/hV499yH/image.png)
-Else if the description is blank or the Editor was canceled, the error message below is shown and the cheatsheet is not saved.
- ![image](https://i.ibb.co/qxkMwtV/image.png)
-
-If you try to enter a cheatsheet with a name already in the List. You will get a message to input another one, this is depicted below.
-![image](https://i.ibb.co/mhgrwN0/image.png)
+Format 1: `/delete i/INDEX`
 
 >Format: `/delete /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
@@ -355,11 +306,6 @@ If there are no matches, the output is similar to below and CheatLogs does not e
 > * The search is **case-sensitive** e.g. `help` matches `helpers` but not `Help`. 
 > * A match contains the search term as a substring. e.g. `java` matches `java11` and  `Tricks for java`
 
-Views and prints the details of the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both.  The expected result is similar to below if a matching cheatsheet is found.
-
-![image](https://i.ibb.co/9ZttT68/image.png)
-When either the name or index do not match, CheatLogs will specify the error as shown below.
-![image](https://i.ibb.co/28XQVZL/image.png)
 Examples:
 * `/find /s loop`
 * `/find /s Integer /k 2`
@@ -444,9 +390,6 @@ If you are done using CheatLogs, simple type `/exit` to close the application. C
 <a id="data-storage"></a>
 ### 5. Data storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
->>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
-=======
->>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 Data related to this application is saved in the `/data` folder automatically after 
 any command that changes it is given. 
 There is no need to save manually. 
@@ -455,25 +398,6 @@ You can find this folder in the same directory as `cheatlogs.jar`.
 To allow the application to safely read the files stored in the `/data` folder, 
 please refrain from modifying them externally. 
 You can edit attributes associated with that cheatsheet through the application itself.
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
-
-<br>
-
-<a id="archiving-data-files"></a>
-### 6. Archiving data files [coming in v2.0]<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-TBC
-
-<br>
-
-<a id="faq"></a>
-## 7. FAQ<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-**Q**: How do I transfer my data to another computer? <br>
-
-<<<<<<< HEAD
-=======
 
 <br>
 
