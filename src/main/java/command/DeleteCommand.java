@@ -21,14 +21,17 @@ public class DeleteCommand extends FinderCommand {
         flagsToDescriptions.put(CommandFlag.INDEX, null);
         alternativeArguments.add(CommandFlag.NAME);
         alternativeArguments.add(CommandFlag.INDEX);
+        if(printer.getDisplayingHelpMessages()) {
+            printer.printDeleteCommandHelpMessage();
+        }
     }
 
     @Override
     public void execute() throws CommandException {
         try {
             CheatSheet cheatSheetToDelete = getCheatSheetFromNameOrIndex();
-            fileDestroyer.executeFunction(cheatSheetToDelete.getName());
-            cheatSheetList.remove(cheatSheetToDelete.getName());
+            fileDestroyer.executeFunction(cheatSheetToDelete.getName().trim());
+            cheatSheetList.remove(cheatSheetToDelete.getName().trim());
             printer.printDeleteCheatSheetMessage(cheatSheetToDelete, cheatSheetList);
         } catch (NullPointerException | IndexOutOfBoundsException | NumberFormatException e) {
             throw new CommandException("Please enter a valid name or/and index");

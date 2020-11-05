@@ -22,6 +22,9 @@ public class FindCommand extends FinderCommand {
         alternativeArguments.add(CommandFlag.NAME);
         alternativeArguments.add(CommandFlag.SUBJECT);
         alternativeArguments.add(CommandFlag.SECTIONKEYWORD);
+        if(printer.getDisplayingHelpMessages()) {
+            printer.printFindCommandHelpMessage();
+        }
     }
 
     @Override
