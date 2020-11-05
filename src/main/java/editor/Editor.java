@@ -42,7 +42,7 @@ public class Editor extends JFrame implements ActionListener {
     }
 
     /**
-     * generates the menu bar for the editor, which contains the editor and actions tab
+     * generates the menu bar for the editor, which contains the editor and actions tab.
      * @param menuBar to be added into the frame on the header of the page.
      */
     private void generateEditorHeader(JMenuBar menuBar) {
@@ -159,7 +159,7 @@ public class Editor extends JFrame implements ActionListener {
     }
 
     /**
-     *
+     * Sets the cheatsheet attributes for the editor footer.
      * @param name takes in the name to be placed in the footer
      * @param subject takes in the cheatsheet subject to be placed in the footer.
      */
