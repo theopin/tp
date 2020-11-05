@@ -25,8 +25,14 @@ public class ListCommand extends Command {
     @Override
     public void execute() throws CommandException {
         cheatSheetList.getList().sort(new SortByName());
+
+        if (cheatSheetList.getSize() == 0) {
+            throw new CommandException("You don't have any cheat sheet. Use the /add command to create a new one");
+        }
+
         TablePrinter tp = new TablePrinter(printer, cheatSheetList);
         tp.execute();
+
         SortFilter sortFilter = new SortFilter(cheatSheetList.getList(), printer);
         sortFilter.execute();
     }

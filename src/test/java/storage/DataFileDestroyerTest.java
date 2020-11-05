@@ -14,16 +14,18 @@ public class DataFileDestroyerTest extends DataFileTest {
     Path sampleTest3 = Paths.get(userDir, data, test, "sample3.xml");
     String sample2 = "sample2";
     String sample3 = "sample3";
-    /*
+
     @Test
     void clearSingleFile_singleSampleTest_success() {
+        final boolean isDataDirPresent = checkDataDirectoryExistence();
+
         testCheatSheetList.clear();
-        createDirectory(sampleTestDir);
         CheatSheet testCheatSheet = new CheatSheet(sample3,
                 "Test",
                 "Test Success!");
         testCheatSheetList.add(testCheatSheet);
 
+        createDirectory(sampleTestDir);
         createSampleFile(sampleTest3, empty);
         File sampleFile3 = sampleTest3.toFile();
         testDestroyer.executeFunction(sample3);
@@ -33,14 +35,24 @@ public class DataFileDestroyerTest extends DataFileTest {
             eraseFile(sampleTest3);
             eraseFile(sampleTestDir);
         }
+        if (!isDataDirPresent) {
+            eraseFile(dataDir);
+        }
+
         testCheatSheetList.clear();
         assertTrue(isSampleRemoved);
     }
 
     @Test
     void clearDirectory_multipleSampleTest_success() {
-        testCheatSheetList.clear();
+        final boolean isDataDirPresent = checkDataDirectoryExistence();
+
+        if (isDataDirPresent) {
+            shiftExistingDataFiles();
+        }
         createDirectory(sampleTestDir);
+        createSampleFile(sampleTest2, empty);
+        createSampleFile(sampleTest3, empty);
 
         CheatSheet testCheatSheet2 = new CheatSheet(sample2,
                 "Test",
@@ -49,11 +61,9 @@ public class DataFileDestroyerTest extends DataFileTest {
                 "Test",
                 "Test Success!");
 
+        testCheatSheetList.clear();
         testCheatSheetList.add(testCheatSheet2);
         testCheatSheetList.add(testCheatSheet3);
-
-        createSampleFile(sampleTest2, empty);
-        createSampleFile(sampleTest3, empty);
 
         File sampleFile2 = sampleTest2.toFile();
         File sampleFile3 = sampleTest3.toFile();
@@ -65,9 +75,15 @@ public class DataFileDestroyerTest extends DataFileTest {
             eraseFile(sampleTest3);
             eraseFile(sampleTestDir);
         }
+        eraseFile(dataDir);
+
+        if (isDataDirPresent) {
+            restoreDataDir();
+        }
+
         testCheatSheetList.clear();
         assertTrue(isSampleRemoved);
     }
 
-    */
+
 }

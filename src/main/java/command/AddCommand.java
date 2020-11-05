@@ -8,11 +8,23 @@ import exception.EditorException;
 import parser.CommandFlag;
 import ui.Printer;
 
+/**
+ * Command to add user-defined cheat sheet to CheatSheetList.
+ */
 public class AddCommand extends Command {
     private final Editor editor;
     private static final String NO_SPECIAL_CHAR = "^[^`~!@#$%^&*()_+={}\\[\\]|\\\\:;“’<,>.?]*$";
     public static final String invoker = "/add";
 
+    /**
+     * Constructor for the AddCommand.
+     * Required argument: NAME.
+     * Optional argument: SUBJECT.
+     *
+     * @param printer        The printer object to handle user interaction
+     * @param cheatSheetList The current list of cheat sheets
+     * @param editor         The editor object to open the text editor
+     */
     public AddCommand(Printer printer, CheatSheetList cheatSheetList, Editor editor) {
         super(printer);
         this.cheatSheetList = cheatSheetList;
@@ -24,6 +36,11 @@ public class AddCommand extends Command {
         alternativeArguments.add(CommandFlag.SUBJECT);
     }
 
+    /**
+     * Adds the cheat sheet to the list.
+     * Name cannot be empty, must be unique, and can only contain alphanumeric characters.
+     * If the subject is not specified, it will be put under "Unsorted".
+     */
     @Override
     public void execute() throws CommandException {
         String name = flagsToDescriptions.get(CommandFlag.NAME);
@@ -61,11 +78,19 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Opens the GUI-based text editor.
+     */
     private void callContentEditor() {
         editor.open();
         editor.waitForClose();
     }
 
+    /**
+     * Removes spaces from the SUBJECT field and converts it to PascalCase without spaces between words.
+     *
+     * @param input The current subject to be converted
+     */
     private String convertToPascalCaseNoSpace(String input) {
         if (input.length() == 0) {
             return "Unsorted";
