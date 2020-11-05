@@ -47,9 +47,19 @@ The table of contents below lets you easily access the documentation for install
 	  * [4.4.2. Change program settings: `/set`](#settings-command)
 	  * [4.4.3. Exiting the program: `/exit`](#exit-command)
 * [5. Data storage](#data-storage)
-* [6. Archiving data files](#archiving-data-files)
-* [7. FAQ](#faq)
-* [8. Command Cheatsheet](#command-cheatsheet)
+  * [5.1 Data file contents](#data-file-contents)
+	  * [5.1.1. XML file configurations](#xml-file-configurations)  
+	  * [5.1.2. Main](#main) 	
+	  * [5.1.3. Favourite](#favourite) 
+	  * [5.1.4. Subject](#subject) 
+	  * [5.1.5. Contents](#contents) 	
+  * [5.2 Data file organization](#data-file-organization)
+  * [5.2 Preloaded data files](#preloaded-data-files)  
+  * [5.3 Reading data files](#reading-file-contents)
+  * [5.4 Writing data files](#writing-file-contents)  	   
+  * [5.5 Deleting data files](#deleting-data-files)  	     	    	  	    
+* [6. FAQ](#faq)
+* [7. Command Cheatsheet](#command-cheatsheet)
 
 <br>
 
@@ -370,27 +380,100 @@ Exits the application. CheatLogs hopes you will open it again.
 <br>
 
 <a id="data-storage"></a>
-### 5. Data storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 5. Data storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-Data related to this application is saved in the `/data` folder automatically after 
-any command that changes it is given. 
-There is no need to save manually. 
-You can find this folder in the same directory as `cheatlogs.jar`. 
- 
-To allow the application to safely read the files stored in the `/data` folder, 
-please refrain from modifying them externally. 
-You can edit attributes associated with that cheatsheet through the application itself.
+CheatLogs provides a robust storage system that works together with certain
+commands to store your cheat sheets for future reference. This ensures that you
+have a directory of cheat sheet files which are organized and can be utilized
+by CheatLogs anytime.
+
+<a id="data-storage"></a>
+## 5. Data storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+
+CheatLogs provides a robust storage system that works together with certain
+commands to store your cheat sheets for future reference. This ensures that you
+have a directory of cheat sheet files which are organized and can be utilized
+by CheatLogs anytime.  Refer to the image below for an example of a cheat sheet
+file.
+![image](https://i.ibb.co/pWTY8gY/xml-File-Example.png)
 
 <br>
 
-<a id="archiving-data-files"></a>
-### 6. Archiving data files [coming in v2.0]<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-TBC
+<a id="data-file-contents"></a>
+### 5.1 Data file contents<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+
+Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
+of the file into different sections based on certain attributes of the cheatsheet.
+
+---
+
+<a id="xml-file-configurations"></a>
+#### 5.1.1 XML file configurations<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+
+This section acts as the root element of the document. 
+
+---
+
+<a id="main"></a>
+#### 5.1.2 Main<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+
+This section acts as the root element of the document. 
+
+---
+
+<a id="favourite"></a>
+#### 5.1.3 Favourite<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+
+This section acts as the root element of the document. 
+
+---
+
+<a id="subject"></a>
+#### 5.1.4 Subject<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+
+This section acts as the root element of the document. 
+
+---
+
+<a id="contents"></a>
+#### 5.1.5 Contents<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+
+This section acts as the root element of the document. 
+
+<a id="data-file-organization"></a>
+### 5.2 Data file organization<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+
+Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
+of the file into different sections based on certain attributes of the cheatsheet.
+
+<a id="preloaded-data-files"></a>
+### 5.3 Preloaded data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+
+Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
+of the file into different sections based on certain attributes of the cheatsheet.
+
+<a id="reading-data-files"></a>
+### 5.4 Reading data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+
+Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
+of the file into different sections based on certain attributes of the cheatsheet.
+
+<a id="writing-data-files"></a>
+### 5.5 Writing data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+
+Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
+of the file into different sections based on certain attributes of the cheatsheet.
+
+<a id="deleting-data-files"></a>
+### 5.6 Writing data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+
+Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
+of the file into different sections based on certain attributes of the cheatsheet.
 
 <br>
 
 <a id="faq"></a>
-## 7. FAQ<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 6. FAQ<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 **Q**: How do I transfer my data to another computer? <br>
 **A**: You can simply drag and drop the `cheatlogs.jar`  and the `/data` directory in that same folder into the other computer.
 
@@ -403,7 +486,7 @@ TBC
 <br>
 
 <a id="command-cheatsheet"></a>
-## 8. Command Cheatsheet<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 7. Command Cheatsheet<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 The table below is for quick and easy reference to the CheatLogs commands with examples of use.
 Action | Format | Examples
 -------- | ---------- | ------------
