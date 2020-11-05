@@ -1,4 +1,5 @@
 
+
 <h1 align="center">  CheatLogs User Guide </h1>
 
 
@@ -30,20 +31,20 @@ The table of contents below lets you easily access the documentation for install
 * [3. GUI text editor](#editor)
 * [4. Commands](#commands)
    * [4.1. Storage commands](#storage-command-type)
-   	* [4.1.1. Adding a cheatsheet: `/add`](#add-command)
-	* [4.1.2. Deleting a cheatsheet: `/delete`](#delete-command)
-	* [4.1.3. Clearing all entries: `/clear`](#clear-command)
+   	  * [4.1.1. Adding a cheatsheet: `/add`](#add-command)
+	  * [4.1.2. Deleting a cheatsheet: `/delete`](#delete-command)
+	  * [4.1.3. Clearing all entries: `/clear`](#clear-command)
   * [4.2.  Manipulation commands](#manipulation-command-type)
-	* [4.2.1. Editing a cheatsheet: `/edit` ](#edit-command)
-	* [4.2.2. Favouriting a cheatsheet: `/fav` ](#favourite-command)
+	  * [4.2.1. Editing a cheatsheet: `/edit` ](#edit-command)
+	  * [4.2.2. Favouriting a cheatsheet: `/fav` ](#favourite-command)
   * [4.3.  Viewing commands](#viewing-command-type)
-	* [4.3.1. Locating a cheatsheet by name: `/find`](#find-command)
-	* [4.3.2. Viewing the cheatsheet: `/view`](#view-command)
-	* [4.3.3. Listing all cheatsheets: `/list`](#list-command)
+	 * [4.3.1. Locating a cheatsheet by name: `/find`](#find-command)
+	 * [4.3.2. Viewing the cheatsheet: `/view`](#view-command)
+	 * [4.3.3. Listing all cheatsheets: `/list`](#list-command)
   * [4.4.  General commands](#general-command-type)
-	* [4.4.1. Viewing help: `/help`](#help-command)
-	* [4.4.2. Change program settings: `/set`](#settings-command)
-	* [4.4.3. Exiting the program: `/exit`](#exit-command)
+	 * [4.4.1. Viewing help: `/help`](#help-command)
+	 * [4.4.2. Change program settings: `/set`](#settings-command)
+	 * [4.4.3. Exiting the program: `/exit`](#exit-command)
 * [5. Data storage](#data-storage)
 * [6. Archiving data files](#archiving-data-files)
 * [7. FAQ](#faq)
