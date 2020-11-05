@@ -1,5 +1,5 @@
 
-
+  
 
 <h1 align="center">  CheatLogs User Guide </h1>
 
@@ -32,9 +32,9 @@ The table of contents below lets you easily access the documentation for install
 * [3. GUI text editor](#editor)
 * [4. Commands](#commands)
    * [4.1. Storage commands](#storage-command-type)
-     * [4.1.1. Adding a cheatsheet: `/add`](#add-command)
-	  * [4.1.2. Deleting a cheatsheet: `/delete`](#delete-command)
-	  * [4.1.3. Clearing all entries: `/clear`](#clear-command)
+        * [4.1.1. Adding a cheatsheet: `/add`](#add-command)
+	* [4.1.2. Deleting a cheatsheet: `/delete`](#delete-command)
+	* [4.1.3. Clearing all entries: `/clear`](#clear-command)
   * [4.2.  Manipulation commands](#manipulation-command-type)
 	* [4.2.1. Editing a cheatsheet: `/edit` ](#edit-command)
 	* [4.2.2. Favouriting a cheatsheet: `/fav` ](#favourite-command)
@@ -43,9 +43,9 @@ The table of contents below lets you easily access the documentation for install
 	* [4.3.2. Viewing the cheatsheet: `/view`](#view-command)
 	* [4.3.3. Listing all cheatsheets: `/list`](#list-command)
   * [4.4.  General commands](#general-command-type)
-	  * [4.4.1. Viewing help: `/help`](#help-command)
-	  * [4.4.2. Change program settings: `/set`](#settings-command)
-	  * [4.4.3. Exiting the program: `/exit`](#exit-command)
+	* [4.4.1. Viewing help: `/help`](#help-command)
+	* [4.4.2. Change program settings: `/set`](#settings-command)
+	* [4.4.3. Exiting the program: `/exit`](#exit-command)
 * [5. Data storage](#data-storage)
 * [6. Archiving data files](#archiving-data-files)
 * [7. FAQ](#faq)
@@ -157,24 +157,23 @@ ___
 <a id="add-command"></a>
 #### 4.1.1. Adding a cheatsheet: `/add` <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 You can easily use the **/add** command to add your own cheat sheets to the list by using 2 different methods **easy** and **hard** mode.
-#### 4.1.1.1 Adding a cheatsheet using the easy command
-The first method that you can use to add cheatsheet is the easy command. Just type `/add` without adding any flag or description. 
-Format: `add`
+#### 4.1.1.1 Adding a cheatsheet using the easy mode
+> Format: `add`
 
+The first method that you can use to add cheatsheet is the easy command. Just type `/add` without adding any flag or description. 
 You will be prompted to fill in the `NAME` and the `SUBJECT` of your cheatsheet.
 
 Shortly after, a window will pop up to show the editing window.
 Enter the details of your cheatsheet there, then click `Actions` then `Save`
 ![image](https://i.ibb.co/n01kQ4Y/carbon.png)
+
 Congratulations! You have added your first cheatsheet into CheatLogs.
 
 #### 4.1.1.2 Adding a cheatsheet using the advanced mode
-For the more advanced users, you can also add cheatsheets using the advanced command
-
-Format: `/add /n <CHEATSHEET_NAME> /s <SUBJECT>` <br>
-Flag optionality: `/n` (required)`/s` (optional)
-
-A cheatsheet is first constructed with the name `CHEATSHEET_NAME` and subject `SUBJECT`. The Editor will then pop up for you to enter the description of the cheatsheet.
+>Format: `/add /n <CHEATSHEET_NAME> /s <SUBJECT>` <br>
+>Flag optionality: `/n` (required)`/s` (optional)
+>
+For the more advanced users, you can also add cheatsheets using the advanced command. A cheatsheet is first constructed with the name `CHEATSHEET_NAME` and subject `SUBJECT`. The Editor will then pop up for you to enter the description of the cheatsheet.
 
 If a non-empty description is saved, the cheatsheet is added to the List and stored to the */data* folder in the jar file directory. The expected outcome should be similar to below.
 ![image](https://i.ibb.co/hV499yH/image.png)
@@ -442,4 +441,3 @@ List | /list |
 Help | /help |
 Settings | /set /c <OPTION_NUMBER> | /set /c 1
 Exit | /exit |
-
