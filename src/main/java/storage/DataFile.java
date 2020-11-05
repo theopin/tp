@@ -29,9 +29,6 @@ public abstract class DataFile {
     protected static final String JAR_DIR = "CheatLogs.jar";
 
     protected static final String DATA = "data";
-    protected static final String SRC = "src";
-    protected static final String MAIN = "main";
-    protected static final String RESOURCES = "resources";
     protected static final String PRELOADED = "preloaded";
     protected static final String XML_EXTENSION = ".xml";
 
