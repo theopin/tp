@@ -59,6 +59,7 @@ class CheatSheetListTest {
         } catch (CommandException e) {
             fail();
         }
+        logger.log(Level.INFO, "Finished Remove (by name) test");
 
         // remove(int index);
         cheatSheetList.clear();
@@ -74,7 +75,7 @@ class CheatSheetListTest {
         } catch (CommandException e) {
             fail();
         }
-        logger.log(Level.INFO, "Finished Remove test");
+        logger.log(Level.INFO, "Finished Remove (by index) test");
 
     }
 
@@ -90,6 +91,7 @@ class CheatSheetListTest {
         } catch (CommandException e) {
             assertEquals("Please enter a valid index", e.getMessage());
         }
+        logger.log(Level.INFO, "Finished remove (negative index) test");
     }
 
     @Test
@@ -104,6 +106,7 @@ class CheatSheetListTest {
         } catch (CommandException e) {
             assertEquals("Please enter a valid index", e.getMessage());
         }
+        logger.log(Level.INFO, "Finished remove (non-existent name) test");
     }
 
     @Test
@@ -141,6 +144,7 @@ class CheatSheetListTest {
         } catch (CommandException e) {
             assertEquals("Please enter a valid index", e.getMessage());
         }
+        logger.log(Level.INFO, "Finished GetCheatSheet (negative index) test");
     }
 
     @Test
@@ -156,5 +160,6 @@ class CheatSheetListTest {
         } catch (CommandException e) {
             assertEquals("Please enter a valid name", e.getMessage());
         }
+        logger.log(Level.INFO, "Finished GetCheatSheet (non-existent index) test");
     }
 }

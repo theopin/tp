@@ -93,6 +93,7 @@ public class CheatSheetList {
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException("Please enter a valid index");
         }
+        assert cheatSheet != null;
         return cheatSheet;
     }
 
@@ -117,6 +118,7 @@ public class CheatSheetList {
         } catch (CommandException e) {
             throw new CommandException("Please enter a valid name");
         }
+        assert cheatSheet != null;
         return cheatSheet;
     }
 
