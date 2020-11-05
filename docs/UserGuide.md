@@ -386,10 +386,10 @@ Exits the application. CheatLogs hopes you will open it again.
 CheatLogs provides a robust storage system that works together with certain
 commands to store your cheat sheets for future reference. This ensures that you
 have a directory of cheat sheet files which are organized and can be utilized
-by CheatLogs anytime.  Refer to the image below for an example of a cheat sheet
+by CheatLogs anytime. Refer to the image below for an example of a cheat sheet
 file.
 
-![image](https://i.ibb.co/pWTY8gY/xml-File-Example.png)
+![image](https://i.ibb.co/RDjGFYZ/xml-File-Example.png)
 
 <br>
 
@@ -433,6 +433,7 @@ sections inside `main` and creates a cheat sheet based on the input given by the
 >Format: `<main>CONTENTS</main>` 
 
 > :bulb:  You can rearrange the order of sections within CONTENTS. CheatLogs does not take the ordering of such sections into account when parsing xml files.
+
 > :exclamation: Any section that is not inserted into CONTENTS will not be included in the cheatsheet.
 
 ---
@@ -467,14 +468,17 @@ This section includes the contents of the cheatsheet.
 <a id="data-file-organization"></a>
 ## 5.2 Data file organization<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
-of the file into different sections based on certain attributes of the cheatsheet.
+All the data files can be found in the /data directory, which is located in the same directory as
+CheatLogs.jar. Within /data, the data files are located in the subdirectories whose name matches its
+subject name. This ensures that cheat sheet files are stored within the same subject directory, allowing
+you to locate such files easily.
 
 <a id="preloaded-data-files"></a>
 ## 5.3 Preloaded data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
-of the file into different sections based on certain attributes of the cheatsheet.
+CheatLogs.jar contains some example cheat sheet files. These files will be moved over to the /data
+directory when you run the application for the first time. To differentiate these files from your 
+personally created cheatsheets, they are placed under the /preloaded subdirectory . 
 
 <a id="reading-data-files"></a>
 ## 5.4 Reading data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
