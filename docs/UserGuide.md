@@ -277,13 +277,19 @@ ___
 <a id="viewing-command-type"></a>
 ## 4.3. Viewing Commands: <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
-These are commands that allow you to quickly look up the List for the cheatsheets you want.
+These are commands that allow you to quickly look up the List for the cheatsheets you want. It is recommended to use one command after another.
+E.g. Using `/find` to list all matching cheat lists then `/view` with corresponding name to view the cheat sheet.
 
 Some of these commands present their results in a table form and allow you to sort the results through various filters provided. We will call this **Sorting Mode**.
 
-In Sorting Mode, cheat sheets are originally shown in the order they were found inside the List. You can then sort them in [lexicographical order](https://en.wikipedia.org/wiki/Lexicographic_order#:~:text=In%20mathematics%2C%20the%20lexicographic%20or,of%20a%20totally%20ordered%20set.) according to any of the cheatsheet properties. For example , sorting by descending name means to enter`3`in this mode and an illustration of expected output is the image below. To exit this mode, enter anything that is not valid.
+In Sorting Mode, cheat sheets are originally shown in the order they were found inside the List. You can then sort them in [lexicographical order](https://en.wikipedia.org/wiki/Lexicographic_order#:~:text=In%20mathematics%2C%20the%20lexicographic%20or,of%20a%20totally%20ordered%20set.) 
+according to any of the cheatsheet properties. For example , sorting by descending name means to enter`3`in this mode and an illustration of expected output is the image below. To exit this mode, enter anything that is not valid.
 
 ![image](https://i.ibb.co/F7fHTvs/image.png)
+
+> :bulb:  Viewing/Deleting cheat sheets using index
+> * Index of cheat sheets after sorting in `/list` command can be used to delete/view corresponding cheat sheets
+> * However, index of cheat sheets in `/find` command cannot be used to delete/view cheat sheets. You would have to delete/view them using the name.
 
 ---
 
@@ -314,7 +320,7 @@ Examples:
  
 <a id="view-command"></a>
 ### 4.3.2. Viewing a specific cheatsheet: `/view`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
->Format: `/view/n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
+>Format: `/view /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
 Views and prints the details of the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both.  The expected result is similar to below if a matching cheatsheet is found.
@@ -323,9 +329,9 @@ Views and prints the details of the cheatsheet with name matching `CHEATSHEET_NA
 When either the name or index do not match, CheatLogs will specify the error as shown below.
 ![image](https://i.ibb.co/28XQVZL/image.png)
 Examples:
-* `/view/n Read /i 2`
-* `/view/i 1` 
-* `/view/n documentation`
+* `/view /n Read /i 2`
+* `/view /i 1` 
+* `/view /n documentation`
 
 ---
 
@@ -334,7 +340,9 @@ Examples:
 
 >Format: `/list`
 
-Lists all the cheatsheets in the List in a table. CheatLogs then enters sorting mode. The program continues after returning. The image below illustrated what you may see after executing the command successfully.
+Lists all the cheatsheets in the List in a table. CheatLogs then enters sorting mode. 
+In sorting mode, CheatLogs accepts a number (1-4) and will sort accordingly to the message shown in Image ???. Any other characters will exit sorting mode.
+The program continues after exiting sorting mode. The image below illustrated what you may see after executing the command successfully.
  ![image](https://i.ibb.co/C7ztqZz/image.png)
 Example:
  *  `/list`
