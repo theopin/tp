@@ -3,12 +3,16 @@ package editor;
 import exception.EditorException;
 
 import javax.swing.JLabel;
+import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JTextArea;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JMenuItem;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import javax.swing.BoxLayout;
 
 
 import java.awt.Color;
@@ -37,8 +41,60 @@ public class Editor extends JFrame implements ActionListener {
 
         setEditorLayout();
         generateTextArea();
+        generateRightPane();
         generateEditorFooter();
         generateEditorHeader(menuBar);
+    }
+
+    private void generateRightPane() {
+        JPanel rightPanel = new JPanel();
+        final Border blackBorder = BorderFactory.createLineBorder(Color.BLACK);
+
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        rightPanel.setBounds(700,50,100,800);
+
+        JLabel editingLabel = new JLabel("  Edit \n",JLabel.CENTER);
+        editingLabel.setBounds(700,800,100,50);
+        editingLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        JButton copyButton = new JButton("Copy");
+        JButton cutButton = new JButton("Cut");
+        JButton pasteButton = new JButton("Paste");
+
+        copyButton.addActionListener(this);
+        cutButton.addActionListener(this);
+        pasteButton.addActionListener(this);
+
+        rightPanel.add(editingLabel);
+        rightPanel.add(copyButton);
+        rightPanel.add(cutButton);
+        rightPanel.add(pasteButton);
+
+        JLabel actionsLabel = new JLabel(" Actions \n",JLabel.CENTER);
+        actionsLabel.setBounds(700,800,100,50);
+        actionsLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        JButton clearButton = new JButton("Clear All");
+        JButton saveButton = new JButton("Save");
+        JButton cancelButton = new JButton("Cancel");
+
+        clearButton.setForeground(Color.blue);
+        saveButton.setForeground(Color.green);
+        cancelButton.setForeground(Color.red);
+
+        clearButton.addActionListener(this);
+        saveButton.addActionListener(this);
+        cancelButton.addActionListener(this);
+
+        rightPanel.add(actionsLabel);
+        rightPanel.add(clearButton);
+        rightPanel.add(saveButton);
+        rightPanel.add(cancelButton);
+
+        rightPanel.setBackground(Color.LIGHT_GRAY);
+        rightPanel.setBorder(blackBorder);
+
+        add(rightPanel,BorderLayout.EAST);
     }
 
     /**
@@ -73,7 +129,7 @@ public class Editor extends JFrame implements ActionListener {
         JPanel editorFooter = new JPanel();
         editorFooter.setBounds(0,500,800,50);
         editorFooter.add(footerLabel);
-        editorFooter.setBackground(Color.CYAN);
+        editorFooter.setBackground(Color.darkGray);
         add(editorFooter,BorderLayout.PAGE_END);
     }
 
@@ -119,18 +175,20 @@ public class Editor extends JFrame implements ActionListener {
         menuBar.add(actionsMenu);
     }
 
+    /*
+    private boolean checkIsEditorEmpty(){
+        return textArea.getText().trim().equals("");
+    }*/
+
     public void actionPerformed(ActionEvent a) {
         String action = a.getActionCommand();
         switch (action) {
         case "Save":
+        case "Cancel":
             close();
             break;
         case "Clear All":
             textArea.setText("");
-            break;
-        case "Cancel":
-            textArea.setText("");
-            close();
             break;
         case "Copy":
             textArea.copy();
@@ -171,6 +229,7 @@ public class Editor extends JFrame implements ActionListener {
     public void open() {
         textArea.setText("");
         footerLabel.setText("You are editing the " + cheatSheetName + " Subject: " + cheatSheetSubject);
+        footerLabel.setForeground(Color.white);
         setVisible(true);
         setAlwaysOnTop(true);
     }
