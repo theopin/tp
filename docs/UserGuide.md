@@ -341,7 +341,7 @@ Examples:
 >Format: `/list`
 
 Lists all the cheatsheets in the List in a table. CheatLogs then enters sorting mode. 
-In sorting mode, CheatLogs accepts a number (1-4) and will sort accordingly to the message shown in Image ???. Any other characters will exit sorting mode.
+In sorting mode, CheatLogs accepts a number (1-4) and will sort accordingly to the prompt message shown in the image below. Any other characters will exit sorting mode.
 The program continues after exiting sorting mode. The image below illustrated what you may see after executing the command successfully.
  ![image](https://i.ibb.co/C7ztqZz/image.png)
 Example:
