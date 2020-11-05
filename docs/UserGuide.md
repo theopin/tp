@@ -432,7 +432,7 @@ sections inside `main` and creates a cheat sheet based on the input given by the
 
 >Format: `<main>CONTENTS</main>` 
 
-> :bulb:  You can rearrange the order of sections within CONTENTS. CheatLogs does not take the ordering of such sections into account when parsing xml files.
+> :bulb:  You can rearrange the order of sections within CONTENTS. CheatLogs does not take the ordering of such sections into account when parsing XML files.
 
 > :exclamation: Any section that is not inserted into CONTENTS will not be included in the cheatsheet.
 
@@ -483,20 +483,23 @@ personally created cheatsheets, they are placed under the /preloaded subdirector
 <a id="reading-data-files"></a>
 ## 5.4 Reading data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
-of the file into different sections based on certain attributes of the cheatsheet.
+Whenever CheatLogs is launched, it will attempt to parse all XML files present in the /data directory and
+use this data to create individual cheat sheets for each file. In the event that a particular XML file 
+cannot be read, it will be skipped over, to ensure that other files can be converted into cheat sheets.
 
 <a id="writing-data-files"></a>
 ## 5.5 Writing data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
-of the file into different sections based on certain attributes of the cheatsheet.
+Whenever you give a command to `add` or `edit` a cheatsheet, this feature will be activated. Through this
+feature, CheatLogs will attempt to update all cheatsheet files, creating a new cheat sheet file if a new 
+cheat sheet is created. To ensure that your cheat sheet files
 
 <a id="deleting-data-files"></a>
 ## 5.6 Deleting data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
-of the file into different sections based on certain attributes of the cheatsheet.
+When you decide to remove a cheat sheet, CheatLogs will delete the relevant cheat sheet files immediately. After this 
+operation, it will perform a search through the /data directory and delete any subdirectories without any cheat sheet.
+This ensures that your /data file is not cluttered with empty directories.
 
 <br>
 
