@@ -1,0 +1,42 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+abstract class DataFile {
+  +executeFunction() : void {abstract}
+  #createNewDirectory() : void
+  #getDocumentBuilder() : DocumentBuilder
+  #verifyDirectoryExistence(Path, Path, boolean) : void
+  #removeDirectoryIfEmpty(File) : void
+}
+
+class DataFileReader {
+ +extractXmlFilesFromJar() : void
+ -filterDir(String) : String
+ -clearDataDirectory() : void
+ -clearDirectory(Path) : void
+ -extractCheatSheet(File) : void
+ -bundleCheatSheetComponents(File, Node, Node, Node) : void
+}
+
+class DataFileWriter {
+ -storeCheatSheet() : void
+ -convertCheatSheetToFile(CheatSheet) : void
+ -buildFileContents(CheatSheet) : Document
+ -insertFavouriteStatus(CheatSheet, Document, Element) : void
+ -insertFileSubject(CheatSheet, Document, Element)
+ -insertFileContents(CheatSheet, Document, Element) : void
+ -appendToFileStructure(Document, Element, String, Element) : void
+}
+
+class DataFileDestroyer {
+ +executeFunction(String) : void
+ -deleteFile(String) : void
+ -clearDataDirectory() : void
+ -clearDirectory(Path) : void
+ -createNewFile(JarFile, JarEntry, String, String) : void
+ -insertStoredCheatSheets() : void
+}
+
+@enduml
