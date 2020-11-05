@@ -94,7 +94,7 @@ public final class Printer {
     }
 
     public void printHelpSheet() {
-        print(ConsoleColorsEnum.BOLD + "" + logoColor + "/add /n <CHEAT_SHEET_NAME> /s<SUBJECT> /d <DESCRIPTION>"
+        print(ConsoleColorsEnum.BOLD + "" + logoColor + "/add /n <CHEAT_SHEET_NAME> /s<SUBJECT>"
                 + reset + NEWLINE
                 + "\tAdds a new cheat sheet to the application and prompts user to include data" + NEWLINE
                 + "\tinto the cheat sheet." + NEWLINE
@@ -126,7 +126,7 @@ public final class Printer {
                 + reset + NEWLINE
                 + "\tMarks the cheat sheet as favourite." + NEWLINE
 
-                + ConsoleColorsEnum.BOLD + "" + logoColor + "/find /s <PROGRAMMING LANGUAGE> k/ <KEYWORD>"
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/find /s <SUBJECT> /k <KEYWORD>"
                 + reset + NEWLINE
                 + "\tFinds a cheat sheet whose names contain any of the given keywords." + NEWLINE
 
