@@ -1,6 +1,4 @@
 
-  
-
 <h1 align="center">  CheatLogs User Guide </h1>
 
 
@@ -32,7 +30,7 @@ The table of contents below lets you easily access the documentation for install
 * [3. GUI text editor](#editor)
 * [4. Commands](#commands)
    * [4.1. Storage commands](#storage-command-type)
-        * [4.1.1. Adding a cheatsheet: `/add`](#add-command)
+   	* [4.1.1. Adding a cheatsheet: `/add`](#add-command)
 	* [4.1.2. Deleting a cheatsheet: `/delete`](#delete-command)
 	* [4.1.3. Clearing all entries: `/clear`](#clear-command)
   * [4.2.  Manipulation commands](#manipulation-command-type)
@@ -155,7 +153,7 @@ This is one of the most used command type in CheatLogs. They allow you to manage
 ___
 
 <a id="add-command"></a>
-#### 4.1.1. Adding a cheatsheet: `/add` <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+### 4.1.1. Adding a cheatsheet: `/add` <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 You can easily use the **/add** command to add your own cheat sheets to the list by using 2 different methods **easy** and **hard** mode.
 #### 4.1.1.1 Adding a cheatsheet using the easy mode
 > Format: `add`
