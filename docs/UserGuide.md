@@ -379,13 +379,6 @@ Exits the application. CheatLogs hopes you will open it again.
 
 <br>
 
-<a id="data-storage"></a>
-## 5. Data storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-
-CheatLogs provides a robust storage system that works together with certain
-commands to store your cheat sheets for future reference. This ensures that you
-have a directory of cheat sheet files which are organized and can be utilized
-by CheatLogs anytime.
 
 <a id="data-storage"></a>
 ## 5. Data storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
@@ -400,7 +393,7 @@ file.
 <br>
 
 <a id="data-file-contents"></a>
-### 5.1 Data file contents<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 5.1 Data file contents<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
 of the file into different sections based on certain attributes of the cheatsheet.
@@ -408,64 +401,64 @@ of the file into different sections based on certain attributes of the cheatshee
 ---
 
 <a id="xml-file-configurations"></a>
-#### 5.1.1 XML file configurations<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+### 5.1.1 XML file configurations<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 This section acts as the root element of the document. 
 
 ---
 
 <a id="main"></a>
-#### 5.1.2 Main<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+### 5.1.2 Main<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 This section acts as the root element of the document. 
 
 ---
 
 <a id="favourite"></a>
-#### 5.1.3 Favourite<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+### 5.1.3 Favourite<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 This section acts as the root element of the document. 
 
 ---
 
 <a id="subject"></a>
-#### 5.1.4 Subject<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+### 5.1.4 Subject<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 This section acts as the root element of the document. 
 
 ---
 
 <a id="contents"></a>
-#### 5.1.5 Contents<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+### 5.1.5 Contents<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 This section acts as the root element of the document. 
 
 <a id="data-file-organization"></a>
-### 5.2 Data file organization<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 5.2 Data file organization<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
 of the file into different sections based on certain attributes of the cheatsheet.
 
 <a id="preloaded-data-files"></a>
-### 5.3 Preloaded data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 5.3 Preloaded data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
 of the file into different sections based on certain attributes of the cheatsheet.
 
 <a id="reading-data-files"></a>
-### 5.4 Reading data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 5.4 Reading data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
 of the file into different sections based on certain attributes of the cheatsheet.
 
 <a id="writing-data-files"></a>
-### 5.5 Writing data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 5.5 Writing data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
 of the file into different sections based on certain attributes of the cheatsheet.
 
 <a id="deleting-data-files"></a>
-### 5.6 Writing data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 5.6 Deleting data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
 of the file into different sections based on certain attributes of the cheatsheet.
