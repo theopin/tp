@@ -89,10 +89,6 @@ public final class Printer {
         print(LINE + "" + NEWLINE + NEWLINE + "Please enter a Command:");
     }
 
-    public void printWhiteSpace() {
-        print(" ");
-    }
-
     public void printHelpSheet() {
         print(ConsoleColorsEnum.BOLD + "" + logoColor + "/add /n <CHEAT_SHEET_NAME> /s<SUBJECT>"
                 + reset + NEWLINE
@@ -153,19 +149,8 @@ public final class Printer {
     public void printCheatSheet(CheatSheet cheatSheet) {
         print(nameColor + "\tName: " + cheatSheet.getName() + NEWLINE
                 + subjectColor + "\tSubject: " + cheatSheet.getSubject() + NEWLINE
-                + detailsColor + "\tDetails: " + cheatSheet.getDetails() + reset);
-    }
-
-    public void printCheatSheetList(CheatSheetList cheatSheetList) {
-        int i = 0;
-        for (CheatSheet cs : cheatSheetList.getList()) {
-            print("\t"
-                    + (++i) + ". " + nameColor + cs.getName() + reset
-                    + " (Subject: " + subjectColor
-                    + cs.getSubject() + reset + ")"
-                    + (cs.getIsFavourite() ? favColor + " *\n" : "\n")
-                    + reset);
-        }
+                + detailsColor + "\tDetails: " + cheatSheet.getWrappedDetails()
+                + reset);
     }
 
     public void printCheatSheetSize(CheatSheetList cheatSheetList) {
