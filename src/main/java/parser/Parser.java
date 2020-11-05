@@ -127,6 +127,15 @@ public class Parser {
 
     private void setMissingDescriptions(Command commandToBeExecuted) {
         LinkedHashMap<CommandFlag, String> map = commandToBeExecuted.getFlagstodescriptionsMap();
+
+        if (!commandToBeExecuted.hasAlternativeArgument() && commandToBeExecuted.getDisplayingHelpMessages()) {
+            printer.printCommandHelpMessage(commandToBeExecuted.getClass());
+        } else if (commandToBeExecuted.getDisplayingHelpMessages() &&
+                (commandToBeExecuted.getClass().equals(ListCommand.class) ||
+                (commandToBeExecuted.getClass().equals(ClearCommand.class)))) {
+            printer.printCommandHelpMessage(commandToBeExecuted.getClass());
+        }
+
         while (!commandToBeExecuted.hasAlternativeArgument()) {
             printer.printAlternativeArgumentPrompt(commandToBeExecuted);
 

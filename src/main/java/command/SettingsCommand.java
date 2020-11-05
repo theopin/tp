@@ -44,9 +44,9 @@ public class SettingsCommand extends Command {
         if (flagsToDescriptions.get(CommandFlag.HELPMESSAGE) != null) {
             String option = flagsToDescriptions.get(CommandFlag.HELPMESSAGE);
             if (option.equals("remove")) {
-                printer.setDisplayingHelpMessages(false);
+                setDisplayingHelpMessages(false);
             } else if (option.equals("include")) {
-                printer.setDisplayingHelpMessages(true);
+                setDisplayingHelpMessages(true);
             } else {
                 throw new CommandException("Please enter a valid option (\"remove\" or \"include\")");
             }

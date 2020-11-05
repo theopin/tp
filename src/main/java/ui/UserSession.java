@@ -59,7 +59,6 @@ public class UserSession {
                 printer.print(c.getMessage());
                 continue;
             }
-
             fileWriter.executeFunction();
         } while (true);
     }

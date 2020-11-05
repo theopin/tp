@@ -34,9 +34,6 @@ public class AddCommand extends Command {
         flagsToDescriptions.put(CommandFlag.SUBJECT, null);
         alternativeArguments.add(CommandFlag.NAME);
         alternativeArguments.add(CommandFlag.SUBJECT);
-        if (printer.getDisplayingHelpMessages()) {
-            printer.printAddCommandHelpMessage();
-        }
     }
 
     /**

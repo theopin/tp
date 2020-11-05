@@ -20,6 +20,7 @@ public abstract class Command {
 
     protected ArrayList<CommandFlag> alternativeArguments;
     protected LinkedHashMap<CommandFlag, String> flagsToDescriptions;
+    protected boolean isDisplayingHelpMessages;
     public boolean isExitCommand;
 
     public Command() {
@@ -30,6 +31,7 @@ public abstract class Command {
         this.alternativeArguments = new ArrayList<>();
         this.flagsToDescriptions = new LinkedHashMap<>();
         isExitCommand = false;
+        isDisplayingHelpMessages = true;
     }
 
     public LinkedHashMap<CommandFlag, String> getFlagstodescriptionsMap() {
@@ -55,6 +57,14 @@ public abstract class Command {
             }
         }
         return false;
+    }
+
+    public void setDisplayingHelpMessages(boolean isDisplayingHelpMessages) {
+        this.isDisplayingHelpMessages = isDisplayingHelpMessages;
+    }
+
+    public boolean getDisplayingHelpMessages() {
+        return this.isDisplayingHelpMessages;
     }
 
     public abstract void execute() throws CommandException, InterruptedException, IOException;
