@@ -3,45 +3,22 @@
 hide circle
 skinparam classAttributeIconSize 0
 
-abstract class DataFile {
-  +executeFunction() : void {abstract}
-  #createNewDirectory() : void
-  #getDocumentBuilder() : DocumentBuilder
-  #verifyDirectoryExistence(Path, Path, boolean) : void
-  #removeDirectoryIfEmpty(File) : void
-}
+abstract class DataFile
 
-class DataFileReader {
- +extractXmlFilesFromJar() : void
- -filterDir(String) : String
- -clearDataDirectory() : void
- -clearDirectory(Path) : void
- -extractCheatSheet(File) : void
- -bundleCheatSheetComponents(File, Node, Node, Node) : void
-}
 
-class DataFileWriter {
- -storeCheatSheet() : void
- -convertCheatSheetToFile(CheatSheet) : void
- -buildFileContents(CheatSheet) : Document
- -insertFavouriteStatus(CheatSheet, Document, Element) : void
- -insertFileSubject(CheatSheet, Document, Element)
- -insertFileContents(CheatSheet, Document, Element) : void
- -appendToFileStructure(Document, Element, String, Element) : void
-}
+DataFile <|-d- DataFileReader
+DataFile <|-d- DataFileDestroyer
+DataFile <|-d- DataFileWriter
 
-class DataFileDestroyer {
- +executeFunction(String) : void
- -deleteFile(String) : void
- -clearDataDirectory() : void
- -clearDirectory(Path) : void
- -createNewFile(JarFile, JarEntry, String, String) : void
- -insertStoredCheatSheets() : void
-}
+DataFile -u-> "0..1" Printer : uses
 
-DataFile <|-- DataFileReader
-DataFile <|-- DataFileWriter
-DataFile <|-- DataFileDestroyer
+DataFileWriter -d-> "1" CheatSheetList : references
+DataFileReader -d-> "1" CheatSheetList : references
+DataFileDestroyer -d-> "1" CheatSheetList : references
+
+DataFileWriter -d-> "*" Cheatsheet : contains
 
 hide attributes
+hide method
+
 @enduml
