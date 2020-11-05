@@ -2,6 +2,7 @@ package command;
 
 import exception.CommandException;
 import parser.CommandFlag;
+import settings.Settings;
 import ui.Printer;
 
 
@@ -10,6 +11,7 @@ import ui.Printer;
  * Currently only supports changing default color scheme.
  */
 public class SettingsCommand extends Command {
+    private Settings settings;
     public static final String invoker = "/set";
 
     /**
@@ -18,8 +20,9 @@ public class SettingsCommand extends Command {
      *
      * @param printer The printer object to handle user interaction
      */
-    public SettingsCommand(Printer printer) {
+    public SettingsCommand(Printer printer, Settings settings) {
         super(printer);
+        this.settings = settings;
         flagsToDescriptions.put(CommandFlag.COLORSCHEME, null);
         flagsToDescriptions.put(CommandFlag.HELPMESSAGE, null);
         alternativeArguments.add(CommandFlag.COLORSCHEME);
@@ -44,9 +47,9 @@ public class SettingsCommand extends Command {
         if (flagsToDescriptions.get(CommandFlag.HELPMESSAGE) != null) {
             String option = flagsToDescriptions.get(CommandFlag.HELPMESSAGE);
             if (option.equals("remove")) {
-                setDisplayingHelpMessages(false);
+                settings.setDisplayingHelpMessages(false);
             } else if (option.equals("include")) {
-                setDisplayingHelpMessages(true);
+                settings.setDisplayingHelpMessages(true);
             } else {
                 throw new CommandException("Please enter a valid option (\"remove\" or \"include\")");
             }
