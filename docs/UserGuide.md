@@ -396,43 +396,73 @@ file.
 <a id="data-file-contents"></a>
 ## 5.1 Data file contents<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-Each cheat sheet file is stored as a .xml file. This file extension organizes the contents
-of the file into different sections based on certain attributes of the cheatsheet.
+Each cheat sheet file uses an XML file format. This file format organizes the contents
+of the file into different sections based on certain attributes of the cheatsheet. The code
+snippet below illustrates the structure of the entire cheat sheet file.
+
+```
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<main>
+    <favourite>STATUS</favourite>
+    <subject>SUBJECT</subject>
+    <contents>
+    CONTENTS
+    </contents>
+</main>
+```
 
 ---
 
 <a id="xml-file-configurations"></a>
 ### 5.1.1 XML file configurations<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section acts as the root element of the document. 
+This section configures the settings of the XML file.
+
+>Format: `<?xml version="1.0" encoding="UTF-8" standalone="no"?>` 
+
+> :exclamation: It is recommended for you to use the exact settings defined by the format above. Any change to this format can result in CheatLogs not converting such files into cheat sheets.
 
 ---
 
 <a id="main"></a>
 ### 5.1.2 Main<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section acts as the root element of the document. 
+This section acts as the root element of the document. CheatLogs analyses the
+sections inside `main` and creates a cheat sheet based on the input given by them.
+
+>Format: `<main>CONTENTS</main>` 
+
+> :bulb:  You can rearrange the order of sections within CONTENTS. CheatLogs does not take the ordering of such sections into account when parsing xml files.
+> :exclamation: Any section that is not inserted into CONTENTS will not be included in the cheatsheet.
 
 ---
 
 <a id="favourite"></a>
 ### 5.1.3 Favourite<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section acts as the root element of the document. 
+This section indicates if the cheat sheet should be marked as a favourite.
+
+>Format: `<favourite>STATUS</favourite>`
+
+> :exclamation: If STATUS contains another word than `YES`, the cheatsheet will not be marked as a favourite. 
 
 ---
 
 <a id="subject"></a>
 ### 5.1.4 Subject<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section acts as the root element of the document. 
+This section includes the subject of the cheatsheet.
+
+>Format: `<subject>SUBJECT</subject>`
 
 ---
 
 <a id="contents"></a>
 ### 5.1.5 Contents<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section acts as the root element of the document. 
+This section includes the contents of the cheatsheet.
+>Format: `<contents>CONTENTS</contents>`
+
 
 <a id="data-file-organization"></a>
 ## 5.2 Data file organization<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
