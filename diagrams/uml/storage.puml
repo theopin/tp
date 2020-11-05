@@ -39,4 +39,9 @@ class DataFileDestroyer {
  -insertStoredCheatSheets() : void
 }
 
+DataFile <|-- DataFileReader
+DataFile <|-- DataFileWriter
+DataFile <|-- DataFileDestroyer
+
+hide attributes
 @enduml

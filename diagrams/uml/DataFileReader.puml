@@ -1,0 +1,15 @@
+@startuml
+
+hide circle
+skinparam classAttributeIconSize 0
+
+abstract class DataFile
+
+DataFile <|-- DataFileReader
+DataFileReader --> "1" Printer : uses >
+DataFileReader --> "1" CheatSheetList : references >
+
+hide attributes
+hide method
+
+@enduml
