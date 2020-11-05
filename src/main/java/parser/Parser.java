@@ -31,7 +31,8 @@ public class Parser {
 
     private static final String FLAG_REGEX = "(?=(/[a-z]))";
 
-    public Parser() {
+    public Parser(Printer printer) {
+        this.printer = printer;
     }
 
     public Parser(CheatSheetList cheatSheetList, Editor editor,
