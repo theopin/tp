@@ -1,14 +1,26 @@
+<<<<<<< HEAD
 <h1 align="center">  CheatLogs User Guide </h1>
+=======
+
+
+
+<h1 align="center">  CheatLogs User Guide </h1>
+
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 
 ![Our Logo](https://i.ibb.co/VxzKbbz/a1.png)
 
 Welcome to the official user guide of CheatLogs, a free and open-source cheatsheet manager with blazing fast organization and searching via a command-line interface (CLI). 	
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 This user guide serves as a reference for using the features of CheatLogs. The level of technicality within this document is tailored towards our target audience, novice programmers. If you are new, we recommend reading this from the very [start](#before-start).
 =======
 This user guide serves as a reference for using the features of CheatLogs. The level of technicality within this document is tailored towards our target audience, novice programmers. For new users, we recommend reading this from the very [start](#before-start).
 >>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
+=======
+This user guide serves as a reference for using the features of CheatLogs. The level of technicality within this document is tailored towards our target audience, novice programmers. If you are new, we recommend reading this from the very [start](#before-start).
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 
 The table of contents below lets you easily access the documentation for installation, specific features, and frequently asked questions. 
 
@@ -22,10 +34,14 @@ The table of contents below lets you easily access the documentation for install
 >|**bold**|Key terms specific to CheatLogs|
 >|*italics*|Files|
 <<<<<<< HEAD
+<<<<<<< HEAD
 >|`Snippets`|Typed input or output going into or out of CheatLogs|
 =======
 >|`Snippets`|Typed input to CheatLogs|
 >>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
+=======
+>|`Snippets`|Typed input or output going into or out of CheatLogs|
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 
 <br>
 
@@ -41,6 +57,9 @@ The table of contents below lets you easily access the documentation for install
 	  * [4.1.3. Clearing all entries: `/clear`](#clear-command)
   * [4.2.  Manipulation commands](#manipulation-command-type)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 	* [4.2.1. Editing a cheatsheet: `/edit` ](#edit-command)
 	* [4.2.2. Favouriting a cheatsheet: `/fav` ](#favourite-command)
   * [4.3.  Viewing commands](#viewing-command-type)
@@ -51,6 +70,7 @@ The table of contents below lets you easily access the documentation for install
 	  * [4.4.1. Viewing help: `/help`](#help-command)
 	  * [4.4.2. Change program settings: `/set`](#settings-command)
 	  * [4.4.3. Exiting the program: `/exit`](#exit-command)
+<<<<<<< HEAD
 =======
 		* [4.2.1. Editing a cheatsheet: `/edit` ](#edit-command)
 		* [4.2.2. Favouriting a cheatsheet: `/fav` ](#favourite-command)
@@ -63,6 +83,8 @@ The table of contents below lets you easily access the documentation for install
 	   * [4.4.2. Set  program settings: `/set`](#settings-command)
 	   * [4.4.3. Exiting the program: `/exit`](#exit-command)
 >>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 * [5. Data storage](#data-storage)
 * [6. Archiving data files](#archiving-data-files)
 * [7. FAQ](#faq)
@@ -73,14 +95,19 @@ The table of contents below lets you easily access the documentation for install
 <a id="before-start"></a>
 ##  1. Before you start<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 <<<<<<< HEAD
+<<<<<<< HEAD
 CheatLogs requires Java 11 or above installed on your computer. You can follow the the following instructions to install Java 11:
 =======
 CheatLogs requires Java 11 or above installed on your computer. To install Java 11 and verify:
 >>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
+=======
+CheatLogs requires Java 11 or above installed on your computer. You can follow the the following instructions to install Java 11:
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 > &nbsp;:exclamation: If you use earlier versions of Java, there may be compatibility issues. Thus, we recommend using the same one we developed on, Java 11. 
 > 
  1. Download Java JDK 11 for your system from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
  2. Run and follow the installation instruction in the wizard.
+<<<<<<< HEAD
 <<<<<<< HEAD
  3. Check your Java version.
 	 * For computers on Windows, invoke`java -version` on the command prompt.
@@ -90,6 +117,11 @@ CheatLogs requires Java 11 or above installed on your computer. To install Java 
 	 * For computers on Windows, invoke`java -version` on the command prompt.
 	 * For MacOs or Linux distros, invoke `java -version` on the terminal.
 >>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
+=======
+ 3. Check your Java version.
+	 * For computers on Windows, invoke`java -version` on the command prompt.
+	 * For MacOs or Linux distros, invoke `java -version` on your terminal of choice.
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 4. Verify that the version installed follows the "11.x.x" format. Refer to the image below for what you should expect to see.
 ![Java 11 installed message](https://i.ibb.co/tzV9GX3/image.png)
 
@@ -104,6 +136,9 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
 
 	![](https://i.ibb.co/C24vhGg/image.png)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 5. Create a new directory anywhere on your PC, This is the home folder where CheatLogs will be creating its own subdirectories to store cheatsheets. 
 
 > :bulb: Unfamiliar with navigating the terminal? Click [here](https://www.digitaltrends.com/computing/how-to-use-command-prompt/) for a basic introduction for Windows cmd and [here](https://www.pluralsight.com/guides/beginner-linux-navigation-manual) for macOS/Linux bash terminal.
@@ -115,6 +150,7 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
 
 
 9. Try typing some commands in the terminal and hit Enter to execute.
+<<<<<<< HEAD
 =======
 2. Create a new directory anywhere on your PC, This is the home folder where CheatLogs will be creating its own subdirectories to store cheatsheets. 
 3. Move *CheatLogs.jar* to the new directory.
@@ -125,12 +161,17 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
 
 6. Try typing some commands in the terminal and hit Enter to execute.
 >>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
    Here are some example commands you can try, don't worry if you don't know them yet!
    
    * `/help`: Shows help info on how to use the application.
    * `/list`: Lists all cheatsheets.
    * `/exit`: Exits the app.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 
 A bit confused? Here is a video guide on doing steps 4-9 using the terminal (not cmd). Note that CheatLogs.jar already been placed in the Desktop folder.
 
@@ -162,6 +203,7 @@ Edit tab
  -  Paste : Pastes from the system clipboard to the position of the text cursor.
 
 In the following sections, we will be referring to this editor as **the Editor**. 
+<<<<<<< HEAD
 =======
    
  <br>
@@ -237,6 +279,8 @@ Examples:
 #### 4.1.2. Deleting a cheatsheet: `/delete`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 To be used after using /list, Deletes the cheatsheet at INDEX items down the list. The first cheatsheet has an index of 1. This cheatsheet will be deleted from the /data folder.
 >>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
  
 <a id="commands"></a>
 ## 4. Commands<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -302,6 +346,7 @@ When either the name or index do not match, CheatLogs will specify the error as 
 ![image](https://i.ibb.co/xHW7tLf/image.png)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <a id="clear-command"></a>
 #### 4.1.3. Clearing all entries: `/clear`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
@@ -311,6 +356,8 @@ Format: `/clear`
   
 Format 2: `/delete n/CHEATSHEET_NAME` 
 >>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 
 Examples:
 * `/delete /n if else /i 2`
@@ -318,6 +365,9 @@ Examples:
 * `/delete /n string`
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 ___
 
 <a id="clear-command"></a>
@@ -341,6 +391,7 @@ ___
 
 >Format: `/edit /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
+<<<<<<< HEAD
 =======
 
 <a id="manipulation-command-type"></a>
@@ -374,6 +425,8 @@ Notes:
 * Cheatsheets matching at least one keyword will be returned (i.e. OR search). 
   * e.g. `python` will return `Introduction to python`, `my python`
 >>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 
 The Editor pops up to edit the cheatsheet in the List with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both. After you are done editing and close the Editor, the expected result is similar to below if a matching cheatsheet is found and the edited description is not blank.
 ![image](https://i.ibb.co/c8xq2wY/image.png)
@@ -388,6 +441,9 @@ Examples:
 * `/edit /n commands`
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 ____
 
 <a id="favourite-command"></a>
@@ -440,11 +496,14 @@ CheatLogs then enters Sorting Mode. And resumes after you end it.![image](https:
 
 If there are no matches, the output is similar to below and CheatLogs does not enter Sorting Mode.
 ![image](https://i.ibb.co/t2MT44f/image.png)
+<<<<<<< HEAD
 =======
 <a id="view-command"></a>
 #### 4.3.2. Viewing the cheatsheet: `/view`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 View the contents of a cheatsheet either by the name or index
 >>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 
 > :bulb:  Notes on matching algorithm
 > * The search is **case-sensitive** e.g. `help` matches `helpers` but not `Help`. 
@@ -491,6 +550,9 @@ Shows of all the cheatsheets that are stored in the application.
 Format: `/list`
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 <a id="general-command-type"></a>
 ## 4.4. General Commands:  <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 These are useful general purpose commands that don't fit into the other categories but are still very useful for you to know.
@@ -541,6 +603,7 @@ Exits the application. CheatLogs hopes you will open it again.
 <a id="data-storage"></a>
 ### 5. Data storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
+<<<<<<< HEAD
 =======
 
 <a id="general-command-type"></a>
@@ -568,6 +631,8 @@ Format: `/exit`
 ### 5. Data storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 >>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 Data related to this application is saved in the `/data` folder automatically after 
 any command that changes it is given. 
 There is no need to save manually. 
@@ -577,6 +642,9 @@ To allow the application to safely read the files stored in the `/data` folder,
 please refrain from modifying them externally. 
 You can edit attributes associated with that cheatsheet through the application itself.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 
 <br>
 
@@ -590,6 +658,7 @@ TBC
 ## 7. FAQ<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 **Q**: How do I transfer my data to another computer? <br>
 
+<<<<<<< HEAD
 =======
 
 <br>
@@ -606,6 +675,8 @@ q"></a>
 **Q**: How do I transfer my data to another computer? <br>
 
 >>>>>>> ff494f57d9bb97e60abaf7aa89a71e7c60e577c2
+=======
+>>>>>>> 7be5236e65408aa020b67f79fc384bf0f9557e8c
 **A**: You can simply drag and drop the `cheatlogs.jar`  and the `/data` directory in that same folder into the other computer.
 
 **Q**: Why is CheatLogs so strict on formatting!?<br>
