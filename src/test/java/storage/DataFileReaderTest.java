@@ -42,7 +42,10 @@ public class DataFileReaderTest extends DataFileTest {
             restoreDataDir();
         }
 
-        String testName = testCheatSheetList.getList().get(0).getName();
+        boolean isCheatSheetListEmpty = testCheatSheetList.getSize() == 0;
+        String testName = !isCheatSheetListEmpty
+                ? testCheatSheetList.getList().get(0).getName()
+                : empty;
         testCheatSheetList.clear();
 
         assertEquals(sample4, testName);
@@ -66,8 +69,10 @@ public class DataFileReaderTest extends DataFileTest {
         if (isDataDirPresent) {
             restoreDataDir();
         }
-
-        String testSubject = testCheatSheetList.getList().get(0).getSubject();
+        boolean isCheatSheetListEmpty = testCheatSheetList.getSize() == 0;
+        String testSubject = !isCheatSheetListEmpty
+                ? testCheatSheetList.getList().get(0).getSubject() :
+                empty;
         testCheatSheetList.clear();
         assertEquals("Test", testSubject);
     }
@@ -92,7 +97,10 @@ public class DataFileReaderTest extends DataFileTest {
             restoreDataDir();
         }
 
-        String testSubject = testCheatSheetList.getList().get(0).getDetails();
+        boolean isCheatSheetListEmpty = testCheatSheetList.getSize() == 0;
+        String testSubject = !isCheatSheetListEmpty
+                ? testCheatSheetList.getList().get(0).getDetails() :
+                empty;
         testCheatSheetList.clear();
         assertEquals("Test Success!", testSubject);
     }
