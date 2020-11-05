@@ -2,11 +2,15 @@ package ui;
 
 import cheatsheet.CheatSheet;
 import cheatsheet.CheatSheetList;
-import command.*;
 import parser.CommandFlag;
+import command.AddCommand;
+import command.ClearCommand;
+import command.Command;
+import command.DeleteCommand;
+import command.EditCommand;
+import command.FindCommand;
+import command.ListCommand;
 
-import java.io.Console;
-import java.util.List;
 
 /**
  * This class manages the output of text.

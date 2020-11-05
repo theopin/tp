@@ -130,9 +130,9 @@ public class Parser {
 
         if (!commandToBeExecuted.hasAlternativeArgument() && commandToBeExecuted.getDisplayingHelpMessages()) {
             printer.printCommandHelpMessage(commandToBeExecuted.getClass());
-        } else if (commandToBeExecuted.getDisplayingHelpMessages() &&
-                (commandToBeExecuted.getClass().equals(ListCommand.class) ||
-                (commandToBeExecuted.getClass().equals(ClearCommand.class)))) {
+        } else if (commandToBeExecuted.getDisplayingHelpMessages()
+                && (commandToBeExecuted.getClass().equals(ListCommand.class)
+                || (commandToBeExecuted.getClass().equals(ClearCommand.class)))) {
             printer.printCommandHelpMessage(commandToBeExecuted.getClass());
         }
 
