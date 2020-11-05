@@ -388,6 +388,7 @@ commands to store your cheat sheets for future reference. This ensures that you
 have a directory of cheat sheet files which are organized and can be utilized
 by CheatLogs anytime.  Refer to the image below for an example of a cheat sheet
 file.
+
 ![image](https://i.ibb.co/pWTY8gY/xml-File-Example.png)
 
 <br>
