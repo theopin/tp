@@ -53,26 +53,26 @@ public class DataFileReader extends DataFile {
     @Override
     public void executeFunction() {
         try {
-            extractXmlFilesFromJar();
             insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
             logger.log(Level.WARNING, "processing error");
             printer.print(e.getMessage());
             createNewDirectory();
-        } catch (DirectoryIsEmptyException | IOException d) {
+        } catch (DirectoryIsEmptyException d) {
             printer.print(d.getMessage());
         }
     }
 
     /**
      * Extracts the preloaded cheatsheet .xml files from CheatLogs.jar
-     * and transfers them to the /data dir.
+     * and transfers them to the /data dir before executing the reader
+     * operation.
      *
      * @throws IOException thrown if there are issues with reading and
      *                     writing the transferred .xml file as well as
      *                     the files inside CheatLogs.jar.
      */
-    private void extractXmlFilesFromJar() throws IOException {
+    public void extractXmlFilesFromJar() throws IOException {
         JarFile jarFile = new JarFile(JAR_DIR);
 
         Enumeration<JarEntry> enumEntries = jarFile.entries();
@@ -88,6 +88,7 @@ public class DataFileReader extends DataFile {
             createNewFile(jarFile, currentFile, currentFilePath, currentFileDir);
         }
         jarFile.close();
+        executeFunction();
     }
 
     /**
@@ -130,10 +131,10 @@ public class DataFileReader extends DataFile {
         verifyDirectoryExistence(null, preloadedSubjectDirectory, true);
 
         File newFileLocation = new File(preloadedFileDirectory.toString());
-        InputStream inputStream = jarFile.getInputStream(currentFile); // get the input stream
+        InputStream inputStream = jarFile.getInputStream(currentFile);
         FileOutputStream outputStream = new FileOutputStream(newFileLocation);
 
-        while (inputStream.available() > 0) {  // write contents of 'is' to 'outputStream'
+        while (inputStream.available() > 0) {
             outputStream.write(inputStream.read());
         }
 
