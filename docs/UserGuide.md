@@ -6,8 +6,7 @@
 
 ![Our Logo](https://i.ibb.co/VxzKbbz/a1.png)
 
-Welcome to the official user guide of CheatLogs, a free and open-source cheatsheet manager with blazing fast organization and searching via a command-line interface (CLI). 	
-
+3
 This user guide serves as a reference for using the features of CheatLogs. The level of technicality within this document is tailored towards our target audience, novice programmers. If you are new, we recommend reading this from the very [start](#before-start).
 
 The table of contents below lets you easily access the documentation for installation, specific features, and frequently asked questions. 
@@ -447,16 +446,12 @@ Each cheat sheet file uses an XML file format. This file format organizes the co
 of the file into different sections based on certain attributes of the cheatsheet. The code
 snippet below illustrates the structure of the entire cheat sheet file.
 
-```
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<main>
-    <favourite>STATUS</favourite>
-    <subject>SUBJECT</subject>
-    <contents>
-    CONTENTS
-    </contents>
-</main>
-```
+[!image](https://i.ibb.co/jLK3sJm/xml-Format.png)
+
+By following this format, you can manually insert cheatsheet files that are recognized by CheatLogs. The following sections
+explore each segment of this format.
+
+> :bulb:  If you are unsure where to place your new files, simply place it in the directory. CheatLogs will organize them when you execute a command add, edit or delete any file.
 
 ---
 
@@ -474,8 +469,8 @@ This section configures the settings of the XML file.
 <a id="main"></a>
 ### 5.1.2 Main<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section acts as the root element of the document. CheatLogs analyses the
-sections inside `main` and creates a cheat sheet based on the input given by them.
+This section acts as the root element of the document. CheatLogs analyses the relevant
+sections you place inside `main` and creates a cheat sheet based on the input given by them.
 
 >Format: `<main>CONTENTS</main>` 
 
@@ -516,37 +511,14 @@ This section includes the contents of the cheatsheet.
 ## 5.2 Data file organization<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 All the data files can be found in the /data directory, which is located in the same directory as
-CheatLogs.jar. Within /data, the data files are located in the subdirectories whose name matches its
-subject name. This ensures that cheat sheet files are stored within the same subject directory, allowing
-you to locate such files easily.
+CheatLogs.jar. Within /data, CheatLogs stores data files in subdirectories whose name matches its
+subject name. This gives you a directory of cheat sheets organized by subject, which will help you
+in your revision.
 
 <a id="preloaded-data-files"></a>
-## 5.3 Preloaded data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 5.3 Transferring data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-CheatLogs.jar contains some example cheat sheet files. These files will be moved over to the /data
-directory when you run the application for the first time. To differentiate these files from your 
-personally created cheatsheets, they are placed under the /preloaded subdirectory . 
-
-<a id="reading-data-files"></a>
-## 5.4 Reading data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-
-Whenever CheatLogs is launched, it will attempt to parse all XML files present in the /data directory and
-use this data to create individual cheat sheets for each file. In the event that a particular XML file 
-cannot be read, it will be skipped over, to ensure that other files can be converted into cheat sheets.
-
-<a id="writing-data-files"></a>
-## 5.5 Writing data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-
-Whenever you give a command to `add` or `edit` a cheatsheet, this feature will be activated. Through this
-feature, CheatLogs will attempt to update all cheatsheet files, creating a new cheat sheet file if a new 
-cheat sheet is created. To ensure that your cheat sheet files
-
-<a id="deleting-data-files"></a>
-## 5.6 Deleting data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
-
-When you decide to remove a cheat sheet, CheatLogs will delete the relevant cheat sheet files immediately. After this 
-operation, it will perform a search through the /data directory and delete any subdirectories without any cheat sheet.
-This ensures that your /data file is not cluttered with empty directories.
+CheatLogs.jar contains
 
 <br>
 
