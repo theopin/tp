@@ -547,16 +547,16 @@ This ensures that your /data file is not cluttered with empty directories.
 The table below is for quick and easy reference to the CheatLogs commands with examples of use.
 
 
->|Action | Format | Examples
->|-------- | ---------- | ------------
->|Add | /add /n <CHEATSHEET_NAME> /s <SUBJECT> | /add /n List /s Java
->|Delete | /delete /i <CHEATSHEET_INDEX> <br> /delete /n <CHEATSHEET_NAME> | /delete /n List , /delete /i 1
->|Clear | /clear | /clear
->|Edit | /edit /i <CHEATSHEET_INDEX> <br> /edit /n <CHEATSHEET_NAME> | /edit /i 1 , /edit /n List
->|Favourite | /fav /i <CHEATSHEET_INDEX> <br> /fav /n <CHEATSHEET_NAME> | /fav /i 2 , /fav /n Cheat
->|Find | /find /s <SUBJECT> /k <KEYWORD> | /find /s Java , /find /s Java /k cheater
->|View | /view /i <CHEATSHEET_INDEX> <br>/view /n <CHEATSHEET_NAME> | /fav /i 3 , /fav /n List
->|List | /list | /list
->|Help | /help | /help
->|Settings | /set /c <OPTION_NUMBER> | /set /c 1
->|Exit | /exit | /exit
+>|Action | Format | Examples |
+>|-------- | ---------- | ------------ |
+>|Add | /add /n <CHEATSHEET_NAME> /s <SUBJECT> | /add /n List /s Java |
+>|Delete | /delete /i <CHEATSHEET_INDEX> <br> /delete /n <CHEATSHEET_NAME> | /delete /n List , /delete /i 1 |
+>|Clear | /clear | /clear |
+>|Edit | /edit /i <CHEATSHEET_INDEX> <br> /edit /n <CHEATSHEET_NAME> | /edit /i 1 , /edit /n List |
+>|Favourite | /fav /i <CHEATSHEET_INDEX> <br> /fav /n <CHEATSHEET_NAME> | /fav /i 2 , /fav /n Cheat |
+>|Find | /find /s <SUBJECT> /k <KEYWORD> | /find /s Java , /find /s Java /k cheater |
+>|View | /view /i <CHEATSHEET_INDEX> <br>/view /n <CHEATSHEET_NAME> | /fav /i 3 , /fav /n List |
+>|List | /list | /list |
+>|Help | /help | /help |
+>|Settings | /set /c <OPTION_NUMBER> | /set /c 1 |
+>|Exit | /exit | /exit |
