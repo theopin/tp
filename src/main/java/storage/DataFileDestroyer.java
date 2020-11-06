@@ -26,11 +26,12 @@ public class DataFileDestroyer extends DataFile {
     public void executeFunction() {
         try {
             clearDataDirectory();
-            removeDirectoryIfEmpty(DATA_DIR.toFile());
         } catch (DirectoryIsEmptyException e) {
             printer.print("The following directory is empty: "
                     + System.lineSeparator()
                     + e.getMessage());
+        } finally {
+            removeDirectoryIfEmpty(DATA_DIR.toFile());
         }
     }
 
@@ -43,7 +44,6 @@ public class DataFileDestroyer extends DataFile {
     public void executeFunction(String unwantedFile) {
         try {
             deleteFile(unwantedFile);
-            removeDirectoryIfEmpty(DATA_DIR.toFile());
         } catch (IOException e) {
             printer.print("CheatLogs could not clear a particular file!"
                     + "Here is the location of the file that had issues: "
@@ -54,15 +54,18 @@ public class DataFileDestroyer extends DataFile {
                     + unwantedFile
                     + System.lineSeparator()
                     + s.getMessage());
+        } finally {
+            removeDirectoryIfEmpty(DATA_DIR.toFile());
         }
     }
 
     /**
      * Deletes a specified cheatsheet file from the /data directory.
      *
-     * @param unwantedFile Name of the cheatsheet to be deleted.
-     * @throws IOException Thrown if the path of the unwanted file specified
-     *                     is not existent.
+     * @param unwantedFile      Name of the cheatsheet to be deleted.
+     * @throws IOException      Thrown if the path of the unwanted file specified
+     *                          is not existent.
+     * @throws CommandException Thrown if unwanted file name is not existent.
      */
     private void deleteFile(String unwantedFile) throws IOException, CommandException {
         String subjectDirectory = cheatSheetList
@@ -94,6 +97,7 @@ public class DataFileDestroyer extends DataFile {
         if (dataDirectoryFiles == null) {
             throw new DirectoryIsEmptyException();
         }
+
         for (String dataDirectoryFile : dataDirectoryFiles) {
             Path filePath = Paths.get(directoryPath.toString(), dataDirectoryFile);
 
