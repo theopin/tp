@@ -425,6 +425,8 @@ Alternative 2: Save different sections of the cheat sheet using a different file
 
 <a id="user-stories"></a>
 ## 6.2 User stories<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+The table below describes the particular needs of relevant users that the respective
+versions of CheatLogs was designed to solve.
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
