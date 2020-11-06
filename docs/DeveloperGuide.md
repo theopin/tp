@@ -26,11 +26,12 @@ This guide serves as an in-depth reference of the features of CheatLogs.
     + [1.2. Product Scope](#product-scope)
         - [1.2.1. Target User Profile](#target-user-profile)
         - [1.2.2. Value Proposition](#value-proposition)
-    + [1.3. Definitions](#definitions)
+    + [1.3. Design Goals](#design-goals)
+    + [1.4. Definitions](#definitions)
 * [2. Setting Up, Getting Started](#setting-up-getting-started)
     + [2.1. Prerequisites](#prerequisites)
     + [2.2. Running the Project](#running-the-project)
-    + [2.3 Importing into IntelliJ [optional]](#importing-into-intellij-optional)
+    + [2.3 Importing into IntelliJ [optional]](#importing-into-intellij)
 * [3. Design](#design)
     + [3.1. Architecture](#architecture)
     + [3.2. Components](#components)
@@ -326,7 +327,7 @@ Con: There would be many duplicate code and not good for reusability.
 By using the sort() method present in java. util. Collections class, we would have better flexibility as the sort method could be reused with different functions just by including a new class that implements comparable.
 
 
-<a id="storage-and-reading-of-cheatsheet-files"></a>
+<a id="storage-reading-of-cheatsheet-files"></a>
 ### 4.4. Storage & Reading of Cheatsheet files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 This feature stores cheat sheets on the hard-drive in the form of a text file. 
