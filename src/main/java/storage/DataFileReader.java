@@ -35,8 +35,8 @@ import java.util.logging.Logger;
  * to insert the cheatsheets present in the folder to the application.
  */
 public class DataFileReader extends DataFile {
-    private CheatSheetList cheatSheetList;
-    private Logger logger = Logger.getLogger("Foo");
+    private final CheatSheetList cheatSheetList;
+    private final Logger readLogger = Logger.getLogger("FileReader");
 
     public DataFileReader(Printer printer, CheatSheetList cheatSheetList) {
         this.printer = printer;
@@ -53,12 +53,13 @@ public class DataFileReader extends DataFile {
         try {
             insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
-            logger.log(Level.WARNING, "processing error");
+            readLogger.log(Level.WARNING, "Missing Data Directory");
             printer.print("The following file is not found: "
                     + System.lineSeparator()
                     + e.getMessage());
             createNewDirectory();
         } catch (DirectoryIsEmptyException d) {
+            readLogger.log(Level.WARNING, "Empty Directory Present");
             printer.print("The following directory is empty!"
                     + System.lineSeparator()
                     + d.getMessage());

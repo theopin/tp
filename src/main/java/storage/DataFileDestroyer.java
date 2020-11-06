@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Allows the user to delete stored files as well as empty directories
@@ -16,7 +18,8 @@ import java.nio.file.Paths;
  */
 public class DataFileDestroyer extends DataFile {
 
-    private CheatSheetList cheatSheetList;
+    private final CheatSheetList cheatSheetList;
+    private final Logger destroyLogger = Logger.getLogger("FileDestroyer");
 
     public DataFileDestroyer(Printer printer, CheatSheetList cheatSheetList) {
         this.printer = printer;
@@ -31,6 +34,7 @@ public class DataFileDestroyer extends DataFile {
         try {
             clearDataDirectory();
         } catch (DirectoryIsEmptyException e) {
+            destroyLogger.log(Level.WARNING, "Empty Directory Present");
             printer.print("The following directory is empty: "
                     + System.lineSeparator()
                     + e.getMessage());
@@ -49,11 +53,13 @@ public class DataFileDestroyer extends DataFile {
         try {
             deleteFile(unwantedFile);
         } catch (IOException e) {
+            destroyLogger.log(Level.WARNING, "IO File Error");
             printer.print("CheatLogs could not clear a particular file!"
                     + "Here is the location of the file that had issues: "
                     + System.lineSeparator()
                     + e.getMessage());
         } catch (CommandException s) {
+            destroyLogger.log(Level.WARNING, "Nonexistent File Error");
             printer.print("This file does not exist:"
                     + unwantedFile
                     + System.lineSeparator()

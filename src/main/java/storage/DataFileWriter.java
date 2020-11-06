@@ -19,6 +19,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -31,7 +33,8 @@ import ui.Printer;
  */
 public class DataFileWriter extends DataFile {
     private ArrayList<CheatSheet> cheatSheets;
-    private CheatSheetList cheatSheetList;
+    private final CheatSheetList cheatSheetList;
+    private final Logger writeLogger = Logger.getLogger("FileWriter");
 
     public DataFileWriter(Printer printer, CheatSheetList cheatSheetList) {
         this.printer = printer;
@@ -85,14 +88,17 @@ public class DataFileWriter extends DataFile {
                     preloadedSubjectDirectory,
                     textFile);
         } catch (IOException e) {
+            writeLogger.log(Level.WARNING, "IO File Error");
             printer.print("The following file could not be written: "
                     + System.lineSeparator()
                     + e.getMessage());
         } catch (ParserConfigurationException e) {
+            writeLogger.log(Level.WARNING, "XML Parser Error");
             printer.print("There were issues with building the XML parser: "
                     + System.lineSeparator()
                     + e.getMessage());
         } catch (TransformerException e) {
+            writeLogger.log(Level.WARNING, "XML File Transformer Error");
             printer.print("This file could not be converted into an XML file: "
                     + System.lineSeparator()
                     + e.getMessage());
