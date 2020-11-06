@@ -56,8 +56,10 @@ This guide serves as an in-depth reference of the features of CheatLogs.
     + [6.5. Glossary](#glossary)
 * [7. Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
+<br>
+
 <a id="introduction"></a>
-## 1. Introduction<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 1. Introduction<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 **CheatLogs** is a Command Line Interface Application that is targeted at novice or beginner programmers to help them develop their own applications. 
 It has a text based interface that allows the user to access cheat sheets and notes for various programming syntax and functions. 
@@ -112,7 +114,7 @@ This will make cheatlogs a comprehensive, one-stop solution for every student to
 <br>
 
 <a id="setting-up-getting-started"></a>
-## 2. Setting Up, Getting Started<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 2. Setting Up, Getting Started<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 xx
 
 
@@ -150,7 +152,7 @@ After installing a version of it you can import it using the “Get from Version
 <br>
 
 <a id="design"></a>
-## 3. Design<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 3. Design<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 This section will elaborate on the architecture and component design of CheatLogs.
 
@@ -324,7 +326,7 @@ Table 1: Summary of the functions of data storage
 <br>
 
 <a id="implementation"></a>
-## 4. Implementation<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 4. Implementation<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -405,13 +407,13 @@ Alternative 2: Save different sections of the cheat sheet using a different file
 <br>
 
 <a id="documentation-logging-testing-configuration-dev-ops"></a>
-## 5. Documentation, logging, testing, configuration, dev-ops<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 5. Documentation, logging, testing, configuration, dev-ops<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
 <br>
 
 <a id="appendix-requirements"></a>
-## 6. Appendix: Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 6. Appendix: Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
 <br>
@@ -452,7 +454,7 @@ Alternative 2: Save different sections of the cheat sheet using a different file
 <br>
 
 <a id="appendix-instructions-for-manual-testing"></a>
-## 7. Appendix: Instructions for manual testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 7. Appendix: Instructions for manual testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
