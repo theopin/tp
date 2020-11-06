@@ -54,7 +54,8 @@ public class DataFileDestroyer extends DataFile {
             deleteFile(unwantedFile);
         } catch (IOException e) {
             destroyLogger.log(Level.WARNING, "IO File Error");
-            printer.print("CheatLogs could not clear a particular file!"
+            printer.print("CheatLogs could not clear a particular file! Is this file deleted?"
+                    + System.lineSeparator()
                     + "Here is the location of the file that had issues: "
                     + System.lineSeparator()
                     + e.getMessage());
