@@ -2,6 +2,7 @@ package storage;
 
 import cheatsheet.CheatSheetList;
 import exception.CommandException;
+import exception.DirectoryIsEmptyException;
 import ui.Printer;
 
 import java.io.IOException;
@@ -26,8 +27,10 @@ public class DataFileDestroyer extends DataFile {
         try {
             clearDataDirectory();
             removeDirectoryIfEmpty(DATA_DIR.toFile());
-        } catch (IOException e) {
-            printer.print(e.getMessage());
+        } catch (DirectoryIsEmptyException e) {
+            printer.print("The following directory is empty: "
+                    + System.lineSeparator()
+                    + e.getMessage());
         }
     }
 
@@ -41,8 +44,16 @@ public class DataFileDestroyer extends DataFile {
         try {
             deleteFile(unwantedFile);
             removeDirectoryIfEmpty(DATA_DIR.toFile());
-        } catch (IOException | CommandException e) {
-            printer.print(e.getMessage());
+        } catch (IOException e) {
+            printer.print("CheatLogs could not clear a particular file!"
+                    + "Here is the location of the file that had issues: "
+                    + System.lineSeparator()
+                    + e.getMessage());
+        } catch (CommandException s) {
+            printer.print("This file does not exist:"
+                    + unwantedFile
+                    + System.lineSeparator()
+                    + s.getMessage());
         }
     }
 
@@ -67,21 +78,21 @@ public class DataFileDestroyer extends DataFile {
     /**
      * Deletes all cheatsheet files from the /data directory in a recursive manner.
      *
-     * @throws IOException Thrown if the /data directory is missing or empty.
+     * @throws DirectoryIsEmptyException Thrown if the /data directory is missing or empty.
      */
-    private void clearDataDirectory() throws IOException {
+    private void clearDataDirectory() throws DirectoryIsEmptyException {
         clearDirectory(DATA_DIR);
     }
 
     /**
      * Deletes all cheatsheet files from the given directory.
      *
-     * @throws IOException Thrown if the /data directory is missing or empty.
+     * @throws DirectoryIsEmptyException Thrown if the /data directory is missing or empty.
      */
-    private void clearDirectory(Path directoryPath) throws IOException {
+    private void clearDirectory(Path directoryPath) throws DirectoryIsEmptyException {
         String[] dataDirectoryFiles = directoryPath.toFile().list();
         if (dataDirectoryFiles == null) {
-            throw new IOException();
+            throw new DirectoryIsEmptyException();
         }
         for (String dataDirectoryFile : dataDirectoryFiles) {
             Path filePath = Paths.get(directoryPath.toString(), dataDirectoryFile);
@@ -95,8 +106,17 @@ public class DataFileDestroyer extends DataFile {
 
             try {
                 deleteFile(dataDirectoryFile.replace(XML_EXTENSION, EMPTY));
-            } catch (CommandException e) {
-                printer.print(e.getMessage());
+            } catch (IOException e) {
+                printer.print("CheatLogs could not clear a particular file!"
+                        + "Here is the location of the file that had issues: "
+                        + System.lineSeparator()
+                        + e.getMessage());
+            } catch (CommandException s) {
+                printer.print("This file does not exist: "
+                        + dataDirectoryFile
+                        .replace(XML_EXTENSION, EMPTY)
+                        + System.lineSeparator()
+                        + s.getMessage());
             }
         }
         directoryPath.toFile().delete();
