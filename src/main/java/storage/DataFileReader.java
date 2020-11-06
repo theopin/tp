@@ -60,7 +60,7 @@ public class DataFileReader extends DataFile {
             createNewDirectory();
 
         } catch (DirectoryIsEmptyException d) {
-            readLogger.log(Level.WARNING, "Empty Directory Present");
+            readLogger.log(Level.INFO, "Empty Directory Present");
             printer.print("The following directory is empty!"
                     + System.lineSeparator()
                     + d.getMessage());
@@ -170,7 +170,7 @@ public class DataFileReader extends DataFile {
 
         assert directoryItems != null;
         if (directoryItems.length == 0) {
-            throw new DirectoryIsEmptyException();
+            throw new DirectoryIsEmptyException(DATA);
         }
 
         extractFromDirectory(DATA_DIR);
@@ -216,7 +216,7 @@ public class DataFileReader extends DataFile {
 
             } catch (SAXException f) {
                 readLogger.log(Level.WARNING, "SAX Read File Error");
-                printer.print("There were issues with the usage the XML parser: "
+                printer.print("There were issues with the usage of the XML parser: "
                         + System.lineSeparator()
                         + f.getMessage());
             }

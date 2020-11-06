@@ -106,7 +106,7 @@ public class DataFileDestroyer extends DataFile {
     private void clearDirectory(Path directoryPath) throws DirectoryIsEmptyException {
         String[] dataDirectoryFiles = directoryPath.toFile().list();
         if (dataDirectoryFiles == null) {
-            throw new DirectoryIsEmptyException();
+            throw new DirectoryIsEmptyException(directoryPath.toString());
         }
 
         for (String dataDirectoryFile : dataDirectoryFiles) {
