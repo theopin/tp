@@ -494,9 +494,6 @@ This section indicates if the cheat sheet should be marked as [favourite](#favou
 
 > :exclamation: If STATUS contains another word than `YES`, the cheatsheet will not be marked as a favourite. 
 
-
-
-
 ---
 
 <a id="subject"></a>
@@ -522,7 +519,17 @@ This section includes the contents of the cheatsheet.
 All the data files can be found in the /data directory, which is located in the same directory as
 CheatLogs.jar. Within /data, CheatLogs stores data files in subdirectories whose name matches its
 subject name. This gives you a directory of cheat sheets organized by subject, which you can use
-to retrieve any external cheat sheet file.
+to retrieve any external cheat sheet file. 
+
+The figure below shows a sample organization of the cheat sheet files in a user's directory.
+
+[!image](https://i.ibb.co/jbCTyYG/dataOrg.png)
+
+In the example illustrated above, the user currently has cheat sheets which are of
+3 different subjects. Even though some cheatsheets have the same name such as
+arrays.xml, they are categorized into different folders as they do not share the same
+subject name. This allows you to create cheat sheets for common concepts which may differ
+based on the subject you are taking.
 
 <a id="preloaded-data-files"></a>
 ## 5.3 Preloaded data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
