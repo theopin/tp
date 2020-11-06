@@ -5,6 +5,7 @@ import command.Command;
 import editor.Editor;
 import exception.CommandException;
 import parser.Parser;
+import settings.Settings;
 import storage.DataFileReader;
 import storage.DataFileWriter;
 import storage.DataFileDestroyer;
@@ -25,23 +26,26 @@ public class UserSession {
     Parser userCommandParser;
     Printer printer;
     Ui ui;
+    Settings settings;
 
     public UserSession() {
         cheatSheetList = new CheatSheetList();
         editor = new Editor();
         ui = new Ui();
         printer = new Printer();
+        settings = new Settings();
         fileReader = new DataFileReader(printer, cheatSheetList);
         fileWriter = new DataFileWriter(printer, cheatSheetList);
 
         fileDestroyer = new DataFileDestroyer(printer, cheatSheetList);
-        userCommandParser = new Parser(cheatSheetList, editor, fileDestroyer, printer, ui);
+        userCommandParser = new Parser(cheatSheetList, editor, fileDestroyer, printer, ui, settings);
     }
 
     public void runProgramSequence() {
         AnsiConsole.systemInstall();
         fileReader.executeFunction();
         printer.printWelcomeScreen();
+        printer.printStartHelpMessage();
 
         // Ask for new user input and executes it until user types the exit command
         do {
@@ -58,7 +62,6 @@ public class UserSession {
                 printer.print(c.getMessage());
                 continue;
             }
-
             fileWriter.executeFunction();
         } while (true);
     }

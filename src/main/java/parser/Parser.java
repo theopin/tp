@@ -16,6 +16,7 @@ import command.SettingsCommand;
 import command.ViewCommand;
 import editor.Editor;
 import exception.CommandException;
+import settings.Settings;
 import storage.DataFileDestroyer;
 import ui.Ui;
 import ui.Printer;
@@ -28,19 +29,23 @@ public class Parser {
     private Editor editor;
     private Printer printer;
     private Ui ui;
+    private Settings settings;
 
     private static final String FLAG_REGEX = "(?=(/[a-z]))";
 
-    public Parser() {
+    public Parser(Printer printer, Settings settings) {
+        this.printer = printer;
+        this.settings = settings;
     }
 
     public Parser(CheatSheetList cheatSheetList, Editor editor,
-                  DataFileDestroyer fileDestroyer,  Printer printer, Ui ui) {
+                  DataFileDestroyer fileDestroyer,  Printer printer, Ui ui, Settings settings) {
         this.cheatSheetList = cheatSheetList;
         this.editor = editor;
         this.fileDestroyer = fileDestroyer;
         this.printer = printer;
         this.ui = ui;
+        this.settings = settings;
     }
 
     public Command parse(String userInput) throws CommandException {
@@ -74,7 +79,7 @@ public class Parser {
         case ListCommand.invoker:
             return new ListCommand(printer, cheatSheetList);
         case SettingsCommand.invoker:
-            return new SettingsCommand(printer);
+            return new SettingsCommand(printer, settings);
         case ViewCommand.invoker:
             return new ViewCommand(printer, cheatSheetList);
         default:
@@ -126,6 +131,14 @@ public class Parser {
 
     private void setMissingDescriptions(Command commandToBeExecuted) {
         LinkedHashMap<CommandFlag, String> map = commandToBeExecuted.getFlagstodescriptionsMap();
+        if (!commandToBeExecuted.hasAlternativeArgument() && settings.getDisplayingHelpMessages()) {
+            printer.printCommandHelpMessage(commandToBeExecuted.getClass());
+        } else if (settings.getDisplayingHelpMessages()
+                && (commandToBeExecuted.getClass().equals(ListCommand.class)
+                || (commandToBeExecuted.getClass().equals(ClearCommand.class)))) {
+            printer.printCommandHelpMessage(commandToBeExecuted.getClass());
+        }
+
         while (!commandToBeExecuted.hasAlternativeArgument()) {
             printer.printAlternativeArgumentPrompt(commandToBeExecuted);
 
