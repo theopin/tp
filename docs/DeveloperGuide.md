@@ -7,6 +7,7 @@ Welcome to the official developer guide of CheatLogs, a free and open-source che
 
 This guide serves as an in-depth reference of the features of CheatLogs.
 
+
 > <font size = "5" >:bulb: Here are some patterns you will come across and their definitions.
 > ------
 >|Pattern|Definition|
@@ -64,7 +65,6 @@ It has a text based interface that allows the user to access cheat sheets and no
 The user can quickly `find` and `view` the preloaded cheat sheets and it will be displayed with nice color coding for better readability.
 Moreover, the user can `add`, `edit`, and `delete` their own cheat sheets.
 
-<br>
 
 <a id="purpose"></a>
 ### 1.1. Purpose<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -72,7 +72,6 @@ Moreover, the user can `add`, `edit`, and `delete` their own cheat sheets.
 This document specifies the architecture and software design decisions taken to develop our application, CheatLogs. 
 Targeted towards developers who are or want to work on CheatLogs.
 
-<br>
 
 <a id="product-scope"></a>
 ### 1.2. Product Scope<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -96,7 +95,6 @@ which is very common for novice programmers. The user can find the desired synta
 
 ---
 
-<br>
 
 <a id="design-goals"></a>
 ### 1.3. Design Goals<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -106,7 +104,6 @@ Our cheatsheet app comes with a set of preloaded cheatsheets.
 Additionally, the user can input their own cheat sheets into the application. 
 This will make cheatlogs a comprehensive, one-stop solution for every student to manage their cheatsheet.
 
-<br>
 
 <a id="definitions"></a>
 ### 1.4. Definitions<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -116,9 +113,8 @@ This will make cheatlogs a comprehensive, one-stop solution for every student to
 
 <a id="setting-up-getting-started"></a>
 ## 2. Setting Up, Getting Started<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+xx
 
-
-<br>
 
 <a id="prerequisites"></a>
 ### 2.1. Prerequisites<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -129,7 +125,6 @@ This will make cheatlogs a comprehensive, one-stop solution for every student to
 CheatLogs has been developed on Java 11 and may not be supported on other versions. 
 You are free to use any java file editor and run the program by following the step by step guide below. 
 
-<br>
 
 <a id="running-the-project"></a>
 ### 2.2. Running the Project<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -139,9 +134,8 @@ You are free to use any java file editor and run the program by following the st
 3. Move the file to a folder you want to use as the home folder for this application.
 4. Invoke java -jar CheatLogs.jar on the command line to run the program. A welcome message should appear, as shown below.
 
-<br>
-
 ![](Images/Image1.PNG)
+
 
 <a id="importing-to-intellij"></a>
 ### 2.3 Importing into IntelliJ [optional]<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -150,16 +144,16 @@ In case you prefer to use IDEs to develop.
 IntelliJ IDEA community edition is a popular free choice. 
 After installing a version of it you can import it using the “Get from Version Control” option below and clone from our [repository](https://github.com/AY2021S1-CS2113T-W11-3/tp.).
 
-<br>
 
 ![](Images/Image2.PNG)
+
+<br>
 
 <a id="design"></a>
 ## 3. Design<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 This section will elaborate on the architecture and component design of CheatLogs.
 
-<br>
 
 <a id="architecture"></a>
 ### 3.1. Architecture<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -180,13 +174,13 @@ CheatLogs is split into 5 major components, each handling distinct features of t
 
 The UML diagram below illustrates an extensive version of the various classes present in CheatLogs as well as their interactions with each other.
 
-<br>
 
 ![](Images/Image4.PNG)
 
 Image 2: In-Depth Architecture of CheatLogs
 
 For each component, it can be further split into different classes which have a unique responsibility. They will be further elaborated upon in the next section.
+
 
 <a id="components"></a>
 ### 3.2. Components<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -334,7 +328,6 @@ Table 1: Summary of the functions of data storage
 
 This section describes some noteworthy details on how certain features are implemented.
 
-<br>
 
 <a id="parsing-of-data-to-construct-commands"></a>
 ### 4.1. Parsing of Data to Construct Commands<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -345,7 +338,6 @@ Flags in the input are used to separate the different information. (e.g. `/add /
 This information is stored in a HashMap where the descriptor (defined in ArgumentEnum) of the flag is the key and the information associated with it is the value.
 The command can execute at a random time later via commandObj.execute().12
 
-<br>
 
 <a id="editing-feature"></a>
 ### 4.2. Editing Feauture<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -357,7 +349,6 @@ The strong reason that we wanted to use a GUI is that it offers more flexibility
 The editing feature is handled by the TextEditor class. The Text Editor inherits from JFrame and implements the Action Listener class. 
 The text editor is instantiated when the edit command is invoked. 
 
-<br>
 
 <a id="sorting-feature"></a>
 ### 4.3. Sorting Feature<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -377,7 +368,6 @@ Alternative: Using a for loop to sort by name and another loop that sorts by lan
 Con: There would be many duplicate code and not good for reusability. 
 By using the sort() method present in java. util. Collections class, we would have better flexibility as the sort method could be reused with different functions just by including a new class that implements comparable.
 
-<br>
 
 <a id="storage-reading-of-cheatsheet-files"></a>
 ### 4.4. Storage & Reading of Cheatsheet files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -385,7 +375,6 @@ By using the sort() method present in java. util. Collections class, we would ha
 This feature stores cheat sheets on the hard-drive in the form of a text file. 
 When the application is loaded subsequently, data from these files will be converted and loaded into the application.
 
-<br>
 
 <a id="colour-coding-for-code-snippet"></a>
 ### 4.5. Colour coding for code snippet<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -431,7 +420,6 @@ Alternative 2: Save different sections of the cheat sheet using a different file
 ### 6.1 Product scope<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
-<br>
 
 <a id="user-stories"></a>
 ### 6.2 User stories<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -445,24 +433,19 @@ Alternative 2: Save different sections of the cheat sheet using a different file
 |v2.0|user|edit the cheat sheets|update the cheat sheet and keep them relevant as the time progresses|
 |v2.0|user|customize the settings|add and edit the cheat sheets|
 
-<br>
 
 <a id="use-cases"></a>
 ### 6.3 Use cases<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
-<br>
 
 <a id="non-functional-requirements"></a>
 ### 6.4 Non-Functional Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-
 {Give non-functional requirements}
 
-<br>
 
 <a id="glossary"></a>
 ### 6.5 Glossary<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-
 * *glossary item* - Definition
 
 
