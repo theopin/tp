@@ -291,6 +291,7 @@ public class DataFileReader extends DataFile {
             isMarkedFavourite = favouriteElement
                     .getFirstChild()
                     .getTextContent()
+                    .toUpperCase()
                     .equals(YES);
         } catch (NullPointerException e) {
             isMarkedFavourite = false;

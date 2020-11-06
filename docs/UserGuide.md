@@ -446,23 +446,26 @@ Each cheat sheet file uses an XML file format. This file format organizes the co
 of the file into different sections based on certain attributes of the cheatsheet. The code
 snippet below illustrates the structure of the entire cheat sheet file.
 
-[!image](https://i.ibb.co/jLK3sJm/xml-Format.png)
+[!image](https://i.ibb.co/mFJ1nDy/xml-Format.png)
 
 By following this format, you can manually insert cheatsheet files that are recognized by CheatLogs. The following sections
 explore each segment of this format.
 
-> :bulb:  If you are unsure where to place your new files, simply place it in the directory. CheatLogs will organize them when you execute a command add, edit or delete any file.
+> :bulb:  If you are unsure where to place your new files, simply place it in the /data directory. CheatLogs will organize them when you execute a command to add, edit or delete any file.
 
 ---
 
 <a id="xml-file-configurations"></a>
 ### 5.1.1 XML file configurations<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section configures the settings of the XML file.
+This section configures the settings of the XML file. By default, CheatLogs writes this line into
+XML files that it creates or modifies.
 
 >Format: `<?xml version="1.0" encoding="UTF-8" standalone="no"?>` 
 
-> :exclamation: It is recommended for you to use the exact settings defined by the format above. Any change to this format can result in CheatLogs not converting such files into cheat sheets.
+> :tip: If you are creating a new XML file, you can choose to omit this line entirely. CheatLogs will still convert such XML files into cheat sheets.
+
+> :exclamation: If you are including this section, you should use the exact settings defined by the format above. Any change to this format can result in CheatLogs not converting such files into cheat sheets.
 
 ---
 
@@ -483,18 +486,24 @@ sections you place inside `main` and creates a cheat sheet based on the input gi
 <a id="favourite"></a>
 ### 5.1.3 Favourite<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section indicates if the cheat sheet should be marked as a favourite.
+This section indicates if the cheat sheet should be marked as [favourite](#favourite-command).
 
 >Format: `<favourite>STATUS</favourite>`
 
+> :exclamation: STATUS is not case-sensitive. For example, `YES` and `yes` are considered the same .
+
 > :exclamation: If STATUS contains another word than `YES`, the cheatsheet will not be marked as a favourite. 
+
+
+
 
 ---
 
 <a id="subject"></a>
 ### 5.1.4 Subject<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section includes the subject of the cheatsheet.
+This section includes the subject of the cheatsheet. It allows CheatLogs to organize your cheat
+sheet files by assigning cheat sheets of the same subject to the same folder.
 
 >Format: `<subject>SUBJECT</subject>`
 
@@ -508,17 +517,20 @@ This section includes the contents of the cheatsheet.
 
 
 <a id="data-file-organization"></a>
-## 5.2 Data file organization<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 5.2 Data organization<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 All the data files can be found in the /data directory, which is located in the same directory as
 CheatLogs.jar. Within /data, CheatLogs stores data files in subdirectories whose name matches its
-subject name. This gives you a directory of cheat sheets organized by subject, which will help you
-in your revision.
+subject name. This gives you a directory of cheat sheets organized by subject, which you can use
+to retrieve any external cheat sheet file.
 
 <a id="preloaded-data-files"></a>
-## 5.3 Transferring data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 5.3 Preloaded data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-CheatLogs.jar contains
+CheatLogs.jar contains some example cheat sheet files. These files will be moved over to the /data
+directory when you run the application for the first time. To differentiate these files from your 
+personally created cheatsheets, they are placed under the /preloaded subdirectory. By viewing and
+editing these cheatsheets through CheatLogs, you will understand how to operate this program.
 
 <br>
 
