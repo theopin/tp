@@ -4,6 +4,7 @@ import cheatsheet.CheatSheetList;
 import exception.CommandException;
 
 import parser.CommandFlag;
+import settings.Settings;
 import ui.Printer;
 
 import java.io.IOException;

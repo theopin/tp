@@ -6,7 +6,8 @@ public enum CommandFlag {
     INDEX("/i"),
     SUBJECT("/s"),
     SECTIONKEYWORD("/k"),
-    COLORSCHEME("/c");
+    COLORSCHEME("/c"),
+    HELPMESSAGE("/m");
     private final String flag;
 
     CommandFlag(String flag) {

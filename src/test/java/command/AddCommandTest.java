@@ -164,7 +164,7 @@ class AddCommandTest {
     void execute_noNameGotSubject_exceptionThrown() {
         final CheatSheetList cheatSheetList = new CheatSheetList();
         try {
-            Command addCommand = new AddCommand(null, cheatSheetList, null);
+            Command addCommand = new AddCommand(new Printer(), cheatSheetList, null);
             LinkedHashMap<CommandFlag, String> linkedHashMap = new LinkedHashMap<>();
             linkedHashMap.put(CommandFlag.SUBJECT, null);
             addCommand.setFlagstodescriptionsMap(linkedHashMap);
