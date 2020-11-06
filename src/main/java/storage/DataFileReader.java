@@ -70,7 +70,7 @@ public class DataFileReader extends DataFile {
      * and transfers them to the /data dir before executing the reader
      * operation.
      *
-     * @throws IOException thrown if there are issues with reading and
+     * @throws IOException Thrown if there are issues with reading and
      *                     writing the transferred .xml file as well as
      *                     the files inside CheatLogs.jar.
      */

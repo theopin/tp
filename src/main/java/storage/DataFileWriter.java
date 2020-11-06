@@ -79,27 +79,69 @@ public class DataFileWriter extends DataFile {
         Path textFile = Paths.get(USER_DIR, DATA, subjectName, fileName);
 
         try {
-            boolean isPreloadedFile = preloadedCheatSheets.contains(possiblePreloadedFile);
-            if (isPreloadedFile) {
-                textFile = possiblePreloadedFile;
-                subjectDirectory = null;
-            }
-
-            verifyDirectoryExistence(subjectDirectory,
+            initiateWriteProcess(cheatSheet,
+                    subjectDirectory,
+                    possiblePreloadedFile,
                     preloadedSubjectDirectory,
-                    isPreloadedFile);
-
-            if (!Files.exists(textFile)) {
-                Files.createFile(textFile);
-            }
-
-            Document cheatSheetFile = buildFileContents(cheatSheet);
-
-            writeToFile(textFile, cheatSheetFile);
-            removeDirectoryIfEmpty(DATA_DIR.toFile());
-        } catch (IOException | ParserConfigurationException | TransformerException e) {
-            printer.print(e.getMessage());
+                    textFile);
+        } catch (IOException e) {
+            printer.print("The following file could not be written: "
+                    + System.lineSeparator()
+                    + e.getMessage());
+        } catch (ParserConfigurationException e) {
+            printer.print("There were issues with building the XML parser: "
+                    + System.lineSeparator()
+                    + e.getMessage());
+        } catch (TransformerException e) {
+            printer.print("This file could not be converted into an XML file: "
+                    + System.lineSeparator()
+                    + e.getMessage());
         }
+    }
+
+    /**
+     * Attempts to write the indicated cheatsheet into an .xml file.
+     *
+     * @param cheatSheet                    The cheatSheet that is currently being converted
+     *                                      into a file.
+     * @param possiblePreloadedFile         Path of the file assuming that it was preloaded.
+     * @param preloadedSubjectDirectory     Path of the directory containing the file
+     *                                      assuming that it was preloaded.
+     * @param textFile                      The default path of the file.
+     *
+     * @throws IOException                  Thrown if there are issues with reading and
+     *                                      writing the transferred .xml file
+     * @throws ParserConfigurationException Thrown if a serious configuration error is
+     *                                      detected.
+     * @throws TransformerException         Thrown if there an exceptional condition occurs
+     *                                      during the transformation process.
+     *
+     */
+    private void initiateWriteProcess(CheatSheet cheatSheet,
+                                      Path subjectDirectory,
+                                      Path possiblePreloadedFile,
+                                      Path preloadedSubjectDirectory,
+                                      Path textFile) throws IOException,
+            ParserConfigurationException,
+            TransformerException {
+        boolean isPreloadedFile = preloadedCheatSheets.contains(possiblePreloadedFile);
+        if (isPreloadedFile) {
+            textFile = possiblePreloadedFile;
+            subjectDirectory = null;
+        }
+
+        verifyDirectoryExistence(subjectDirectory,
+                preloadedSubjectDirectory,
+                isPreloadedFile);
+
+        if (!Files.exists(textFile)) {
+            Files.createFile(textFile);
+        }
+
+        Document cheatSheetFile = buildFileContents(cheatSheet);
+
+        writeToFile(textFile, cheatSheetFile);
+        removeDirectoryIfEmpty(DATA_DIR.toFile());
     }
 
     /**
@@ -132,12 +174,17 @@ public class DataFileWriter extends DataFile {
      *                                      in a .xml file format.
      * @param mainRoot                      The root that the created element needs to be joined to.
      */
-    private void insertFavouriteStatus(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
+    private void insertFavouriteStatus(CheatSheet cheatSheet,
+                                       Document xmlFileStructure,
+                                       Element mainRoot) {
         String favouriteStatus = cheatSheet.getIsFavourite()
                 ? YES
                 : NO;
         Element favouriteElement = xmlFileStructure.createElement(FAVOURITE_ELEMENT);
-        appendToFileStructure(xmlFileStructure, mainRoot, favouriteStatus, favouriteElement);
+        appendToFileStructure(xmlFileStructure,
+                mainRoot,
+                favouriteStatus,
+                favouriteElement);
     }
 
     /**
@@ -148,10 +195,15 @@ public class DataFileWriter extends DataFile {
      *                                      in a .xml file format.
      * @param mainRoot                      The root that the created element needs to be joined to.
      */
-    private void insertFileSubject(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
+    private void insertFileSubject(CheatSheet cheatSheet,
+                                   Document xmlFileStructure,
+                                   Element mainRoot) {
         String fileContent = cheatSheet.getSubject();
         Element fileContentElement = xmlFileStructure.createElement(SUBJECT_ELEMENT);
-        appendToFileStructure(xmlFileStructure, mainRoot, fileContent, fileContentElement);
+        appendToFileStructure(xmlFileStructure,
+                mainRoot,
+                fileContent,
+                fileContentElement);
     }
 
     /**
@@ -162,10 +214,15 @@ public class DataFileWriter extends DataFile {
      *                                      in a .xml file format.
      * @param mainRoot                      The root that the created element needs to be joined to.
      */
-    private void insertFileContents(CheatSheet cheatSheet, Document xmlFileStructure, Element mainRoot) {
+    private void insertFileContents(CheatSheet cheatSheet,
+                                    Document xmlFileStructure,
+                                    Element mainRoot) {
         String fileContent = cheatSheet.getDetails();
         Element fileContentElement = xmlFileStructure.createElement(CONTENTS_ELEMENT);
-        appendToFileStructure(xmlFileStructure, mainRoot, fileContent, fileContentElement);
+        appendToFileStructure(xmlFileStructure,
+                mainRoot,
+                fileContent,
+                fileContentElement);
     }
 
     /**
