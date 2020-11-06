@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class SortFilter {
     final String promptSortConfig = ConsoleColorsEnum.RED_TEXT
         + "Sort filter (1: name ascending, 2: subject ascending, 3: name descending" + ", 4: "
-        + "subject descending or anything else to skip)" + ConsoleColorsEnum.RESET_TEXT;
+        + "subject descending, ANY OTHER CHAR: EXIT)" + ConsoleColorsEnum.RESET_TEXT;
     Printer printer;
     ArrayList<CheatSheet> cheatSheetArrayList;
 
