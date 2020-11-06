@@ -58,11 +58,18 @@ public class DataFileReader extends DataFile {
                     + System.lineSeparator()
                     + e.getMessage());
             createNewDirectory();
+
         } catch (DirectoryIsEmptyException d) {
             readLogger.log(Level.WARNING, "Empty Directory Present");
             printer.print("The following directory is empty!"
                     + System.lineSeparator()
                     + d.getMessage());
+
+        } catch (IOException f) {
+            readLogger.log(Level.WARNING, "IO File Error");
+            printer.print("The following file could not be read: "
+                    + System.lineSeparator()
+                    + f.getMessage());
         }
     }
 
@@ -152,7 +159,7 @@ public class DataFileReader extends DataFile {
      * @throws FileNotFoundException     Thrown if the /data folder is not found
      * @throws DirectoryIsEmptyException Thrown if the /data folder is empty
      */
-    protected void insertStoredCheatSheets() throws FileNotFoundException,
+    protected void insertStoredCheatSheets() throws IOException,
             DirectoryIsEmptyException {
         if (!Files.exists(DATA_DIR)) {
             throw new FileNotFoundException();
@@ -166,11 +173,7 @@ public class DataFileReader extends DataFile {
             throw new DirectoryIsEmptyException();
         }
 
-        try {
-            extractFromDirectory(DATA_DIR);
-        } catch (IOException e) {
-            printer.print(e.getMessage());
-        }
+        extractFromDirectory(DATA_DIR);
     }
 
     /**
@@ -204,8 +207,18 @@ public class DataFileReader extends DataFile {
 
             try {
                 extractCheatSheet(dataDirectoryFile);
-            } catch (ParserConfigurationException | SAXException e) {
-                printer.print(e.getMessage());
+
+            } catch (ParserConfigurationException e) {
+                readLogger.log(Level.WARNING, "XML Parser Error");
+                printer.print("There were issues with building the XML parser: "
+                        + System.lineSeparator()
+                        + e.getMessage());
+
+            } catch (SAXException f) {
+                readLogger.log(Level.WARNING, "SAX Read File Error");
+                printer.print("There were issues with the usage the XML parser: "
+                        + System.lineSeparator()
+                        + f.getMessage());
             }
         }
     }

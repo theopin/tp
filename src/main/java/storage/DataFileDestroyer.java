@@ -121,11 +121,14 @@ public class DataFileDestroyer extends DataFile {
             try {
                 deleteFile(dataDirectoryFile.replace(XML_EXTENSION, EMPTY));
             } catch (IOException e) {
+                destroyLogger.log(Level.WARNING, "IO Directory Error");
                 printer.print("CheatLogs could not clear a particular file!"
                         + "Here is the location of the file that had issues: "
                         + System.lineSeparator()
                         + e.getMessage());
+
             } catch (CommandException s) {
+                destroyLogger.log(Level.WARNING, "Nonexistent File Error");
                 printer.print("This file does not exist: "
                         + dataDirectoryFile
                         .replace(XML_EXTENSION, EMPTY)

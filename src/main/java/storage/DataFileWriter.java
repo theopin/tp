@@ -87,16 +87,19 @@ public class DataFileWriter extends DataFile {
                     possiblePreloadedFile,
                     preloadedSubjectDirectory,
                     textFile);
+
         } catch (IOException e) {
             writeLogger.log(Level.WARNING, "IO File Error");
             printer.print("The following file could not be written: "
                     + System.lineSeparator()
                     + e.getMessage());
+
         } catch (ParserConfigurationException e) {
             writeLogger.log(Level.WARNING, "XML Parser Error");
             printer.print("There were issues with building the XML parser: "
                     + System.lineSeparator()
                     + e.getMessage());
+
         } catch (TransformerException e) {
             writeLogger.log(Level.WARNING, "XML File Transformer Error");
             printer.print("This file could not be converted into an XML file: "
