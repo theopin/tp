@@ -32,22 +32,22 @@ This guide serves as an in-depth reference of the features of CheatLogs.
     + [2.2. Running the Project](#running-the-project)
     + [2.3 Importing into IntelliJ [optional]](#importing-into-intellij-optional)
 * [3. Design](#design)
-    + [3.1. Architecture](architecture)
-    + [3.2. Components](components)
-        - [3.2.1. User Interface](user-interface)
-        - [3.2.2. Command Parser](command-parser)
-        - [3.2.3. Cheat Sheet Structure](cheat-sheet-structure)
+    + [3.1. Architecture](#architecture)
+    + [3.2. Components](#components)
+        - [3.2.1. User Interface](#user-interface)
+        - [3.2.2. Command Parser](#command-parser)
+        - [3.2.3. Cheat Sheet Structure](#cheat-sheet-structure)
         - [3.2.4. Cheat Sheet Management](#cheat-sheet-management)
         - [3.2.5. Data Storage](#data-storage)
-* [4. Implementation](implementation)
-    + [4.1. Parsing of Data to Construct Commands](parsing-of-data-to-construct-commands)
+* [4. Implementation](#implementation)
+    + [4.1. Parsing of Data to Construct Commands](#parsing-of-data-to-construct-commands)
     + [4.2. Editing Feature](#editing-feature)
     + [4.3. Sorting Feature](#sorting-feature)
-    + [4.4. Storage & Reading of Cheatsheet files](#storage--reading-of-cheatsheet-files)
-    + [4.5. Colour coding for code snippet](#proposed-colour-coding-for-code-snippet)
+    + [4.4. Storage & Reading of Cheatsheet files](#storage-reading-of-cheatsheet-files)
+    + [4.5. Colour coding for code snippet](#colour-coding-for-code-snippet)
 * [5. Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [6. Appendix: Requirements](#appendix-requirements)
-    + [6.1. Product scope](#product-scope)
+    + [6.1. Product scope](#product-scope-appendix)
     + [6.2. User stories](#user-stories)
     + [6.3. Use cases](#use-cases)
     + [6.4. Non-Functional Requirements](#non-functional-requirements)
@@ -97,7 +97,7 @@ This will make cheatlogs a comprehensive, one-stop solution for every student to
 #### 1.4. Definitions<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
-<a id="setting-up,-getting-started"></a>
+<a id="setting-up-getting-started"></a>
 ## 2. Setting Up, Getting Started<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
@@ -358,15 +358,15 @@ Alternative 2: Save different sections of the cheat sheet using a different file
 * Pros: The implementation of the parser and file writer is much easier
 * Cons: Sections of a single cheatsheet is scattered across multiple files
 
-<a id="documentation,-logging,-testing,-configuration,-dev-ops"></a>
+<a id="documentation-logging-testing-configuration-dev-ops"></a>
 ## 5. Documentation, logging, testing, configuration, dev-ops<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
-<a id="appendix:-requirements"></a>
+<a id="appendix-requirements"></a>
 ## 6. Appendix: Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
-<a id="product-scope"></a>
+<a id="product-scope-appendix"></a>
 ### 6.1 Product scope<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
@@ -396,7 +396,7 @@ Alternative 2: Save different sections of the cheat sheet using a different file
 
 * *glossary item* - Definition
 
-<a id="appendix:-instructions-for-manual-testing"></a>
+<a id="appendix-instructions-for-manual-testing"></a>
 ## 7. Appendix: Instructions for manual testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
