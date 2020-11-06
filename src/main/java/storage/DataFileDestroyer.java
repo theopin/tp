@@ -10,6 +10,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Allows the user to delete stored files as well as empty directories
+ * when required.
+ */
 public class DataFileDestroyer extends DataFile {
 
     private CheatSheetList cheatSheetList;

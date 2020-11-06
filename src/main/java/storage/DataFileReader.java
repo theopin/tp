@@ -30,8 +30,6 @@ import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
 /**
  * Allows the user to read data from the data directory and use it
  * to insert the cheatsheets present in the folder to the application.
@@ -56,10 +54,14 @@ public class DataFileReader extends DataFile {
             insertStoredCheatSheets();
         } catch (FileNotFoundException e) {
             logger.log(Level.WARNING, "processing error");
-            printer.print(e.getMessage());
+            printer.print("The following file is not found: "
+                    + System.lineSeparator()
+                    + e.getMessage());
             createNewDirectory();
         } catch (DirectoryIsEmptyException d) {
-            printer.print(d.getMessage());
+            printer.print("The following directory is empty!"
+                    + System.lineSeparator()
+                    + d.getMessage());
         }
     }
 
@@ -246,7 +248,10 @@ public class DataFileReader extends DataFile {
                 break;
             }
         }
-        bundleCheatSheetComponents(cheatSheetDocument, favouriteElement, subjectElement, contentElement);
+        bundleCheatSheetComponents(cheatSheetDocument,
+                favouriteElement,
+                subjectElement,
+                contentElement);
     }
 
     /**
