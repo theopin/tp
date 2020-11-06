@@ -19,6 +19,7 @@ public final class Printer {
     public ConsoleColorsEnum nameColor;
     public ConsoleColorsEnum subjectColor;
     public ConsoleColorsEnum detailsColor;
+    public ConsoleColorsEnum alertColor;
     public ConsoleColorsEnum reset;
 
     public Printer() {
@@ -28,6 +29,7 @@ public final class Printer {
         nameColor = ConsoleColorsEnum.BRIGHT_CYAN_TEXT;
         subjectColor = ConsoleColorsEnum.BRIGHT_BLUE_TEXT;
         detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+        alertColor = ConsoleColorsEnum.BOLD_RED_TEXT;
         reset = ConsoleColorsEnum.WHITE_TEXT;
     }
 
@@ -89,10 +91,6 @@ public final class Printer {
         print(LINE + "" + NEWLINE + NEWLINE + "Please enter a Command:");
     }
 
-    public void printWhiteSpace() {
-        print(" ");
-    }
-
     public void printHelpSheet() {
         print(ConsoleColorsEnum.BOLD + "" + logoColor + "/add /n <CHEAT_SHEET_NAME> /s<SUBJECT>"
                 + reset + NEWLINE
@@ -124,7 +122,13 @@ public final class Printer {
                 + reset + NEWLINE
                 + ConsoleColorsEnum.BOLD + "" + favColor + "/fav /n <CHEAT_SHEET_NAME>"
                 + reset + NEWLINE
-                + "\tMarks the cheat sheet as favourite." + NEWLINE
+                + "\tAdds the cheat sheet to favourites." + NEWLINE
+
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/fav /i <CHEAT_SHEET_INDEX> /d"
+                + reset + NEWLINE
+                + ConsoleColorsEnum.BOLD + "" + favColor + "/fav /n <CHEAT_SHEET_NAME> /d"
+                + reset + NEWLINE
+                + "\tRemoves the cheat sheet from favourites." + NEWLINE
 
                 + ConsoleColorsEnum.BOLD + "" + logoColor + "/find /s <SUBJECT> /k <KEYWORD>"
                 + reset + NEWLINE
@@ -153,19 +157,8 @@ public final class Printer {
     public void printCheatSheet(CheatSheet cheatSheet) {
         print(nameColor + "\tName: " + cheatSheet.getName() + NEWLINE
                 + subjectColor + "\tSubject: " + cheatSheet.getSubject() + NEWLINE
-                + detailsColor + "\tDetails: " + cheatSheet.getDetails() + reset);
-    }
-
-    public void printCheatSheetList(CheatSheetList cheatSheetList) {
-        int i = 0;
-        for (CheatSheet cs : cheatSheetList.getList()) {
-            print("\t"
-                    + (++i) + ". " + nameColor + cs.getName() + reset
-                    + " (Subject: " + subjectColor
-                    + cs.getSubject() + reset + ")"
-                    + (cs.getIsFavourite() ? favColor + " *\n" : "\n")
-                    + reset);
-        }
+                + detailsColor + "\tDetails: " + cheatSheet.getWrappedDetails()
+                + reset);
     }
 
     public void printCheatSheetSize(CheatSheetList cheatSheetList) {
@@ -185,6 +178,11 @@ public final class Printer {
         print("Now you have no cheatsheets" + reset);
     }
 
+    public void printDeleteConfirmation(CheatSheet cheatSheet) {
+        print(alertColor + "Are you sure to delete the" + cheatSheet.getName() + " cheatsheet?" + NEWLINE
+                + "Type Y or Yes to confirm, or any other character to cancel" + reset);
+    }
+
     public void printDeleteCheatSheetMessage(CheatSheet cheatSheet, CheatSheetList cheatSheetList) {
         print(textColor + "This cheat sheet has been deleted: " + reset);
         printCheatSheet(cheatSheet);
@@ -197,8 +195,12 @@ public final class Printer {
         printCheatSheet(cheatSheet);
     }
 
-    public void printFavouritedCheatSheetMessage(CheatSheet cheatSheet) {
-        print(textColor + "This cheat sheet has been favourited: " + reset);
+    public void printFavouritedCheatSheetMessage(CheatSheet cheatSheet, boolean isAddFav) {
+        if (isAddFav) {
+            print(textColor + "This cheat sheet has been added to favourites: " + reset);
+        } else {
+            print(textColor + "This cheat sheet has been removed from favourites: " + reset);
+        }
         printCheatSheet(cheatSheet);
     }
 
@@ -225,6 +227,7 @@ public final class Printer {
             nameColor = ConsoleColorsEnum.BRIGHT_MAGENTA_TEXT;
             subjectColor = ConsoleColorsEnum.BOLD_MAGENTA_TEXT;
             detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+            alertColor = ConsoleColorsEnum.BOLD_RED_TEXT;
             reset = ConsoleColorsEnum.WHITE_TEXT;
             break;
         case 2:
@@ -234,6 +237,7 @@ public final class Printer {
             nameColor = ConsoleColorsEnum.BRIGHT_RED_TEXT;
             subjectColor = ConsoleColorsEnum.BOLD_YELLOW_TEXT;
             detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+            alertColor = ConsoleColorsEnum.BOLD_RED_TEXT;
             reset = ConsoleColorsEnum.WHITE_TEXT;
             break;
         case 3:
@@ -243,6 +247,7 @@ public final class Printer {
             nameColor = ConsoleColorsEnum.BOLD_WHITE_TEXT;
             subjectColor = ConsoleColorsEnum.WHITE_TEXT;
             detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+            alertColor = ConsoleColorsEnum.BOLD_RED_TEXT;
             reset = ConsoleColorsEnum.WHITE_TEXT;
             break;
         default:
@@ -252,14 +257,23 @@ public final class Printer {
             nameColor = ConsoleColorsEnum.BRIGHT_CYAN_TEXT;
             subjectColor = ConsoleColorsEnum.BRIGHT_BLUE_TEXT;
             detailsColor = ConsoleColorsEnum.WHITE_TEXT;
+            alertColor = ConsoleColorsEnum.BOLD_RED_TEXT;
             reset = ConsoleColorsEnum.WHITE_TEXT;
             break;
         }
-        print("Changed color scheme to option " + option + ":\n"
-                + favColor + "\tColor 1\n"
-                + nameColor + "\tColor 2\n"
-                + subjectColor + "\tColor 3\n"
-                + reset);
+        if (option < 0 || option > 3) {
+            print("Invalid option " + option + ". Changed color scheme to default colors:\n"
+                    + favColor + "\tColor 1\n"
+                    + nameColor + "\tColor 2\n"
+                    + subjectColor + "\tColor 3\n"
+                    + reset);
+        } else {
+            print("Changed color scheme to option " + option + ":\n"
+                    + favColor + "\tColor 1\n"
+                    + nameColor + "\tColor 2\n"
+                    + subjectColor + "\tColor 3\n"
+                    + reset);
+        }
     }
 
     // prints all colors, for debugging purposes only

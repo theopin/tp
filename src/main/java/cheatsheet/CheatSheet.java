@@ -42,12 +42,18 @@ public class CheatSheet {
         this.details = details;
     }
 
-    public void setFavorite() {
-        isFavourite = true;
-    }
-
     public void setFavourite(boolean isFavourite) {
         this.isFavourite = isFavourite;
+    }
+
+    public String getWrappedDetails() {
+        String[] parsedDescription = this.getDetails().split("\n");
+        StringBuilder wrappedDescription = new StringBuilder();
+        for (String s : parsedDescription) {
+            wrappedDescription.append(s);
+            wrappedDescription.append("\n\t\t\t ");
+        }
+        return wrappedDescription.toString();
     }
 
     @Override

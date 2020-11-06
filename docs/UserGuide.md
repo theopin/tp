@@ -1,6 +1,5 @@
 
 
-
 <h1 align="center">  CheatLogs User Guide </h1>
 
 
@@ -32,20 +31,20 @@ The table of contents below lets you easily access the documentation for install
 * [3. GUI text editor](#editor)
 * [4. Commands](#commands)
    * [4.1. Storage commands](#storage-command-type)
-     * [4.1.1. Adding a cheatsheet: `/add`](#add-command)
+   	  * [4.1.1. Adding a cheatsheet: `/add`](#add-command)
 	  * [4.1.2. Deleting a cheatsheet: `/delete`](#delete-command)
 	  * [4.1.3. Clearing all entries: `/clear`](#clear-command)
   * [4.2.  Manipulation commands](#manipulation-command-type)
-	* [4.2.1. Editing a cheatsheet: `/edit` ](#edit-command)
-	* [4.2.2. Favouriting a cheatsheet: `/fav` ](#favourite-command)
+	  * [4.2.1. Editing a cheatsheet: `/edit` ](#edit-command)
+	  * [4.2.2. Favouriting a cheatsheet: `/fav` ](#favourite-command)
   * [4.3.  Viewing commands](#viewing-command-type)
-	* [4.3.1. Locating a cheatsheet by name: `/find`](#find-command)
-	* [4.3.2. Viewing the cheatsheet: `/view`](#view-command)
-	* [4.3.3. Listing all cheatsheets: `/list`](#list-command)
+	 * [4.3.1. Locating a cheatsheet by name: `/find`](#find-command)
+	 * [4.3.2. Viewing the cheatsheet: `/view`](#view-command)
+	 * [4.3.3. Listing all cheatsheets: `/list`](#list-command)
   * [4.4.  General commands](#general-command-type)
-	  * [4.4.1. Viewing help: `/help`](#help-command)
-	  * [4.4.2. Change program settings: `/set`](#settings-command)
-	  * [4.4.3. Exiting the program: `/exit`](#exit-command)
+	 * [4.4.1. Viewing help: `/help`](#help-command)
+	 * [4.4.2. Change program settings: `/set`](#settings-command)
+	 * [4.4.3. Exiting the program: `/exit`](#exit-command)
 * [5. Data storage](#data-storage)
   * [5.1 Data file contents](#data-file-contents)
 	  * [5.1.1. XML file configurations](#xml-file-configurations)  
@@ -165,12 +164,25 @@ This is one of the most used command type in CheatLogs. They allow you to manage
 ___
 
 <a id="add-command"></a>
-### 4.1.1. Adding a cheatsheet: `/add` <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+### 4.1.1. Adding a cheatsheet: `/add` <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+You can easily use the **/add** command to add your own cheat sheets to the list by using 2 different methods **easy** and **hard** mode.
+#### 4.1.1.1 Adding a cheatsheet using the easy mode
+> Format: `add`
 
->Format: `/add /n CHEATSHEET_NAME /s SUBJECT` <br>
->Flag optionality: `/n`(required), `/s` (optional)
+The first method that you can use to add cheatsheet is the easy command. Just type `/add` without adding any flag or description. 
+You will be prompted to fill in the `NAME` and the `SUBJECT` of your cheatsheet.
 
-A cheatsheet is first constructed with the name `CHEATSHEET_NAME` and subject `SUBJECT`. The Editor will then pop up for you to enter the description of the cheatsheet.
+Shortly after, a window will pop up to show the editing window.
+Enter the details of your cheatsheet there, then click `Actions` then `Save`
+![image](https://i.ibb.co/n01kQ4Y/carbon.png)
+
+Congratulations! You have added your first cheatsheet into CheatLogs.
+
+#### 4.1.1.2 Adding a cheatsheet using the advanced mode
+>Format: `/add /n <CHEATSHEET_NAME> /s <SUBJECT>` <br>
+>Flag optionality: `/n` (required)`/s` (optional)
+>
+For the more advanced users, you can also add cheatsheets using the advanced command. A cheatsheet is first constructed with the name `CHEATSHEET_NAME` and subject `SUBJECT`. The Editor will then pop up for you to enter the description of the cheatsheet.
 
 If a non-empty description is saved, the cheatsheet is added to the List and stored to the */data* folder in the jar file directory. The expected outcome should be similar to below.
 ![image](https://i.ibb.co/hV499yH/image.png)
@@ -184,10 +196,20 @@ Examples:
 * `/add /n classes s/Java`
 * `/add /n Cppthings`
 
-____
+Shortly after, an editing window will pop up to show the editing window.
+Enter the details of your cheatsheet there, then click `Actions` then `Save`
 
+If you want to clear the editing area, clck `Actions` then click `Clear All`
  <a id="delete-command"></a>
-### 4.1.2. Deleting a cheatsheet: `/delete`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+ 
+#### 4.1.2. Deleting a cheatsheet: `/delete`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+From the previous subsection, we learned how to add a cheatsheet into CheatLogs. 
+
+In this section, you can learn how to use the `/delete` function.
+
+To be used after using /list, Deletes the cheatsheet at INDEX items down the list. The first cheatsheet has an index of 1. This cheatsheet will be deleted from the /data folder.
+ 
+Format 1: `/delete i/INDEX`
 
 >Format: `/delete /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
@@ -249,7 +271,7 @@ ____
 >Format: `/fav /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-If you have some cheat sheets which are used frequently, you can mark them as favourite so that those cheat sheets will be always displayed on the top of the List. `/fav` marks the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both.  The expected result is similar to below if a matching cheatsheet is found.
+If you have some cheat sheets which are used frequently, you can mark them as favourite so that those cheat sheets will always be displayed on the top of the List. `/fav` marks the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both.  The expected result is similar to below if a matching cheatsheet is found.
 ![image](https://i.ibb.co/VW5JZNx/image.png)
 When either the name or index do not match, Cheatlogs will specify the error as shown below.
 ![image](https://i.ibb.co/vPgbnbW/image.png)
@@ -268,11 +290,7 @@ ___
 
 These are commands that allow you to quickly look up the List for the cheatsheets you want.
 
-  
-
 Some of these commands present their results in a table form and allow you to sort the results through various filters provided. We will call this **Sorting Mode**.
-
-  
 
 In Sorting Mode, cheat sheets are originally shown in the order they were found inside the List. You can then sort them in [lexicographical order](https://en.wikipedia.org/wiki/Lexicographic_order#:~:text=In%20mathematics%2C%20the%20lexicographic%20or,of%20a%20totally%20ordered%20set.) according to any of the cheatsheet properties. For example , sorting by descending name means to enter`3`in this mode and an illustration of expected output is the image below. To exit this mode, enter anything that is not valid.
 
@@ -333,7 +351,7 @@ Example:
  *  `/list`
 
 <a id="general-command-type"></a>
-## 4.4. General Commands:  <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 4.4. General Commands: (Adhy)  <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 These are useful general purpose commands that don't fit into the other categories but are still very useful for you to know.
 
 ---
@@ -342,7 +360,7 @@ These are useful general purpose commands that don't fit into the other categori
 ### 4.4.1 Viewing help: `/help`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 >Format: `/help`
 >
-Lists all the possible commands that can be executed in the application and formating information. Below is what you should expect to see.
+If you forgot the syntax of a certain command, you can simply type `/help`. It will list all the possible commands that can be executed in the application together with its format and example. Below is what you should expect to see.
 
 ![image](https://i.ibb.co/ZYn38J5/image.png)
 
@@ -355,11 +373,11 @@ Example:
 >Format: `/set /c COLORSCHEME`
 >Flag optionality: `/c`(required) 
 
-Changes the settings of CheatLogs. Currently, only the color scheme of output text can be changed. You can change to any of the 3 additional color scheme options available numbering from 1 to 3 and CheatLogs switch to the one matching `COLORSCHEME`. The image below shows the result of a successful change.
+CheatLogs is highly customizable. You can use the `/set` command to change the behavior of CheatLogs. Currently, only the color scheme of output text can be changed. You can change to any of the 3 additional color scheme options available numbering from 0 to 3 and CheatLogs switch to the one matching `COLORSCHEME`. The image below shows the result of a successful change.
 
 ![image](https://i.ibb.co/5GFvnHb/image.png)
 
-Settings outside the available range default to color scheme 0.(this behavior is to be changed in future iterations)
+If your flag description `COLORSCHEME` does not fall in the range mentioned above, it will change the color scheme to the default setting (option 0).
 
 > :exclamation: The colors will likely vary depending on the terminal that you use and differ from the one shown. We suggest simply picking the most readable one.
  
@@ -372,9 +390,9 @@ Settings outside the available range default to color scheme 0.(this behavior is
 ### 4.4.3 Exiting the program: `/exit`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 >Format: `/exit`
 
-Exits the application. CheatLogs hopes you will open it again.
+If you are done using CheatLogs, simple type `/exit` to close the application. CheatLogs hopes you will open it again.
 
- Examples:   
+ Example:   
  * `/exit`
 
 <br>
@@ -523,13 +541,12 @@ Action | Format | Examples
 -------- | ---------- | ------------
 Add | /add /n <CHEATSHEET_NAME> /s <SUBJECT> | /add /n List /s Java
 Delete | /delete /i <CHEATSHEET_INDEX> <br> /delete /n <CHEATSHEET_NAME> | /delete /n List , /delete /i 1
-Clear | /clear |
+Clear | /clear | /clear
 Edit | /edit /i <CHEATSHEET_INDEX> <br> /edit /n <CHEATSHEET_NAME> | /edit /i 1 , /edit /n List
 Favourite | /fav /i <CHEATSHEET_INDEX> <br> /fav /n <CHEATSHEET_NAME> | /fav /i 2 , /fav /n Cheat
 Find | /find /s <SUBJECT> /k <KEYWORD> | /find /s Java , /find /s Java /k cheater
 View | /view /i <CHEATSHEET_INDEX> <br>/view /n <CHEATSHEET_NAME> | /fav /i 3 , /fav /n List
-List | /list |
-Help | /help |
+List | /list | /list
+Help | /help | /help
 Settings | /set /c <OPTION_NUMBER> | /set /c 1
-Exit | /exit |
-
+Exit | /exit | /exit

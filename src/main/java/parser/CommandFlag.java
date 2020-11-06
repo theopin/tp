@@ -2,7 +2,7 @@ package parser;
 
 public enum CommandFlag {
     NAME("/n"),
-    DESCRIPTION("/d"),
+    DELETE("/d"),
     INDEX("/i"),
     SUBJECT("/s"),
     SECTIONKEYWORD("/k"),
