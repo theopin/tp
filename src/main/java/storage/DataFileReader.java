@@ -32,16 +32,16 @@ import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  * Allows the user to read data from the data directory.
  * The data are used to update the system settings
  * and insert the cheatsheets present in the folder to the application.
  */
 public class DataFileReader extends DataFile {
-    private CheatSheetList cheatSheetList;
-    private Logger logger = Logger.getLogger("Foo");
-    private Settings settings;
+    private final CheatSheetList cheatSheetList;
+    private final Logger readLogger = Logger.getLogger("FileReader");
+    private final Settings settings;
+
 
     public DataFileReader(Settings settings, Printer printer, CheatSheetList cheatSheetList) {
         this.settings = settings;
@@ -61,11 +61,23 @@ public class DataFileReader extends DataFile {
         try {
             loadCheatSheetsAndSettings();
         } catch (FileNotFoundException e) {
-            logger.log(Level.WARNING, "processing error");
-            printer.print(e.getMessage());
+            readLogger.log(Level.WARNING, "Missing Data Directory");
+            printer.print("The following file is not found: "
+                    + System.lineSeparator()
+                    + e.getMessage());
             createNewDirectory();
+
         } catch (DirectoryIsEmptyException d) {
-            printer.print(d.getMessage());
+            readLogger.log(Level.INFO, "Empty Directory Present");
+            printer.print("The following directory is empty!"
+                    + System.lineSeparator()
+                    + d.getMessage());
+
+        } catch (IOException f) {
+            readLogger.log(Level.WARNING, "IO File Error");
+            printer.print("The following file could not be read: "
+                    + System.lineSeparator()
+                    + f.getMessage());
         }
     }
 
@@ -78,7 +90,7 @@ public class DataFileReader extends DataFile {
         try {
             extractXmlFilesFromJar();
         } catch (IOException e) {
-            logger.log(Level.WARNING, "IO File Error");
+            readLogger.log(Level.WARNING, "IO File Error");
             printer.print("The following file could not be written: "
                     + System.lineSeparator()
                     + e.getMessage());
@@ -90,7 +102,7 @@ public class DataFileReader extends DataFile {
      * and transfers them to the /data dir before executing the reader
      * operation.
      *
-     * @throws IOException thrown if there are issues with reading and
+     * @throws IOException Thrown if there are issues with reading and
      *                     writing the transferred .xml file as well as
      *                     the files inside CheatLogs.jar.
      */
@@ -175,7 +187,8 @@ public class DataFileReader extends DataFile {
      * @throws FileNotFoundException     Thrown if the /data folder is not found
      * @throws DirectoryIsEmptyException Thrown if the /data folder is empty
      */
-    protected void loadCheatSheetsAndSettings() throws FileNotFoundException,
+
+    protected void loadCheatSheetsAndSettings() throws IOException,
             DirectoryIsEmptyException {
         if (!Files.exists(DATA_DIR)) {
             throw new FileNotFoundException();
@@ -186,14 +199,10 @@ public class DataFileReader extends DataFile {
 
         assert directoryItems != null;
         if (directoryItems.length == 0) {
-            throw new DirectoryIsEmptyException();
+            throw new DirectoryIsEmptyException(DATA);
         }
 
-        try {
-            extractFromDirectory(DATA_DIR);
-        } catch (IOException e) {
-            printer.print(e.getMessage());
-        }
+        extractFromDirectory(DATA_DIR);
     }
 
     /**
@@ -226,13 +235,26 @@ public class DataFileReader extends DataFile {
             }
 
             try {
+
+                extractCheatSheet(dataDirectoryFile);
+
                 if (dataDirectoryFile.getName().equals("settings.txt")) {
                     loadUserSettings(dataDirectoryFile);
                 } else {
                     extractCheatSheet(dataDirectoryFile);
                 }
-            } catch (ParserConfigurationException | SAXException e) {
-                printer.print(e.getMessage());
+
+            } catch (ParserConfigurationException e) {
+                readLogger.log(Level.WARNING, "XML Parser Error");
+                printer.print("There were issues with building the XML parser: "
+                        + System.lineSeparator()
+                        + e.getMessage());
+
+            } catch (SAXException f) {
+                readLogger.log(Level.WARNING, "SAX Read File Error");
+                printer.print("There were issues with the usage of the XML parser: "
+                        + System.lineSeparator()
+                        + f.getMessage());
             }
         }
     }
@@ -276,7 +298,10 @@ public class DataFileReader extends DataFile {
                 break;
             }
         }
-        bundleCheatSheetComponents(cheatSheetDocument, favouriteElement, subjectElement, contentElement);
+        bundleCheatSheetComponents(cheatSheetDocument,
+                favouriteElement,
+                subjectElement,
+                contentElement);
     }
 
     /**
@@ -321,6 +346,7 @@ public class DataFileReader extends DataFile {
             isMarkedFavourite = favouriteElement
                     .getFirstChild()
                     .getTextContent()
+                    .toUpperCase()
                     .equals(YES);
         } catch (NullPointerException e) {
             isMarkedFavourite = false;
