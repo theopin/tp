@@ -112,25 +112,23 @@ A bit confused? Here is a video guide on doing steps 4-9 using the terminal (not
 ##  3. GUI text editor<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 CheatLogs provides a simple graphical user interface (GUI) text editor that automatically pops up on certain commands. These commands include: `add` and `edit`. This allows you to have an easier time manipulating data, performing simple operations such as cut, copy and paste or even using your mouse which are typically unavailable on the CLI. Below is what you can expect to see and be able to do when it pops up.
 <p align="center">
-   <img width="500" height="350" src="https://i.ibb.co/YbC11XB/ezgif-6-567f275ee84a.gif">
+   <img width="500" height="350" src="https://i.ibb.co/3kZ7Xjq/cheatlogs-editor.gif">
 </p>
 
-### Tab functions
-Additional functionalities of the editor above are found in the tabs.
-| Actions tab | Edit tab |
-|--|--|
-|  ![image](https://i.ibb.co/1TB0F3L/image.png)| ![image](https://i.ibb.co/jRwTQB3/image.png)|
+### Functions
+There are two main group of functions that can be used in out Graphical User Interface. 
 
-Here are brief explanations for the above tabs. <br>
-Actions tab
- - Save : Save the text inputted, exits the text editor.
- - Clear All : Remove all text, remains in the text editor.
- - Cancel : Remove all text, exit the text editor.
+Actions tab - Actions that relates to the cheatsheet files
+ - Save : Saves the text inputted, then exits the text editor.
+ - Clear All : Removes all text in the text editor, remains in the text editor.
+ - Cancel : Removes all text and exit the text editor without saving.
 
-Edit tab
+Edit tab - Actions to manipulate the contents
   - Copy : Copies the text highlighted in the editor to the system clipboard.
  -  Cut : Cuts the text highlighted in the editor to the system clipboard.
  -  Paste : Pastes from the system clipboard to the position of the text cursor.
+
+> :exclamation: The editor will have a built in feature to avoid blank cheatsheets.
 
 In the following sections, we will be referring to this editor as **the Editor**. 
  
@@ -225,6 +223,8 @@ When either the name or index do not match, CheatLogs will specify the error as 
 
 ![image](https://i.ibb.co/xHW7tLf/image.png)
 
+Since our program currently doesn't have any undo functionality,.
+Once you delete a cheatsheet, it will be deleted forever, and is not recoverable.
 
 Examples:
 * `/delete /n if else /i 2`
@@ -302,6 +302,8 @@ ___
 <a id="viewing-command-type"></a>
 ## 4.3. Viewing Commands: <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
+> :exclamation: Colour of images in this section may not be exactly the same as what you see in command prompt due to syntax highlighting of the imaging software used.
+
 These are commands that allow you to quickly look up the List for the cheatsheets you want. It is recommended to use one command after another.
 E.g. Using `/find` to list all matching cheat lists then `/view` with corresponding name to view the cheat sheet.
 
@@ -325,15 +327,42 @@ according to any of the cheatsheet properties. For example , sorting by descendi
 >Format: `/find /s <SUBJECT> /k <KEYWORD>` <br>
 >Flag optionality: [`/s`, `/k`] (At least one)
 
-Matches and displays a table of cheatsheets from the List whose subject contains `SUBJECT` or description contains `KEYWORD` whichever you included or both if you included both. The expected result is similar to below if matching cheatsheets are found.
+`/find` command allows you to search for cheat sheets using `SUBJECT` and/or `KEYWORD`. The matching cheat sheets would be displayed in a table.
 
-![image](https://i.ibb.co/7N3w0wQ/image.png)
+After getting prompted to enter a command, you can search for cheat sheets using:
 
-CheatLogs then enters Sorting Mode. And resumes after you end it.![image](https://i.ibb.co/7N3w0wQ/image.png)
+1. `/find /s <SUBJECT>` to search for cheat sheets with matching subject. More details on the matching algorithm at the end of section.
+2. `/find /k <KEYWORD>` to search for cheat sheets with contents that contains `KEYWORD`.
+3. `/find /s <SUBJECT> /k <KEYWORD>` to search for cheat sheets with matching subject and contains `KEYWORD`.
 
-If there are no matches, the output is similar to below and CheatLogs does not enter Sorting Mode.
+`/find /s <SUBJECT>`       | ` /find /k <KEYWORD>`     | `/find /s <SUBJECT> /k <KEYWORD>`
+:-------------------------:|:-------------------------:|:-------------------------:
+![image](https://i.ibb.co/kSVw5r3/image.png) | ![image](https://i.ibb.co/TM4J8s1/image.png) | ![image](https://i.ibb.co/fGdPMdC/image.png)
 
-![image](https://i.ibb.co/t2MT44f/image.png)
+Cheat sheets that meet the criteria of the command you entered would be displayed in a table as shown in the images below.
+
+`/find /s <SUBJECT>`       | ` /find /k <KEYWORD>`     | `/find /s <SUBJECT> /k <KEYWORD>`
+:-------------------------:|:-------------------------:|:-------------------------:
+![image](https://i.ibb.co/HB7MNJx/image.png) | ![image](https://i.ibb.co/z7X4KF2/image.png) | ![image](https://i.ibb.co/hym26SW/image.png)
+
+
+CheatLogs then enters Sorting Mode. In sorting Mode, you can sort according to names or subjects by inputting the corresponding index (1-4).
+
+
+Name ascending       | Subject ascending     | Name descending | Subject descending
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![image](https://i.ibb.co/yPRhvH3/image.png) | ![image](https://i.ibb.co/z2jHKSB/image.png) | ![image](https://i.ibb.co/f8D0QXY/image.png) | ![image](https://i.ibb.co/ThvTVnG/image.png)
+
+To exit Sorting Mode and simply enter another character (excluding 1-4).
+
+![image](https://i.ibb.co/0C6wc9J/image.png)
+
+
+
+However, if none of the cheat sheets meet the criteria of your `/find` command, CheatLogs will not enter Sorting Mode as shown in the image below.
+
+![image](https://i.ibb.co/wcqcFxR/image.png)
+
 
 > :bulb:  Notes on matching algorithm
 > * The search is **case-sensitive** e.g. `help` matches `helpers` but not `Help`. 
@@ -342,7 +371,7 @@ If there are no matches, the output is similar to below and CheatLogs does not e
 Examples:
 * `/find /s loop`
 * `/find /s Integer /k 2`
-* `/find /k 1`
+* `/find /k hello`
 
  ---
  
@@ -351,12 +380,18 @@ Examples:
 >Format: `/view /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-Views and prints the details of the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both.  The expected result is similar to below if a matching cheatsheet is found.
+Views and prints the details of the cheatsheet that matches with what you entered for `/view` command.
 
-![image](https://i.ibb.co/9ZttT68/image.png)
-When either the name or index do not match, CheatLogs will specify the error as shown below.
+After getting prompted to enter a command, you can view a specific cheat sheet using:
 
-![image](https://i.ibb.co/28XQVZL/image.png)
+1. `/view /n <CHEATSHEET_NAME>` to view the cheat sheet with name, `CHEATSHEET_NAME`
+2. `/view /i <CHEATSHEET_INDEX>` to view the cheat sheet with index, `CHEATSHEET_INDEX`
+3. `/view /n <CHEATSHEET_NAME> /i <CHEATSHEET_INDEX>` to view the cheat sheet with name and index corresponding to `CHEATSHEET_NAME` and `CHEATSHEET_INDEX`. NOTE: If `CHEATSHEET_NAME` and `CHEATSHEET_INDEX` are pointing at two different cheat sheet, no cheat sheet's content would be displayed.
+
+`/view /n <CHEATSHEET_NAME>`| `/view /i <CHEATSHEET_INDEX>`  | `/view /n <CHEATSHEET_NAME> /i <CHEATSHEET_INDEX>`
+:-------------------------:|:-------------------------:|:-------------------------:
+![image](https://i.ibb.co/ypPympz/image.png) | ![image](https://i.ibb.co/k58qGf6/image.png) | ![image](https://i.ibb.co/h7qS4x8/image.png)
+
 Examples:
 * `/view /n Read /i 2`
 * `/view /i 1` 
@@ -369,10 +404,24 @@ Examples:
 
 >Format: `/list`
 
-Lists all the cheatsheets in the List in a table. CheatLogs then enters sorting mode. 
-In sorting mode, CheatLogs accepts a number (1-4) and will sort accordingly to the prompt message shown in the image below. Any other characters will exit sorting mode.
-The program continues after exiting sorting mode. The image below illustrated what you may see after executing the command successfully.
- ![image](https://i.ibb.co/C7ztqZz/image.png)
+Lists all the cheatsheets in the List in a table.
+
+After getting prompted to enter a command, you can view a specific cheat sheet using:
+
+* `/list` to list all cheat sheets available.
+
+![image](https://i.ibb.co/zF8F4PM/image.png)
+
+CheatLogs then enters Sorting Mode. In sorting Mode, you can sort according to names or subjects by inputting the corresponding index (1-4).
+
+Name ascending       | Subject ascending     | Name descending | Subject descending
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![image](https://i.ibb.co/yPRhvH3/image.png) | ![image](https://i.ibb.co/z2jHKSB/image.png) | ![image](https://i.ibb.co/f8D0QXY/image.png) | ![image](https://i.ibb.co/ThvTVnG/image.png)
+
+To exit Sorting Mode and simply enter another character (excluding 1-4).
+
+![image](https://i.ibb.co/4MNMRW3/image.png)
+
 Example:
  *  `/list`
 
@@ -388,7 +437,7 @@ These are useful general purpose commands that don't fit into the other categori
 >
 If you forgot the syntax of a certain command, you can simply type `/help`. It will list all the possible commands that can be executed in the application together with its format and example. Below is what you should expect to see.
 
-![image](https://i.ibb.co/ZYn38J5/image.png)
+![image](https://i.ibb.co/6mGh0wV/image.png)
 
 Example:
 * `/help`
@@ -583,5 +632,5 @@ Find | /find /s <SUBJECT> /k <KEYWORD> | /find /s Java , /find /s Java /k cheate
 View | /view /i <CHEATSHEET_INDEX> <br>/view /n <CHEATSHEET_NAME> | /fav /i 3 , /fav /n List
 List | /list | /list
 Help | /help | /help
-Settings | /set /c <OPTION_NUMBER> | /set /c 1
+Settings | /set /c <OPTION_NUMBER> <br> /set /m <OPTION> | /set /c 1 <br> /set /m on, /set /m off
 Exit | /exit | /exit

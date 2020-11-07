@@ -6,10 +6,6 @@ import exception.CommandException;
 import parser.CommandFlag;
 import ui.Printer;
 
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
-
 public class ViewCommand extends FinderCommand {
     public static final String invoker = "/view";
 
@@ -27,15 +23,8 @@ public class ViewCommand extends FinderCommand {
         try {
             CheatSheet desiredCheatSheet = getCheatSheetFromNameOrIndex();
             printer.printViewCheatSheetMessage(desiredCheatSheet);
-            copyTextToClipboard(desiredCheatSheet.getDetails());
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new CommandException("Please enter a valid name or/and index");
         }
-    }
-
-    private void copyTextToClipboard(String contentToBeCopied) {
-        StringSelection stringSelection = new StringSelection(contentToBeCopied);
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        clipboard.setContents(stringSelection, null);
     }
 }
