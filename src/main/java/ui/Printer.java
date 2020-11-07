@@ -152,8 +152,7 @@ public final class Printer {
 
                 + ConsoleColorsEnum.BOLD + "" + logoColor + "/set /c <OPTION_NUMBER>"
                 + reset + NEWLINE
-                + "\tChanges the color scheme of the application. Available options: 1 - 3."
-                + "Type 0 to reset to default color scheme" + NEWLINE
+                + "\tChanges the color scheme of the application. Available options: 0 - 3." + NEWLINE
 
                 + ConsoleColorsEnum.BOLD + "" + logoColor + "/set /m include"
                 + reset + NEWLINE
@@ -292,41 +291,6 @@ public final class Printer {
                     + subjectColor + "\tColor 3\n"
                     + reset);
         }
-    }
-
-    // prints all colors, for debugging purposes only
-    public void printColors() {
-        print(ConsoleColorsEnum.BLACK_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BRIGHT_BLACK_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BOLD_BLACK_TEXT + "TEST\n" + reset);
-
-        print(ConsoleColorsEnum.WHITE_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BRIGHT_WHITE_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BOLD_WHITE_TEXT + "TEST\n" + reset);
-
-        print(ConsoleColorsEnum.BLUE_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BRIGHT_BLUE_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BOLD_BLUE_TEXT + "TEST\n" + reset);
-
-        print(ConsoleColorsEnum.RED_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BRIGHT_RED_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BOLD_RED_TEXT + "TEST\n" + reset);
-
-        print(ConsoleColorsEnum.CYAN_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BRIGHT_CYAN_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BOLD_CYAN_TEXT + "TEST\n" + reset);
-
-        print(ConsoleColorsEnum.YELLOW_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BRIGHT_YELLOW_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BOLD_YELLOW_TEXT + "TEST\n" + reset);
-
-        print(ConsoleColorsEnum.GREEN_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BRIGHT_GREEN_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BOLD_GREEN_TEXT + "TEST\n" + reset);
-
-        print(ConsoleColorsEnum.MAGENTA_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BRIGHT_MAGENTA_TEXT + "TEST\n" + reset);
-        print(ConsoleColorsEnum.BOLD_MAGENTA_TEXT + "TEST\n" + reset);
     }
 
     public void printStartHelpMessage() {
