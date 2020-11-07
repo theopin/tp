@@ -519,8 +519,8 @@ This section includes the contents of the cheatsheet.
 <a id="data-file-organization"></a>
 ## 5.2 Data organization<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-All the data files can be found in the /data directory, which is located in the same directory as
-CheatLogs.jar. Within /data, CheatLogs stores data files in subdirectories whose name matches its
+All the data files can be found in the */data* directory, which is located in the same directory as
+CheatLogs.jar. Within */data*, CheatLogs stores data files in subdirectories whose name matches its
 subject name. This gives you a directory of cheat sheets organized by subject, which you can use
 to retrieve any external cheat sheet file. 
 
@@ -537,21 +537,21 @@ based on the subject you are taking.
 <a id="preloaded-data-files"></a>
 ## 5.3 Preloaded data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-CheatLogs.jar contains some example cheat sheet files. These files will be moved over to the /data
+CheatLogs.jar contains some example cheat sheet files. These files will be moved over to the */data(
 directory when you run the application for the first time. To differentiate these files from your 
-personally created cheatsheets, they are placed under the /preloaded subdirectory. By viewing and
+personally created cheatsheets, they are placed under the */preloaded* subdirectory. By viewing and
 editing these cheatsheets through CheatLogs, you will understand how to operate this program.
 
 The figure below shows a sample organization of the cheat sheet files in a user's directory with
 a few preloaded cheat  included.
 
 ![image](https://i.ibb.co/7KS8vqn/preloaded-Org.png)
-
+*
 In the example above, you can see that CheatLogs keeps the organization of such preloaded cheat sheets seperate
 from the other cheat sheet files. This is to help you to better identify which files are marked as
 preloaded.
 
-> :exclamation: If you create a new file within any subdirectory of /preloaded, CheatLogs will assume that these files have been preloaded and will treat them as such.
+> :exclamation: If you create a new file within any subdirectory of */preloaded*, CheatLogs will assume that these files have been preloaded and will treat them as such.
 
 <br>
 
