@@ -10,7 +10,7 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
 1. **Import the project _as a Gradle project_**, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
 1. **Verify the set up**: After the importing is complete, locate the `src/main/java/cheatlogs/CheatLogs.java` file, right-click it, and choose `Run CheatLogs.main()`. If the setup is correct, you should see something like the image below:
 
-![CheatLogs welcome screen]( https://i.ibb.co/pK6CtPv/image.png)
+![CheatLogs welcome screen](https://i.ibb.co/L6LmYGZ/mainMenu.png)
 
 Type some word and press enter to let the execution proceed to the end.
 
