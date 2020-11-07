@@ -70,6 +70,22 @@ public class DataFileReader extends DataFile {
     }
 
     /**
+     * Attempts to transfer preloaded cheatsheets from CheatLogs.jar.
+     * Handles exceptions arising from issues when
+     * transferring these preloaded cheatsheets into the /data directory.
+     */
+    public void extractPreloadedCheatSheets() {
+        try {
+            extractXmlFilesFromJar();
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "IO File Error");
+            printer.print("The following file could not be written: "
+                    + System.lineSeparator()
+                    + e.getMessage());
+        }
+    }
+
+    /**
      * Extracts the preloaded cheatsheet .xml files from CheatLogs.jar
      * and transfers them to the /data dir before executing the reader
      * operation.
@@ -78,7 +94,7 @@ public class DataFileReader extends DataFile {
      *                     writing the transferred .xml file as well as
      *                     the files inside CheatLogs.jar.
      */
-    public void extractXmlFilesFromJar() throws IOException {
+    private void extractXmlFilesFromJar() throws IOException {
         JarFile jarFile = new JarFile(JAR_DIR);
 
         Enumeration<JarEntry> enumEntries = jarFile.entries();
@@ -91,10 +107,10 @@ public class DataFileReader extends DataFile {
             }
 
             String currentFileDir = filterDir(currentFilePath);
+
             createNewFile(jarFile, currentFile, currentFilePath, currentFileDir);
         }
         jarFile.close();
-        executeFunction();
     }
 
     /**
@@ -132,6 +148,9 @@ public class DataFileReader extends DataFile {
                                JarEntry currentFile,
                                String currentFilePath,
                                String currentFileDirPath) throws IOException {
+        //@@author theopin-reused
+        //Reused from https://stackoverflow.com/questions/1529611 with minor modifications
+
         Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, currentFileDirPath);
         Path preloadedFileDirectory = Paths.get(USER_DIR, DATA, currentFilePath);
         verifyDirectoryExistence(null, preloadedSubjectDirectory, true);
