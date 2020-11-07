@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 /**
  * A general class that stores certain constants regarding the
- * file location of the /data directory, as well as a method that can be
- * executed based on the type of class that is a child of this class.
+ * file location of the /data directory, as well as methods that can be
+ * utilised by its sub-classes.
  */
 public abstract class DataFile {
 
