@@ -3,7 +3,14 @@ package editor;
 import exception.EditorException;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JTextArea;
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
+import javax.swing.JMenuItem;
+import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -27,7 +34,6 @@ public class Editor extends JFrame implements ActionListener {
     private JLabel footerLabel;
     private String cheatSheetName;
     private String cheatSheetSubject;
-    private JScrollPane scroll;
 
     public Editor() {
         generateEditorUI();
@@ -37,12 +43,7 @@ public class Editor extends JFrame implements ActionListener {
      * Initializes the editor with the necessary elements.
      */
     private void generateEditorUI() {
-
-
         textArea = new JTextArea();
-        scroll = new JScrollPane(textArea);
-        this.add(scroll);
-        scroll.setVisible(true);
 
         setEditorLayout();
         generateTextArea();
@@ -123,17 +124,15 @@ public class Editor extends JFrame implements ActionListener {
         BufferedImage logoPicture = null;
         try {
             logoPicture = ImageIO.read(new URL("https://i.ibb.co/QCjG7v7/cheatlogs-copy.png"));
-            //logoPicture = ImageIO.read(new File("src/main/resources/EditorResources/cheatlogs.png"));
+            JLabel pictureIcon = new JLabel(new ImageIcon(logoPicture));
+            pictureIcon.setAlignmentX(Component.CENTER_ALIGNMENT);
+            pictureIcon.setBounds(0,0,800,0);
+            topPanel.add(pictureIcon);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        JLabel pictureIcon = new JLabel(new ImageIcon(logoPicture));
-        pictureIcon.setAlignmentX(Component.CENTER_ALIGNMENT);
-        pictureIcon.setBounds(0,0,800,0);
 
-        topPanel.add(pictureIcon);
         addBlackBorder(topPanel);
-
         add(topPanel,BorderLayout.PAGE_START);
     }
 
