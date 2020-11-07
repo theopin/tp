@@ -40,6 +40,8 @@ public abstract class DataFile {
     protected static final Path PRELOADED_DIR = Paths.get(USER_DIR, DATA, PRELOADED);
     protected static final Path DATA_DIR = Paths.get(USER_DIR, DATA);
 
+    protected static final String SETTINGS_FILENAME = "/settings.txt";
+
     protected Printer printer;
     protected static ArrayList<Path> preloadedCheatSheets = new ArrayList<>();
 

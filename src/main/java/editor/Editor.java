@@ -2,37 +2,181 @@ package editor;
 
 import exception.EditorException;
 
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.JMenuBar;
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JMenu;
+import javax.swing.JTextArea;
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 import javax.swing.JMenuItem;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Component;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class Editor extends JFrame implements ActionListener {
     private JTextArea textArea;
-
+    private JLabel footerLabel;
+    private String cheatSheetName;
+    private String cheatSheetSubject;
 
     public Editor() {
         generateEditorUI();
     }
 
+    /**
+     * Initializes the editor with the necessary elements.
+     */
     private void generateEditorUI() {
         textArea = new JTextArea();
-        final JMenuBar menuBar = new JMenuBar();
 
-        // generates the menu bar for the actions and editing commands
-        generateActionsBar(menuBar);
-        generateEditingBar(menuBar);
+        setEditorLayout();
+        generateTextArea();
+        generateRightPane();
+        generateEditorFooter();
+        generateEditorHeader();
+    }
 
-        setJMenuBar(menuBar);
-        add(textArea);
-        setLocationByPlatform(true);
-        setSize(600, 800);
-        setVisible(false);
+    private void generateRightPane() {
+        JPanel rightPanel = new JPanel();
+
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        rightPanel.setBounds(700,50,100,800);
+
+        JLabel editingLabel = new JLabel("  Edit \n",JLabel.CENTER);
+        editingLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        JButton copyButton = new JButton("Copy");
+        JButton cutButton = new JButton("Cut");
+        JButton pasteButton = new JButton("Paste");
+
+        copyButton.addActionListener(this);
+        cutButton.addActionListener(this);
+        pasteButton.addActionListener(this);
+
+        rightPanel.add(editingLabel);
+        rightPanel.add(copyButton);
+        rightPanel.add(cutButton);
+        rightPanel.add(pasteButton);
+
+        JLabel actionsLabel = new JLabel("  Actions \n",JLabel.CENTER);
+        actionsLabel.setBounds(700,800,100,50);
+        actionsLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        JButton clearButton = new JButton("Clear All");
+        JButton saveButton = new JButton("Save");
+        JButton cancelButton = new JButton("Cancel");
+
+        clearButton.setForeground(Color.blue);
+        saveButton.setForeground(Color.green);
+        cancelButton.setForeground(Color.red);
+
+        clearButton.addActionListener(this);
+        saveButton.addActionListener(this);
+        cancelButton.addActionListener(this);
+
+        rightPanel.add(actionsLabel);
+        rightPanel.add(clearButton);
+        rightPanel.add(saveButton);
+        rightPanel.add(cancelButton);
+
+        rightPanel.setBackground(Color.LIGHT_GRAY);
+        addBlackBorder(rightPanel);
+
+        add(rightPanel,BorderLayout.EAST);
+    }
+
+    /**
+     * adds black line border to the selected panel.
+     * @param panel any panel to be added with a black border.
+     */
+    private void addBlackBorder(JPanel panel) {
+        final Border blackBorder = BorderFactory.createLineBorder(Color.BLACK);
+        panel.setBorder(blackBorder);
+    }
+
+    /**
+     * generates the icon on top of the editor.
+     */
+    private void generateEditorHeader() {
+        JPanel topPanel = new JPanel();
+
+        topPanel.setLayout(new BoxLayout(topPanel,BoxLayout.Y_AXIS));
+        topPanel.setBounds(0,0,800,0);
+        topPanel.setSize(800,200);
+        topPanel.setBackground(Color.white);
+
+        BufferedImage logoPicture = null;
+        try {
+            //wPic = ImageIO.read(new URL("https://i.ibb.co/QCjG7v7/cheatlogs-copy.png"));
+            logoPicture = ImageIO.read(new File("src/main/resources/EditorResources/cheatlogs.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JLabel pictureIcon = new JLabel(new ImageIcon(logoPicture));
+        pictureIcon.setAlignmentX(Component.CENTER_ALIGNMENT);
+        pictureIcon.setBounds(0,0,800,0);
+
+        topPanel.add(pictureIcon);
+        addBlackBorder(topPanel);
+
+        add(topPanel,BorderLayout.PAGE_START);
+    }
+
+    private void setEditorLayout() {
+        setSize(800,600); // sets the editor window size
+        setTitle("CheatLogs Editor"); // sets the editor name
+        setLayout(new BorderLayout()); // determines the layout of the editor
+    }
+
+    /**
+     * Generates the editor's text are where the user can input the details of the cheatsheet.
+     */
+    private void generateTextArea() {
+        textArea.setSelectionColor(Color.GRAY); // sets the color of the text Area
+        textArea.setSize(800,600); // sets the size of the text Area
+        add(textArea, BorderLayout.CENTER); // adds the text area into the center of the frame
+    }
+
+    /**
+     * Generates the editor footer to tell the cheatsheet name and subject that is being edited.
+     */
+    private void generateEditorFooter() {
+        JPanel editorFooter = new JPanel();
+        editorFooter.setBounds(0,500,800,50);
+        footerLabel = new JLabel();
+        footerLabel.setText(" ");
+        footerLabel.setForeground(Color.white);
+        editorFooter.add(footerLabel);
+        editorFooter.setBackground(Color.darkGray);
+        add(editorFooter,BorderLayout.PAGE_END);
+    }
+
+    private String generateEditingInformation() {
+        return "You are editing the " + cheatSheetName + " cheatsheet [Subject: " + cheatSheetSubject + "]";
+    }
+
+    private void showSaveWarning() {
+        footerLabel.setText("You are trying to save a blank file");
+        footerLabel.setForeground(Color.red);
+    }
+
+    private void showCheatsheetInfo() {
+        footerLabel.setText(generateEditingInformation());
+        footerLabel.setForeground(Color.white);
     }
 
     /**
@@ -77,17 +221,25 @@ public class Editor extends JFrame implements ActionListener {
         menuBar.add(actionsMenu);
     }
 
+    private boolean checkIsEditorEmpty() {
+        return textArea.getText().isBlank();
+    }
+
     public void actionPerformed(ActionEvent a) {
         String action = a.getActionCommand();
         switch (action) {
         case "Save":
-            close();
+            if (checkIsEditorEmpty()) {
+                open();
+                showSaveWarning();
+            } else {
+                close();
+            }
             break;
         case "Clear All":
             textArea.setText("");
             break;
         case "Cancel":
-            textArea.setText("");
             close();
             break;
         case "Copy":
@@ -116,12 +268,26 @@ public class Editor extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Sets the cheatsheet attributes for the editor footer.
+     * @param name takes in the name to be placed in the footer
+     * @param subject takes in the cheatsheet subject to be placed in the footer.
+     */
+    public void setEditingContentAttributes(String name, String subject) {
+        cheatSheetName = name;
+        cheatSheetSubject = subject;
+    }
+
     public void open() {
         textArea.setText("");
+        showCheatsheetInfo();
         setVisible(true);
         setAlwaysOnTop(true);
     }
 
+    /**
+     * Waits for the editor to close to terminate the program and return the controls to the editor.
+     */
     public void waitForClose() {
         while (isVisible()) {
             try {

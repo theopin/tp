@@ -39,7 +39,7 @@ public class Parser {
     }
 
     public Parser(CheatSheetList cheatSheetList, Editor editor,
-                  DataFileDestroyer fileDestroyer,  Printer printer, Ui ui, Settings settings) {
+                  DataFileDestroyer fileDestroyer, Printer printer, Ui ui, Settings settings) {
         this.cheatSheetList = cheatSheetList;
         this.editor = editor;
         this.fileDestroyer = fileDestroyer;
