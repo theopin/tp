@@ -147,7 +147,7 @@ public class Parser {
                   but the command already has another alternative argument filled
                    skip this key*/
                 if (commandToBeExecuted.getAlternativeArguments().contains(key)
-                 && commandToBeExecuted.hasAlternativeArgument()){
+                    && commandToBeExecuted.hasAlternativeArgument()) {
                     continue;
                 } else if ((map.get(key) == null || map.get(key).isBlank()) && key != CommandFlag.DELETE) {
 
