@@ -200,6 +200,7 @@ public final class Printer {
         print(textColor + "This cheat sheet has been deleted: " + reset);
         printCheatSheet(cheatSheet);
         print(textColor + LINE + reset);
+        printCheatSheetSize(cheatSheetList);
     }
 
     public void printViewCheatSheetMessage(CheatSheet cheatSheet) {
