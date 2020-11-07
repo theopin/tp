@@ -446,7 +446,7 @@ Each cheat sheet file uses an XML file format. This file format organizes the co
 of the file into different sections based on certain attributes of the cheatsheet. The code
 snippet below illustrates the structure of the entire cheat sheet file.
 
-[!image](https://i.ibb.co/mFJ1nDy/xml-Format.png)
+![image](https://i.ibb.co/mFJ1nDy/xml-Format.png)
 
 By following this format, you can manually insert cheatsheet files that are recognized by CheatLogs. The following sections
 explore each segment of this format.
@@ -463,7 +463,7 @@ XML files that it creates or modifies.
 
 >Format: `<?xml version="1.0" encoding="UTF-8" standalone="no"?>` 
 
-> :tip: If you are creating a new XML file, you can choose to omit this line entirely. CheatLogs will still convert such XML files into cheat sheets.
+> :bulb: If you are creating a new XML file, you can choose to omit this line entirely. CheatLogs will still convert such XML files into cheat sheets.
 
 > :exclamation: If you are including this section, you should use the exact settings defined by the format above. Any change to this format can result in CheatLogs not converting such files into cheat sheets.
 
@@ -526,7 +526,7 @@ to retrieve any external cheat sheet file.
 
 The figure below shows a sample organization of the cheat sheet files in a user's directory.
 
-[!image](https://i.ibb.co/jbCTyYG/dataOrg.png)
+![image](https://i.ibb.co/jbCTyYG/dataOrg.png)
 
 In the example illustrated above, the user currently has cheat sheets which are of
 3 different subjects. Even though some cheatsheets have the same name such as
@@ -545,7 +545,7 @@ editing these cheatsheets through CheatLogs, you will understand how to operate 
 The figure below shows a sample organization of the cheat sheet files in a user's directory with
 a few preloaded cheat  included.
 
-[!image](https://i.ibb.co/7KS8vqn/preloaded-Org.png)
+![image](https://i.ibb.co/7KS8vqn/preloaded-Org.png)
 
 In the example above, you can see that CheatLogs keeps the organization of such preloaded cheat sheets seperate
 from the other cheat sheet files. This is to help you to better identify which files are marked as
