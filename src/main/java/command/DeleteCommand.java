@@ -6,6 +6,7 @@ import exception.CommandException;
 import parser.CommandFlag;
 import storage.DataFileDestroyer;
 import ui.Printer;
+import ui.Ui;
 
 /**
  * Command to delete a cheat sheet from the CheatSheetList.
@@ -39,11 +40,21 @@ public class DeleteCommand extends FinderCommand {
     public void execute() throws CommandException {
         try {
             CheatSheet cheatSheetToDelete = getCheatSheetFromNameOrIndex();
-            fileDestroyer.executeFunction(cheatSheetToDelete.getName());
-            cheatSheetList.remove(cheatSheetToDelete.getName());
-            printer.printDeleteCheatSheetMessage(cheatSheetToDelete, cheatSheetList);
+            printer.printDeleteConfirmation(cheatSheetToDelete);
+            if (isDeleteConfirmed()) {
+                fileDestroyer.executeFunction(cheatSheetToDelete.getName());
+                cheatSheetList.remove(cheatSheetToDelete.getName());
+                printer.printDeleteCheatSheetMessage(cheatSheetToDelete, cheatSheetList);
+            }
         } catch (NullPointerException | IndexOutOfBoundsException | NumberFormatException e) {
             throw new CommandException("Please enter a valid name or/and index");
         }
     }
+
+    private boolean isDeleteConfirmed() {
+        String userAnswer = new Ui().getUserInput();
+        userAnswer = userAnswer.toLowerCase();
+        return userAnswer.equals("yes") || userAnswer.equals("y");
+    }
+
 }

@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 /**
  * A general class that stores certain constants regarding the
- * file location of the /data directory, as well as a method that can be
- * executed based on the type of class that is a child of this class.
+ * file location of the /data directory, as well as methods that can be
+ * utilised by its sub-classes.
  */
 public abstract class DataFile {
 
@@ -29,9 +29,6 @@ public abstract class DataFile {
     protected static final String JAR_DIR = "CheatLogs.jar";
 
     protected static final String DATA = "data";
-    protected static final String SRC = "src";
-    protected static final String MAIN = "main";
-    protected static final String RESOURCES = "resources";
     protected static final String PRELOADED = "preloaded";
     protected static final String XML_EXTENSION = ".xml";
 
@@ -42,6 +39,8 @@ public abstract class DataFile {
 
     protected static final Path PRELOADED_DIR = Paths.get(USER_DIR, DATA, PRELOADED);
     protected static final Path DATA_DIR = Paths.get(USER_DIR, DATA);
+
+    protected static final String SETTINGS_FILENAME = "/settings.txt";
 
     protected Printer printer;
     protected static ArrayList<Path> preloadedCheatSheets = new ArrayList<>();
