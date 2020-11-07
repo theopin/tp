@@ -6,7 +6,7 @@
 
 ![Our Logo](https://i.ibb.co/VxzKbbz/a1.png)
 
-3
+
 This user guide serves as a reference for using the features of CheatLogs. The level of technicality within this document is tailored towards our target audience, novice programmers. If you are new, we recommend reading this from the very [start](#before-start).
 
 The table of contents below lets you easily access the documentation for installation, specific features, and frequently asked questions. 
@@ -490,7 +490,7 @@ This section indicates if the cheat sheet should be marked as [favourite](#favou
 
 >Format: `<favourite>STATUS</favourite>`
 
-> :exclamation: STATUS is not case-sensitive. For example, `YES` and `yes` are considered the same .
+> :exclamation: STATUS is not case-sensitive. For example, `YES` and `yes` are considered the same.
 
 > :exclamation: If STATUS contains another word than `YES`, the cheatsheet will not be marked as a favourite. 
 
@@ -504,6 +504,8 @@ sheet files by assigning cheat sheets of the same subject to the same folder.
 
 >Format: `<subject>SUBJECT</subject>`
 
+
+
 ---
 
 <a id="contents"></a>
@@ -512,6 +514,7 @@ sheet files by assigning cheat sheets of the same subject to the same folder.
 This section includes the contents of the cheatsheet.
 >Format: `<contents>CONTENTS</contents>`
 
+> :bulb:  You can append the contents on a separate line.
 
 <a id="data-file-organization"></a>
 ## 5.2 Data organization<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
@@ -538,6 +541,17 @@ CheatLogs.jar contains some example cheat sheet files. These files will be moved
 directory when you run the application for the first time. To differentiate these files from your 
 personally created cheatsheets, they are placed under the /preloaded subdirectory. By viewing and
 editing these cheatsheets through CheatLogs, you will understand how to operate this program.
+
+The figure below shows a sample organization of the cheat sheet files in a user's directory with
+a few preloaded cheat  included.
+
+[!image](https://i.ibb.co/7KS8vqn/preloaded-Org.png)
+
+In the example above, you can see that CheatLogs keeps the organization of such preloaded cheat sheets seperate
+from the other cheat sheet files. This is to help you to better identify which files are marked as
+preloaded.
+
+> :exclamation: If you create a new file within any subdirectory of /preloaded, CheatLogs will assume that these files have been preloaded and will treat them as such.
 
 <br>
 
