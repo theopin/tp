@@ -112,25 +112,23 @@ A bit confused? Here is a video guide on doing steps 4-9 using the terminal (not
 ##  3. GUI text editor<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 CheatLogs provides a simple graphical user interface (GUI) text editor that automatically pops up on certain commands. These commands include: `add` and `edit`. This allows you to have an easier time manipulating data, performing simple operations such as cut, copy and paste or even using your mouse which are typically unavailable on the CLI. Below is what you can expect to see and be able to do when it pops up.
 <p align="center">
-   <img width="500" height="350" src="https://i.ibb.co/YbC11XB/ezgif-6-567f275ee84a.gif">
+   <img width="500" height="350" src="https://i.ibb.co/3kZ7Xjq/cheatlogs-editor.gif">
 </p>
 
-### Tab functions
-Additional functionalities of the editor above are found in the tabs.
-| Actions tab | Edit tab |
-|--|--|
-|  ![image](https://i.ibb.co/1TB0F3L/image.png)| ![image](https://i.ibb.co/jRwTQB3/image.png)|
+### Functions
+There are two main group of functions that can be used in out Graphical User Interface. 
 
-Here are brief explanations for the above tabs. <br>
-Actions tab
- - Save : Save the text inputted, exits the text editor.
- - Clear All : Remove all text, remains in the text editor.
- - Cancel : Remove all text, exit the text editor.
+Actions tab - Actions that relates to the cheatsheet files
+ - Save : Saves the text inputted, then exits the text editor.
+ - Clear All : Removes all text in the text editor, remains in the text editor.
+ - Cancel : Removes all text and exit the text editor without saving.
 
-Edit tab
+Edit tab - Actions to manipulate the contents
   - Copy : Copies the text highlighted in the editor to the system clipboard.
  -  Cut : Cuts the text highlighted in the editor to the system clipboard.
  -  Paste : Pastes from the system clipboard to the position of the text cursor.
+
+> :exclamation: The editor will have a built in feature to avoid blank cheatsheets.
 
 In the following sections, we will be referring to this editor as **the Editor**. 
  
@@ -225,6 +223,8 @@ When either the name or index do not match, CheatLogs will specify the error as 
 
 ![image](https://i.ibb.co/xHW7tLf/image.png)
 
+Since our program currently doesn't have any undo functionality,.
+Once you delete a cheatsheet, it will be deleted forever, and is not recoverable.
 
 Examples:
 * `/delete /n if else /i 2`
