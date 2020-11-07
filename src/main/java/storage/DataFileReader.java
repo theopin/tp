@@ -40,7 +40,7 @@ import java.util.logging.Logger;
 public class DataFileReader extends DataFile {
     private final CheatSheetList cheatSheetList;
     private final Logger readLogger = Logger.getLogger("FileReader");
-    private Settings settings;
+    private final Settings settings;
 
 
     public DataFileReader(Settings settings, Printer printer, CheatSheetList cheatSheetList) {
@@ -90,7 +90,7 @@ public class DataFileReader extends DataFile {
         try {
             extractXmlFilesFromJar();
         } catch (IOException e) {
-            logger.log(Level.WARNING, "IO File Error");
+            readLogger.log(Level.WARNING, "IO File Error");
             printer.print("The following file could not be written: "
                     + System.lineSeparator()
                     + e.getMessage());
@@ -188,8 +188,7 @@ public class DataFileReader extends DataFile {
      * @throws DirectoryIsEmptyException Thrown if the /data folder is empty
      */
 
-    protected void loadCheatSheetsAndSettings() throws FileNotFoundException,
-
+    protected void loadCheatSheetsAndSettings() throws IOException,
             DirectoryIsEmptyException {
         if (!Files.exists(DATA_DIR)) {
             throw new FileNotFoundException();
