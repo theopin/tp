@@ -40,6 +40,7 @@ public class DataFileWriterTest extends DataFileTest {
             + System.lineSeparator();
 
     Path sampleTest = Paths.get(userDir, data, test, "sample.xml");
+    final Path settingsFile = Paths.get(userDir, data, "settings.txt");
 
     @Test
     void writeDataFiles_emptyTestCheatSheetList_success() {
@@ -54,6 +55,8 @@ public class DataFileWriterTest extends DataFileTest {
 
         testWriter.executeFunction();
         userDirectoryFiles = dataDir.toFile().list();
+
+        eraseFile(settingsFile);
         if (!isDataDirPresent) {
             eraseFile(dataDir);
         }
@@ -86,6 +89,7 @@ public class DataFileWriterTest extends DataFileTest {
         }
 
         eraseFile(sampleTestDir);
+        eraseFile(settingsFile);
         if (!isDataDirPresent) {
             eraseFile(dataDir);
         }
@@ -120,6 +124,7 @@ public class DataFileWriterTest extends DataFileTest {
             }
 
             eraseFile(sampleTestDir);
+            eraseFile(settingsFile);
             if (!isDataDirPresent) {
                 eraseFile(dataDir);
             }
@@ -149,6 +154,7 @@ public class DataFileWriterTest extends DataFileTest {
             eraseFile(sampleTest);
         }
         eraseFile(sampleTestDir);
+        eraseFile(settingsFile);
         eraseFile(dataDir);
 
         if (isDataDirPresent) {
@@ -191,6 +197,7 @@ public class DataFileWriterTest extends DataFileTest {
             }
 
             eraseFile(sampleTestDir);
+            eraseFile(settingsFile);
             if (!isDataDirPresent) {
                 eraseFile(dataDir);
             }
