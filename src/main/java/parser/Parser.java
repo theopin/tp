@@ -143,7 +143,7 @@ public class Parser {
             printer.printAlternativeArgumentPrompt(commandToBeExecuted);
 
             for (CommandFlag key : map.keySet()) {
-                if (map.get(key) == null || map.get(key).isBlank()) {
+                if ((map.get(key) == null || map.get(key).isBlank()) && key != CommandFlag.DELETE) {
                     printer.printMissingArgument(key);
                     String newArgVal = ui.getUserInput();
                     if (newArgVal.isBlank()) {
