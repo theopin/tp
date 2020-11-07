@@ -355,7 +355,7 @@ public final class Printer {
                 + "You also could enter the full command next time if you do not wish to be prompted to enter fields "
                 + "one by one"
                 + NEWLINE + "\"/help\" to see more details on the structure of full command."
-                + NEWLINE + "To stop messages like this from appearing again, input this command: \"/set /m remove\""
+                + NEWLINE + "To stop messages like this from appearing again, input this command: \"/set /m off\""
                 + ConsoleColorsEnum.RESET_TEXT);
     }
 
