@@ -24,7 +24,7 @@ The table of contents below lets you easily access the documentation for CheatLo
 # Table of Contents
 
 * [1. Introduction](#introduction)
-   [2. Purpose](#purpose)
+* [2. Purpose](#purpose)
 * [3. Setting Up, Getting Started](#setting-up-getting-started)
     * [3.1. Prerequisites](#prerequisites)
     * [3.2. Running the Project](#running-the-project)
