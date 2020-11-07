@@ -2,25 +2,31 @@ package command;
 
 import exception.CommandException;
 import parser.CommandFlag;
+import settings.Settings;
 import ui.Printer;
+
 
 /**
  * Command to change the behavior of the application.
- * Currently only supports changing default color scheme.
+ * Currently only supports changing default color scheme and behavior of welcome message.
  */
 public class SettingsCommand extends Command {
+    private Settings settings;
     public static final String invoker = "/set";
 
     /**
      * Constructor for the SettingsCommand.
-     * Required argument: COLORSCHEME.
+     * Required argument: either COLORSCHEME or HELPMESSAGE.
      *
      * @param printer The printer object to handle user interaction
      */
-    public SettingsCommand(Printer printer) {
+    public SettingsCommand(Printer printer, Settings settings) {
         super(printer);
+        this.settings = settings;
         flagsToDescriptions.put(CommandFlag.COLORSCHEME, null);
+        flagsToDescriptions.put(CommandFlag.HELPMESSAGE, null);
         alternativeArguments.add(CommandFlag.COLORSCHEME);
+        alternativeArguments.add(CommandFlag.HELPMESSAGE);
     }
 
     /**
@@ -30,11 +36,23 @@ public class SettingsCommand extends Command {
      */
     @Override
     public void execute() throws CommandException {
-        try {
-            int option = Integer.parseInt(flagsToDescriptions.get(CommandFlag.COLORSCHEME));
-            printer.setColor(option);
-        } catch (NumberFormatException e) {
-            throw new CommandException("Please enter a valid option");
+        if (flagsToDescriptions.get(CommandFlag.COLORSCHEME) != null) {
+            try {
+                int option = Integer.parseInt(flagsToDescriptions.get(CommandFlag.COLORSCHEME));
+                settings.setColor(option, false);
+            } catch (NumberFormatException e) {
+                throw new CommandException("Please enter a valid option");
+            }
+        }
+        if (flagsToDescriptions.get(CommandFlag.HELPMESSAGE) != null) {
+            String option = flagsToDescriptions.get(CommandFlag.HELPMESSAGE);
+            if (option.toLowerCase().equals("remove")) {
+                settings.setDisplayingHelpMessages(false, false);
+            } else if (option.toLowerCase().equals("include")) {
+                settings.setDisplayingHelpMessages(true, false);
+            } else {
+                throw new CommandException("Please enter a valid option (\"remove\" or \"include\")");
+            }
         }
     }
 }

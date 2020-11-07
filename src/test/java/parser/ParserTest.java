@@ -4,6 +4,8 @@ import command.AddCommand;
 import command.Command;
 import exception.CommandException;
 import org.junit.jupiter.api.Test;
+import settings.Settings;
+import ui.Printer;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -32,7 +34,8 @@ class ParserTest {
         }
 
         try {
-            Parser parser = new Parser();
+            Printer printer = new Printer();
+            Parser parser = new Parser(printer, new Settings(printer));
             Command command = parser.parse(userInput);
             assertEquals(AddCommand.class, command.getClass());
             assertEquals(flagsToDescriptions, command.getFlagstodescriptionsMap());
@@ -45,7 +48,8 @@ class ParserTest {
     void parser_incompleteInput_exceptionThrown() {
         String userInput = "dummy command";
         try {
-            Parser parser = new Parser();
+            Printer printer = new Printer();
+            Parser parser = new Parser(printer, new Settings(printer));
             parser.parse(userInput);
             fail();
         } catch (CommandException e) {

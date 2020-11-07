@@ -13,6 +13,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import java.io.FileWriter;
 import java.io.IOException;
 
 import java.nio.file.Files;
@@ -23,17 +24,21 @@ import java.util.ArrayList;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
+import settings.Settings;
 import ui.Printer;
 
 /**
- * Allows the user to write data based on the cheatSheets currently present
+ * Allows the user to save the current settings into a file
+ * and write data based on the cheatSheets currently present
  * in the list of cheatSheets into individual files.
  */
 public class DataFileWriter extends DataFile {
     private ArrayList<CheatSheet> cheatSheets;
     private CheatSheetList cheatSheetList;
+    private Settings settings;
 
-    public DataFileWriter(Printer printer, CheatSheetList cheatSheetList) {
+    public DataFileWriter(Settings settings, Printer printer, CheatSheetList cheatSheetList) {
+        this.settings = settings;
         this.printer = printer;
         this.cheatSheetList = cheatSheetList;
     }
@@ -41,12 +46,15 @@ public class DataFileWriter extends DataFile {
     /**
      * Converts the cheatSheets present in the list of cheatSheet into
      * a string. This string is then saved in an xml file, 1 file
-     * for each cheatSheet.
+     * for each cheatSheet. Subsequently, it retrieves the current settings
+     * and parses them into a string. This strings is then saved
+     * in a txt file called settings.txt.
      */
     @Override
     public void executeFunction() {
         cheatSheets = cheatSheetList.getList();
         storeCheatSheet();
+        saveSettings();
     }
 
     /**
@@ -207,4 +215,28 @@ public class DataFileWriter extends DataFile {
         transformer.transform(fileSource, fileResult);
     }
 
+    /**
+     * Gets the current settings and parses them into strings.
+     */
+    private void saveSettings() {
+        boolean isDisplayingHelpMessages = settings.getDisplayingHelpMessages();
+        int colorOption = settings.getColorOption();
+        StringBuilder saveData = new StringBuilder();
+        saveData.append("COLOR ").append(colorOption).append("\n");
+        saveData.append("HELPMESSAGE ").append(isDisplayingHelpMessages).append("\n");
+        try {
+            writeToTxtFile(saveData.toString());
+        } catch (IOException e) {
+            printer.print(e.getMessage());
+        }
+    }
+
+    /**
+     * Writes the save data to data/settings.txt
+     */
+    private void writeToTxtFile(String saveData) throws IOException {
+        FileWriter fileWriter = new FileWriter(DATA_DIR + SETTINGS_FILENAME);
+        fileWriter.write(saveData);
+        fileWriter.close();
+    }
 }
