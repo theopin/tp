@@ -142,6 +142,9 @@ public class DataFileReader extends DataFile {
                                JarEntry currentFile,
                                String currentFilePath,
                                String currentFileDirPath) throws IOException {
+        //@@author theopin-reused
+        //Reused from https://stackoverflow.com/questions/1529611 with minor modifications
+
         Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, currentFileDirPath);
         Path preloadedFileDirectory = Paths.get(USER_DIR, DATA, currentFilePath);
         verifyDirectoryExistence(null, preloadedSubjectDirectory, true);
