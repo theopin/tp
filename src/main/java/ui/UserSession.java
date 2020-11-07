@@ -14,6 +14,7 @@ import org.fusesource.jansi.AnsiConsole;
 import java.io.IOException;
 
 public class UserSession {
+    public boolean isFirstRun;
     /*
      * These are objects that will be injected to command subclasses
      * that allow them to execute.
@@ -39,10 +40,15 @@ public class UserSession {
 
         fileDestroyer = new DataFileDestroyer(printer, cheatSheetList);
         userCommandParser = new Parser(cheatSheetList, editor, fileDestroyer, printer, ui, settings);
+        isFirstRun = false;
     }
 
     public void runProgramSequence() {
         AnsiConsole.systemInstall();
+        if (isFirstRun) {
+            fileReader.extractPreloadedCheatSheets();
+        }
+
         fileReader.executeFunction();
         printer.printWelcomeScreen();
         if (settings.getDisplayingHelpMessages()) {
