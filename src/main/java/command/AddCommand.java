@@ -92,11 +92,7 @@ public class AddCommand extends Command {
     }
 
     /**
-<<<<<<< HEAD
-     * Removes spaces from the SUBJECT field and converts it to PascalCase.
-=======
      * Removes spaces from the SUBJECT field and converts it to PascalCase without spaces between words.
->>>>>>> 7b075270ad5da160a912a8ad690408b8baa060fd
      *
      * @param input The current subject to be converted
      */
