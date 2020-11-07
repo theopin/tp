@@ -42,10 +42,6 @@ public class CheatSheet {
         this.details = details;
     }
 
-    public void setFavorite() {
-        isFavourite = true;
-    }
-
     public void setFavourite(boolean isFavourite) {
         this.isFavourite = isFavourite;
     }

@@ -24,14 +24,16 @@ public class FavouriteCommand extends FinderCommand {
 
         flagsToDescriptions.put(CommandFlag.NAME, null);
         flagsToDescriptions.put(CommandFlag.INDEX, null);
+        flagsToDescriptions.put(CommandFlag.DELETE, null);
         alternativeArguments.add(CommandFlag.NAME);
         alternativeArguments.add(CommandFlag.INDEX);
     }
 
     /**
-     * Sets a cheat sheet as favourite.
+     * Add/remove a cheat sheet to/from favourites.
      * getCheatSheetFromNameOrIndex() from FinderCommand will retrieve the desired cheat sheet
      * and the isFavourite attribute will be set to true.
+     * If the user specified the /d flag, the isFavourite attribute will be set to false.
      *
      * @throws CommandException if the input is not valid
      */
@@ -39,8 +41,9 @@ public class FavouriteCommand extends FinderCommand {
     public void execute() throws CommandException {
         try {
             CheatSheet cheatSheetToFavourite = getCheatSheetFromNameOrIndex();
-            cheatSheetToFavourite.setFavourite(true);
-            printer.printFavouritedCheatSheetMessage(cheatSheetToFavourite);
+            boolean isAddFav = (flagsToDescriptions.get(CommandFlag.DELETE) == null);
+            cheatSheetToFavourite.setFavourite(isAddFav);
+            printer.printFavouritedCheatSheetMessage(cheatSheetToFavourite, isAddFav);
         } catch (NullPointerException | IndexOutOfBoundsException i) {
             throw new CommandException("Please enter a valid name or an index");
         } catch (NumberFormatException n) {

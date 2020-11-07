@@ -9,6 +9,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import settings.Settings;
 import ui.Printer;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -25,41 +26,74 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Enumeration;
+import java.util.Scanner;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
 /**
- * Allows the user to read data from the data directory and use it
- * to insert the cheatsheets present in the folder to the application.
+ * Allows the user to read data from the data directory.
+ * The data are used to update the system settings
+ * and insert the cheatsheets present in the folder to the application.
  */
 public class DataFileReader extends DataFile {
-    private CheatSheetList cheatSheetList;
-    private Logger logger = Logger.getLogger("Foo");
+    private final CheatSheetList cheatSheetList;
+    private final Logger readLogger = Logger.getLogger("FileReader");
+    private final Settings settings;
 
-    public DataFileReader(Printer printer, CheatSheetList cheatSheetList) {
+
+    public DataFileReader(Settings settings, Printer printer, CheatSheetList cheatSheetList) {
+        this.settings = settings;
         this.printer = printer;
         this.cheatSheetList = cheatSheetList;
     }
 
     /**
-     * Converts the file contents into cheatsheets that can be added into
+     * Loads the file contents from the data folder. If the file is a settings file,
+     * this method will parse and apply the saved settings.
+     * Otherwise, it converts the file contents into cheatsheets that can be added into
      * the list of cheatsheets. Handles exceptions arising from issues when
      * loading files or relevant directories.
      */
     @Override
     public void executeFunction() {
         try {
-            insertStoredCheatSheets();
+            loadCheatSheetsAndSettings();
         } catch (FileNotFoundException e) {
-            logger.log(Level.WARNING, "processing error");
-            printer.print(e.getMessage());
+            readLogger.log(Level.WARNING, "Missing Data Directory");
+            printer.print("The following file is not found: "
+                    + System.lineSeparator()
+                    + e.getMessage());
             createNewDirectory();
+
         } catch (DirectoryIsEmptyException d) {
-            printer.print(d.getMessage());
+            readLogger.log(Level.INFO, "Empty Directory Present");
+            printer.print("The following directory is empty!"
+                    + System.lineSeparator()
+                    + d.getMessage());
+
+        } catch (IOException f) {
+            readLogger.log(Level.WARNING, "IO File Error");
+            printer.print("The following file could not be read: "
+                    + System.lineSeparator()
+                    + f.getMessage());
+        }
+    }
+
+    /**
+     * Attempts to transfer preloaded cheatsheets from CheatLogs.jar.
+     * Handles exceptions arising from issues when
+     * transferring these preloaded cheatsheets into the /data directory.
+     */
+    public void extractPreloadedCheatSheets() {
+        try {
+            extractXmlFilesFromJar();
+        } catch (IOException e) {
+            readLogger.log(Level.WARNING, "IO File Error");
+            printer.print("The following file could not be written: "
+                    + System.lineSeparator()
+                    + e.getMessage());
         }
     }
 
@@ -68,16 +102,16 @@ public class DataFileReader extends DataFile {
      * and transfers them to the /data dir before executing the reader
      * operation.
      *
-     * @throws IOException thrown if there are issues with reading and
+     * @throws IOException Thrown if there are issues with reading and
      *                     writing the transferred .xml file as well as
      *                     the files inside CheatLogs.jar.
      */
-    public void extractXmlFilesFromJar() throws IOException {
+    private void extractXmlFilesFromJar() throws IOException {
         JarFile jarFile = new JarFile(JAR_DIR);
 
         Enumeration<JarEntry> enumEntries = jarFile.entries();
         while (enumEntries.hasMoreElements()) {
-            JarEntry currentFile =  enumEntries.nextElement();
+            JarEntry currentFile = enumEntries.nextElement();
             String currentFilePath = currentFile.getName();
             if (!currentFilePath.contains(PRELOADED)
                     || !currentFilePath.contains(XML_EXTENSION)) {
@@ -85,19 +119,19 @@ public class DataFileReader extends DataFile {
             }
 
             String currentFileDir = filterDir(currentFilePath);
+
             createNewFile(jarFile, currentFile, currentFilePath, currentFileDir);
         }
         jarFile.close();
-        executeFunction();
     }
 
     /**
      * Extracts a string containing the path to the directory in
      * CheatLogs.jar containing the .xml file.
      *
-     * @param currentFilePath A string that denotes the path of the file.
-     * @return                    A string that denotes the path of the file
-     *                            directory.
+     * @param currentFilePath   A string that denotes the path of the file.
+     * @return                  A string that denotes the path of the file
+     *                          directory.
      */
     private String filterDir(String currentFilePath) {
         String[] splitPathNames = currentFilePath.split(SLASH);
@@ -115,8 +149,8 @@ public class DataFileReader extends DataFile {
      * Creates a new file within the specified path in the
      * /data directory.
      *
-     * @param jarFile Jarfile which is loading CheatLogs.jar.
-     * @param currentFile JarEntry of the file being process.
+     * @param jarFile            Jarfile which is loading CheatLogs.jar.
+     * @param currentFile        JarEntry of the file being process.
      * @param currentFilePath    String denoting the path to which the
      *                           file should be written to
      * @param currentFileDirPath String denoting the path to the directory
@@ -126,6 +160,9 @@ public class DataFileReader extends DataFile {
                                JarEntry currentFile,
                                String currentFilePath,
                                String currentFileDirPath) throws IOException {
+        //@@author theopin-reused
+        //Reused from https://stackoverflow.com/questions/1529611 with minor modifications
+
         Path preloadedSubjectDirectory = Paths.get(USER_DIR, DATA, currentFileDirPath);
         Path preloadedFileDirectory = Paths.get(USER_DIR, DATA, currentFilePath);
         verifyDirectoryExistence(null, preloadedSubjectDirectory, true);
@@ -143,13 +180,15 @@ public class DataFileReader extends DataFile {
     }
 
     /**
-     * Converts the data obtained from the /data folder into cheatsheets and adds
-     * them to the application.
+     * Loads the data obtained from the /data folder.
+     * Parses and applies the settings to the system if the data is a settings save file,
+     * Converts the data into cheatsheets and adds them to the application otherwise.
      *
      * @throws FileNotFoundException     Thrown if the /data folder is not found
      * @throws DirectoryIsEmptyException Thrown if the /data folder is empty
      */
-    protected void insertStoredCheatSheets() throws FileNotFoundException,
+
+    protected void loadCheatSheetsAndSettings() throws IOException,
             DirectoryIsEmptyException {
         if (!Files.exists(DATA_DIR)) {
             throw new FileNotFoundException();
@@ -160,18 +199,14 @@ public class DataFileReader extends DataFile {
 
         assert directoryItems != null;
         if (directoryItems.length == 0) {
-            throw new DirectoryIsEmptyException();
+            throw new DirectoryIsEmptyException(DATA);
         }
 
-        try {
-            extractFromDirectory(DATA_DIR);
-        } catch (IOException e) {
-            printer.print(e.getMessage());
-        }
+        extractFromDirectory(DATA_DIR);
     }
 
     /**
-     * Extracts all cheatsheet files from the given directory.
+     * Extracts all cheatsheet and settings files from the given directory.
      *
      * @throws IOException Thrown if the /data directory is missing or empty.
      */
@@ -200,9 +235,23 @@ public class DataFileReader extends DataFile {
             }
 
             try {
-                extractCheatSheet(dataDirectoryFile);
-            } catch (ParserConfigurationException | SAXException e) {
-                printer.print(e.getMessage());
+                if (dataDirectoryFile.getName().equals("settings.txt")) {
+                    loadUserSettings(dataDirectoryFile);
+                } else {
+                    extractCheatSheet(dataDirectoryFile);
+                }
+
+            } catch (ParserConfigurationException e) {
+                readLogger.log(Level.WARNING, "XML Parser Error");
+                printer.print("There were issues with building the XML parser: "
+                        + System.lineSeparator()
+                        + e.getMessage());
+
+            } catch (SAXException f) {
+                readLogger.log(Level.WARNING, "SAX Read File Error");
+                printer.print("There were issues with the usage of the XML parser: "
+                        + System.lineSeparator()
+                        + f.getMessage());
             }
         }
     }
@@ -246,19 +295,22 @@ public class DataFileReader extends DataFile {
                 break;
             }
         }
-        bundleCheatSheetComponents(cheatSheetDocument, favouriteElement, subjectElement, contentElement);
+        bundleCheatSheetComponents(cheatSheetDocument,
+                favouriteElement,
+                subjectElement,
+                contentElement);
     }
 
     /**
      * Extracts and bundles components together to create a new cheatSheet.
      *
-     * @param cheatSheetDocument  File of the cheatSheet
-     * @param favouriteElement    Node containing the favourite status
-     *                            of the cheatsheet.
-     * @param subjectElement      Node containing the subject of the
-     *                            cheatsheet.
-     * @param contentElement      Node containing the details of the
-     *                            cheatsheet.
+     * @param cheatSheetDocument File of the cheatSheet
+     * @param favouriteElement   Node containing the favourite status
+     *                           of the cheatsheet.
+     * @param subjectElement     Node containing the subject of the
+     *                           cheatsheet.
+     * @param contentElement     Node containing the details of the
+     *                           cheatsheet.
      */
     private void bundleCheatSheetComponents(File cheatSheetDocument,
                                             Node favouriteElement,
@@ -281,9 +333,9 @@ public class DataFileReader extends DataFile {
     /**
      * Extracts the favourite status of the referenced cheatSheet.
      *
-     * @param favouriteElement   Node containing the favourite status of the cheatSheet.
-     * @return isMarkedFavourite Boolean indicating if the cheatSheet should be marked as
-     *                           a favourite.
+     * @param favouriteElement      Node containing the favourite status of the cheatSheet.
+     * @return isMarkedFavourite    Boolean indicating if the cheatSheet should be marked as
+     *                              a favourite.
      */
     private boolean extractFavouriteStatus(Node favouriteElement) {
         boolean isMarkedFavourite;
@@ -291,6 +343,7 @@ public class DataFileReader extends DataFile {
             isMarkedFavourite = favouriteElement
                     .getFirstChild()
                     .getTextContent()
+                    .toUpperCase()
                     .equals(YES);
         } catch (NullPointerException e) {
             isMarkedFavourite = false;
@@ -334,5 +387,30 @@ public class DataFileReader extends DataFile {
 
         newCheatSheet.setFavourite(isMarkedFavourite);
         cheatSheetList.add(newCheatSheet);
+    }
+
+    /**
+     * Reads the save file line by line and passes each line to applySettings method.
+     */
+    private void loadUserSettings(File settingsFile) throws IOException {
+        Scanner scanner = new Scanner(settingsFile);
+        while (scanner.hasNext()) {
+            applySettings(scanner.nextLine());
+        }
+    }
+
+    /**
+     * Applies the settings retrieved from the settings.txt save file.
+     */
+    private void applySettings(String serializedSettings) {
+        String[] components = serializedSettings.split(" ");
+        assert components.length == 2;
+        String settingType = components[0];
+        String settingValue = components[1];
+        if (settingType.equals("COLOR")) {
+            settings.setColor(Integer.parseInt(settingValue), true);
+        } else if (settingType.equals("HELPMESSAGE")) {
+            settings.setDisplayingHelpMessages(Boolean.parseBoolean(settingValue), true);
+        }
     }
 }

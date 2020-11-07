@@ -19,12 +19,12 @@ public abstract class FinderCommand extends Command {
         String name = flagsToDescriptions.get(CommandFlag.NAME);
         String index = flagsToDescriptions.get(CommandFlag.INDEX);
         if (name != null && index == null) {
-            desiredCheatSheet = cheatSheetList.get(name);
+            desiredCheatSheet = cheatSheetList.get(name.trim());
         } else if (index != null && name == null) {
             desiredCheatSheet = cheatSheetList.get(Integer.parseInt(index));
         } else if (index != null) {
             if (cheatSheetList.get(name).equals(cheatSheetList.get(Integer.parseInt(index)))) {
-                desiredCheatSheet = cheatSheetList.get(name);
+                desiredCheatSheet = cheatSheetList.get(name.trim());
             }
         }
 

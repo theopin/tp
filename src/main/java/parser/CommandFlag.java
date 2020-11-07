@@ -2,11 +2,12 @@ package parser;
 
 public enum CommandFlag {
     NAME("/n"),
-    DESCRIPTION("/d"),
+    DELETE("/d"),
     INDEX("/i"),
     SUBJECT("/s"),
     SECTIONKEYWORD("/k"),
-    COLORSCHEME("/c");
+    COLORSCHEME("/c"),
+    HELPMESSAGE("/m");
     private final String flag;
 
     CommandFlag(String flag) {

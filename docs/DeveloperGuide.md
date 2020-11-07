@@ -22,6 +22,7 @@ This guide serves as an in-depth reference of the features of CheatLogs.
 <br>
 
 # Table of Contents
+
 * [1. Introduction](#introduction)
     + [1.1. Purpose](#purpose)
     + [1.2. Product Scope](#product-scope)
@@ -39,6 +40,17 @@ This guide serves as an in-depth reference of the features of CheatLogs.
         - [3.2.1. User Interface](#user-interface)
         - [3.2.2. Command Parser](#command-parser)
         - [3.2.3. Cheat Sheet Structure](#cheat-sheet-structure)
+            * [3.2.3.1. Add](#add)
+            * [3.2.3.2. Edit](#edit)
+            * [3.2.3.3. View](view)
+            * [3.2.3.4. Exit](#exit)
+            * [3.2.3.5. List](#list)
+            * [3.2.3.6. Find](#find)
+            * [3.2.3.7. Setting](#setting)
+            * [3.2.3.8. Delete](#delete)
+            * [3.2.3.9. Clear](#clear)
+            * [3.2.3.10. Favourite](#favourite)
+            * [3.2.3.11. Exit](#help)
         - [3.2.4. Cheat Sheet Management](#cheat-sheet-management)
         - [3.2.5. Data Storage](#data-storage)
 * [4. Implementation](#implementation)
@@ -211,7 +223,7 @@ These common objects are injected into other objects that need them via the clas
 The common objects include the Ui and  Printer helper classes which provide an organized way to read and write data. 
 Most of the programmes’ output is made via calls to the same common printer object.
 
----
+#### 3.2.3. Command (Brandon)
 
 <a id="command-parser"></a>
 ### 3.2.2. Command Parser<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -236,11 +248,49 @@ The steps below explain the sequence diagram:
 5. CommandExecutor#execute() would be called to create a new Command object according to type of command user inputted
 6. Command#execute() would call other methods from CheatSheet and CheatSheetList to carry out specific instructions.
 
----
 
 <a id="cheat-sheet-structure"></a>
 ### 3.2.3. Cheat Sheet Structure<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 //Aldo
+
+<a id="add"></a>
+##### 3.2.3.1 Add
+
+
+<a id="edit"></a>
+##### 3.2.3.2 Edit
+
+<a id="view"></a>
+##### 3.2.3.3 View
+
+<a id="exit"></a>
+##### 3.2.3.4 Exit
+
+<a id="list"></a>
+##### 3.2.3.5 List
+
+<a id="find"></a>
+##### 3.2.3.6 Find
+
+<a id="setting"></a>
+##### 3.2.3.7 Setting 
+
+<a id="delete"></a>
+##### 3.2.3.8 Delete
+
+<a id="clear"></a>
+##### 3.2.3.9 Clear
+
+<a id="favourite"></a>
+##### 3.2.3.10 Favourite
+
+<a id="help"></a>
+##### 3.2.3.11 Help
+
+<a id="cheat-sheet-structure"></a>
+#### 3.2.4. Cheat Sheet Structure 
+//Aldo
+
 To further understand our cheatsheet management application, it is important to understand the inner workings of the CheatSheet class. 
 CheatLogs comes with preloaded cheat sheets and the application has an in-built ability for the user to add, edit, and delete their own cheat sheets. 
 The preloaded cheat sheet cannot be modified by the user, as the user-made cheatsheet is able to be modified by the user.
@@ -276,10 +326,10 @@ With the use of XML file, it simplifies the parsing process of the cheatsheet fi
 
 Image 7: XML file showing the content of a cheatsheet file
 
----
+
 
 <a id="cheat-sheet-management"></a>
-### 3.2.4. Cheat Sheet Management<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+### 3.2.5. Cheat Sheet Management<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 //Adhy
 All cheat sheets, both pre-loaded and user-defined, are stored in a class called `CheatSheetList` during runtime. 
 Upon receiving a valid input from the user, the `execute()` method from `Command` class will invoke the mutation of `CheatSheetList`, 
@@ -300,10 +350,8 @@ Here is the list of `Commands` that invokes a method call of CheatSheetList:
 - `/list`
 - `/view`
 
----
-
 <a id="data-storage"></a>
-### 3.2.5. Data Storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+### 3.2.6. Data Storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 //Theo
 This feature allows the application to read and update data in the form of text files. 
 Having an external source to store data will allow the application to be able to retrieve it when it is relaunched at another instance. 
