@@ -437,7 +437,7 @@ These are useful general purpose commands that don't fit into the other categori
 >
 If you forgot the syntax of a certain command, you can simply type `/help`. It will list all the possible commands that can be executed in the application together with its format and example. Below is what you should expect to see.
 
-![image](https://i.ibb.co/nnPHd02/image.png)
+![image](https://i.ibb.co/n7gWdpQ/image.png)
 
 Example:
 * `/help`
@@ -467,8 +467,7 @@ If your flag description `COLORSCHEME` does not fall in the range mentioned abov
 >Flag optionality: `/m` (required) 
 
 CheatLogs provides help messages for each command. Here is an example from `/add` command.
-
-IMAGE OF UPDATED HELPMESSAGE HERE
+![image](https://i.ibb.co/6wPMRvF/image.png)
 
 You can disable these help messages by using the `/set /m off` and later when you want to re-enable them again, you can type `/set /m on`.
 

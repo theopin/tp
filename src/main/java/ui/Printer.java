@@ -396,7 +396,7 @@ public final class Printer {
         print(ConsoleColorsEnum.BRIGHT_YELLOW_TEXT
                 + "The LIST command lists all current existing cheat sheets."
                 + NEWLINE + "You could also sort the cheat sheets according to name or subject"
-                + NEWLINE + "To stop messages like from appearing again, input this command: \"/set /m remove\""
+                + NEWLINE + "To stop messages like from appearing again, input this command: \"/set /m off\""
                 + ConsoleColorsEnum.RESET_TEXT);
     }
 
@@ -410,10 +410,10 @@ public final class Printer {
     public void printSetDisplayingHelpMessages(boolean isDisplayingHelpMessages) {
         if (isDisplayingHelpMessages) {
             print("You have enabled the help messages."
-                    + NEWLINE + "You can disable the help messages using \"/set /m remove\"\n");
+                    + NEWLINE + "You can disable the help messages using \"/set /m off\"\n");
         } else {
             print("You have disabled the help messages."
-                    + NEWLINE + "You can re-enable it again using \"/set /m include\"\n");
+                    + NEWLINE + "You can re-enable it again using \"/set /m on\"\n");
         }
     }
 }
