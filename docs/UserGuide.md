@@ -326,6 +326,40 @@ according to any of the cheatsheet properties. For example , sorting by descendi
 >Format: `/find /s <SUBJECT> /k <KEYWORD>` <br>
 >Flag optionality: [`/s`, `/k`] (At least one)
 
+`/find` command allows you to search for cheat sheets using `SUBJECT` and/or `KEYWORD`. The matching cheat sheets would be displayed in a table.
+
+After getting prompted to enter a command, you can search for cheat sheets using:
+
+1. `/find /s <SUBJECT>` to search for cheat sheets with matching subject. More details on the matching algorithm at the end of section.
+2. `/find /k <KEYWORD>` to search for cheat sheets with contents that contains `KEYWORD`.
+3. `/find /s <SUBJECT> /k <KEYWORD>` to search for cheat sheets with matching subject and contains `KEYWORD`.
+
+<<<<<<<<IMAGE 1
+IMAGE 2
+IMAGE 3>>>>>>>>>>>>>
+
+Cheat sheets that meet the criteria of the command you entered would be displayed in a table as shown in the images below.
+
+<<<<<<<<<IMAGE 1 
+IMAGE 2
+IMAGE 3>>>>>>>>>>>
+
+CheatLogs then enters Sorting Mode. In sorting Mode, you can sort according to names or subjects by inputting the corresponding index (1-4). For more details on Sorting Mode, click [here](#43-viewing-commands-font-size5-arrow_up_smalltable-of-contentsfont).
+
+<<<<<<<<IMAGE 1
+IMAGE 2
+IMAGE 3
+IMAGE 4>>>>>>>>>>>>>
+
+To exit Sorting Mode and simply enter another character (excluding 1-4).
+
+<<<<<<<<<<<<IMAGE 1>>>>>>>>>>>>>>>>
+
+However, if none of the cheat sheets meet the criteria of your `/find` command, CheatLogs will not enter Sorting Mode as shown in the image below.
+
+<<<<<<<<<<<<IMAGE 1>>>>>>>>>>>>>>>
+
+<!--
 Matches and displays a table of cheatsheets from the List whose subject contains `SUBJECT` or description contains `KEYWORD` whichever you included or both if you included both. The expected result is similar to below if matching cheatsheets are found.
 
 ![image](https://i.ibb.co/7N3w0wQ/image.png)
@@ -335,6 +369,7 @@ CheatLogs then enters Sorting Mode. And resumes after you end it.![image](https:
 If there are no matches, the output is similar to below and CheatLogs does not enter Sorting Mode.
 
 ![image](https://i.ibb.co/t2MT44f/image.png)
+-->
 
 > :bulb:  Notes on matching algorithm
 > * The search is **case-sensitive** e.g. `help` matches `helpers` but not `Help`. 
@@ -343,7 +378,7 @@ If there are no matches, the output is similar to below and CheatLogs does not e
 Examples:
 * `/find /s loop`
 * `/find /s Integer /k 2`
-* `/find /k 1`
+* `/find /k hello`
 
  ---
  
@@ -352,12 +387,25 @@ Examples:
 >Format: `/view /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-Views and prints the details of the cheatsheet with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included or both if you included both.  The expected result is similar to below if a matching cheatsheet is found.
+Views and prints the details of the cheatsheet that matches with what you entered for `/view` command.
 
+After getting prompted to enter a command, you can view a specific cheat sheet using:
+
+1. `/view /n <CHEATSHEET_NAME>` to view the cheat sheet with name, `CHEATSHEET_NAME`
+2. `/find /i <CHEATSHEET_INDEX>` to view the cheat sheet with index, `CHEATSHEET_INDEX`
+3. `/find /n <CHEATSHEET_NAME> /i <CHEATSHEET_INDEX>` to view the cheat sheet with name and index corresponding to `CHEATSHEET_NAME` and `CHEATSHEET_INDEX`. NOTE: If `CHEATSHEET_NAME` and `CHEATSHEET_INDEX` are pointing at two different cheat sheet, no cheat sheet's content would be displayed.
+
+<<<<<<<<<<<<<<<<<<<IMAGE 1
+IMAGE 2
+IMAGE 3>>>>>>>>>>>>>>>>>>
+
+<!--
 ![image](https://i.ibb.co/9ZttT68/image.png)
 When either the name or index do not match, CheatLogs will specify the error as shown below.
 
 ![image](https://i.ibb.co/28XQVZL/image.png)
+-->
+
 Examples:
 * `/view /n Read /i 2`
 * `/view /i 1` 
@@ -370,10 +418,30 @@ Examples:
 
 >Format: `/list`
 
+Lists all the cheatsheets in the List in a table.
+
+After getting prompted to enter a command, you can view a specific cheat sheet using:
+1. `/list` to list all cheat sheets available.
+
+<<<<<<<<<<<<<IMAGE 1>>>>>>>>>>>>>>>>>
+
+CheatLogs then enters Sorting Mode. In sorting Mode, you can sort according to names or subjects by inputting the corresponding index (1-4). For more details on Sorting Mode, click [here](#43-viewing-commands-font-size5-arrow_up_smalltable-of-contentsfont).
+
+<<<<<<<<<<<<<IMAGE 1
+IMAGE2
+IMAGE3
+IMAGE4>>>>>>>>>>>>>>>>>
+
+To exit Sorting Mode and simply enter another character (excluding 1-4).
+
+<<<<<<<<<<<<IMAGE 1>>>>>>>>>>>>>>>>
+
+<!--
 Lists all the cheatsheets in the List in a table. CheatLogs then enters sorting mode. 
 In sorting mode, CheatLogs accepts a number (1-4) and will sort accordingly to the prompt message shown in the image below. Any other characters will exit sorting mode.
 The program continues after exiting sorting mode. The image below illustrated what you may see after executing the command successfully.
  ![image](https://i.ibb.co/C7ztqZz/image.png)
+-->
 Example:
  *  `/list`
 
@@ -578,5 +646,5 @@ Find | /find /s <SUBJECT> /k <KEYWORD> | /find /s Java , /find /s Java /k cheate
 View | /view /i <CHEATSHEET_INDEX> <br>/view /n <CHEATSHEET_NAME> | /fav /i 3 , /fav /n List
 List | /list | /list
 Help | /help | /help
-Settings | /set /c <OPTION_NUMBER> | /set /c 1
+Settings | /set /c <OPTION_NUMBER> <br> /set /m <OPTION> | /set /c 1 <br> /set /m on, /set /m off
 Exit | /exit | /exit
