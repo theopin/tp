@@ -50,7 +50,7 @@ public class DataFileWriterTest extends DataFileTest {
 
         testCheatSheetList.clear();
         String[] userDirectoryFiles = dataDir.toFile().list();
-        final int expectedFiles = userDirectoryFiles != null ? userDirectoryFiles.length : 0;
+        final int expectedFiles = userDirectoryFiles != null ? userDirectoryFiles.length + 1 : 1; // +1 for settings.txt
 
         testWriter.executeFunction();
         userDirectoryFiles = dataDir.toFile().list();
