@@ -2,7 +2,7 @@ package editor;
 
 import exception.EditorException;
 
-import javax.swing.JLabel;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JTextArea;
@@ -13,12 +13,17 @@ import javax.swing.JMenuItem;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 
 import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class Editor extends JFrame implements ActionListener {
@@ -36,25 +41,21 @@ public class Editor extends JFrame implements ActionListener {
      */
     private void generateEditorUI() {
         textArea = new JTextArea();
-        footerLabel = new JLabel();
-        final JMenuBar menuBar = new JMenuBar();
 
         setEditorLayout();
         generateTextArea();
         generateRightPane();
         generateEditorFooter();
-        generateEditorHeader(menuBar);
+        generateEditorHeader();
     }
 
     private void generateRightPane() {
         JPanel rightPanel = new JPanel();
-        final Border blackBorder = BorderFactory.createLineBorder(Color.BLACK);
 
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         rightPanel.setBounds(700,50,100,800);
 
         JLabel editingLabel = new JLabel("  Edit \n",JLabel.CENTER);
-        editingLabel.setBounds(700,800,100,50);
         editingLabel.setHorizontalAlignment(JLabel.CENTER);
 
         JButton copyButton = new JButton("Copy");
@@ -70,7 +71,7 @@ public class Editor extends JFrame implements ActionListener {
         rightPanel.add(cutButton);
         rightPanel.add(pasteButton);
 
-        JLabel actionsLabel = new JLabel(" Actions \n",JLabel.CENTER);
+        JLabel actionsLabel = new JLabel("  Actions \n",JLabel.CENTER);
         actionsLabel.setBounds(700,800,100,50);
         actionsLabel.setHorizontalAlignment(JLabel.CENTER);
 
@@ -92,19 +93,42 @@ public class Editor extends JFrame implements ActionListener {
         rightPanel.add(cancelButton);
 
         rightPanel.setBackground(Color.LIGHT_GRAY);
-        rightPanel.setBorder(blackBorder);
+        addBlackBorder(rightPanel);
 
         add(rightPanel,BorderLayout.EAST);
     }
 
+    private void addBlackBorder (JPanel panel){
+        final Border blackBorder = BorderFactory.createLineBorder(Color.BLACK);
+        panel.setBorder(blackBorder);
+    }
+
     /**
-     * generates the menu bar for the editor, which contains the editor and actions tab.
-     * @param menuBar to be added into the frame on the header of the page.
+     * generates the icon on top of the editor
      */
-    private void generateEditorHeader(JMenuBar menuBar) {
-        generateActionsBar(menuBar);
-        generateEditingBar(menuBar);
-        add(menuBar,BorderLayout.PAGE_START);
+    private void generateEditorHeader() {
+        JPanel topPanel = new JPanel();
+
+        topPanel.setLayout(new BoxLayout(topPanel,BoxLayout.Y_AXIS));
+        topPanel.setBounds(0,0,800,0);
+        topPanel.setSize(800,200);
+        topPanel.setBackground(Color.white);
+
+        BufferedImage wPic = null;
+        try {
+            //wPic = ImageIO.read(new URL("https://i.ibb.co/QCjG7v7/cheatlogs-copy.png"));
+            wPic = ImageIO.read(new File("src/main/resources/EditorResources/cheatlogs.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JLabel wIcon = new JLabel(new ImageIcon(wPic));
+        wIcon.setAlignmentX(Component.CENTER_ALIGNMENT);
+        wIcon.setBounds(0,0,800,0);
+
+        topPanel.add(wIcon);
+        addBlackBorder(topPanel);
+
+        add(topPanel,BorderLayout.PAGE_START);
     }
 
     private void setEditorLayout() {
@@ -128,9 +152,26 @@ public class Editor extends JFrame implements ActionListener {
     private void generateEditorFooter() {
         JPanel editorFooter = new JPanel();
         editorFooter.setBounds(0,500,800,50);
+        footerLabel = new JLabel();
+        footerLabel.setText(" ");
+        footerLabel.setForeground(Color.white);
         editorFooter.add(footerLabel);
         editorFooter.setBackground(Color.darkGray);
         add(editorFooter,BorderLayout.PAGE_END);
+    }
+
+    private String generateEditingInformation(){
+        return "You are editing the " + cheatSheetName + " cheatsheet [Subject: " + cheatSheetSubject + "]";
+    }
+
+    private void showSaveWarning(){
+        footerLabel.setText("You are trying to save a blank file");
+        footerLabel.setForeground(Color.red);
+    }
+
+    private void showCheatsheetInfo(){
+        footerLabel.setText(generateEditingInformation());
+        footerLabel.setForeground(Color.white);
     }
 
     /**
@@ -175,20 +216,29 @@ public class Editor extends JFrame implements ActionListener {
         menuBar.add(actionsMenu);
     }
 
-    /*
     private boolean checkIsEditorEmpty(){
-        return textArea.getText().trim().equals("");
-    }*/
+        if(textArea.getText().isBlank()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     public void actionPerformed(ActionEvent a) {
         String action = a.getActionCommand();
         switch (action) {
         case "Save":
-        case "Cancel":
-            close();
-            break;
+            if(checkIsEditorEmpty()){
+                open();
+                showSaveWarning();
+            } else{
+                close();
+            }
         case "Clear All":
             textArea.setText("");
+            break;
+        case "Cancel":
+            close();
             break;
         case "Copy":
             textArea.copy();
@@ -228,8 +278,7 @@ public class Editor extends JFrame implements ActionListener {
 
     public void open() {
         textArea.setText("");
-        footerLabel.setText("You are editing the " + cheatSheetName + " Subject: " + cheatSheetSubject);
-        footerLabel.setForeground(Color.white);
+        showCheatsheetInfo();
         setVisible(true);
         setAlwaysOnTop(true);
     }
