@@ -3,18 +3,8 @@ package editor;
 import exception.EditorException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JMenu;
-import javax.swing.JTextArea;
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JPanel;
-import javax.swing.JMenuItem;
-import javax.swing.BorderFactory;
+import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +15,7 @@ import java.awt.Component;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class Editor extends JFrame implements ActionListener {
@@ -32,6 +23,7 @@ public class Editor extends JFrame implements ActionListener {
     private JLabel footerLabel;
     private String cheatSheetName;
     private String cheatSheetSubject;
+    private JScrollPane scroll;
 
     public Editor() {
         generateEditorUI();
@@ -41,7 +33,12 @@ public class Editor extends JFrame implements ActionListener {
      * Initializes the editor with the necessary elements.
      */
     private void generateEditorUI() {
+
+
         textArea = new JTextArea();
+        scroll = new JScrollPane(textArea);
+        this.add(scroll);
+        scroll.setVisible(true);
 
         setEditorLayout();
         generateTextArea();
@@ -121,8 +118,8 @@ public class Editor extends JFrame implements ActionListener {
 
         BufferedImage logoPicture = null;
         try {
-            //wPic = ImageIO.read(new URL("https://i.ibb.co/QCjG7v7/cheatlogs-copy.png"));
-            logoPicture = ImageIO.read(new File("src/main/resources/EditorResources/cheatlogs.png"));
+            logoPicture = ImageIO.read(new URL("https://i.ibb.co/QCjG7v7/cheatlogs-copy.png"));
+            //logoPicture = ImageIO.read(new File("src/main/resources/EditorResources/cheatlogs.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
