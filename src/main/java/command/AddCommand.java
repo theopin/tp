@@ -66,7 +66,7 @@ public class AddCommand extends Command {
             subject = "Unsorted";
         }
 
-        callContentEditor();
+        callContentEditor(name,subject);
 
         try {
             String description = editor.getContent();
@@ -81,7 +81,8 @@ public class AddCommand extends Command {
     /**
      * Opens the GUI-based text editor.
      */
-    private void callContentEditor() {
+    private void callContentEditor(String name, String subject) {
+        editor.setEditingContentAttributes(name, subject);
         editor.open();
         editor.waitForClose();
     }
