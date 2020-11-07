@@ -155,11 +155,11 @@ public final class Printer {
                 + "\tChanges the color scheme of the application. Available options: 1 - 3."
                 + "Type 0 to reset to default color scheme" + NEWLINE
 
-                + ConsoleColorsEnum.BOLD + "" + logoColor + "/set /m include"
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/set /m on"
                 + reset + NEWLINE
-                + ConsoleColorsEnum.BOLD + "" + logoColor + "/set /m remove"
+                + ConsoleColorsEnum.BOLD + "" + logoColor + "/set /m off"
                 + reset + NEWLINE
-                + "\tEnables/disables the help message for each commands." + NEWLINE
+                + "\tEnables/disables the help message for commands." + NEWLINE
 
                 + ConsoleColorsEnum.BOLD + "" + logoColor + "/view /i <CHEAT_SHEET_INDEX>"
                 + reset + NEWLINE
@@ -355,7 +355,7 @@ public final class Printer {
                 + "You also could enter the full command next time if you do not wish to be prompted to enter fields "
                 + "one by one"
                 + NEWLINE + "\"/help\" to see more details on the structure of full command."
-                + NEWLINE + "To stop messages like this from appearing again, input this command: \"/set /m remove\""
+                + NEWLINE + "To stop messages like this from appearing again, input this command: \"/set /m off\""
                 + ConsoleColorsEnum.RESET_TEXT);
     }
 

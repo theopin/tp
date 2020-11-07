@@ -46,12 +46,12 @@ public class SettingsCommand extends Command {
         }
         if (flagsToDescriptions.get(CommandFlag.HELPMESSAGE) != null) {
             String option = flagsToDescriptions.get(CommandFlag.HELPMESSAGE);
-            if (option.toLowerCase().equals("remove")) {
+            if (option.toLowerCase().equals("off")) {
                 settings.setDisplayingHelpMessages(false, false);
-            } else if (option.toLowerCase().equals("include")) {
+            } else if (option.toLowerCase().equals("on")) {
                 settings.setDisplayingHelpMessages(true, false);
             } else {
-                throw new CommandException("Please enter a valid option (\"remove\" or \"include\")");
+                throw new CommandException("Please enter a valid option (\"on\" or \"off\")");
             }
         }
     }
