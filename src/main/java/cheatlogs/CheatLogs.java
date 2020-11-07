@@ -18,7 +18,7 @@ public class CheatLogs {
                 : EMPTY;
         UserSession session = new UserSession();
 
-        if(argsCommand.equals(FIRST)) {
+        if (argsCommand.equals(FIRST)) {
             session.isFirstRun = true;
         }
 

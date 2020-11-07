@@ -45,7 +45,7 @@ public class UserSession {
 
     public void runProgramSequence() {
         AnsiConsole.systemInstall();
-        if(isFirstRun) {
+        if (isFirstRun) {
             fileReader.extractPreloadedCheatSheets();
         }
 
