@@ -341,7 +341,6 @@ After getting prompted to enter a command, you can search for cheat sheets using
 ![image](https://i.ibb.co/kSVw5r3/image.png) | ![image](https://i.ibb.co/TM4J8s1/image.png) | ![image](https://i.ibb.co/fGdPMdC/image.png)
 
 Cheat sheets that meet the criteria of the command you entered would be displayed in a table as shown in the images below.
-`/find /s <SUBJECT>`       | ` /find /k <KEYWORD>`     | `/find /s <SUBJECT> /k <KEYWORD>`
 
 `/find /s <SUBJECT>`       | ` /find /k <KEYWORD>`     | `/find /s <SUBJECT> /k <KEYWORD>`
 :-------------------------:|:-------------------------:|:-------------------------:
