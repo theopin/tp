@@ -213,12 +213,12 @@ The steps below explain the sequence diagram:
 <a id="add"></a>
 ##### 4.2.3.1 Add
 The add command is used to add cheatsheets into CheatLogs.
-The picture bellow shows how the add command is executed.
+The picture bellow shows how the AddCommand is executed.
 ![AddCommand Sequence Diagram](https://i.ibb.co/S7qt5pt/Add-Command-1.png)
-1. When the add command is constructed, it will put the `CommandFlag.NAME` to the `FlagToDescription` Hash Map.
-2. After that, the `CommandFlag.SUBJECT` will be put in the FlagToDescription Hash Map.
-3. The `CommandFlag.NAME` will be added into the `AlternativeArguments` Array List.
-4. The `CommandFlag.SUBJECT` will be added into the `AlternativeArguments` Array List.
+1. When the AddCommand is constructed, it will put the `put(CommandFlag.NAME,null)` to the `FlagToDescription` Hash Map.
+2. After that, the `put(CommandFlag.SUBJECT,null)` will be put in the FlagToDescription Hash Map.
+3. Then, the `add(CommandFlag.NAME)` will be added into the `AlternativeArguments` Array List.
+4. Next, `add(CommandFlag.SUBJECT)` will be added into the `AlternativeArguments` Array List.
 5. Add command will invoke its own method `execute()`
 6. Add command invoke the `get(CommandFlag.NAME)` and will return `name`
 7. After that, the add command invoke the `get(CommandFlag.SUBJECT)` and returns the `subject`
@@ -232,15 +232,29 @@ The picture bellow shows how the add command is executed.
 
 <a id="edit"></a>
 ##### 4.2.3.2 Edit
-<img src="https://i.ibb.co/ZdVMybF/Edit-Command.png" alt="Edit-Command" border="0">
+The edit command allows the user to edit the content of the CheatSheet object.
+The image bellow is how the EditCommand is executed.
+![EditCommand Sequence Diagram](https://i.ibb.co/ZdVMybF/Edit-Command-1.png)
+. When the EditCommand is constructed, it will put the `put(CommandFlag.NAME,null)` to the `FlagToDescription` Hash Map.
+2. After that, the `put(CommandFlag.SUBJECT,null)` will be put in the FlagToDescription Hash Map.
+3. Then, the `add(CommandFlag.NAME)` will be added into the `AlternativeArguments` Array List.
+4. Next, `add(CommandFlag.SUBJECT)` will be added into the `AlternativeArguments` Array List.
+5. The EditCommand will invoke the `execute()` method from within its class.
+6. Inside the `execute()` method, it will call the `getCheatSheetFromNameOrIndex` to retrieve the `desiredCheatSheet`
+7. After that, the EditCommand will invoke the `callContentEditor(cheatSheet)` to show the content editor.
+8. Inside the `callContentEditor(cheatSheet)` method, it will call the `editor.open` method (to open the editor). 
+9. After that, the content of the cheatsheet will be set inside the text editor when editor.setContent(desiredCheatSheet) method is called.
+10. The program will wait for the editor to close when the `editor.waitForClose()` is called.
+11. To reflect the change, the EditCommand object will invoke `cheatsheet.setDetail(editor.getContent())` method to get the content of the cheatsheet and also change the content of the cheatsheet.
 
 <a id="view"></a>
 ##### 4.2.3.3 View
-<img src="https://i.ibb.co/74wtmML/View-Command.png" alt="View-Command" border="0">
+![ViewCommand_Sequence_Diagram](https://i.ibb.co/74wtmML/View-Command.png)
+
 
 <a id="exit"></a>
 ##### 4.2.3.4 Exit
-<img src="https://i.ibb.co/1MD50qH/Exit-Command.png" alt="Exit-Command" border="0">
+![ExitCommand_Sequence_Diagram](https://i.ibb.co/1MD50qH/Exit-Command.png)
 
 <a id="list"></a>
 ##### 4.2.3.5 List
