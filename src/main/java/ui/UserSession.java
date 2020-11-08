@@ -54,16 +54,15 @@ import java.io.IOException;
     public void start() {
         AnsiConsole.systemInstall();
 
-        printer.printWelcomeScreen();
-        if (settings.getDisplayingHelpMessages()) {
-            printer.printStartHelpMessage();
-        }
         if (isFirstRun) {
             fileReader.extractPreloadedCheatSheets();
         }
         fileReader.executeFunction();
 
-    }
+        printer.printWelcomeScreen();
+        if (settings.getDisplayingHelpMessages()) {
+            printer.printStartHelpMessage();
+        }
 
     /**
      * A continuous loop that runs as long as this session is running.
