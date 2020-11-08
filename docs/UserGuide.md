@@ -94,9 +94,17 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
 
 6. Move *CheatLogs.jar* to the new directory.
 7. On the terminal,  navigate to the directory.
-8. Invoke `java -jar cheatlogs.jar` to run the program. If a welcome message appears as shown below then great! CheatLogs is up and running.
-![CheatLogs welcome screen]( https://i.ibb.co/pK6CtPv/image.png)
 
+> :exclamation: If you are running CheatLogs for the first time, proceed to step 8a. Otherwise, proceed to step 8b.
+
+8a. Invoke `java -jar cheatlogs.jar first` to run the program. Through this command, CheatLogs will import [preloaded
+cheatsheet files](#preloaded-data-files) for you to use.
+
+8b. Invoke `java -jar cheatlogs.jar` to run the program. 
+
+> :exclamation: If a welcome message appears as shown below after running step 8a or 8b, then great! CheatLogs is up and running.
+
+![CheatLogs welcome screen]( https://i.ibb.co/L6LmYGZ/mainMenu.png)
 
 9. Try typing some commands in the terminal and hit Enter to execute.
    Here are some example commands you can try, don't worry if you don't know them yet!
@@ -107,6 +115,8 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
 
 A bit confused? Here is a video guide on doing steps 4-9 using the terminal (not cmd). Note that CheatLogs.jar already been placed in the Desktop folder.
 > :bulb: The commands for Windows cmd and UNIX/MacOS terminal are quite similar. You can achieve the same result with cmd using the exact same commands used in the following video.
+
+> :exclamation: This demonstration follows step 8b instead of step 8a.
 
 ![ezgif-6-63beb94eab4e](https://i.ibb.co/Q9FShJt/ezgif-6-63beb94eab4e.gif)
  <br>
@@ -282,7 +292,7 @@ When either the name or index does not match, the Editor does not pop up and Che
 
 ![image](https://i.ibb.co/rZ6Rhgn/image.png)
 
-CheatLogs does not allow you to save empty saved descriptions. The editor will print the error message at the bottom pane (illustrated below) if you try to do so. 
+CheatLogs does not allow you to save empty descriptions.  The editor will print the error message at the bottom pane (illustrated below) if you try to do so.
 
 ![image](https://i.ibb.co/gdGnmZS/image.png)
 
@@ -647,8 +657,6 @@ sheet files by assigning cheatsheets of the same subject to the same folder.
 
 >Format: `<subject>SUBJECT</subject>`
 
-
-
 ---
 
 <a id="contents"></a>
@@ -663,11 +671,11 @@ This section includes the contents of the cheatsheet.
 ## 5.2. Data organization<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
 All the data files can be found in the */data* directory, which is located in the same directory as
-CheatLogs.jar. Within */data*, CheatLogs stores data files in subdirectories whose name matches its
-subject name. This gives you a directory of cheatsheets organized by subject, which you can use
+CheatLogs.jar. Within */data*, CheatLogs stores data files in subdirectories whose name matches its subject name. This gives you a directory of cheatsheets organized by subject, which you can use
 to retrieve any external cheatsheet file. 
 
 The figure below shows a sample organization of the cheatsheet files in a user's directory.
+
 
 ![image](https://i.ibb.co/jbCTyYG/dataOrg.png)
 
@@ -680,8 +688,8 @@ based on the subject you are taking.
 <a id="preloaded-data-files"></a>
 ## 5.3. Preloaded data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-CheatLogs.jar contains some example cheatsheet files. These files will be moved over to the */data*
-directory when you run the application for the first time. To differentiate these files from your 
+
+CheatLogs.jar contains some example cheatsheet files. These files will be moved over to the */data* directory when you run the application for the first time. To differentiate these files from your 
 personally created cheatsheets, they are placed under the */preloaded* subdirectory. By viewing and
 editing these cheatsheets through CheatLogs, you will understand how to operate this program.
 
