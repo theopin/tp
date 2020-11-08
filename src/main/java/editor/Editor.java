@@ -34,6 +34,7 @@ public class Editor extends JFrame implements ActionListener {
     private JLabel footerLabel;
     private String cheatSheetName;
     private String cheatSheetSubject;
+    private String originalContent;
 
     public Editor() {
         generateEditorUI();
@@ -276,6 +277,7 @@ public class Editor extends JFrame implements ActionListener {
             textArea.setText("");
             break;
         case "Cancel":
+            revertToOriginal();
             close();
             break;
         case "Copy":
@@ -292,6 +294,11 @@ public class Editor extends JFrame implements ActionListener {
         }
     }
 
+    private void revertToOriginal() {
+        textArea.setText(originalContent);
+        originalContent="";
+    }
+
     /**
      * The method sets the content of the textArea and the footer.
      * @param cheatSheet this method extracts the content of the cheatsheet into the editor.
@@ -300,6 +307,7 @@ public class Editor extends JFrame implements ActionListener {
         cheatSheetName = cheatSheet.getName();
         cheatSheetSubject = cheatSheet.getSubject();
         textArea.setText(cheatSheet.getDetails());
+        originalContent = cheatSheet.getDetails();
     }
 
     /**
