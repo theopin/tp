@@ -54,7 +54,8 @@ public class ClearCommand extends Command {
     }
 
     /**
-     * Verifies that the user correctly confirmed that cheatsheet should be deleted
+     * Asks for user confirmation of operation. Then verifies that the user correctly
+     * confirmed that cheatsheet should be deleted
      *
      * @return      true if the user has confirmed correctly else false
      */

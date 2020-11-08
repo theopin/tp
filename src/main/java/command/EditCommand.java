@@ -63,7 +63,7 @@ public class EditCommand extends FinderCommand {
     }
 
     /**
-     * Resets then opens the editor.
+     * Resets the editor, then opens it.
      *
      * @param desiredCheatSheet The cheatsheet specified by the user
      */

@@ -13,10 +13,9 @@ import org.fusesource.jansi.AnsiConsole;
 
 import java.io.IOException;
 
-
 // This class manages the overall program flow of CheatLogs.
  public class UserSession {
-    /**
+    /*
      * These are objects that will be injected to command subclasses
      * that allow them to execute.
      */
@@ -69,10 +68,9 @@ import java.io.IOException;
     /**
      * A continuous loop that runs as long as this session is running.
      * Asks for user input which is parsed to generate a command object.
-     * These commands are then executed.
+     * These command objects are then executed.
+     * Any exceptions throw are handled.
      * This process loops till the command specifies to exit.
-     *
-     * Also, this loop handles exception throw by command execution.
      */
     public void runProgramSequence() {
         do {

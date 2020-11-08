@@ -5,6 +5,7 @@ import java.util.Scanner;
 // This class manages the input of CheatLogs.
 public class Ui {
     Scanner in = new Scanner(System.in);
+
     /**
      * Gets the input in the terminal after the user hit <enter>
      */

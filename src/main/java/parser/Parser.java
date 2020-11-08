@@ -25,7 +25,7 @@ import java.util.LinkedHashMap;
 
 
 /**
- * Parses the user input to create a Command that can be executed at a later time.
+ * Parser for user input to create Command objects that can be executed at a later time.
  */
 public class Parser {
     private final CheatSheetList cheatSheetList;
@@ -84,9 +84,11 @@ public class Parser {
      * Parses the user input to return a command injected with all the objects
      * it needs to execute.
      *
-     * @param userInput      Input that is used to construct a command
+     * @param userInput            Input that is used to construct a command
      *
-     * @return               The constructed command
+     * @return                     The constructed command
+     *
+     * @throws CommandException    When the command keyword is not recognized
      */
     private Command parseCommandType(String userInput) throws CommandException {
         String parsedInput = userInput.split(" ")[0];
@@ -120,8 +122,8 @@ public class Parser {
 
     /**
      * Parses the user input for flags with their accompanying descriptions
-     * such as /n NAME. These flag and description pairs will be placed in a
-     * hash map where
+     * such as "/n NAME". These flag and description pairs will be placed in a
+     * hash map where:
      * key : the flag represented as a CommandFlag object. (e.g. /n is represented as
      *                                                      a CommandFlag.NAME object)
      * value : the description of the flag (e.g. "if else" in "/n if else")
@@ -130,6 +132,8 @@ public class Parser {
      * @param userInput                 The input used to create the flag and description hash map
      *
      * @return                          The flag and description hash map
+     *
+     * @throws CommandException         One of the flags inputted isn't required by the command
      */
     private LinkedHashMap<CommandFlag, String> parseFlagDescriptions(Command commandToBeExecuted, String userInput)
             throws CommandException {
@@ -164,7 +168,7 @@ public class Parser {
     }
 
     /**
-     * Validate if the command actually needs the flag inputted, or if it is irrelevant to execution.
+     * Validate if the command actually needs the inputted flag, or if it is irrelevant to execution.
      *
      * @param commandToBeExecuted       The command who is accepting the flag
      * @param flag                      The flag we are validating if we need.

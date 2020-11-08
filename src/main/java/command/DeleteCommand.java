@@ -54,7 +54,8 @@ public class DeleteCommand extends FinderCommand {
     }
 
     /**
-     * Verifies that the user correctly confirmed that all cheatsheets should be cleared
+     * Asks for user confirmation of operation. Then verifies
+     * that the user correctly confirmed that all cheatsheets should be cleared
      *
      * @return      true if the user has confirmed correctly else false
      */
