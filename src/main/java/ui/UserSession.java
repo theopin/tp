@@ -13,8 +13,10 @@ import org.fusesource.jansi.AnsiConsole;
 
 import java.io.IOException;
 
+/*
+    This class manages the overall program flow of CheatLogs.
+ */
 public class UserSession {
-    public boolean isFirstRun;
     /*
      * These are objects that will be injected to command subclasses
      * that allow them to execute.
@@ -29,6 +31,11 @@ public class UserSession {
     Ui ui;
     Settings settings;
 
+    public boolean isFirstRun;
+    /**
+     * Constructor for the UserSession. Creates a single instance of all
+     * common objects that are passed to the commands.
+     */
     public UserSession() {
         cheatSheetList = new CheatSheetList();
         editor = new Editor();
@@ -37,13 +44,16 @@ public class UserSession {
         settings = new Settings(printer);
         fileReader = new DataFileReader(settings, printer, cheatSheetList);
         fileWriter = new DataFileWriter(settings, printer, cheatSheetList);
-
         fileDestroyer = new DataFileDestroyer(printer, cheatSheetList);
         userCommandParser = new Parser(cheatSheetList, editor, fileDestroyer, printer, ui, settings, fileReader);
+
         isFirstRun = false;
     }
 
-    public void runProgramSequence() {
+    /**
+     * Initializes CheatLogs and greets the user
+     */
+    public void start() {
         AnsiConsole.systemInstall();
 
         printer.printWelcomeScreen();
@@ -55,8 +65,17 @@ public class UserSession {
         }
         fileReader.executeFunction();
 
+    }
 
-        // Ask for new user input and executes it until user types the exit command
+    /**
+     * A continuous loop that runs as long as this session is running.
+     * Asks for user input which is parsed to generate a command object.
+     * These commands are then executed.
+     * This process loops till the command specifies to exit.
+     *
+     * Also, this loop handles exception throw by command execution.
+     */
+    public void runProgramSequence() {
         do {
             printer.printUserInputPrompt();
 
@@ -76,6 +95,9 @@ public class UserSession {
         } while (true);
     }
 
+    /**
+     * Exits CheatLogs by closing certain objects and printing the exit logo
+     */
     public void exit() {
         ui.closeScanner();
         editor.dispose();
