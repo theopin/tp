@@ -17,8 +17,6 @@ public class ClearCommand extends Command {
     public static final String invoker = "/clear";
 
 
-    public ClearCommand(Printer printer, CheatSheetList cheatSheetList,
-                        DataFileDestroyer fileDestroyer, ) {
     /**
      * Constructor for the ClearCommand.
      * No command argument is required.
@@ -27,7 +25,7 @@ public class ClearCommand extends Command {
      * @param cheatSheetList The current list of cheat sheets
      * @param fileDestroyer  The fileDestroyer object removes cheat sheet file from the /data folder
      */
-    public ClearCommand(Printer printer, CheatSheetList cheatSheetList, DataFileDestroyer fileDestroyer
+    public ClearCommand(Printer printer, CheatSheetList cheatSheetList, DataFileDestroyer fileDestroyer,
                        DataFileReader fileReader) {
         super(printer);
         this.cheatSheetList = cheatSheetList;
