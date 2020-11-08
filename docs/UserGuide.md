@@ -96,8 +96,14 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
 
 6. Move *CheatLogs.jar* to the new directory.
 7. On the terminal,  navigate to the directory.
-8. Invoke `java -jar cheatlogs.jar` to run the program. If a welcome message appears as shown below then great! CheatLogs is up and running.
-![CheatLogs welcome screen]( https://i.ibb.co/pK6CtPv/image.png)
+
+> :exclamation: If you are running CheatLogs for the first time, proceed to step 8a. Otherwise, proceed to step 8b.
+
+8a. Invoke `java -jar cheatlogs.jar first` to run the program. Through this command, CheatLogs will import [preloaded
+cheatsheet files](#preloaded-data-files) for you to use.
+
+8b. Invoke `java -jar cheatlogs.jar` to run the program. If a welcome message appears as shown below then great! CheatLogs is up and running.
+![CheatLogs welcome screen]( https://i.ibb.co/L6LmYGZ/mainMenu.png)
 
 
 9. Try typing some commands in the terminal and hit Enter to execute.
@@ -108,6 +114,8 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
    * `/exit`: Exits the app.
 
 A bit confused? Here is a video guide on doing steps 4-9 using the terminal (not cmd). Note that CheatLogs.jar already been placed in the Desktop folder.
+
+> :exclamation: This demonstration follows step 8b instead of step 8a.
 
 ![ezgif-6-63beb94eab4e](https://i.ibb.co/Q9FShJt/ezgif-6-63beb94eab4e.gif)
  <br>
