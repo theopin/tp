@@ -25,6 +25,7 @@ import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Scanner;
 import java.util.jar.JarEntry;
@@ -211,6 +212,7 @@ public class DataFileReader extends DataFile {
      * @throws IOException Thrown if the /data directory is missing or empty.
      */
     private void extractFromDirectory(Path directoryPath) throws IOException {
+        ArrayList<String> convertedCheatSheets = new ArrayList<>();
         File[] dataDirectoryFiles = directoryPath.toFile().listFiles();
         if (dataDirectoryFiles == null) {
             throw new IOException();
@@ -231,14 +233,20 @@ public class DataFileReader extends DataFile {
             boolean isPreloadedFile = preloadedFileName.equals(PRELOADED);
 
             if (isPreloadedFile) {
-                preloadedCheatSheets.add(dataDirectoryFile.toPath());
+                Path cheatSheetPath = dataDirectoryFile.toPath();
+                if(preloadedCheatSheets.contains(cheatSheetPath)) {
+                    continue;
+                }
             }
 
             try {
                 if (dataDirectoryFile.getName().equals("settings.txt")) {
                     loadUserSettings(dataDirectoryFile);
                 } else {
-                    extractCheatSheet(dataDirectoryFile);
+                    if(!convertedCheatSheets.contains(dataDirectoryFile.getName())) {
+                        extractCheatSheet(dataDirectoryFile);
+                        convertedCheatSheets.add(dataDirectoryFile.getName());
+                    }
                 }
 
             } catch (ParserConfigurationException e) {
