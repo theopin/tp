@@ -41,7 +41,7 @@ I contributed to **section 4.4** which covers `/help`, `/set` and `/exit` comman
 #### Contributions to the DG
 I contributed to **section 3.2.3** which covers `DeleteCommand`, `ClearCommand`, `FavouriteCommand`, `HelpCommand`. 
 
-I also contributed to **section 6.2** about user stories. 
+I also contributed to **section 7.2** about user stories. 
 
 ---
 #### Contribution to team-based tasks
