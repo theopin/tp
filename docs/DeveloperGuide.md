@@ -53,7 +53,7 @@ The table of contents below lets you easily access the documentation for CheatLo
     * [5.2. Editing Feature](#editing-feature)
     * [5.3. Sorting Feature](#sorting-feature)
     * [5.4. Storage & Reading of Cheatsheet files](#storage-reading-of-cheatsheet-files)
-    * [5.5. Colour coding for code snippet](#colour-coding-for-code-snippet)
+    * [5.5. \[Proposed\] Colour coding for code snippet](#colour-coding-for-code-snippet)
 * [6. Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [7. Appendix: Requirements](#appendix-requirements)
     * [7.1. Product scope](#product-scope-appendix)
@@ -383,8 +383,7 @@ When the application is loaded subsequently, data from these files will be conve
 
 
 <a id="colour-coding-for-code-snippet"></a>
-## 5.5. Colour coding for code snippet<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-//Proposed
+## 5.5. [Proposed] Colour coding for code snippet<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 The idea of this feature is to improve the readability of the code snippets (if present) inside the cheat sheet. 
 To make this possible, several adjustments must be made to the save data format to allow more information to be stored inside a single file instead of scattered across multiple files. 
 Thus, instead of saving to a txt file, the program will write the cheat sheet data into a xml file, for easier parsing and sectioning. 
@@ -438,8 +437,15 @@ versions of CheatLogs was designed to solve.
 |v1.0|user|search and filter the cheat sheets by name|open them quickly and easily|
 |v1.0|intermediate user|write and add my own cheat sheets|use the application to help me in matters not strictly related to programming|
 |v1.0|experienced user|delete all cheat sheets|create and customize everything by myself|
+|v2.0|new user|be prompted to fill the required arguments of a command|use the application without memorizing the flags for each command|
 |v2.0|user|edit the cheat sheets|update the cheat sheet and keep them relevant as the time progresses|
-|v2.0|user|customize the settings|add and edit the cheat sheets|
+|v2.0|user|add cheatsheets to favourites|easily access my frequently-used cheatsheets|
+|v2.0|user|sort cheatsheets based on name or subject|easily view and find the list of cheatsheets in my possession|
+|v2.0|user|customize the settings|adjust the behavior of the program to suit my needs|
+|v2.0|user|see the output in different colors|be more comfortable when using the application|
+|v2.0|user|see the cheatsheets in table from|be more comfortable viewing the list of cheatsheets|
+|v2.1|user|remove cheatsheets from favourites|remove cheatsheets which are less relevant at the time being from appearing at the top of the list|
+|v2.1|user|automatically save the settings|use the program without customizing it on each time I run it|
 
 
 <a id="use-cases"></a>
