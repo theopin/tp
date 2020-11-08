@@ -238,6 +238,7 @@ public class DataFileReader extends DataFile {
                 if (preloadedCheatSheets.contains(cheatSheetPath)) {
                     continue;
                 }
+                preloadedCheatSheets.add(cheatSheetPath);
             }
 
             try {
