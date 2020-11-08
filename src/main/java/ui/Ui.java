@@ -7,14 +7,14 @@ public class Ui {
     Scanner in = new Scanner(System.in);
 
     /**
-     * Gets the input in the terminal after the user hit <enter>
+     * Gets the input in the terminal after the user hits Enter.
      */
     public String getUserInput() {
         return in.nextLine();
     }
 
     /**
-     * Closes the scanner
+     * Closes the scanner.
      */
     public void closeScanner() {
         in.close();

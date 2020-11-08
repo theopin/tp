@@ -1,6 +1,6 @@
 package ui;
 
-// This class holds the ANSI escape codes used to format console output
+// This class holds the ANSI escape codes used to format console output.
 public enum ConsoleColorsEnum {
     BLACK_TEXT("\u001B[30m"),
     RED_TEXT("\u001B[31m"),
@@ -45,8 +45,7 @@ public enum ConsoleColorsEnum {
     private String ansiCode;
 
     /**
-     * Constructor for ConsoleColorsEnum object which sets the exact
-     * ANSI code it holds
+     * Constructor for ConsoleColorsEnum object which sets the exact ANSI code it holds.
      */
     ConsoleColorsEnum(String ansiCode) {
         this.ansiCode = ansiCode;

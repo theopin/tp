@@ -14,7 +14,7 @@ import org.fusesource.jansi.AnsiConsole;
 import java.io.IOException;
 
 // This class manages the overall program flow of CheatLogs.
- public class UserSession {
+public class UserSession {
     /*
      * These are objects that will be injected to command subclasses
      * that allow them to execute.
@@ -30,6 +30,7 @@ import java.io.IOException;
     Settings settings;
 
     public boolean isFirstRun;
+
     /**
      * Constructor for the UserSession. Creates a single instance of all
      * common objects that are passed to the commands.
@@ -49,7 +50,7 @@ import java.io.IOException;
     }
 
     /**
-     * Initializes CheatLogs and greets the user
+     * Initializes CheatLogs and greets the user.
      */
     public void start() {
         AnsiConsole.systemInstall();
@@ -63,6 +64,7 @@ import java.io.IOException;
         if (settings.getDisplayingHelpMessages()) {
             printer.printStartHelpMessage();
         }
+    }
 
     /**
      * A continuous loop that runs as long as this session is running.
@@ -92,7 +94,7 @@ import java.io.IOException;
     }
 
     /**
-     * Exits CheatLogs by closing certain objects and printing the exit logo
+     * Exits CheatLogs by closing certain objects and printing the exit logo.
      */
     public void exit() {
         ui.closeScanner();
