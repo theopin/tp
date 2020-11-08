@@ -167,7 +167,7 @@ class AddCommandTest {
             Command addCommand = new AddCommand(new Printer(), cheatSheetList, null);
             LinkedHashMap<CommandFlag, String> linkedHashMap = new LinkedHashMap<>();
             linkedHashMap.put(CommandFlag.SUBJECT, null);
-            addCommand.setFlagstodescriptionsMap(linkedHashMap);
+            addCommand.setFlagsToDescriptionsMap(linkedHashMap);
             addCommand.execute();
             fail();
         } catch (CommandException e) {
