@@ -39,7 +39,7 @@ public class EditCommand extends FinderCommand {
      * @return A boolean on whether the EditCommand contains the required flag arguments
      */
     @Override
-    public boolean hasAlternativeArgument() {
+    public boolean hasRequiredArguments() {
         return flagsToDescriptions.get(CommandFlag.NAME) != null
                 || flagsToDescriptions.get(CommandFlag.INDEX) != null;
     }
