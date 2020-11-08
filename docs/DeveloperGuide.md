@@ -107,7 +107,7 @@ You are free to use any java file editor and run the program by following the st
 3. Move the file to a folder you want to use as the home folder for this application.
 4. Invoke java -jar CheatLogs.jar on the command line to run the program. A welcome message should appear, as shown below.
 
-![](Images/Image1.PNG)
+![](https://i.ibb.co/pK6CtPv/image.png)
 
 
 <a id="importing-to-intellij"></a>
@@ -148,7 +148,7 @@ CheatLogs is split into 5 major components, each handling distinct features of t
 The UML diagram below illustrates an extensive version of the various classes present in CheatLogs as well as their interactions with each other.
 
 
-![](Images/Image4.PNG)
+![](https://i.ibb.co/Cb8GckB/image.png)
 
 Image 2: In-Depth Architecture of CheatLogs
 
@@ -233,15 +233,56 @@ The steps below explain the sequence diagram:
 
 <a id="delete"></a>
 ##### 3.2.3.8 Delete
+Delete command removes one cheatsheet from the CheatSheetList and deletes the corresponding file in the */data* directory.
 
+Here is an example of the usage of `/delete` command and how it works:
+1. User type `/delete /i 1` to delete all cheatsheets. `UserSession` class reads the input and passes this to the `Parser` class.
+2. The parser parses the user command which results in a `DeleteCommand` object.
+3. This object is passed back to `UserSession` class and it calls `DeleteCommand.execute()`.
+4. `DeleteCommand.execute()` invokes `getCheatSheetFromNameOrIndex()` method from the `FinderCommand` class to find the desired cheatsheet. If the cheatsheet does not exist, it throws an exception.
+5. Then, it asks the user's confirmation through `printer.printDeleteConfirmation()`.
+6. If the user says yes, it invokes the `fileDestroyer.executeFunction(cheatSheetToDelete.getName())` to delete the corresponding file in the */data* directory. 
+7. Next, it invokes `cheatSheetList.remove(cheatSheetToDelete.getName())` to delete the cheatsheet from CheatSheetList.
+8. Lastly, it calls `printer.printDeleteCheatSheetMessage` to give feedback message to the user.
+
+The following sequence diagram illustrates how steps 4 - 8 are executed by DeleteCommand.
 <a id="clear"></a>
 ##### 4.2.3.9 Clear
+Clear command deletes all user-defined cheatsheets while maintaining the preloaded cheatsheets.
 
+Here is an example of the usage of `/clear` command and how it works:
+1. User type `/clear` to delete all cheatsheets. `UserSession` class reads the input and passes this to the `Parser` class.
+2. The parser parses the user command which results in a `ClearCommand` object.
+3. This object is passed back to `UserSession` class and it calls `ClearCommand.execute()`.
+4. `ClearCommand.execute()` first asks the user for confirmation by calling `printer.printClearConfirmation()`. If the user confirms, it invokes the `fileDestroyer.executeFunction()` to delete all user-defined cheatsheets stored in the */data* directory.
+5. Subsequently, it invokes the `cheatSheetList.clear()` to delete all cheatsheets in the CheatSheetList.
+6. Next, it invokes `fileReader.extractPreloadedCheatSheets()` and `fileReader.executeFunction()` to restore the preloaded cheatsheets.
+7. Lastly, it calls `printer.printClearCheatSheetMessage` to give feedback message to the user.
+
+The following sequence diagram illustrates how steps 4 - 7 are executed by ClearCommand.
 <a id="favourite"></a>
 ##### 4.2.3.10 Favourite
+Favourite command adds/removes the cheatsheet from/to favourites.
 
+Here is an example of the usage of `/fav` command and how it works:
+1. User type `/fav /i 1` to add the first cheatsheet to favourites. `UserSession` class reads the input and passes this to the `Parser` class.
+2. The parser parses the user command which results in a `FavouriteCommand` object.
+3. This object is passed back to `UserSession` class and it calls `FavouriteCommand.execute()`.
+4. `FavouriteCommand.execute()` checks the existence of the delete flag `/d`.
+5. Next, it invokes `cheatSheetToFavourite.setFavourite(isAddFav)` to add/remove the cheatsheet to/from favourites based on the existence of the delete flag.
+6. Lastly, it calls `printer.printFavouritedCheatSheetMessage` to give feedback message to the user.
+
+The following sequence diagram illustrates how steps 4 - 6 are executed by ClearCommand.
 <a id="help"></a>
 ##### 4.2.3.11 Help
+Help command prints the descriptions and examples for all commands.
+
+Here is an example of the usage of `/help` command and how it works:
+1. User type `/fav /i 1` to add the first cheatsheet to favourites. `UserSession` class reads the input and passes this to the `Parser` class.
+2. The parser parses the user command which results in a `FavouriteCommand` object.
+3. This object is passed back to `UserSession` class and it calls `HelpCommand.execute()`.
+4. `HelpCommand.execute()` invokes `printer.printHelpSheet()` method and it prints the help sheet to the user.
+The following sequence diagram illustrates how step 4 is executed by HelpCommand.
 
 <a id="cheat-sheet-structure"></a>
 #### 4.2.4. Cheat Sheet Structure 
