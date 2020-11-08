@@ -18,8 +18,8 @@ public class AddCommand extends Command {
 
     /**
      * Constructor for the AddCommand.
-     * Required argument: NAME.
-     * Optional argument: SUBJECT.
+     * Required flag: NAME.
+     * Optional flag: SUBJECT.
      *
      * @param printer        The printer object to handle user interaction
      * @param cheatSheetList The current list of cheat sheets
@@ -32,8 +32,8 @@ public class AddCommand extends Command {
 
         flagsToDescriptions.put(CommandFlag.NAME, null);
         flagsToDescriptions.put(CommandFlag.SUBJECT, null);
-        necessaryArguments.add(CommandFlag.NAME);
-        necessaryArguments.add(CommandFlag.SUBJECT);
+        necessaryFlags.add(CommandFlag.NAME);
+        necessaryFlags.add(CommandFlag.SUBJECT);
     }
 
     /**

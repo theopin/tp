@@ -13,11 +13,10 @@ import org.fusesource.jansi.AnsiConsole;
 
 import java.io.IOException;
 
-/*
-    This class manages the overall program flow of CheatLogs.
- */
-public class UserSession {
-    /*
+
+// This class manages the overall program flow of CheatLogs.
+ public class UserSession {
+    /**
      * These are objects that will be injected to command subclasses
      * that allow them to execute.
      */

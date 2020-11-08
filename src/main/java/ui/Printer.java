@@ -225,11 +225,11 @@ public final class Printer {
         }
         printCheatSheet(cheatSheet);
     }
-    
+
     public void printAlternativeArgumentPrompt(Command command) {
         print(NEWLINE);
         System.out.print(ConsoleColorsEnum.RED_TEXT + "Please enter at least ONE of these: ");
-        for (CommandFlag arg : command.getAlternativeArguments()) {
+        for (CommandFlag arg : command.getAlternativeFlags()) {
             System.out.print(arg + " ");
         }
         print(reset);
