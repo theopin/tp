@@ -129,4 +129,33 @@ public class DataFileReaderTest extends DataFileTest {
         int finalListSize = testCheatSheetList.getSize();
         assertEquals(0, finalListSize);
     }
+/*
+    @Test
+    void readFile_jarFile_success() {
+        final boolean isDataDirPresent = checkDataDirectoryExistence();
+        if (isDataDirPresent) {
+            shiftExistingDataFiles();
+        }
+        testCheatSheetList.clear();
+        createDirectory(dataDir);
+
+        testReader.jarDirectory = sampleJarFile;
+        testReader.extractPreloadedCheatSheets();
+        testReader.executeFunction();
+        final int finalListSize = testCheatSheetList.getSize();
+
+        eraseFile(Paths.get(userDir, data, "preloaded", "C", "string.xml"));
+        eraseFile(Paths.get(userDir, data, "preloaded", "C"));
+        eraseFile(Paths.get(userDir, data, "preloaded"));
+        eraseFile(dataDir);
+
+        if (isDataDirPresent) {
+            restoreDataDir();
+        }
+        testCheatSheetList.clear();
+
+        assertEquals(1, finalListSize);
+    }
+
+ */
 }

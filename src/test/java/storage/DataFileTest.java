@@ -17,6 +17,8 @@ public class DataFileTest {
     String test = "Test";
     String empty = "";
     String sample = "sample";
+    String sampleJarFile = Paths.get("src", "test", "java", "storage", "test.jar")
+            .toString();
 
     Path sampleTestDir = Paths.get(userDir, data, test);
     Path dataDir = Paths.get(userDir, data);
