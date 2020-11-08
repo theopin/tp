@@ -120,7 +120,9 @@ public class DataFileDestroyer extends DataFile {
             }
 
             try {
-                deleteFile(dataDirectoryFile.replace(XML_EXTENSION, EMPTY));
+                if (!dataDirectoryFile.equals("settings.txt")) {
+                    deleteFile(dataDirectoryFile.replace(XML_EXTENSION, EMPTY));
+                }
             } catch (IOException e) {
                 destroyLogger.log(Level.WARNING, "IO Directory Error");
                 printer.print("CheatLogs could not clear a particular file!"
