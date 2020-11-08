@@ -25,9 +25,6 @@ public class DataFileReaderTest extends DataFileTest {
     @Test
     void readFile_name_success() {
         final boolean isDataDirPresent = checkDataDirectoryExistence();
-        if (isDataDirPresent) {
-            shiftExistingDataFiles();
-        }
         testCheatSheetList.clear();
 
         createDirectory(sampleTestDir);
@@ -36,11 +33,7 @@ public class DataFileReaderTest extends DataFileTest {
         testReader.executeFunction();
         eraseFile(sampleTest4);
         eraseFile(sampleTestDir);
-        eraseFile(dataDir);
-
-        if (isDataDirPresent) {
-            restoreDataDir();
-        }
+        restoreDataDir(isDataDirPresent);
 
         boolean isCheatSheetListEmpty = testCheatSheetList.getSize() == 0;
         String testName = !isCheatSheetListEmpty
@@ -54,9 +47,6 @@ public class DataFileReaderTest extends DataFileTest {
     @Test
     void readFile_subject_success() {
         final boolean isDataDirPresent = checkDataDirectoryExistence();
-        if (isDataDirPresent) {
-            shiftExistingDataFiles();
-        }
 
         testCheatSheetList.clear();
         createDirectory(sampleTestDir);
@@ -65,10 +55,8 @@ public class DataFileReaderTest extends DataFileTest {
         testReader.executeFunction();
         eraseFile(sampleTest4);
         eraseFile(sampleTestDir);
-        eraseFile(dataDir);
-        if (isDataDirPresent) {
-            restoreDataDir();
-        }
+        restoreDataDir(isDataDirPresent);
+
         boolean isCheatSheetListEmpty = testCheatSheetList.getSize() == 0;
         String testSubject = !isCheatSheetListEmpty
                 ? testCheatSheetList.getList().get(0).getSubject() :
@@ -80,9 +68,6 @@ public class DataFileReaderTest extends DataFileTest {
     @Test
     void readFile_details_success() {
         final boolean isDataDirPresent = checkDataDirectoryExistence();
-        if (isDataDirPresent) {
-            shiftExistingDataFiles();
-        }
 
         testCheatSheetList.clear();
         createDirectory(sampleTestDir);
@@ -91,11 +76,7 @@ public class DataFileReaderTest extends DataFileTest {
         testReader.executeFunction();
         eraseFile(sampleTest4);
         eraseFile(sampleTestDir);
-        eraseFile(dataDir);
-
-        if (isDataDirPresent) {
-            restoreDataDir();
-        }
+        restoreDataDir(isDataDirPresent);
 
         boolean isCheatSheetListEmpty = testCheatSheetList.getSize() == 0;
         String testSubject = !isCheatSheetListEmpty
@@ -108,9 +89,6 @@ public class DataFileReaderTest extends DataFileTest {
     @Test
     void readFile_invalidFile_notAdded() {
         final boolean isDataDirPresent = checkDataDirectoryExistence();
-        if (isDataDirPresent) {
-            shiftExistingDataFiles();
-        }
 
         testCheatSheetList.clear();
 
@@ -120,24 +98,17 @@ public class DataFileReaderTest extends DataFileTest {
         testReader.executeFunction();
         eraseFile(sampleTest4);
         eraseFile(sampleTestDir);
-        eraseFile(dataDir);
 
-        if (isDataDirPresent) {
-            restoreDataDir();
-        }
+        restoreDataDir(isDataDirPresent);
 
         int finalListSize = testCheatSheetList.getSize();
         assertEquals(0, finalListSize);
     }
-/*
+
     @Test
     void readFile_jarFile_success() {
         final boolean isDataDirPresent = checkDataDirectoryExistence();
-        if (isDataDirPresent) {
-            shiftExistingDataFiles();
-        }
         testCheatSheetList.clear();
-        createDirectory(dataDir);
 
         testReader.jarDirectory = sampleJarFile;
         testReader.extractPreloadedCheatSheets();
@@ -147,15 +118,11 @@ public class DataFileReaderTest extends DataFileTest {
         eraseFile(Paths.get(userDir, data, "preloaded", "C", "string.xml"));
         eraseFile(Paths.get(userDir, data, "preloaded", "C"));
         eraseFile(Paths.get(userDir, data, "preloaded"));
-        eraseFile(dataDir);
 
-        if (isDataDirPresent) {
-            restoreDataDir();
-        }
+        restoreDataDir(isDataDirPresent);
         testCheatSheetList.clear();
 
         assertEquals(1, finalListSize);
     }
-
- */
+    
 }
