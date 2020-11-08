@@ -14,6 +14,7 @@ import org.fusesource.jansi.AnsiConsole;
 import java.io.IOException;
 
 public class UserSession {
+    public boolean isFirstRun;
     /*
      * These are objects that will be injected to command subclasses
      * that allow them to execute.
@@ -38,12 +39,18 @@ public class UserSession {
         fileWriter = new DataFileWriter(settings, printer, cheatSheetList);
 
         fileDestroyer = new DataFileDestroyer(printer, cheatSheetList);
-        userCommandParser = new Parser(cheatSheetList, editor, fileDestroyer, printer, ui, settings);
+        userCommandParser = new Parser(cheatSheetList, editor, fileDestroyer, printer, ui, settings, fileReader);
+        isFirstRun = false;
     }
 
     public void runProgramSequence() {
         AnsiConsole.systemInstall();
+
+        if (isFirstRun) {
+            fileReader.extractPreloadedCheatSheets();
+        }
         fileReader.executeFunction();
+
         printer.printWelcomeScreen();
         if (settings.getDisplayingHelpMessages()) {
             printer.printStartHelpMessage();
@@ -52,6 +59,7 @@ public class UserSession {
         // Ask for new user input and executes it until user types the exit command
         do {
             printer.printUserInputPrompt();
+
             String userInput = ui.getUserInput();
             try {
                 Command parsedUserCommand = userCommandParser.parse(userInput);

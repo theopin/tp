@@ -32,8 +32,8 @@ public class AddCommand extends Command {
 
         flagsToDescriptions.put(CommandFlag.NAME, null);
         flagsToDescriptions.put(CommandFlag.SUBJECT, null);
-        alternativeArguments.add(CommandFlag.NAME);
-        alternativeArguments.add(CommandFlag.SUBJECT);
+        necessaryArguments.add(CommandFlag.NAME);
+        necessaryArguments.add(CommandFlag.SUBJECT);
     }
 
     /**
@@ -61,12 +61,15 @@ public class AddCommand extends Command {
 
         String subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
         if (subject != null) {
+            if (!subject.matches(NO_SPECIAL_CHAR)) {
+                throw new CommandException("Subject can only contain alphanumeric characters");
+            }
             subject = convertToPascalCaseNoSpace(subject);
         } else {
             subject = "Unsorted";
         }
 
-        callContentEditor();
+        callContentEditor(name,subject);
 
         try {
             String description = editor.getContent();
@@ -81,7 +84,9 @@ public class AddCommand extends Command {
     /**
      * Opens the GUI-based text editor.
      */
-    private void callContentEditor() {
+
+    private void callContentEditor(String name, String subject) {
+        editor.setEditingContentAttributes(name, subject);
         editor.open();
         editor.waitForClose();
     }

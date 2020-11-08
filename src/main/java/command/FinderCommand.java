@@ -6,14 +6,29 @@ import exception.CommandException;
 import parser.CommandFlag;
 import ui.Printer;
 
+/**
+ * Base class for commands that searches through cheatSheetList for matching content.
+ */
 public abstract class FinderCommand extends Command {
     protected CheatSheetList cheatSheetList;
 
+    /**
+     * Constructor of FinderCommand.
+     *
+     * @param printer The printer object handles the user interaction.
+     * @param cheatSheetList The cheatSheetList object holds the current list of cheatsheets
+     */
     public FinderCommand(Printer printer, CheatSheetList cheatSheetList) {
         super(printer);
         this.cheatSheetList = cheatSheetList;
     }
 
+    /**
+     * Searches through cheatSheetList for cheatsheets with name or index that matched what the user inputs.
+     *
+     * @return Cheatsheet that matched what the user inputs.
+     * @throws CommandException Thrown if no matching cheatsheet is found
+     */
     protected CheatSheet getCheatSheetFromNameOrIndex() throws CommandException {
         CheatSheet desiredCheatSheet = null;
         String name = flagsToDescriptions.get(CommandFlag.NAME);
@@ -29,13 +44,29 @@ public abstract class FinderCommand extends Command {
         }
 
         if (desiredCheatSheet == null) {
-            throw new CommandException("Please enter a valid name or/and an index");
+            if (name != null && index == null) {
+                throw new CommandException("Please enter a valid name");
+            } else if (name == null && index != null) {
+                throw new CommandException("Please enter a valid index");
+            } else if (name != null) {
+                throw new CommandException("No cheat sheet matches the name and index entered");
+            }
         }
         return desiredCheatSheet;
     }
 
-    public boolean checkCheatSheetExistsInCheatSheetList(CheatSheet cs, String name, String subject,
-                                                            String keyword) throws CommandException {
+    /**
+     * Checks if a cheatsheet matches with the name, subject or keyword the user inputs.
+     *
+     * @param cs The target cheatsheet
+     * @param name The name of cheatsheet entered by user
+     * @param subject The subject of cheatsheet entered by user
+     * @param keyword The keyword of cheatsheet entered by user
+     * @return A boolean on whether the cheatsheet matched what the user inputs
+     * @throws CommandException Thrown if name, subject and keyword are null
+     */
+    public boolean checkCheatSheetMatchesWithFields(CheatSheet cs, String name, String subject,
+                                                    String keyword) throws CommandException {
         if (subject != null && keyword == null && name == null) {
             return cs.getSubject().contains(subject);
         } else if (subject == null && keyword != null && name == null) {
