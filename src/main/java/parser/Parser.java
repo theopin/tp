@@ -205,7 +205,9 @@ public class Parser {
 
         // Ask the user for the missing flags until the command can execute
         while (!commandToBeExecuted.hasRequiredFlags()) {
-            printer.printAlternativeArgumentPrompt(commandToBeExecuted);
+            if (!commandToBeExecuted.hasAlternativeFlags()) {
+                printer.printAlternativeArgumentPrompt(commandToBeExecuted);
+            }
 
             /* commands initialize the required keys they need with value null. We
                thus look for keys with a null value as they haven't been filled yet*/
