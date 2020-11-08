@@ -55,15 +55,7 @@ public class DataFileWriterTest extends DataFileTest {
 
         testWriter.executeFunction();
         userDirectoryFiles = dataDir.toFile().list();
-<<<<<<< HEAD
-
-        eraseFile(settingsFile);
-        if (!isDataDirPresent) {
-            eraseFile(dataDir);
-        }
-=======
         restoreDataDir(isDataDirPresent);
->>>>>>> 7c360f5459720b7f5457301b88a24f199af83f98
 
         testCheatSheetList.clear();
 
@@ -93,14 +85,7 @@ public class DataFileWriterTest extends DataFileTest {
         }
 
         eraseFile(sampleTestDir);
-<<<<<<< HEAD
-        eraseFile(settingsFile);
-        if (!isDataDirPresent) {
-            eraseFile(dataDir);
-        }
-=======
         restoreDataDir(isDataDirPresent);
->>>>>>> 7c360f5459720b7f5457301b88a24f199af83f98
 
         testCheatSheetList.clear();
         assertTrue(isSampleAdded);
@@ -131,14 +116,7 @@ public class DataFileWriterTest extends DataFileTest {
             }
 
             eraseFile(sampleTestDir);
-<<<<<<< HEAD
-            eraseFile(settingsFile);
-            if (!isDataDirPresent) {
-                eraseFile(dataDir);
-            }
-=======
             restoreDataDir(isDataDirPresent);
->>>>>>> 7c360f5459720b7f5457301b88a24f199af83f98
 
             testCheatSheetList.clear();
             assertEquals(fileInput, writtenFile);
@@ -162,21 +140,7 @@ public class DataFileWriterTest extends DataFileTest {
             eraseFile(sampleTest);
         }
         eraseFile(sampleTestDir);
-<<<<<<< HEAD
-        eraseFile(settingsFile);
-        eraseFile(dataDir);
-
-        if (isDataDirPresent) {
-            try {
-                Files.move(tempDataDir, dataDir);
-                eraseFile(tempDir);
-            } catch (IOException e) {
-                printer.print(e.getMessage());
-            }
-        }
-=======
         restoreDataDir(isDataDirPresent);
->>>>>>> 7c360f5459720b7f5457301b88a24f199af83f98
 
         testCheatSheetList.clear();
         assertTrue(isSampleAdded);
@@ -208,14 +172,7 @@ public class DataFileWriterTest extends DataFileTest {
                 eraseFile(sampleTest);
             }
             eraseFile(sampleTestDir);
-<<<<<<< HEAD
-            eraseFile(settingsFile);
-            if (!isDataDirPresent) {
-                eraseFile(dataDir);
-            }
-=======
             restoreDataDir(isDataDirPresent);
->>>>>>> 7c360f5459720b7f5457301b88a24f199af83f98
 
             testCheatSheetList.clear();
             assertEquals(fileInput2, writtenFile);
