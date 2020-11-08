@@ -188,7 +188,7 @@ public final class Printer {
     public void printClearCheatSheetMessage(int number) {
         print(textColor + "Cleared total of " + number + " cheat sheets");
         print(LINE);
-        print("Now you have no cheatsheets" + reset);
+        print("Now you have no user-defined cheatsheets" + reset);
     }
 
     public void printDeleteConfirmation(CheatSheet cheatSheet) {
