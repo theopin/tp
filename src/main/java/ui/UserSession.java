@@ -39,21 +39,22 @@ public class UserSession {
         fileWriter = new DataFileWriter(settings, printer, cheatSheetList);
 
         fileDestroyer = new DataFileDestroyer(printer, cheatSheetList);
-        userCommandParser = new Parser(cheatSheetList, editor, fileDestroyer, printer, ui, settings);
+        userCommandParser = new Parser(cheatSheetList, editor, fileDestroyer, printer, ui, settings, fileReader);
         isFirstRun = false;
     }
 
     public void runProgramSequence() {
         AnsiConsole.systemInstall();
-        if (isFirstRun) {
-            fileReader.extractPreloadedCheatSheets();
-        }
 
-        fileReader.executeFunction();
         printer.printWelcomeScreen();
         if (settings.getDisplayingHelpMessages()) {
             printer.printStartHelpMessage();
         }
+        if (isFirstRun) {
+            fileReader.extractPreloadedCheatSheets();
+        }
+        fileReader.executeFunction();
+
 
         // Ask for new user input and executes it until user types the exit command
         do {

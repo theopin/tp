@@ -17,6 +17,7 @@ import editor.Editor;
 import exception.CommandException;
 import settings.Settings;
 import storage.DataFileDestroyer;
+import storage.DataFileReader;
 import ui.Ui;
 import ui.Printer;
 
@@ -27,12 +28,13 @@ import java.util.LinkedHashMap;
  * Parses the user input to create a Command that can be executed at a later time.
  */
 public class Parser {
-    private final CheatSheetList cheatSheetList;
-    private final DataFileDestroyer fileDestroyer;
-    private final Editor editor;
-    private final Printer printer;
-    private final Ui ui;
-    private final Settings settings;
+    private CheatSheetList cheatSheetList;
+    private DataFileDestroyer fileDestroyer;
+    private DataFileReader fileReader;
+    private Editor editor;
+    private Printer printer;
+    private Ui ui;
+    private Settings settings;
 
     private static final String FLAG_REGEX = "(?=(/[a-z]))";
 
@@ -43,15 +45,18 @@ public class Parser {
      * @param cheatSheetList The current list of cheat sheets
      * @param editor         The editor object to open the text editor
      * @param fileDestroyer  Destroys existing files
+     * @param fileReader     Reads existing files
      * @param printer        The printer object to handle user interaction
      * @param ui             Takes input, used to get missing command flags
      * @param settings       Settings of CheatLogs affect, change the way that the same
      *                       commands will execute
      */
     public Parser(CheatSheetList cheatSheetList, Editor editor,
-                  DataFileDestroyer fileDestroyer, Printer printer, Ui ui, Settings settings) {
+                  DataFileDestroyer fileDestroyer, Printer printer,
+                  Ui ui, Settings settings, DataFileReader fileReader) {
         this.cheatSheetList = cheatSheetList;
         this.editor = editor;
+        this.fileReader = fileReader;
         this.fileDestroyer = fileDestroyer;
         this.printer = printer;
         this.ui = ui;
@@ -89,7 +94,7 @@ public class Parser {
         case AddCommand.invoker:
             return new AddCommand(printer, cheatSheetList, editor);
         case ClearCommand.invoker:
-            return new ClearCommand(printer, cheatSheetList, fileDestroyer);
+            return new ClearCommand(printer, cheatSheetList, fileDestroyer, fileReader);
         case DeleteCommand.invoker:
             return new DeleteCommand(printer, cheatSheetList, fileDestroyer);
         case EditCommand.invoker:
