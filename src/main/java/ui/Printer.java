@@ -156,7 +156,7 @@ public final class Printer {
 
                 + ConsoleColorsEnum.BOLD + "" + logoColor + "/set /m on"
                 + reset + NEWLINE
-                + ConsoleColorsEnum.BOLD + "" + logoColor + "/set /m off"
+                + ConsoleColorsEnum.BOLD + "" + favColor + "/set /m off"
                 + reset + NEWLINE
                 + "\tEnables/disables the help message for commands." + NEWLINE
 

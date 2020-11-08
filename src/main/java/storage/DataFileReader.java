@@ -404,13 +404,18 @@ public class DataFileReader extends DataFile {
      */
     private void applySettings(String serializedSettings) {
         String[] components = serializedSettings.split(" ");
-        assert components.length == 2;
-        String settingType = components[0];
-        String settingValue = components[1];
-        if (settingType.equals("COLOR")) {
-            settings.setColor(Integer.parseInt(settingValue), true);
-        } else if (settingType.equals("HELPMESSAGE")) {
-            settings.setDisplayingHelpMessages(Boolean.parseBoolean(settingValue), true);
+        try {
+            assert components.length == 2;
+            String settingType = components[0];
+            String settingValue = components[1];
+            if (settingType.equals("COLOR")) {
+                settings.setColor(Integer.parseInt(settingValue), true);
+            } else if (settingType.equals("HELPMESSAGE")) {
+                settings.setDisplayingHelpMessages(Boolean.parseBoolean(settingValue), true);
+            }
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
+            readLogger.log(Level.WARNING, "The settings.txt file may be corrupted. "
+                    + "Running program using default settings\n");
         }
     }
 }
