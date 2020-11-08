@@ -191,6 +191,7 @@ public class Parser {
      *
      * @param commandToBeExecuted       The command to get the missing flag and descriptions for.
      */
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings("WMI_WRONG_MAP_ITERATOR")
     private void setMissingDescriptions(Command commandToBeExecuted) {
         LinkedHashMap<CommandFlag, String> map = commandToBeExecuted.getFlagsToDescriptionsMap();
 
