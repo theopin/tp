@@ -215,15 +215,20 @@ The steps below explain the sequence diagram:
 The add command is used to add cheatsheets into CheatLogs.
 The picture bellow shows how the add command is executed.
 ![AddCommand Sequence Diagram](https://i.ibb.co/S7qt5pt/Add-Command-1.png)
-1. When the add command is constructed, it will put the name command flag to the FlagToDescription Hash Map.
-2. After that, the subject command flag will be put in the FlagToDescription Hash Map.
-3. The CommandFlag.NAME will be added into the AlternativeArguments.
-4. The CommandFlag.SUBJECT will be added into the AlternativeArguments.
-5. Add command will invoke its own method execute()
-6. Add command invoke the get(CommandFlag.NAME) and will return the name
-7. After that, the add command invoke the get(CommandFlag.SUBJECT) and returns the suject
-8. Add command will invoke the callContentEditor.
-9. T
+1. When the add command is constructed, it will put the `CommandFlag.NAME` to the `FlagToDescription` Hash Map.
+2. After that, the `CommandFlag.SUBJECT` will be put in the FlagToDescription Hash Map.
+3. The `CommandFlag.NAME` will be added into the `AlternativeArguments` Array List.
+4. The `CommandFlag.SUBJECT` will be added into the `AlternativeArguments` Array List.
+5. Add command will invoke its own method `execute()`
+6. Add command invoke the `get(CommandFlag.NAME)` and will return `name`
+7. After that, the add command invoke the `get(CommandFlag.SUBJECT)` and returns the `subject`
+8. Add command will invoke the `callContentEditor()` within its class.
+9. The callContent Editor will execute the `editor.setEditingContent(name,subject)` followed by `editor.open()`
+10. The program will wait for the editor in the `editor.waitForClose()` to close and will return the control to the AddCommand class.
+11. The program will give back control to the `AddCommand` object, and will call the `editor.getContent()` to get the description.
+12. The AddCommand will construct a CheatSheet object using `CheatSheet(name,subject,description)`
+13. After the CheatSheet object is constructed, it will be added to the CheatSheetList using `cheatSheetList.add(cheatSheet)`
+14. Finally, once the cheatSheet has been added into the cheatSheetList, the AddCommand will invoke the `printAddNewCheatSheetMessage(cheatSheet,cheatSheetList)` to print the confirmation message.
 
 <a id="edit"></a>
 ##### 4.2.3.2 Edit
