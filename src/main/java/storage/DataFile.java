@@ -21,8 +21,8 @@ import java.util.ArrayList;
  */
 public abstract class DataFile {
 
-    protected static final String YES = "Yes";
-    protected static final String NO = "No";
+    protected static final String YES = "YES";
+    protected static final String NO = "NO";
     protected static final String EMPTY = "";
     protected static final String SLASH = "/";
 

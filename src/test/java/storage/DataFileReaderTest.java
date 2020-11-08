@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DataFileReaderTest extends DataFileTest {
 
@@ -84,6 +85,25 @@ public class DataFileReaderTest extends DataFileTest {
                 empty;
         testCheatSheetList.clear();
         assertEquals("Test Success!", testSubject);
+    }
+
+    @Test
+    void readFile_favourite_success() {
+        final boolean isDataDirPresent = checkDataDirectoryExistence();
+
+        testCheatSheetList.clear();
+        createDirectory(sampleTestDir);
+        createSampleFile(sampleTest4, fileInput);
+
+        testReader.executeFunction();
+        eraseFile(sampleTest4);
+        eraseFile(sampleTestDir);
+        restoreDataDir(isDataDirPresent);
+
+        boolean isCheatSheetListEmpty = testCheatSheetList.getSize() == 0;
+        boolean testFavourite = !isCheatSheetListEmpty && testCheatSheetList.getList().get(0).getIsFavourite();
+        testCheatSheetList.clear();
+        assertTrue(testFavourite);
     }
 
     @Test
