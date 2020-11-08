@@ -14,11 +14,10 @@ import storage.DataFileDestroyer;
 import ui.Printer;
 import ui.Ui;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EditorTest {
 
