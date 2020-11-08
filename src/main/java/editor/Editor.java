@@ -296,7 +296,7 @@ public class Editor extends JFrame implements ActionListener {
 
     private void revertToOriginal() {
         textArea.setText(originalContent);
-        originalContent="";
+        originalContent = "";
     }
 
     /**
