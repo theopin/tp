@@ -68,9 +68,8 @@ public class EditCommand extends FinderCommand {
      * @param desiredCheatSheet The cheatsheet specified by the user
      */
     private void callContentEditor(CheatSheet desiredCheatSheet) {
-        editor.setEditingContentAttributes(desiredCheatSheet.getName(), desiredCheatSheet.getSubject());
         editor.open();
-        editor.setContent(desiredCheatSheet.getDetails());
+        editor.setContent(desiredCheatSheet);
         editor.waitForClose();
 
         try {

@@ -34,8 +34,13 @@ public abstract class Command {
      */
     public Command(Printer printer) {
         this.printer = printer;
+<<<<<<< HEAD
         this.alternativeFlags = new ArrayList<>();
         this.necessaryFlags = new ArrayList<>();
+=======
+        this.alternativeArguments = new ArrayList<>();
+        this.necessaryArguments = new ArrayList<>();
+>>>>>>> 208c1e9c96dc39116a336443c92bb5b443d621a9
         this.flagsToDescriptions = new LinkedHashMap<>();
         isExitCommand = false;
     }
@@ -48,6 +53,7 @@ public abstract class Command {
         this.flagsToDescriptions.putAll(flagsToDescriptions);
     }
 
+<<<<<<< HEAD
     public ArrayList<CommandFlag> getAlternativeFlags() {
         return alternativeFlags;
     }
@@ -68,6 +74,22 @@ public abstract class Command {
      */
     public boolean hasNecessaryFlags() {
         for (CommandFlag arg : necessaryFlags) {
+=======
+    public ArrayList<CommandFlag> getAlternativeArguments() {
+        return alternativeArguments;
+    }
+
+    public ArrayList<CommandFlag> getNecessaryArguments() {
+        return necessaryArguments;
+    }
+
+    public boolean hasRequiredArguments() {
+        return hasNecessaryArguments() && hasAlternativeArguments();
+    }
+
+    public boolean hasNecessaryArguments() {
+        for (CommandFlag arg : necessaryArguments) {
+>>>>>>> 208c1e9c96dc39116a336443c92bb5b443d621a9
             if (flagsToDescriptions.get(arg) == null) {
                 return false;
             }
@@ -77,6 +99,7 @@ public abstract class Command {
     }
 
     /**
+<<<<<<< HEAD
      * Checks if the command has at least one of the alternative flags.
      *
      * @return A boolean of whether the command has at least one of the alternative flags
@@ -87,6 +110,18 @@ public abstract class Command {
         }
 
         for (CommandFlag arg : alternativeFlags) {
+=======
+     * Checks if the user has at least one of the alternative arguments.
+     *
+     * @return A boolean whether the user inputted at least one of the alternative arguments
+     */
+    public boolean hasAlternativeArguments() {
+        if (alternativeArguments.size() == 0) {
+            return true;
+        }
+
+        for (CommandFlag arg : alternativeArguments) {
+>>>>>>> 208c1e9c96dc39116a336443c92bb5b443d621a9
             if (flagsToDescriptions.get(arg) != null) {
                 return true;
             }
