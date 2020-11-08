@@ -15,6 +15,7 @@ import javax.swing.border.Border;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -143,21 +144,21 @@ public class Editor extends JFrame implements ActionListener {
      * Generates the editor's text are where the user can input the details of the cheatsheet.
      */
     private void generateTextArea() {
-        JPanel editingPanel = new JPanel();
-        editingPanel.setLayout(new BorderLayout());
+        JPanel textAreaPanel = new JPanel();
+        textAreaPanel.setLayout(new BorderLayout());
 
         textArea = new JTextArea();
         textArea.setSelectionColor(Color.GRAY); // sets the color of the text Area
         textArea.setSize(800,600); // sets the size of the text Area
 
-        JScrollPane scroll = new JScrollPane(textArea);
-        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        scroll.setViewportView(textArea);
+        JScrollPane textAreaScroll = new JScrollPane(textArea);
+        textAreaScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        textAreaScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        textAreaScroll.setViewportView(textArea);
 
-        editingPanel.add(textArea,BorderLayout.CENTER);
-        editingPanel.add(scroll,BorderLayout.EAST);
+        textAreaPanel.add(textAreaScroll, BorderLayout.CENTER);
 
-        add(editingPanel, BorderLayout.CENTER); // adds the text area into the center of the frame
+        add(textAreaPanel, BorderLayout.CENTER); // adds the text area into the center of the frame
     }
 
     /**
