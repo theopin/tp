@@ -23,7 +23,7 @@ public class EditCommand extends FinderCommand {
     }
 
     @Override
-    public boolean hasAlternativeArgument() {
+    public boolean hasRequiredArguments() {
         return flagsToDescriptions.get(CommandFlag.NAME) != null
                 || flagsToDescriptions.get(CommandFlag.INDEX) != null;
     }

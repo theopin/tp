@@ -52,7 +52,7 @@ public class Parser {
         Command commandToBeExecuted = parseCommandType(userInput);
         LinkedHashMap<CommandFlag, String> flagsToDescriptions = parseFlagDescriptions(commandToBeExecuted, userInput);
 
-        commandToBeExecuted.setFlagstodescriptionsMap(flagsToDescriptions);
+        commandToBeExecuted.setFlagsToDescriptionsMap(flagsToDescriptions);
         setMissingDescriptions(commandToBeExecuted);
         return commandToBeExecuted;
     }
@@ -111,7 +111,7 @@ public class Parser {
 
                 // Validate that <flag> matches required Command flags
                 boolean isValidFlag = false;
-                for (CommandFlag c : command.getFlagstodescriptionsMap().keySet()) {
+                for (CommandFlag c : command.getFlagsToDescriptionsMap().keySet()) {
                     if (c.getFlag().equals(flag)) {
                         flagsToDescriptions.put(c, flagDescription.trim());
                         isValidFlag = true;
@@ -130,16 +130,15 @@ public class Parser {
     }
 
     private void setMissingDescriptions(Command commandToBeExecuted) {
-        LinkedHashMap<CommandFlag, String> map = commandToBeExecuted.getFlagstodescriptionsMap();
-        if (!commandToBeExecuted.hasAlternativeArgument() && settings.getDisplayingHelpMessages()) {
-            printer.printCommandHelpMessage(commandToBeExecuted.getClass());
-        } else if (settings.getDisplayingHelpMessages()
-                && (commandToBeExecuted.getClass().equals(ListCommand.class)
-                || (commandToBeExecuted.getClass().equals(ClearCommand.class)))) {
+        LinkedHashMap<CommandFlag, String> map = commandToBeExecuted.getFlagsToDescriptionsMap();
+        if (settings.getDisplayingHelpMessages() &&
+                (!commandToBeExecuted.hasRequiredArguments()
+                || commandToBeExecuted instanceof ListCommand
+                || commandToBeExecuted instanceof ClearCommand)) {
             printer.printCommandHelpMessage(commandToBeExecuted.getClass());
         }
 
-        while (!commandToBeExecuted.hasAlternativeArgument()) {
+        while (!commandToBeExecuted.hasRequiredArguments()) {
             printer.printAlternativeArgumentPrompt(commandToBeExecuted);
 
             for (CommandFlag key : map.keySet()) {
@@ -147,7 +146,7 @@ public class Parser {
                   but the command already has another alternative argument filled
                    skip this key*/
                 if (commandToBeExecuted.getAlternativeArguments().contains(key)
-                    && commandToBeExecuted.hasAlternativeArgument()) {
+                    && commandToBeExecuted.hasRequiredArguments()) {
                     continue;
                 } else if ((map.get(key) == null || map.get(key).isBlank()) && key != CommandFlag.DELETE) {
 
