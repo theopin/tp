@@ -114,9 +114,7 @@ public class DataFileDestroyer extends DataFile {
             Path filePath = Paths.get(directoryPath.toString(), dataDirectoryFile);
 
             if (Files.isDirectory(filePath)) {
-                if (!filePath.toFile().getName().equals(PRELOADED)) {
-                    clearDirectory(filePath);
-                }
+                clearDirectory(filePath);
                 continue;
             }
 
