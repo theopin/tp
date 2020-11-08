@@ -40,6 +40,7 @@ import java.util.logging.Logger;
  */
 public class DataFileReader extends DataFile {
 
+    public static final int MAX_PATH_LENGTH = 250;
     private final Logger readLogger = Logger.getLogger("FileReader");
     private final Settings settings;
     protected String jarDirectory = JAR_DIR;
@@ -234,7 +235,7 @@ public class DataFileReader extends DataFile {
 
             if (isPreloadedFile) {
                 Path cheatSheetPath = dataDirectoryFile.toPath();
-                if(preloadedCheatSheets.contains(cheatSheetPath)) {
+                if (preloadedCheatSheets.contains(cheatSheetPath)) {
                     continue;
                 }
             }
@@ -243,11 +244,12 @@ public class DataFileReader extends DataFile {
                 if (dataDirectoryFile.getName().equals("settings.txt")) {
                     loadUserSettings(dataDirectoryFile);
                 } else {
-                    if(!convertedCheatSheets.contains(dataDirectoryFile.getName())) {
+                    if (!convertedCheatSheets.contains(dataDirectoryFile.getName())) {
                         extractCheatSheet(dataDirectoryFile);
                         convertedCheatSheets.add(dataDirectoryFile.getName());
                     }
                 }
+
 
             } catch (ParserConfigurationException e) {
                 readLogger.log(Level.WARNING, "XML Parser Error");
@@ -333,8 +335,10 @@ public class DataFileReader extends DataFile {
         String cheatSheetContent = extractCheatSheetSection(contentElement);
 
         createNewCheatSheet(isMarkedFavourite,
-                cheatSheetName,
-                cheatSheetSubject,
+                cheatSheetName.substring(0, Math.min(cheatSheetName.length(),
+                        MAX_PATH_LENGTH)),
+                cheatSheetSubject.substring(0, Math.min(cheatSheetSubject.length(),
+                        MAX_PATH_LENGTH)),
                 cheatSheetContent);
     }
 

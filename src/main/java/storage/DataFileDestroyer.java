@@ -90,7 +90,7 @@ public class DataFileDestroyer extends DataFile {
                 subjectDirectory,
                 unwantedFile + XML_EXTENSION);
 
-        if(preloadedCheatSheets.contains(possiblePreloadedPath)) {
+        if (preloadedCheatSheets.contains(possiblePreloadedPath)) {
             unwantedFilePath = possiblePreloadedPath;
             preloadedCheatSheets.remove(possiblePreloadedPath);
         } else {
