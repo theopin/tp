@@ -1,6 +1,7 @@
 package command;
 
 import cheatsheet.CheatSheetList;
+import storage.DataFile;
 import storage.DataFileDestroyer;
 import storage.DataFileReader;
 import ui.Printer;
@@ -24,9 +25,11 @@ public class ClearCommand extends Command {
     public void execute() {
         printer.printClearConfirmation();
         if (isClearConfirmed()) {
-            final int deletedCheatSheets = cheatSheetList.getSize();
+            final int deletedCheatSheets = cheatSheetList.getSize()
+                    - DataFile.preloadedCheatSheets.size();
             fileDestroyer.executeFunction();
             cheatSheetList.clear();
+
             fileReader.extractPreloadedCheatSheets();
             fileReader.executeFunction();
             printer.printClearCheatSheetMessage(deletedCheatSheets);

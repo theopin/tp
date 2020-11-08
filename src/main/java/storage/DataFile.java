@@ -45,7 +45,7 @@ public abstract class DataFile {
 
     protected Printer printer;
     protected CheatSheetList cheatSheetList;
-    protected static ArrayList<Path> preloadedCheatSheets = new ArrayList<>();
+    public static ArrayList<Path> preloadedCheatSheets = new ArrayList<>();
 
     /**
      * A method that is to be run based on its subclass.
