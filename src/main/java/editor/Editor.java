@@ -15,6 +15,7 @@ import javax.swing.border.Border;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ import java.awt.Component;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class Editor extends JFrame implements ActionListener {
@@ -121,18 +123,16 @@ public class Editor extends JFrame implements ActionListener {
 
         BufferedImage logoPicture = null;
         try {
-            //wPic = ImageIO.read(new URL("https://i.ibb.co/QCjG7v7/cheatlogs-copy.png"));
-            logoPicture = ImageIO.read(new File("src/main/resources/EditorResources/cheatlogs.png"));
+            logoPicture = ImageIO.read(new URL("https://i.ibb.co/QCjG7v7/cheatlogs-copy.png"));
+            JLabel pictureIcon = new JLabel(new ImageIcon(logoPicture));
+            pictureIcon.setAlignmentX(Component.CENTER_ALIGNMENT);
+            pictureIcon.setBounds(0,0,800,0);
+            topPanel.add(pictureIcon);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        JLabel pictureIcon = new JLabel(new ImageIcon(logoPicture));
-        pictureIcon.setAlignmentX(Component.CENTER_ALIGNMENT);
-        pictureIcon.setBounds(0,0,800,0);
 
-        topPanel.add(pictureIcon);
         addBlackBorder(topPanel);
-
         add(topPanel,BorderLayout.PAGE_START);
     }
 
@@ -146,9 +146,21 @@ public class Editor extends JFrame implements ActionListener {
      * Generates the editor's text are where the user can input the details of the cheatsheet.
      */
     private void generateTextArea() {
+        JPanel textAreaPanel = new JPanel();
+        textAreaPanel.setLayout(new BorderLayout());
+
+        textArea = new JTextArea();
         textArea.setSelectionColor(Color.GRAY); // sets the color of the text Area
         textArea.setSize(800,600); // sets the size of the text Area
-        add(textArea, BorderLayout.CENTER); // adds the text area into the center of the frame
+
+        JScrollPane textAreaScroll = new JScrollPane(textArea);
+        textAreaScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        textAreaScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        textAreaScroll.setViewportView(textArea);
+
+        textAreaPanel.add(textAreaScroll, BorderLayout.CENTER);
+
+        add(textAreaPanel, BorderLayout.CENTER); // adds the text area into the center of the frame
     }
 
     /**
