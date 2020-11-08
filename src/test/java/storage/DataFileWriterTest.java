@@ -30,7 +30,7 @@ public class DataFileWriterTest extends DataFileTest {
             + System.lineSeparator()
             + "<main>"
             + System.lineSeparator()
-            + "    <favourite>No</favourite>"
+            + "    <favourite>NO</favourite>"
             + System.lineSeparator()
             + "    <subject>Test</subject>"
             + System.lineSeparator()
