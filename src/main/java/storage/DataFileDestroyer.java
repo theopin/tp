@@ -96,6 +96,7 @@ public class DataFileDestroyer extends DataFile {
      */
     private void clearDataDirectory() throws DirectoryIsEmptyException {
         clearDirectory(DATA_DIR);
+        
     }
 
     /**
