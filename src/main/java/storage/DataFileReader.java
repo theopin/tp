@@ -38,7 +38,6 @@ import java.util.logging.Logger;
  * and insert the cheatsheets present in the folder to the application.
  */
 public class DataFileReader extends DataFile {
-    private final CheatSheetList cheatSheetList;
     private final Logger readLogger = Logger.getLogger("FileReader");
     private final Settings settings;
     protected String jarDirectory = JAR_DIR;

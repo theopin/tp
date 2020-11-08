@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class DataFileDestroyer extends DataFile {
 
-    private final CheatSheetList cheatSheetList;
+
     private final Logger destroyLogger = Logger.getLogger("FileDestroyer");
 
     public DataFileDestroyer(Printer printer, CheatSheetList cheatSheetList) {

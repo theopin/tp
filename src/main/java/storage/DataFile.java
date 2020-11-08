@@ -1,5 +1,6 @@
 package storage;
 
+import cheatsheet.CheatSheetList;
 import ui.Printer;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -43,6 +44,7 @@ public abstract class DataFile {
     protected static final String SETTINGS_FILENAME = "/settings.txt";
 
     protected Printer printer;
+    protected CheatSheetList cheatSheetList;
     protected static ArrayList<Path> preloadedCheatSheets = new ArrayList<>();
 
     /**
