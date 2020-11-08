@@ -192,7 +192,7 @@ public final class Printer {
     }
 
     public void printDeleteConfirmation(CheatSheet cheatSheet) {
-        print(alertColor + "Are you sure to delete the" + cheatSheet.getName() + " cheatsheet?" + NEWLINE
+        print(alertColor + "Are you sure to delete the " + cheatSheet.getName() + " cheatsheet?" + NEWLINE
                 + "Type Y or Yes to confirm, or any other character to cancel" + reset);
     }
 
