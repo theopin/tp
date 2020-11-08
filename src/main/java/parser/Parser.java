@@ -131,8 +131,8 @@ public class Parser {
 
     private void setMissingDescriptions(Command commandToBeExecuted) {
         LinkedHashMap<CommandFlag, String> map = commandToBeExecuted.getFlagsToDescriptionsMap();
-        if (settings.getDisplayingHelpMessages() &&
-                (!commandToBeExecuted.hasRequiredArguments()
+        if (settings.getDisplayingHelpMessages()
+                && (!commandToBeExecuted.hasRequiredArguments()
                 || commandToBeExecuted instanceof ListCommand
                 || commandToBeExecuted instanceof ClearCommand)) {
             printer.printCommandHelpMessage(commandToBeExecuted.getClass());
