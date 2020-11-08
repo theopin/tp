@@ -28,13 +28,13 @@ import java.util.LinkedHashMap;
  * Parses the user input to create a Command that can be executed at a later time.
  */
 public class Parser {
-    private CheatSheetList cheatSheetList;
-    private DataFileDestroyer fileDestroyer;
-    private DataFileReader fileReader;
-    private Editor editor;
-    private Printer printer;
-    private Ui ui;
-    private Settings settings;
+    private final CheatSheetList cheatSheetList;
+    private final DataFileDestroyer fileDestroyer;
+    private final DataFileReader fileReader;
+    private final Editor editor;
+    private final Printer printer;
+    private final Ui ui;
+    private final Settings settings;
 
     private static final String FLAG_REGEX = "(?=(/[a-z]))";
 

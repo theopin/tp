@@ -57,10 +57,7 @@ public abstract class Command {
     }
 
     public boolean hasRequiredArguments() {
-        if (hasNecessaryArguments() && hasAlternativeArguments()) {
-            return true;
-        }
-        return false;
+        return hasNecessaryArguments() && hasAlternativeArguments();
     }
 
     public boolean hasNecessaryArguments() {
@@ -74,11 +71,11 @@ public abstract class Command {
     }
 
     /**
-     * Checks if the user has at least one of the alternative arguments
+     * Checks if the user has at least one of the alternative arguments.
      *
      * @return A boolean whether the user inputted at least one of the alternative arguments
      */
-    public boolean hasAlternativeArgument() {
+    public boolean hasAlternativeArguments() {
         if (alternativeArguments.size() == 0) {
             return true;
         }
