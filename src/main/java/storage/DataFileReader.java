@@ -46,7 +46,7 @@ public class DataFileReader extends DataFile {
     private final Logger readLogger = Logger.getLogger("FileReader");
     private final Settings settings;
     protected String jarDirectory = JAR_DIR;
-    String alphaNumericRegex = "^[a-zA-Z0-9]";
+    String alphaNumericRegex = "^[a-zA-Z0-9]+$";
 
     public DataFileReader(Settings settings, Printer printer, CheatSheetList cheatSheetList) {
         this.settings = settings;
@@ -350,8 +350,8 @@ public class DataFileReader extends DataFile {
 
         if (!cheatSheetSubject.matches(alphaNumericRegex)) {
             throw new InvalidParamException("subject");
-        } else if (!cheatSheetContent.matches(alphaNumericRegex)) {
-            throw new InvalidParamException("content");
+        } else if (!cheatSheetName.matches(alphaNumericRegex)) {
+            throw new InvalidParamException("name");
         }
 
 
