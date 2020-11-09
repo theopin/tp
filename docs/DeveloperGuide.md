@@ -493,32 +493,69 @@ Alternative 2: Save different sections of the cheat sheet using a different file
 
 <a id="appendix-logging"></a>
 # 7. Appendix: Logging<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-//Documentation, logging, testing, configuration, dev-ops
+
+To log messages, we have utilized the [Logger](https://docs.oracle.com/en/java/javase/11/docs/api/java.logging/java/util/logging/Logger.html)
+object from the Java Library. This allows you to record messages 
+at certain segments of the execution of CheatLogs
+as well as note the severity of such a message. 
+These messages are exceptionally helpful when 
+attempting to debug important features on CheatLogs.
+
 
 <br>
 
 <a id="appendix-testing"></a>
 # 8. Appendix: Testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-//Documentation, logging, testing, configuration, dev-ops
+
+This feature allows you to develop and run tests on any feature of CheatLogs. It is
+a valuable tool that helps you confirm that the developed features produces results
+that match your expectations.
+
+<a id="appendix-executing-tests"></a>
+## 8.1 Executing tests<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+
+There are two ways to run tests.
+
+1. Utilizing the test runner on IntelliJ
+  * Run all tests
+     1. Right-click on `src/test/java` folder
+     2. Select this option: `Run 'All Tests'`
+  * Run a subset of tests
+     1. Right-click on the relevant test class or package. This subset of tests will be referred to as TESTS.
+     2. Select this option: `Run TESTS`
+        
+
+2. Using Gradle
+  * Open a terminal and run the following command based on your Operating System.
+    * Windows: `gradlew clean test`
+    * Mac/Linux: `./gradlew clean test`
+
+> :bulb: Unfamiliar with navigating Gradle? Check out [this guide](https://se-education.org/guides/tutorials/gradle.html)
+> to understand how to use Gradle.
+
+
+<a id="appendix-types-of-tests"></a>
+## 8.2 Types of tests<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+
+This project provides two types of tests:
+
+  1. Unit tests 
+    * They test the lowest level methods within a class and look out for any abnormalities arising within them.
+    * e.g. `testGetSize()` in `CheatSheetListTest.java`
+  2. Integration tests 
+    * They test the integration of multiple classes.
+    * e.g. `readFile_details_success()` in `DataFileReaderTest.java`
 
 <br>
 
-<a id="appendix-configuration"></a>
-# 9. Appendix: Configuration<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-//Documentation, logging, testing, configuration, dev-ops
-
-<br>
 
 <a id="appendix-dev-ops"></a>
-# 10. Dev-ops: Logging<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 10. Appendix: Dev-ops<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 //Documentation, logging, testing, configuration, dev-ops
-
-<br>
 
 
 <a id="appendix-requirements"></a>
 # 11. Appendix: Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-
 
 <br>
 
