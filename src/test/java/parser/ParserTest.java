@@ -1,6 +1,18 @@
 package parser;
 
-import command.*;
+import command.Command;
+import command.AddCommand;
+import command.ClearCommand;
+import command.DeleteCommand;
+import command.EditCommand;
+import command.ExitCommand;
+import command.FavouriteCommand;
+import command.FindCommand;
+import command.HelpCommand;
+import command.ListCommand;
+import command.SettingsCommand;
+import command.ViewCommand;
+
 import exception.CommandException;
 import org.junit.jupiter.api.Test;
 import ui.Printer;
@@ -12,11 +24,23 @@ class ParserTest {
     Parser parser;
     UiStub ui;
     SettingsStub settings;
+
     public ParserTest() {
         Printer printer = new Printer();
         settings = new SettingsStub();
         ui = new UiStub();
         parser = new Parser(null, null, null, printer, ui, settings, null);
+    }
+
+    @Test
+    void parse_addCommand_pass() {
+        final String userInput = "/add /n if /s Java";
+        try {
+            Command result = parser.parse(userInput);
+            assertEquals(true, result instanceof AddCommand);
+        } catch (CommandException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test

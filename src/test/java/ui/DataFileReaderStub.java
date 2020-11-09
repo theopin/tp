@@ -18,6 +18,7 @@ public class DataFileReaderStub extends DataFileReader {
     public void extractPreloadedCheatSheets() {
         isPreloadedExtracted = true;
     }
+
     public void executeFunction() {
         isDataRead = true;
     }

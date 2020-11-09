@@ -5,7 +5,7 @@ import settings.Settings;
 class SettingsStub extends Settings {
     private boolean isDisplayingHelpMessages = true;
 
-    public SettingsStub () {
+    public SettingsStub() {
     }
 
     public boolean getDisplayingHelpMessages() {
