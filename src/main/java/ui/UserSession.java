@@ -53,7 +53,11 @@ public class UserSession {
      * Initializes CheatLogs and greets the user.
      */
     public void start() {
-        AnsiConsole.systemInstall();
+        try {
+            AnsiConsole.systemInstall();
+        } catch (Exception e) {
+            printer.print(e.getMessage());
+        }
 
         if (isFirstRun) {
             fileReader.extractPreloadedCheatSheets();
