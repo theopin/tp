@@ -63,7 +63,7 @@ public class UserSession {
             fileReader.extractPreloadedCheatSheets();
         }
         fileReader.executeFunction();
-
+        editor.init();
         printer.printWelcomeScreen();
         if (settings.getDisplayingHelpMessages()) {
             printer.printStartHelpMessage();
