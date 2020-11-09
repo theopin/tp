@@ -3,7 +3,7 @@
 ## Overview
 CheatLogs is a desktop application used for managing a user's cheatsheets. 
 The user interacts with it using a command line interface (CLI), 
-and it has a graphical user interface (GUI) created with JavaFX. 
+and it has a graphical user interface (GUI) created with JavaSwing. 
 It is written in Java and has about 5000 Lines of Code (LoC).
 
 ## Summary of Contributions
@@ -35,7 +35,7 @@ It is written in Java and has about 5000 Lines of Code (LoC).
     subsequently.
   * This feature was difficult as it involved constantly identifying whether
     the cheatsheet was preloaded or not. Such identification is essential to 
-    ensuring that it is sorted into the correct directory.
+    ensuring that it is sorted into the correct directory. 
       
 * Delete `.xml` files from storage
   * Allows the user to remove any cheat sheet.
@@ -82,6 +82,8 @@ It is written in Java and has about 5000 Lines of Code (LoC).
     * Added a section explaining the implementation of the storage system.
     * Added steps for advanced users to write XML files that can be parsed by
       CheatLogs.
+    * [PR #208](https://github.com/AY2021S1-CS2113T-W11-3/tp/pull/208/commits/bea000ff8c12f87d049c70731ee888b59d5b7f4d)
+
     
 * Developer Guide
     * Added the design of the storage system.
@@ -92,7 +94,7 @@ It is written in Java and has about 5000 Lines of Code (LoC).
       of each class within the storage system.
     * Added the appendix detailing the configuration and
       automated testing fo CheatLogs.
-
+    * [PR #268](https://github.com/AY2021S1-CS2113T-W11-3/tp/pull/268/commits/84512697501b0c01f2002a54360a657481c24310)
 
 ### Community
 
