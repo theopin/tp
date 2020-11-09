@@ -106,7 +106,7 @@ cheatsheet files](#preloaded-data-files) for you to use.
     
     b. Invoke `java -jar cheatlogs.jar` to run the program. 
 
-> :exclamation: If a welcome message appears as shown below after running step 8a or 8b, then great! CheatLogs is up and running.
+> :exclamation: If a welcome message appears as shown below after running step 7a or 7b, then great! CheatLogs is up and running.
 
 ![CheatLogs welcome screen]( https://i.ibb.co/L6LmYGZ/mainMenu.png)
 
