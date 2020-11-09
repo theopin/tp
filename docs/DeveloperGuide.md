@@ -64,15 +64,18 @@ The table of contents below lets you easily access the documentation for CheatLo
 * [6. Appendix: Documentation](#appendix-documentation)
 * [7. Appendix: Logging](#appendix-logging)
 * [8. Appendix: Testing](#appendix-testing)
-* [9. Appendix: Configuration](#appendix-configuration)
-* [10. Appendix: Dev-ops](#appendix-dev-ops)
-* [11. Appendix: Requirements](#appendix-requirements)
-    * [11.1. Product scope](#product-scope-appendix)
-    * [11.2. User stories](#user-stories)
-    * [11.3. Use cases](#use-cases)
-    * [11.4. Non-Functional Requirements](#non-functional-requirements)
-* [12. Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-* [13. Glossary](#glossary)
+    * [8.1 Executing tests](#appendix-executing-tests)
+    * [8.2 Types of tests](#appendix-types-of-tests)
+* [9. Appendix: Dev-ops](#appendix-dev-ops)
+    * [9.1 Build automation](#appendix-build-automation)
+    * [9.2 Continuous Integration (CI)](#appendix-continuous-integration)
+* [10. Appendix: Requirements](#appendix-requirements)
+    * [10.1. Product scope](#product-scope-appendix)
+    * [10.2. User stories](#user-stories)
+    * [10.3. Use cases](#use-cases)
+    * [10.4. Non-Functional Requirements](#non-functional-requirements)
+* [11. Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+* [12. Glossary](#glossary)
 <br>
 
 <a id="introduction"></a>
@@ -531,7 +534,7 @@ There are two ways to run tests.
     * Mac/Linux: `./gradlew clean test`
 
 > :bulb: Unfamiliar with navigating Gradle? Check out [this guide](https://se-education.org/guides/tutorials/gradle.html)
-> to understand how to use Gradle.
+> to understand how to use it.
 
 
 <a id="appendix-types-of-tests"></a>
@@ -550,22 +553,33 @@ This project provides two types of tests:
 
 
 <a id="appendix-dev-ops"></a>
-# 10. Appendix: Dev-ops<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 9. Appendix: Dev-ops<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 //Documentation, logging, testing, configuration, dev-ops
 
 
+<a id="appendix-build-automation"></a>
+## 9.1 Build automation<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+//Documentation, logging, testing, configuration, dev-ops
+
+
+<a id="appendix-continuous-integration"></a>
+## 9.2 Continuous Integration (CI)<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+//Documentation, logging, testing, configuration, dev-ops
+
+<br>
+
 <a id="appendix-requirements"></a>
-# 11. Appendix: Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 10. Appendix: Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 <br>
 
 <a id="product-scope-appendix"></a>
-## 11.1 Product scope<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+## 10.1 Product scope<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
 
 <a id="user-stories"></a>
-## 11.2 User stories<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+## 10.2 User stories<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 The table below describes the particular needs of relevant users that the respective
 versions of CheatLogs was designed to solve.
 
@@ -580,18 +594,18 @@ versions of CheatLogs was designed to solve.
 
 
 <a id="use-cases"></a>
-## 11.3 Use cases<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+## 10.3 Use cases<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
 
 <a id="non-functional-requirements"></a>
-## 11.4 Non-Functional Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+## 10.4 Non-Functional Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 {Give non-functional requirements}
 
 <br>
 
 <a id="appendix-instructions-for-manual-testing"></a>
-# 12. Appendix: Instructions for manual testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 11. Appendix: Instructions for manual testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
@@ -605,7 +619,7 @@ All cheatsheets are stored inside a static class CheatSheetList to allow other c
 <br>
 
 <a id="glossary"></a>
-# 13. Glossary<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 12. Glossary<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 * *glossary item* - Definition
 
 <br>
