@@ -482,24 +482,49 @@ Alternative 2: Save different sections of the cheat sheet using a different file
 <br>
 
 <a id="documentation-logging-testing-configuration-dev-ops"></a>
-# 6. Documentation, logging, testing, configuration, dev-ops<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-
+# 6. Appendix: Documentation<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+//Documentation, logging, testing, configuration, dev-ops
 
 <br>
 
+<a id="documentation-logging-testing-configuration-dev-ops"></a>
+# 7. Appendix: Logging<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+//Documentation, logging, testing, configuration, dev-ops
+
+<br>
+
+<a id="documentation-logging-testing-configuration-dev-ops"></a>
+# 8. Appendix: Testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+//Documentation, logging, testing, configuration, dev-ops
+
+<br>
+
+<a id="documentation-logging-testing-configuration-dev-ops"></a>
+# 9. Appendix: Configuration<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+//Documentation, logging, testing, configuration, dev-ops
+
+<br>
+
+<a id="documentation-logging-testing-configuration-dev-ops"></a>
+# 10. Dev-ops: Logging<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+//Documentation, logging, testing, configuration, dev-ops
+
+<br>
+
+
 <a id="appendix-requirements"></a>
-# 7. Appendix: Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 11. Appendix: Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
 <br>
 
 <a id="product-scope-appendix"></a>
-## 7.1 Product scope<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+## 11.1 Product scope<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
 
 <a id="user-stories"></a>
-## 7.2 User stories<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+## 11.2 User stories<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 The table below describes the particular needs of relevant users that the respective
 versions of CheatLogs was designed to solve.
 
@@ -514,23 +539,18 @@ versions of CheatLogs was designed to solve.
 
 
 <a id="use-cases"></a>
-## 7.3 Use cases<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+## 11.3 Use cases<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 
 
 <a id="non-functional-requirements"></a>
-## 7.4 Non-Functional Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+## 11.4 Non-Functional Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 {Give non-functional requirements}
-
-
-<a id="glossary"></a>
-# 8. Glossary<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-* *glossary item* - Definition
 
 <br>
 
 <a id="appendix-instructions-for-manual-testing"></a>
-# 9. Appendix: Instructions for manual testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 12. Appendix: Instructions for manual testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
@@ -540,3 +560,11 @@ All components can be accessed from the CheatLogs class.
 ### CheatSheetList
 All cheatsheets are stored inside a static class CheatSheetList to allow other classes to easily access and write data to the list.
 -->
+
+<br>
+
+<a id="glossary"></a>
+# 13. Glossary<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+* *glossary item* - Definition
+
+<br>
