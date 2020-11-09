@@ -31,6 +31,7 @@ public class UserSession {
 
     public boolean isEditorEnabled;
     public boolean isFirstRun;
+
     /**
      * Constructor for the UserSession. Creates a single instance of all
      * common objects that are passed to the commands.
@@ -59,7 +60,7 @@ public class UserSession {
         } catch (Exception e) {
             printer.print(e.getMessage());
         }
-        if(isEditorEnabled) {
+        if (isEditorEnabled) {
             editor.init();
         }
         if (isFirstRun) {
