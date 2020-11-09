@@ -78,6 +78,14 @@ The table of contents below lets you easily access the documentation for CheatLo
     * [10.3. Use cases](#use-cases)
     * [10.4. Non-Functional Requirements](#non-functional-requirements)
 * [11. Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    * [11.1. Start-up with preloaded data and restart with save data](#manual-test-1)
+    * [11.2. Adding cheatsheets](#manual-test-2)
+    * [11.3. Editing cheatsheets](#manual-test-3)
+    * [11.4. Viewing cheatsheets](#manual-test-4)
+    * [11.5. Finding cheatsheets](#manual-test-5)
+    * [11.6. Deleting cheatsheets](#manual-test-6)
+    * [11.7. Clearing cheatsheets](#manual-test-7)
+    * [11.8. Add/remove cheatsheets to favourites](#manual-test-8)
 * [12. Glossary](#glossary)
 
 <br>
@@ -347,7 +355,7 @@ These steps explain the sequence diagram for `find` command and how `find` comma
     3. Else, a CommandException will be thrown
     
 <a id="delete"></a>
-##### 3.2.3.9 Delete
+##### 4.2.3.9 Delete
 Delete command removes one cheatsheet from the CheatSheetList and deletes the corresponding file in the */data* directory.
 
 Here is an example of the usage of `/delete` command and how it works:
@@ -903,21 +911,156 @@ versions of CheatLogs was designed to solve.
 
 <a id="appendix-instructions-for-manual-testing"></a>
 # 11. Appendix: Instructions for manual testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+<a id="manual-test-1"></a>
+## 11.1 Start-up with preloaded data and restart with save data
+1. Initial launch
+    1. Download the latest release of CheatLogs from [here](https://github.com/AY2021S1-CS2113T-W11-3/tp/releases)
+    1. Move the jar file to an empty folder
+    1. Open Command Prompt/Terminal
+    1. Move the directory containing the jar file
+    1. Invoke `java -jar CheatLogs.jar FIRST`
+    
+    Expected output: 
+    Shows the welcome message of CheatLogs
+    ![](https://i.ibb.co/c14qrXf/image.png)
+2. List the preloaded cheatsheets
+    2. Prerequisites: Still in the same session as Step 1
+    2. Test case: `/list`
+    
+    Expected output:
+    Prints a table containing **12** cheatsheets, prompts the user to sort the result.
+    Press any characters excluding 1 - 4 to exit the sorting mode 
+3. Exit and restart the application
+    3. Prerequisites: Still in the same session as Step 2
+    3. Test case: 
+        - `/exit`
+        - `java -jar CheatLogs.jar`
+        - `/list`
+    
+    Expected output:
+    Identical to Step 2 (List the preloaded cheatsheets)
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+<a id="manual-test-2"></a>
+## 11.2 Adding cheatsheets
+1. Adding cheatsheets using **easy mode**
+    1. Test case: `/add` - Expected output: Prompts the user to fill `NAME` and `SUBJECT`
+    1. Test case: `dummyName0`
+    1. Test case: `dummySubject0` - Expected output: A text editor pops up
+    1. Test case: `dummyDescription0`, then click `save`
+    
+    Expected output:
+    Successfully adds the new cheatsheet, prints the current number of cheatsheets
 
-<!---
-There are few major components inside the code, and those components are broken down into separate classes. 
-All components can be accessed from the CheatLogs class.
-### CheatSheetList
-All cheatsheets are stored inside a static class CheatSheetList to allow other classes to easily access and write data to the list.
--->
+2. Adding cheatsheets using **advanced mode**
+    2. Test case: `/add /n dummyName1 /s dummySubject1` - Expected output: A text editor pops up
+    2. Test case: `dummyDescription1`, then click `save`
+    
+    Expected output:
+    Successfully adds the new cheatsheet, prints the current number of cheatsheets
+    
+<a id="manual-test-3"></a>
+## 11.3 Editing cheatsheets
+1. Editing cheatsheets by name
+    1. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
+    1. Test case: `/edit /n dummyName0` - Expected output: A text editor pops up
+    1. Test case: `dummyDescription0edit`, then click `save`
+    
+    Expected output:
+    Successfully saves the new cheatsheet. Prints the name, subject, and description of the cheatsheet
 
-<br>
+2. Editing cheatsheets by index
+    2. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
+    2. Test case: `/edit /i 1` - Expected output: A text editor pops up
+    2. Test case: `dummyDescription1edit`, then click `save`
+     
+    Expected output:
+    Successfully saves the new cheatsheet. Prints the name, subject, and description of the cheatsheet
 
+<a id="manual-test-4"></a>
+## 11.4 Viewing cheatsheets
+1. Viewing cheatsheets by name
+    1. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
+    1. Test case: `/view /n arrays` 
+    
+    Expected output:
+    Prints the name, subject, and description of the cheatsheet if a cheatsheet named `arrays` exists, else prints **"Please enter a valid name"**
+
+2. Viewing cheatsheets by index
+    2. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
+    2. Test case: `/view /i 1`
+     
+    Expected output:
+    Prints the name, subject, and description of the cheatsheet
+
+<a id="manual-test-5"></a>
+## 11.5 Finding cheatsheets
+1. Finding cheatsheets by subject
+    1. Prerequisites: Non-empty cheatsheet list.
+    1. Test case: `/find /s C` 
+    
+    Expected output:
+    Prints a table containing cheatsheets with **C** as its subject, prompts the user to sort the result.
+    Press any characters excluding 1 - 4 to exit the sorting mode 
+2. Viewing cheatsheets by keyword
+    2. Prerequisites: Non-empty cheatsheet list.
+    2. Test case: `/find /k arrays`
+     
+    Expected output:
+    Prints a table containing cheatsheets which has **"arrays"** keyword in its description, prompts the user to sort the result.
+    Press any characters excluding 1 - 4 to exit the sorting mode     
+3. Viewing cheatsheets by subject and keyword
+    3. Prerequisites: Non-empty cheatsheet list.
+    3. Test case: `/find /s C /k arrays`
+     
+    Expected output:
+    Prints a table containing cheatsheets with **C** as its subject and contains **"arrays"** keyword in its description, prompts the user to sort the result.
+    Press any characters excluding 1 - 4 to exit the sorting mode 
+
+<a id="manual-test-6"></a>
+## 11.6 Deleting cheatsheets
+1. Deleting cheatsheets by name
+    1. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
+    1. Test case: `/delete /n arrays` - Expected output: Asks the user for confirmation. If the cheatsheet does not exist in the first place, prints "Please enter a valid name".
+    1. Test case: `/list`
+    
+    Expected output:
+    The cheatsheet with name "arrays" is removed from the list.  
+2. Deleting cheatsheets by index
+    2. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
+    2. Test case: `/delete /i 1`- Expected output: Asks the user for confirmation.
+    2. Test case: `/list`
+    
+    Expected output:
+    The cheatsheet with index 1 is removed from the list.  
+ 
+<a id="manual-test-7"></a>    
+## 11.7 Clearing cheatsheets
+1. Clearing all cheatsheets
+    1. Test case: `/clear` - Expected output: Asks the user for confirmation
+    1. Test case: `/list`
+    
+    Expected output:
+    No cheatsheet on the list
+
+<a id="manual-test-8"></a>
+## 11.8 Add/remove cheatsheets to favourites
+1. Adding cheatsheets to favourites
+    1. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
+    1. Test case: `/fav /i 3` 
+    1. Test case: `/list`
+    
+    Expected output:
+    The cheatsheet with index 3 is now printed on the top of the list, with a \[\*\] next to its name.  
+2. Removing cheatsheets from favourites
+    2. Prerequisites: List all cheatsheets using the `/list` command, non-empty list, at least one cheatsheet marked as favourite.
+    2. Test case: `/fav /i 1 /d`
+    2. Test case: `/list`
+    
+    Expected output:
+    The cheatsheet with index 1 does not have \[\*\] next to its name anymore.  
+    
 <a id="glossary"></a>
 # 12. Glossary<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 * *glossary item* - Definition
 
 <br>
-
