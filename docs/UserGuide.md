@@ -23,6 +23,8 @@ The table of contents below lets you easily access the documentation for install
 >|*italics*|Files|
 >|`Snippets`|Typed input or output going into or out of CheatLogs|
 
+> :exclamation: Colour of images in this document may not be exactly the same as what you see in your terminal due to syntax highlighting of the imaging software used.
+
 <br>
 
 # Table of contents
@@ -184,7 +186,7 @@ ___
 > * `PYTHON` would be converted to `Python`
 > * `ruby on rails` would be converted to `RubyOnRails`
 
-You can easily use the `/add` command to add your own cheatsheets to the list by using 2 different methods **easy** and **hard** mode.
+You can easily use the `/add` command to add your own cheatsheets to **the List** by using 2 different methods **easy** and **hard** mode.
 
 <a id="add-command-easy"></a>
 #### 4.1.1.1. Adding a cheatsheet using the easy mode<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -207,7 +209,7 @@ Congratulations! You have added your first cheatsheet into CheatLogs.
 >
 For the more experienced users, you can also add cheatsheets using the advanced mode. A cheatsheet is first constructed with the name `CHEATSHEET_NAME` and subject `SUBJECT`. The Editor will then pop up for you to enter the description of the cheatsheet.
 
-If a non-empty description is saved, the cheatsheet is added to the List and stored to the */data* folder in the jar file directory. The expected outcome should be similar to below.
+If a non-empty description is saved, the cheatsheet is added to **the List** and stored to the */data* folder in the jar file directory. The expected outcome should be similar to below.
 
 ![image](https://i.ibb.co/hV499yH/image.png)
 Else if the description is blank or the Editor was canceled, the error message below is shown and the cheatsheet is not saved.
@@ -239,7 +241,7 @@ Format 1: `/delete /i INDEX`
 >Format: `/delete /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-This command deletes the matching cheatsheet from the List with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included. The expected result is similar to below if a matching cheatsheet is found.
+This command deletes the matching cheatsheet from **the List** with name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included. The expected result is similar to below if a matching cheatsheet is found.
 
 ![image](https://i.ibb.co/jLrwh03/image.png)
 When either the name or index does not match, CheatLogs will specify the error as shown below.
@@ -261,7 +263,7 @@ ___
 >Format: `/clear`
 >
 If you want to reset everything to its original state, you can simply use the `/clear` command instead of using `/delete` multiple times.
-This command will delete all cheatsheets from the List on your CheatLogs. No need to worry, `/clear` command will not remove the preloaded cheatsheets.
+This command will delete all cheatsheets from **the List** on your CheatLogs. No need to worry, `/clear` command will not remove the preloaded cheatsheets.
 Here is the expected result if currently you have two cheatsheets stored in the application.
 
 ![image](https://i.ibb.co/sq8nkp8/image.png)
@@ -282,7 +284,7 @@ ___
 >Format: `/edit /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-Edits the description of an existing cheatsheet. After `/edit`  is called, CheatLogs will match for a single cheatsheet in the List with a name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included (it will try to match only the name if you included both). 
+Edits the description of an existing cheatsheet. After `/edit`  is called, CheatLogs will match for a single cheatsheet in **the List** with a name matching `CHEATSHEET_NAME` or index matching `CHEATSHEET_INDEX` whichever you included (it will try to match only the name if you included both). 
 
 On a match, the Editor will pop up for you to edit the description of the matched cheatsheet. After you are done editing, saving or canceling the Editor updates the cheatsheet details and the message below will be printed on the terminal, showing the updated version of the cheatsheet.
 
@@ -339,15 +341,15 @@ ___
 <a id="viewing-command-type"></a>
 ## 4.3. Viewing Commands: <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
-> :exclamation: Colour of images in this section may not be exactly the same as what you see in command prompt due to syntax highlighting of the imaging software used.
-
-These are commands that allow you to quickly look up the List for the cheatsheets you want. It is recommended to use one command after another,
+These are commands that allow you to quickly look up **the List** for the cheatsheets you want. It is recommended to use one command after another,
 e.g. using `/find` to list all matching cheat lists then `/view` with corresponding name to view the cheatsheet.
 
-Some of these commands present their results in a table form and allow you to sort the results through various filters provided. We will call this **Sorting Mode**.
+Some of these commands present their results in a table form and allow you to sort the results through various filters provided. We will call this ****Sorting Mode****.
 
-In Sorting Mode, cheatsheets are originally shown in the order they were found inside the List. You can then sort them in [lexicographical order](https://en.wikipedia.org/wiki/Lexicographic_order#:~:text=In%20mathematics%2C%20the%20lexicographic%20or,of%20a%20totally%20ordered%20set.) 
-according to any of the cheatsheet properties. For example , sorting by descending name means to enter`3`in this mode and an illustration of expected output is the image below. To exit this mode, enter any characters other than 1 - 4.
+In **Sorting Mode**, cheatsheets are originally shown in the order they were found inside the List. You can then sort them in [lexicographical order](https://en.wikipedia.org/wiki/Lexicographic_order#:~:text=In%20mathematics%2C%20the%20lexicographic%20or,of%20a%20totally%20ordered%20set.) 
+according to any of the cheatsheet properties. For example , sorting by descending name means to enter`3`in this mode and an illustration of expected output is shown below. 
+
+> :bulb: To exit **Sorting Mode**, enter any characters other than 1 - 4.
 
 ![image](https://i.ibb.co/jJZPNdM/image.png)
 
@@ -368,7 +370,7 @@ according to any of the cheatsheet properties. For example , sorting by descendi
 
 After getting prompted to enter a command, you can search for cheatsheets using:
 
-1. `/find /s <SUBJECT>` to search for cheatsheets with matching subject. More details on the matching algorithm at the end of section.
+1. `/find /s <SUBJECT>` to search for cheatsheets with matching subject. More details on the matching algorithm at the end of this section.
 2. `/find /k <KEYWORD>` to search for cheatsheets with contents that contains `KEYWORD`.
 3. `/find /s <SUBJECT> /k <KEYWORD>` to search for cheatsheets with matching subject and contains `KEYWORD`.
 
@@ -385,7 +387,7 @@ After getting prompted to enter a command, you can search for cheatsheets using:
 | ![image](https://i.ibb.co/fGdPMdC/image.png) |
 
 
-Cheat sheets that meet the criteria of the command you entered would be displayed in a table as shown in the images below.
+Cheatsheets that meet the criteria of the command you entered would be displayed in a table as shown in the images below.
 
 | `/find /s <SUBJECT>` |
 | :-------------------------: |
@@ -399,7 +401,7 @@ Cheat sheets that meet the criteria of the command you entered would be displaye
 | :-------------------------: |
 | ![image](https://i.ibb.co/hym26SW/image.png) |
 
-CheatLogs then enters Sorting Mode. In sorting Mode, you can sort according to names or subjects by inputting the corresponding index (1-4).
+CheatLogs then enters **Sorting Mode**. In **Sorting Mode**, you can sort according to names or subjects by inputting the corresponding index (1-4).
 
 | Name ascending |
 | :-------------------------: | 
@@ -417,16 +419,13 @@ CheatLogs then enters Sorting Mode. In sorting Mode, you can sort according to n
 | :-------------------------: | 
 | ![image](https://i.ibb.co/ThvTVnG/image.png) |
 
-To exit Sorting Mode and simply enter another character (excluding 1-4).
+To exit **Sorting Mode** and simply enter another character (excluding 1-4).
 
-![image](https://i.ibb.co/0C6wc9J/image.png)
+![image](https://i.ibb.co/x8NVsPr/image.png)
 
-
-
-However, if none of the cheatsheets meet the criteria of your `/find` command, CheatLogs will not enter Sorting Mode as shown in the image below.
+However, if none of the cheatsheets meet the criteria of your `/find` command, CheatLogs will not enter **Sorting Mode** as shown in the image below.
 
 ![image](https://i.ibb.co/wcqcFxR/image.png)
-
 
 > :bulb:  Notes on matching algorithm
 > * The search is **case-sensitive** e.g. `help` matches `helpers` but not `Help`. 
@@ -444,14 +443,15 @@ Examples:
 >Format: `/view /n CHEATSHEET_NAME /i CHEATSHEET_INDEX` <br>
 >Flag optionality: [`/n`, `/i`] (At least one)
 
-Views and prints the details of the cheatsheet that matches with what you entered for `/view` command.
+You can view the details of a specific cheatsheet using the `/view` command.
+The `view` command requires you to enter either a name or index and CheatLogs will display the content of the cheatsheet that matches what you entered.
 
 After getting prompted to enter a command, you can view a specific cheatsheet using:
 
 1. `/view /n <CHEATSHEET_NAME>` to view the cheatsheet with name `CHEATSHEET_NAME`
 2. `/view /i <CHEATSHEET_INDEX>` to view the cheatsheet with index `CHEATSHEET_INDEX`
 3. `/view /n <CHEATSHEET_NAME> /i <CHEATSHEET_INDEX>` to view the cheatsheet with name and index corresponding to `CHEATSHEET_NAME` and `CHEATSHEET_INDEX`. 
->:exclamation: If `CHEATSHEET_NAME` and `CHEATSHEET_INDEX` are pointing at two different cheatsheet, no cheatsheet content would be displayed.
+>:exclamation: If `CHEATSHEET_NAME` and `CHEATSHEET_INDEX` are pointing at two different cheatsheet, no cheatsheet content will be displayed.
 
 | `/view /n <CHEATSHEET_NAME>`|
 | :-------------------------: |
@@ -477,7 +477,7 @@ Examples:
 
 >Format: `/list`
 
-Lists all the cheatsheets in the List in a table.
+You can use the `/list` command with no additional flags to list all the cheatsheets in **the List** in a table.
 
 After getting prompted to enter a command, you can view a specific cheatsheet using:
 
@@ -485,7 +485,7 @@ After getting prompted to enter a command, you can view a specific cheatsheet us
 
 ![image](https://i.ibb.co/zF8F4PM/image.png)
 
-CheatLogs then enters Sorting Mode. In sorting Mode, you can sort according to names or subjects by inputting the corresponding index (1-4).
+CheatLogs then enters **Sorting Mode**. In **Sorting Mode**, you can sort according to names or subjects by inputting the corresponding index (1-4).
 
 | Name ascending |
 | :-------------------------: | 
@@ -503,15 +503,15 @@ CheatLogs then enters Sorting Mode. In sorting Mode, you can sort according to n
 | :-------------------------: | 
 | ![image](https://i.ibb.co/ThvTVnG/image.png) |
 
-To exit Sorting Mode, simply enter any other characters.
+To exit **Sorting Mode**, simply enter any other characters.
 
-![image](https://i.ibb.co/4MNMRW3/image.png)
+![image](https://i.ibb.co/x8NVsPr/image.png)
 
 Example:
  *  `/list`
 
 <a id="general-command-type"></a>
-## 4.4. General Commands: (Adhy)  <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 4.4. General Commands: <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 These are useful general purpose commands that don't fit into the other categories but are still very useful for you to know.
 
 ---
@@ -520,7 +520,7 @@ These are useful general purpose commands that don't fit into the other categori
 ### 4.4.1. Viewing help: `/help`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 >Format: `/help`
 >
-If you forgot the syntax of a certain command, you can simply type `/help`. It will list all the possible commands that can be executed in the application together with its format and example. Below is what you should expect to see.
+If you forgot the syntax of a certain command, you can simply type `/help`. It lists all the possible commands that can be executed in the application together with its format and example. Below is what you should expect to see.
 
 ![image](https://i.ibb.co/n7gWdpQ/image.png)
 
@@ -531,7 +531,7 @@ Example:
 <a id="settings-command"></a>
 ### 4.4.2. Change program settings: `/set`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 CheatLogs is highly customizable. By using the `/set` command, you can choose to enable/disable the help messages on each command and change the color scheme of the output text. 
-The settings will be saved automatically and the next time you lauch CheatLogs, it will be exactly the same as the last time you opened it!
+The settings will be saved automatically and the next time you launch CheatLogs, it will be exactly the same as the last time you opened it!
 
 <a id="settings-color"></a>
 #### 4.4.2.1. Change color scheme<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
@@ -545,7 +545,7 @@ CheatLogs provides 3 additional color scheme options numbered from 1 to 3. Upon 
 
 If your flag description `COLORSCHEME` does not fall in the range mentioned above, it will change the color scheme to the default setting (option 0).
 
-> :exclamation: The colors will likely vary depending on the terminal that you use and differ from the one shown. We suggest simply picking the most readable one.
+> :bulb: The colors will likely vary depending on the terminal that you use and differ from the one shown. We suggest simply picking the most readable one.
  
   Example:   
  * `/set /c 2`
@@ -729,9 +729,9 @@ Add | /add /n <CHEATSHEET_NAME> /s \<SUBJECT> | /add /n List /s Java
 Delete | /delete /i <CHEATSHEET_INDEX> <br> /delete /n <CHEATSHEET_NAME> | /delete /n List <br> /delete /i 1
 Clear | /clear | /clear
 Edit | /edit /i <CHEATSHEET_INDEX> <br> /edit /n <CHEATSHEET_NAME> | /edit /i 1 <br> /edit /n List
-Favourite | /fav /i <CHEATSHEET_INDEX> <br> /fav /n <CHEATSHEET_NAME> | /fav /i 2 <br> /fav /n Cheat
+Favourite | /fav /i <CHEATSHEET_INDEX> \[/d\] <br> /fav /n <CHEATSHEET_NAME> \[/d\]| /fav /i 2 <br> /fav /i 3 /d <br> /fav /n Cheat <br> /fav /n arrays /d 
 Find | /find /s \<SUBJECT> /k \<KEYWORD> | /find /s Java <br> /find /s Java /k cheater
-View | /view /i <CHEATSHEET_INDEX> <br>/view /n <CHEATSHEET_NAME> | /fav /i 3 <br> /fav /n List
+View | /view /i <CHEATSHEET_INDEX> <br>/view /n <CHEATSHEET_NAME> | /view /i 3 <br> /view /n List
 List | /list | /list
 Help | /help | /help
 Settings | /set /c <OPTION_NUMBER> <br> /set /m \<OPTION> | /set /c 1 <br> /set /m on <br> /set /m off
