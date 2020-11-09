@@ -240,7 +240,7 @@ Below is the class diagram for the command package.
 `FinderCommand` provides the capability to search for the desired cheatsheet using the `getCheatSheetFromNameOrIndex()` method. Upon method calls, the sub-class of `FinderCommand` will first call this method to get the desired cheatsheet, then it proceeds to process this cheatsheet object based on its own functionality. A sequence diagram will be given for each commands to better illustrate the interaction between this class with its sub-classes.
 
 <a id="add"></a>
-##### 4.2.3.1 Add
+##### 4.2.3.2 Add
 The AddCommand is used to add cheatsheets into CheatLogs.
 The picture bellow shows how the AddCommand is executed.
 ![AddCommand Sequence Diagram](https://i.ibb.co/GtFKP7V/Add-Command-4.png)
@@ -255,7 +255,7 @@ The picture bellow shows how the AddCommand is executed.
 9. Finally, once the cheatSheet has been added into the cheatSheetList, the AddCommand will invoke the `printAddNewCheatSheetMessage(cheatSheet,cheatSheetList)` to print the confirmation message.
 
 <a id="edit"></a>
-##### 4.2.3.2 Edit
+##### 4.2.3.3 Edit
 The edit command allows the user to edit the content of the CheatSheet object.
 The image bellow is how the EditCommand is executed.
 ![EditCommand Sequence Diagram](https://i.ibb.co/tPg1pjL/Edit-Command-4.png)
@@ -271,7 +271,7 @@ The image bellow is how the EditCommand is executed.
 10. To reflect the change, the EditCommand object will invoke `cheatsheet.setDetail(editor.getContent())` method to get the content of the cheatsheet and also change the content of the cheatsheet.
 
 <a id="view"></a>
-##### 4.2.3.3 View
+##### 4.2.3.4 View
 The view command is used to view the content of the cheatsheet in tht command line interface.
 The sequence diagram bellow demonstrates how tht view command is executed.
 ![ViewCommand_Sequence_Diagram](https://i.ibb.co/GF4LZYy/View-Command-3.png)
@@ -283,7 +283,7 @@ The sequence diagram bellow demonstrates how tht view command is executed.
 6. Afterwards, it will call the `printViewCheatSheetMessage` of the printer class to print the cheatsheet into the command line.
 
 <a id="exit"></a>
-##### 4.2.3.4 Exit
+##### 4.2.3.5 Exit
 The exit command is used to exit the CheatLogs program.
 The sequence digaram bellow will demonstrate how it is executed.
 ![ExitCommand_Sequence-Diagram](https://i.ibb.co/4SxcnL5/Exit-Command-1.png)
@@ -536,14 +536,31 @@ The command can execute at a random time later via commandObj.execute().12
 
 <a id="editing-feature"></a>
 ## 5.2. Editing Feauture<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+![ContentEditor](https://i.ibb.co/hYtY1GM/Screenshot-2020-11-09-at-6-30-12-PM.png)
 
-The editing feature is enabled using a simple text editor that uses a graphical user interface. 
+The editing feature is enabled using a simple text editor that uses the JSwing Library. 
 The strong reason that we wanted to use a GUI is that it offers more flexibility and editing power for the user rather than just using command-line editing methods.
 
+The editing feature is handled by the Editor class. The Text Editor inherits from JFrame and implements the Action Listener class. 
+The text editor is instantiated when the the user session is constructed.
+The text editor remains opened throughtout the program execution, but it is hidden.
+The text editor is shwon only when the AddCommand or the EditCommand is instantiated.
 
-The editing feature is handled by the TextEditor class. The Text Editor inherits from JFrame and implements the Action Listener class. 
-The text editor is instantiated when the edit command is invoked. 
+The text editor uses the Box Layout that divide the text editor into 5 sections, header,footer, left, right, and center.
+Each of the sections, are implemented using JPanel.
 
+* The header Panel contains the CheatLogs logo that is implemented using JLabel that contains an ImageIcon object.
+
+* The center panel is filled with the text editor, which is implemented using the JTextArea and JScrollPane. 
+Using both of those classes, the user can input any text into the text editor, except for escape characters.
+The text editor will have the horizontal and vertical scroll pane as needed, especially when loading long texts.
+
+* The right panel contains the buttons that is used for the editing and file functions, that include Copy, Cut, Paste, Clear All, Cancel, and Save.
+The buttons are created using the JButton class, and in each of the buttons there is an ActionListener to invoke actions to be processed by the editor.
+
+* The footer contains a JLabel that will display warning and the information of the CheatSheet that is being edited.
+
+Every time a button is pressed, the ActionEvent will be processed by the actionPerformed class, and a switch statement will control the actions and command executions.
 
 <a id="sorting-feature"></a>
 ## 5.3. Sorting Feature<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -868,9 +885,18 @@ This project allows you to create multiple releases of CheatLogs. Follow these s
 <br>
 
 <a id="product-scope-appendix"></a>
+
 ## 10.1 Product scope<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-
-
+### Target User Profile
+    * has a need to manage cheatsheets
+    * beginner to programming
+    * prefers simple and easily legible version of official documentation
+    * preferes a small and light application
+    * proficient enough in navigating CLI
+#### Value Proposition
+    * Allows beginner programmer to learn faster without having to navigate through official documentation.
+    * Manage cheatsheets in a single unified application rather than navigating a messy file system.
+=======
 
 <a id="user-stories"></a>
 ## 10.2 User stories<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -896,8 +922,248 @@ versions of CheatLogs was designed to solve.
 
 <a id="use-cases"></a>
 ## 10.3 Use cases<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+### 10.3.1 Use Case: Add CheatSheet
+#### MSS
 
+1. User request to add a cheatsheet
+2. CheatLogs requests for name and subject
+3. User provides name and subject
+4. CheatLogs displays text editor
+5. User fills in the content of the cheatsheet
+6. User clicks `Save` button
+7. CheatLogs adds cheatsheet.
 
+   *Use case ends.*
+#### Extensions
+**3a. User doesnt provide name and index**
+
+*3a.1. Use case resumes at step 2.*
+        
+**3b. User provides an existing cheatsheet name**
+
+3b.1. CheatLogs shows an error message.
+
+*Use case ends*
+
+**3c. User provides name / character above 250 characters**
+
+3c.1. CheatLogs shows an error message.
+
+*Use case ends*
+
+**6a. User clicks cancel Button** 
+
+6a.1. CheatSheet will not be created.
+    
+*Use case ends.*
+    
+**6b.** User clicks save when text editor is empty
+
+6b.1. The footer will show warning of a blank file to the User.
+
+*Use case resumes at step 5*
+
+### 10.3.2 Use Case: Edit CheatSheet
+#### MSS
+
+1. User request to edit a cheatsheet
+2. CheatLogs requests for name and index
+3. User provides name and index
+4. CheatLogs displays text editor with the cheatsheet content
+5. User fills in the content of the cheatsheet
+6. User clicks `Save` button
+7. CheatLogs edits the cheatsheet content.
+
+   *Use case ends.*
+#### Extensions
+**3a. User doesnt provide name and index**
+
+*3a.1. Use case resumes at step 2.*
+       
+**3b. User provides mismatching name and index**
+
+3b.1. CheatLogs will display error message
+
+*Use case ends*
+
+**3c. User provides non-existing cheatsheet**
+
+3c.1. CheatLogs will display error message
+
+*Use case ends*
+        
+**6a. User clicks cancel Button** 
+
+6a.1. CheatSheet changes will not be saved.
+    
+*Use case ends.*
+    
+**6b.** User clicks save when text editor is empty
+
+6b.1. The footer will show warning of a blank file to the User.
+
+*6b.2. Use case resumes at 5*
+
+### 10.3.3 Use Case: Delete CheatSheet
+#### MSS
+
+1. User request to delete a cheatsheet
+2. CheatLogs requests for name and index
+3. User provides name and index
+4. CheatLogs requests user confirmation
+5. User provides confirmation
+6. Cheatsheet is deleted
+
+   *Use case ends.*
+#### Extensions
+**3a. User doesnt provide name and index**
+
+*3a.1. Use case resumes at step 2.*
+
+**3b. User provides mismatching name and index**
+
+3b.1. CheatLogs will display error message
+
+*Use case ends*
+
+**3c. User provides non-existing cheatsheet**
+
+3c.1. CheatLogs will display error message
+
+*Use case ends*
+
+**4a. User provides wrong confirmation**
+
+4a.1. CheatLogs will not delete the cheatsheet
+
+*Use case ends*
+
+### 10.3.4 Use Case: Clear CheatSheet
+#### MSS
+
+1. User request to clear the cheatsheet list
+2. CheatLogs requests user confirmation
+3. User provides confirmation
+4. All user-made cheatsheet is deleted
+
+   *Use case ends.*
+#### Extensions
+**3a. User provides wrong confirmation key**
+    
+*3a.1. Use case returns to step 1*
+
+### 10.3.5 Use Case: Favorite CheatSheet
+#### MSS
+
+1. User request to favourite a cheatsheet
+2. CheatLogs requests for name and index
+3. User provides name or index
+4. CheatLogs favourites the CheatSheet.
+
+   *Use case ends.*
+#### Extensions
+**3a. User doesnt provide name and index**
+
+*3a.1. Use case resumes at step 2.*
+
+**3b. User provides mismatching name and index**
+
+3b.1. CheatLogs will display error message
+
+*Use case ends*
+
+**3c. User provides non-existing cheatsheet**
+
+3c.1. CheatLogs will display error message
+
+*Use case ends*
+        
+**3d. User provides already favourited cheatsheet**
+
+3d.1. CheatLogs will display the already favourited cheatsheet
+
+*Use case ends*
+
+### 10.3.6 Use Case: Find CheatSheet
+#### MSS
+
+1. User request to find a cheatsheet
+2. CheatLogs requests for name, index, or section keyword
+3. User provides name and index
+4. Cheatsheet is viewed
+
+   *Use case ends.*
+#### Extensions
+**3a. User doesnt provide name, index, or section keyword**
+
+*3a.1. Use case resumes at step 2.*
+
+**3b. User provides mismatching name and index**
+
+3b.1. CheatLogs will display error message
+
+*Use case ends*
+
+**3c. User provides non-existing cheatsheet attributes**
+
+3c.1. CheatLogs will display error message
+
+*Use case ends*
+
+### 10.3.7 Use Case: View CheatSheet
+#### MSS
+
+1. User request to find a cheatsheet
+2. CheatLogs requests for name or index
+3. User provides name and index
+4. Cheatsheet is viewed
+
+   *Use case ends.*
+#### Extensions
+**3a. User doesn't provide name and index**
+
+*3a.1. Use case resumes at step 2.*
+
+**3b. User provides mismatching name and index**
+
+3b.1. CheatLogs will display error message
+
+*Use case ends*
+
+**3c. User provides non-existing cheatsheet attributes**
+
+3c.1. CheatLogs will display error message.
+
+*Use case ends*
+
+### 10.3.8 Use Case: List CheatSheet
+#### MSS
+
+1. User request to list the cheatsheet
+2. User provides the cheat sheet list
+3. Cheatsheet is listed
+
+   *Use case ends.*
+#### Extensions
+**3a. The user request change sorting order**
+
+3a.1. CheatLogs will change sorting order
+
+*Use case resumes at Step 3*
+
+**3b. The user inputs invalid argument**
+
+3b.1. CheatLogs will exit the list command
+
+*Use case ends*
+
+### 10.3.9 Use Case: Exit Program
+#### MSS
+
+1. User request to exit the program.
+2. Cheatlogs terminates.
+
+   *Use case ends.*
 
 <a id="non-functional-requirements"></a>
 ## 10.4 Non-Functional Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
