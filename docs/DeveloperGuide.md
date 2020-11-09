@@ -29,7 +29,7 @@ The table of contents below lets you easily access the documentation for CheatLo
 * [3. Setting Up, Getting Started](#setting-up-getting-started)
     * [3.1. Prerequisites](#prerequisites)
     * [3.2. Running the Project](#running-the-project)
-    * [3.3 Importing into IntelliJ \[optional\]](#importing-into-intellij)
+    * [3.3 Importing into IntelliJ \[optional\]](#importing-to-intellij)
 * [4. Design](#design)
     * [4.1. Architecture](#architecture)
     * [4.2. Components](#components)
@@ -51,18 +51,17 @@ The table of contents below lets you easily access the documentation for CheatLo
         * [4.2.4. Cheat Sheet Structure](#cheat-sheet-structure)
         * [4.2.5. Cheat Sheet Management](#cheat-sheet-management)
         * [4.2.6. Data Storage](#data-storage)
-            * [4.2.6.1 Overview](#overview-design)
-            * [4.2.6.2 Writing files](#file-writer-design)
-            * [4.2.6.3 Reading files](#file-reader-design)
-            * [4.2.6.4 Deleting files](#file-destroyer-design)
+            * [4.2.6.1 Writing files](#file-writer-design)
+            * [4.2.6.2 Reading files](#file-reader-design)
+            * [4.2.6.3 Deleting files](#file-destroyer-design)
 * [5. Implementation](#implementation)
     * [5.1. Parsing of Data to Construct Commands](#parsing-of-data-to-construct-commands)
     * [5.2. Editing Feature](#editing-feature)
     * [5.3. Sorting Feature](#sorting-feature)
     * [5.4. Data Management](#data-management)
-        * [5.4.1 Writing files](#file-writer)
-        * [5.4.2 Reading files](#file-reader)
-        * [5.4.3 Deleting files](#file-destroyer)
+        * [5.4.1 Writing files](#impln-file-writer)
+        * [5.4.2 Reading files](#impln-file-reader)
+        * [5.4.3 Deleting files](#impln-file-destroyer)
     * [5.5. Changing default settings](#settings-implementation)
     * [5.6. Colour coding for code snippet](#colour-coding-for-code-snippet)
 * [6. Appendix: Documentation](#appendix-documentation)
@@ -105,7 +104,6 @@ This document specifies the high-level architecture and software design decision
 
 <a id="setting-up-getting-started"></a>
 # 3. Setting Up, Getting Started<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-xx
 
 
 <a id="prerequisites"></a>
@@ -436,15 +434,9 @@ As we can see from the diagram above, the following 3 classes are subclasses of 
   * Depending on the option stated by you, this feature can either delete a single file or all
     XML files currently stored in the user directory.
 
-<a id="file-writer"></a>
-## 4.2.6.1 Overview<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-
-Whenever you give a command to *add* or *edit* a cheatsheet, this feature will be activated. Through this
-feature, CheatLogs will attempt to update all cheatsheet files, creating a new cheat sheet file if a new 
-cheat sheet is created. To ensure that your cheat sheet files
 
 <a id="file-writer-design"></a>
-#### 4.2.6.2 Writing files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+#### 4.2.6.1 Writing files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 Whenever you give a command to *add* or *edit* a cheatsheet, this feature will be activated. Through this
 feature, CheatLogs will attempt to update all cheatsheet files, creating a new cheat sheet file if a new 
@@ -519,7 +511,7 @@ By using the sort() method present in java. util. Collections class, we would ha
 This feature stores cheat sheets on the hard-drive in the form of XML file. 
 When the application loads, data from these files will be converted and loaded into the application.
 
-<a id="file-writer"></a>
+<a id="impln-file-writer"></a>
 ### 5.4.1 Writing files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 Whenever you give a command to *add* or *edit* a cheatsheet, this feature will be activated. Through this
@@ -537,7 +529,7 @@ in CheatLogs from *CheatSheetList*. Next, it iterates through each cheatsheet, a
 them as XML files by invoking the *storeCheatSheet()* command. Finally, it will call its own *saveSettings()*
 command, where it will store the user-defined settings into *settings.txt*.
 
-<a id="file-reader"></a>
+<a id="impln-file-reader"></a>
 ### 5.4.2 Reading files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 When CheatLogs is launched, this feature looks through the directories present in the /data directory
@@ -570,7 +562,7 @@ out of it by invoking the method *createNewCheatSheet()*. However, if the file i
 will now inoke *loadUserSettings()* to transfer the data stored within it to configure the respective settings
 of CheatLogs.
 
-<a id="file-destroyer"></a>
+<a id="impln-file-destroyer"></a>
 ### 5.4.3 Deleting files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 When you decide to remove a cheat sheet, CheatLogs will delete the relevant cheat sheet files immediately.
