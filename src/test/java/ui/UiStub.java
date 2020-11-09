@@ -1,11 +1,14 @@
-package parser;
-
-import ui.Ui;
+package ui;
 
 import java.util.LinkedList;
 
 class UiStub extends Ui {
-    private LinkedList<String> userInput;
+    private final LinkedList<String> userInput;
+    boolean isExisting = true;
+
+    public void reset() {
+        isExisting = true;
+    }
 
     protected UiStub() {
         userInput = new LinkedList<>();
@@ -21,5 +24,10 @@ class UiStub extends Ui {
 
     protected void clearUserInput() {
         userInput.clear();
+    }
+
+    @Override
+    public void closeScanner() {
+        isExisting = false;
     }
 }

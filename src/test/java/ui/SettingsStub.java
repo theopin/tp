@@ -1,4 +1,4 @@
-package parser;
+package ui;
 
 import settings.Settings;
 
@@ -12,7 +12,7 @@ class SettingsStub extends Settings {
         return isDisplayingHelpMessages;
     }
 
-    public void setDisplayingHelpMessages(boolean isDisplayingHelpMessages) {
+    public void setDisplayingHelpMessages(boolean isDisplayingHelpMessages, boolean isInit) {
         this.isDisplayingHelpMessages = isDisplayingHelpMessages;
     }
 }
