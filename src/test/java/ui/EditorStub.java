@@ -6,6 +6,7 @@ public class EditorStub extends Editor {
     boolean isExisting = true;
 
     public EditorStub() {
+        return;
     }
 
     public void reset() {
