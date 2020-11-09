@@ -13,7 +13,7 @@ import ui.Printer;
  */
 public class AddCommand extends Command {
     private final Editor editor;
-    private static final String ALPHA_NUMERIC = "[A-Za-z0-9 ]+";
+    private static final String ALPHA_NUMERIC = "[A-Za-z0-9 \t\n\r]+";
     public static final String invoker = "/add";
 
     /**
@@ -108,7 +108,7 @@ public class AddCommand extends Command {
         if (input.length() == 0) {
             return "Unsorted";
         }
-        String[] splitInput = input.split("\\p{IsWhite_Space}+");
+        String[] splitInput = input.trim().split("\\p{IsWhite_Space}+");
         for (int i = 0; i < splitInput.length; i++) {
             splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();
         }
