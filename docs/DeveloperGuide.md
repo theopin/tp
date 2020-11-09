@@ -28,25 +28,27 @@ The table of contents below lets you easily access the documentation for CheatLo
 * [3. Setting Up, Getting Started](#setting-up-getting-started)
     * [3.1. Prerequisites](#prerequisites)
     * [3.2. Running the Project](#running-the-project)
-    * [3.3 Importing into IntelliJ [optional]](#importing-into-intellij)
+    * [3.3 Importing into IntelliJ \[optional\]](#importing-into-intellij)
 * [4. Design](#design)
     * [4.1. Architecture](#architecture)
     * [4.2. Components](#components)
         * [4.2.1. User Interface](#user-interface)
         * [4.2.2. Command Parser](#command-parser)
         * [4.2.3. Command](#command)
-            * [4.2.3.1. Add](#add)
-            * [4.2.3.2. Edit](#edit)
-            * [4.2.3.3. View](view)
-            * [4.2.3.4. Exit](#exit)
-            * [4.2.3.5. List](#list)
-            * [4.2.3.6. Find](#find)
-            * [4.2.3.7. Setting](#setting)
-            * [4.2.3.8. Delete](#delete)
-            * [4.2.3.9. Clear](#clear)
-            * [4.2.3.10. Favourite](#favourite)
-            * [4.2.3.11. Exit](#help)
-        * [4.2.4. Cheat Sheet Management](#cheat-sheet-management)
+            * [4.2.3.1. FinderCommand](#findercommand)
+            * [4.2.3.2. Add](#add)
+            * [4.2.3.3. Edit](#edit)
+            * [4.2.3.4. View](view)
+            * [4.2.3.5. Exit](#exit)
+            * [4.2.3.6. List](#list)
+            * [4.2.3.7. Find](#find)
+            * [4.2.3.8. Setting](#setting)
+            * [4.2.3.9. Delete](#delete)
+            * [4.2.3.10. Clear](#clear)
+            * [4.2.3.11. Favourite](#favourite)
+            * [4.2.3.12. Exit](#help)
+        * [4.2.4. Cheat Sheet Structure](#cheat-sheet-structure)
+        * [4.2.5. Cheat Sheet Management](#cheat-sheet-management)
         * [4.2.6. Data Storage](#data-storage)
             * [4.2.6.1 Overview](#overview-design)
             * [4.2.6.2 Writing files](#file-writer-design)
@@ -217,8 +219,11 @@ The steps below explain the sequence diagram:
 ### 4.2.3. Commands	<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 //Aldo
 
+<a id="findercommand"></a>
+##### 4.2.3.1 FinderCommand
+
 <a id="add"></a>
-##### 4.2.3.1 Add
+##### 4.2.3.2 Add
 The add command is used to add cheatsheets into CheatLogs.
 The picture bellow shows how the add command is executed.
 ![AddCommand Sequence Diagram](https://i.ibb.co/S7qt5pt/Add-Command-1.png)
@@ -233,28 +238,28 @@ The picture bellow shows how the add command is executed.
 9. T
 
 <a id="edit"></a>
-##### 4.2.3.2 Edit
+##### 4.2.3.3 Edit
 <img src="https://i.ibb.co/ZdVMybF/Edit-Command.png" alt="Edit-Command" border="0">
 
 <a id="view"></a>
-##### 4.2.3.3 View
+##### 4.2.3.4 View
 <img src="https://i.ibb.co/74wtmML/View-Command.png" alt="View-Command" border="0">
 
 <a id="exit"></a>
-##### 4.2.3.4 Exit
+##### 4.2.3.5 Exit
 <img src="https://i.ibb.co/1MD50qH/Exit-Command.png" alt="Exit-Command" border="0">
 
 <a id="list"></a>
-##### 4.2.3.5 List
+##### 4.2.3.6 List
 
 <a id="find"></a>
-##### 4.2.3.6 Find
+##### 4.2.3.7 Find
 
 <a id="setting"></a>
-##### 4.2.3.7 Setting 
+##### 4.2.3.8 Setting 
 
 <a id="delete"></a>
-##### 3.2.3.8 Delete
+##### 3.2.3.9 Delete
 Delete command removes one cheatsheet from the CheatSheetList and deletes the corresponding file in the */data* directory.
 
 Here is an example of the usage of `/delete` command and how it works:
@@ -269,7 +274,7 @@ Here is an example of the usage of `/delete` command and how it works:
 
 The following sequence diagram illustrates how steps 4 - 8 are executed by DeleteCommand.
 <a id="clear"></a>
-##### 4.2.3.9 Clear
+##### 4.2.3.10 Clear
 Clear command deletes all user-defined cheatsheets while maintaining the preloaded cheatsheets.
 
 Here is an example of the usage of `/clear` command and how it works:
@@ -283,7 +288,7 @@ Here is an example of the usage of `/clear` command and how it works:
 
 The following sequence diagram illustrates how steps 4 - 7 are executed by ClearCommand.
 <a id="favourite"></a>
-##### 4.2.3.10 Favourite
+##### 4.2.3.11 Favourite
 Favourite command adds/removes the cheatsheet from/to favourites.
 
 Here is an example of the usage of `/fav` command and how it works:
@@ -296,7 +301,7 @@ Here is an example of the usage of `/fav` command and how it works:
 
 The following sequence diagram illustrates how steps 4 - 6 are executed by ClearCommand.
 <a id="help"></a>
-##### 4.2.3.11 Help
+##### 4.2.3.12 Help
 Help command prints the descriptions and examples for all commands.
 
 Here is an example of the usage of `/help` command and how it works:
@@ -307,7 +312,7 @@ Here is an example of the usage of `/help` command and how it works:
 The following sequence diagram illustrates how step 4 is executed by HelpCommand.
 
 <a id="cheat-sheet-structure"></a>
-#### 4.2.4. Cheat Sheet Structure 
+#### 4.2.4. Cheat Sheet Structure <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 //Aldo
 
 To further understand our cheatsheet management application, it is important to understand the inner workings of the CheatSheet class. 
@@ -333,19 +338,6 @@ Each of the CheatSheet object has:
 Image 6: class diagram of the cheatsheet class
 
 ---
-
-<a id="development-goals"></a>
-###  Development Goals<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-//TBC
-We are trying to move our existing cheatsheet file format from txt to xml. 
-XML files provide inbuilt tags to differentiate and classify members of the document. 
-With the use of XML file, it simplifies the parsing process of the cheatsheet files into the cheatsheet class, and vice versa.
-
-![](Images/Image9.PNG)
-
-Image 7: XML file showing the content of a cheatsheet file
-
-
 
 <a id="cheat-sheet-management"></a>
 ### 4.2.5. Cheat Sheet Management<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -495,7 +487,7 @@ This ensures that your /data file is not cluttered with empty directories.
 
 
 <a id="colour-coding-for-code-snippet"></a>
-## 5.5. [Proposed] Colour coding for code snippet<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+## 5.5. \[Proposed\] Colour coding for code snippet<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 The idea of this feature is to improve the readability of the code snippets (if present) inside the cheat sheet. 
 To make this possible, several adjustments must be made to the save data format to allow more information to be stored inside a single file instead of scattered across multiple files. 
 Thus, instead of saving to a txt file, the program will write the cheat sheet data into a xml file, for easier parsing and sectioning. 
