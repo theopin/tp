@@ -338,9 +338,8 @@ Here is the list of `Commands` that invokes a method call of CheatSheetList:
 
 <a id="data-storage"></a>
 ### 4.2.6. Data Storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-//Theo
-This feature allows the application to read and update data in the form of text files. 
-Having an external source to store data will allow the application to be able to retrieve it when it is relaunched at another instance. 
+This feature allows the application to read and update data in the form of [XML files](https://www.tutorialspoint.com/xml/xml_documents.htm). 
+Having an external source to store data will allow the application to retrieve it when it is relaunched at another instance. 
 This prevents the user from having to repeatedly create new cheatsheets and update the application settings each time he opens up CheatLogs. 
 
 The following UML diagram illustrates the major interactions between the classes present in the 
@@ -354,7 +353,7 @@ As we can see from the diagram above, the following 3 classes are subclasses of 
 * *DataFileDestroyer*
 
 <a id="file-writer"></a>
-## 4.2.6.1 Writing files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+## 4.2.6.1 Overview<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 Whenever you give a command to *add* or *edit* a cheatsheet, this feature will be activated. Through this
 feature, CheatLogs will attempt to update all cheatsheet files, creating a new cheat sheet file if a new 
@@ -434,30 +433,35 @@ By using the sort() method present in java. util. Collections class, we would ha
 ## 5.4. Data storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 This feature stores cheat sheets on the hard-drive in the form of XML file. 
-When the application loads subsequently, data from these files will be converted and loaded into the application.
+When the application loads, data from these files will be converted and loaded into the application.
 
 <a id="file-writer"></a>
 ### 5.4.1 Writing files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 Whenever you give a command to *add* or *edit* a cheatsheet, this feature will be activated. Through this
 feature, CheatLogs will attempt to update all cheatsheet files, creating a new cheat sheet file if a new 
-cheat sheet is created. To ensure that your cheat sheet files
+cheat sheet is created. To ensure the organization of your cheatsheet files, these files are created 
+in a subdirectory whose name matches the subject name of each cheatsheets. 
 
 
 <a id="file-reader"></a>
 ### 5.4.2 Reading files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
-When CheatLogs is launched, it attempts to parse all XML files present in the /data directory and
-use it to create individual cheat sheets for each file. In the event that a particular XML file 
-cannot be read, it will be skipped to ensure that other files can be converted into cheat sheets.
+When CheatLogs is launched, this feature looks through the directories present in the /data directory
+recursively to find XML files that can be converted to cheatsheets. After verifying that the XML file has
+the relevant attributes and does not contain any non-alphanumeric characters, the Java DOM parser 
+converts these files into cheatsheets and adds them to the list.
+
 
 
 <a id="file-destroyer"></a>
 ### 5.4.3 Deleting files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
-When you decide to remove a cheat sheet, CheatLogs will delete the relevant cheat sheet files immediately. After this 
-operation, it will perform a search through the /data directory and delete any subdirectories without any cheat sheet.
-This ensures that your /data file is not cluttered with empty directories.
+When you decide to remove a cheat sheet, CheatLogs will delete the relevant cheat sheet files immediately.
+This is done by locating the path of the XML file corresponding to the cheat sheet. Subsequently, this feature
+will delete it provided that the XML file still exists. After deleting a file, this feature performs a recursive
+search through the data directory, to delete any directories that are empty after this operation. This ensures
+that there is no clutter of empty folders existing in the /data directory.
 
 
 
