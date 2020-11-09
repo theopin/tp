@@ -238,31 +238,55 @@ Below is the class diagram for the command package.
 `FinderCommand` provides the capability to search for the desired cheatsheet using the `getCheatSheetFromNameOrIndex()` method. Upon method calls, the sub-class of `FinderCommand` will first call this method to get the desired cheatsheet, then it proceeds to process this cheatsheet object based on its own functionality. A sequence diagram will be given for each commands to better illustrate the interaction between this class with its sub-classes.
 
 <a id="add"></a>
-##### 4.2.3.2 Add
-The add command is used to add cheatsheets into CheatLogs.
-The picture bellow shows how the add command is executed.
-![AddCommand Sequence Diagram](https://i.ibb.co/S7qt5pt/Add-Command-1.png)
-1. When the add command is constructed, it will put the name command flag to the FlagToDescription Hash Map.
-2. After that, the subject command flag will be put in the FlagToDescription Hash Map.
-3. The CommandFlag.NAME will be added into the AlternativeArguments.
-4. The CommandFlag.SUBJECT will be added into the AlternativeArguments.
-5. Add command will invoke its own method execute()
-6. Add command invoke the get(CommandFlag.NAME) and will return the name
-7. After that, the add command invoke the get(CommandFlag.SUBJECT) and returns the suject
-8. Add command will invoke the callContentEditor.
-9. T
+##### 4.2.3.1 Add
+The AddCommand is used to add cheatsheets into CheatLogs.
+The picture bellow shows how the AddCommand is executed.
+![AddCommand Sequence Diagram](https://i.ibb.co/GtFKP7V/Add-Command-4.png)
+1. When the AddCommand.execute()is called, it will self-invoke the `get(CommandFlag.NAME)` and will return `name`
+2. After that, the add command self-invoke the `get(CommandFlag.SUBJECT)` and returns the `subject`
+3. Add command will invoke the `callContentEditor()` within its class.
+4. The callContent Editor will execute the `editor.setEditingContent(name,subject)`method followed by `editor.open()`
+5. The program will wait for the editor in the `editor.waitForClose()` to close and will return the control to the AddCommand class.
+6. The program will give back control to the `AddCommand` object, and will call the `editor.getContent()` to get the description from the Editor.
+7. The AddCommand will construct a CheatSheet object using `CheatSheet(name,subject,description)`
+8. After the CheatSheet object is constructed, it will be added to the CheatSheetList using `cheatSheetList.add(cheatSheet)` method.
+9. Finally, once the cheatSheet has been added into the cheatSheetList, the AddCommand will invoke the `printAddNewCheatSheetMessage(cheatSheet,cheatSheetList)` to print the confirmation message.
 
 <a id="edit"></a>
-##### 4.2.3.3 Edit
-<img src="https://i.ibb.co/ZdVMybF/Edit-Command.png" alt="Edit-Command" border="0">
+##### 4.2.3.2 Edit
+The edit command allows the user to edit the content of the CheatSheet object.
+The image bellow is how the EditCommand is executed.
+![EditCommand Sequence Diagram](https://i.ibb.co/tPg1pjL/Edit-Command-4.png)
+1. When the `EditCommand.execute()` method is called, it self-invoke the `getCheatSheetFromNameOrIndex()` method
+2. Inside the `getCheatSheetFromNameOrIndex()` method, it will self-invoke the `flagToDescription.get(CommandFlag.NAME)` to retrieve the cheatsheet name.
+3. The program execution continues by self-invoking the `flagToDescription.get(CommandFlag.INDEX)` to retrieve the cheatSheet index.
+4. The program will get the cheatsheet from the CheatSheetList object with either the name using `get(name)` or index `get(index)` of the cheatsheet.
+5. The `getCheatSheetFromNameOrIndex()` method will return the `desiredCheatSheet`
+6. After that, the EditCommand will invoke the `callContentEditor(cheatSheet)` to show the content editor.
+7. Inside the `callContentEditor(cheatSheet)` method, it will call the `editor.open` method (to open the editor). 
+8. After that, the content of the cheatsheet will be set inside the text editor when editor.setContent(desiredCheatSheet) method is called.
+9. The program will wait for the editor to close when the `editor.waitForClose()` is called.
+10. To reflect the change, the EditCommand object will invoke `cheatsheet.setDetail(editor.getContent())` method to get the content of the cheatsheet and also change the content of the cheatsheet.
 
 <a id="view"></a>
-##### 4.2.3.4 View
-<img src="https://i.ibb.co/74wtmML/View-Command.png" alt="View-Command" border="0">
+##### 4.2.3.3 View
+The view command is used to view the content of the cheatsheet in tht command line interface.
+The sequence diagram bellow demonstrates how tht view command is executed.
+![ViewCommand_Sequence_Diagram](https://i.ibb.co/GF4LZYy/View-Command-3.png)
+1. When the `ViewCommand.execute()` method is called, it self-invoke the `getCheatSheetFromNameOrIndex()` method
+2. Inside the `getCheatSheetFromNameOrIndex()` method, it will self-invoke the `flagToDescription.get(CommandFlag.NAME)` to retrieve the cheatsheet name.
+3. The program execution continues by self-invoking the `flagToDescription.get(CommandFlag.INDEX)` to retrieve the cheatSheet index.
+4. The program will get the cheatsheet from the CheatSheetList object with either the name using `get(name)` or index `get(index)` of the cheatsheet.
+5. The `getCheatSheetFromNameOrIndex()` method will return the `desiredCheatSheet`
+6. Afterwards, it will call the `printViewCheatSheetMessage` of the printer class to print the cheatsheet into the command line.
 
 <a id="exit"></a>
-##### 4.2.3.5 Exit
-<img src="https://i.ibb.co/1MD50qH/Exit-Command.png" alt="Exit-Command" border="0">
+##### 4.2.3.4 Exit
+The exit command is used to exit the CheatLogs program.
+The sequence digaram bellow will demonstrate how it is executed.
+![ExitCommand_Sequence-Diagram](https://i.ibb.co/4SxcnL5/Exit-Command-1.png)
+1. When a user type /exitThe ExitCommand is constructed.
+2. It will invoke the execute() method which will set the isExitCommand to true.
 
 <a id="list"></a>
 ##### 4.2.3.6 List
@@ -789,3 +813,4 @@ All cheatsheets are stored inside a static class CheatSheetList to allow other c
 * *glossary item* - Definition
 
 <br>
+
