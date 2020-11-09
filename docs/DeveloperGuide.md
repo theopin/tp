@@ -522,8 +522,6 @@ When the application loads, data from these files will be converted and loaded i
 <a id="file-writer"></a>
 ### 5.4.1 Writing files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
-
-
 Whenever you give a command to *add* or *edit* a cheatsheet, this feature will be activated. Through this
 feature, CheatLogs will attempt to update all cheatsheet files, creating a new cheat sheet file if a new 
 cheat sheet is created. To ensure the organization of your cheatsheet files, these files are created 
@@ -533,7 +531,11 @@ The sequence diagram below illustrates the general process when writing files to
 
 [!Image](https://i.ibb.co/k2ZPZTN/file-Writer.png)
 
-xx
+From the sequence diagram above, the *DataWriter* class invokes a number of methods when the
+*executeFunction* class is called. First, it obtains a list of all the cheatsheets present
+in CheatLogs from *CheatSheetList*. Next, it iterates through each cheatsheet, and stores
+them as XML files by invoking the *storeCheatSheet()* command. Finally, it will call its own *saveSettings()*
+command, where it will store the user-defined settings into *settings.txt*.
 
 <a id="file-reader"></a>
 ### 5.4.2 Reading files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -554,7 +556,6 @@ each file present in this *JarFile*, looking out for XML files which are the pre
 a file is found, *createNewFile* method is called, which copies it over into the */data* directory to be
 parsed by CheatLogs. Finally, *DataFileReader* will close the JarFile with the close() command since
 it is not required anymore.
-
 
 The sequence diagram below illustrates the general process when reading files from the */data* directory. 
 
