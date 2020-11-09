@@ -18,6 +18,7 @@ The table of contents below lets you easily access the documentation for install
 >|--|--|
 >| :bulb: |Tip on current section  |
 >|:exclamation:|Warning of potential error|
+>|:memo:|Important details to note|
 >|<font size="3"> [:arrow_up_small:](#table-of-contents)</font>| Returns to table of contents on left click|
 >|**bold**|Key terms specific to CheatLogs|
 >|*italics*|Files|
@@ -94,18 +95,18 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
 
 5. Move *CheatLogs.jar* to the new directory.
 6. On the terminal,  navigate to the directory.
-7. If you are running CheatLogs for the first time, proceed to step 8a. Otherwise, proceed to step 8b.
+> :memo:  If you are running CheatLogs for the first time, proceed to step 7a. Otherwise, proceed to step 7b.
 
-8a. Invoke `java -jar cheatlogs.jar first` to run the program. Through this command, CheatLogs will import [preloaded
+7a. Invoke `java -jar cheatlogs.jar first` to run the program. Through this command, CheatLogs will import [preloaded
 cheatsheet files](#preloaded-data-files) for you to use.
 
-8b. Invoke `java -jar cheatlogs.jar` to run the program. 
+7b. Invoke `java -jar cheatlogs.jar` to run the program. 
 
 > :exclamation: If a welcome message appears as shown below after running step 8a or 8b, then great! CheatLogs is up and running.
 
 ![CheatLogs welcome screen]( https://i.ibb.co/L6LmYGZ/mainMenu.png)
 
-9. Try typing some commands in the terminal and hit Enter to execute.
+8. Try typing some commands in the terminal and hit Enter to execute.
    Here are some example commands you can try, don't worry if you don't know them yet!
    
    * `/help`: Shows help info on how to use the application.
@@ -646,7 +647,7 @@ this to mark cheatsheets which you want to view in the list of your favourite ch
 
 >Format: `<favourite>STATUS</favourite>`
 
-> :exclamation: STATUS is not case-sensitive. For example, `YES` and `yes` are considered the same.
+> :memo:  STATUS is not case-sensitive. For example, `YES` and `yes` are considered the same.
 
 > :exclamation: If STATUS contains another word than `YES`, the cheatsheet will not be marked as a favourite. 
 
@@ -660,7 +661,7 @@ sheet files by assigning cheatsheets of the same subject to the same folder.
 
 >Format: `<subject>SUBJECT</subject>`
 
->> :exclamation: SUBJECT cannot take in special characters. You will
+> :exclamation: SUBJECT cannot take in special characters. You will
 >  **not** be able to insert XML files with such subjects into CheatLogs.
 
 ---
@@ -668,7 +669,9 @@ sheet files by assigning cheatsheets of the same subject to the same folder.
 <a id="contents"></a>
 ### 5.1.5. Contents<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section includes the contents of the cheatsheet. You can add 
+This section includes the contents of the cheatsheet. You can type the notes that you want to see in your cheatsheet
+here.
+
 >Format: `<contents>CONTENTS</contents>`
 
 > :bulb:  You can append the contents on a separate line.
