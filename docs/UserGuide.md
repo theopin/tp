@@ -18,6 +18,7 @@ The table of contents below lets you easily access the documentation for install
 >|--|--|
 >| :bulb: |Tip on current section  |
 >|:exclamation:|Warning of potential error|
+>|:memo:|Important details to note|
 >|<font size="3"> [:arrow_up_small:](#table-of-contents)</font>| Returns to table of contents on left click|
 >|**bold**|Key terms specific to CheatLogs|
 >|*italics*|Files|
@@ -90,25 +91,24 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
 3. Download only the *CheatLogs.jar* file highlighted in the orange box below.
 
 	![](https://i.ibb.co/C24vhGg/image.png)
-5. Create a new directory anywhere on your PC, This is the home folder where CheatLogs will be creating its own subdirectories to store cheatsheets. 
+4. Create a new directory anywhere on your PC, This is the home folder where CheatLogs will be creating its own subdirectories to store cheatsheets. 
 
 > :bulb: Unfamiliar with navigating the terminal? Click [here](https://www.digitaltrends.com/computing/how-to-use-command-prompt/) for a basic introduction for Windows cmd and [here](https://www.pluralsight.com/guides/beginner-linux-navigation-manual) for macOS/Linux bash terminal.
 
-6. Move *CheatLogs.jar* to the new directory.
-7. On the terminal,  navigate to the directory.
+5. Move *CheatLogs.jar* to the new directory.
+6. On the terminal,  navigate to the directory.
+> :memo:  If you are running CheatLogs for the first time, proceed to step 7a. Otherwise, proceed to step 7b.
 
-> :exclamation: If you are running CheatLogs for the first time, proceed to step 8a. Otherwise, proceed to step 8b.
-
-8a. Invoke `java -jar cheatlogs.jar first` to run the program. Through this command, CheatLogs will import [preloaded
+7a. Invoke `java -jar cheatlogs.jar first` to run the program. Through this command, CheatLogs will import [preloaded
 cheatsheet files](#preloaded-data-files) for you to use.
 
-8b. Invoke `java -jar cheatlogs.jar` to run the program. 
+7b. Invoke `java -jar cheatlogs.jar` to run the program. 
 
 > :exclamation: If a welcome message appears as shown below after running step 8a or 8b, then great! CheatLogs is up and running.
 
 ![CheatLogs welcome screen]( https://i.ibb.co/L6LmYGZ/mainMenu.png)
 
-9. Try typing some commands in the terminal and hit Enter to execute.
+8. Try typing some commands in the terminal and hit Enter to execute.
    Here are some example commands you can try, don't worry if you don't know them yet!
    
    * `/help`: Shows help info on how to use the application.
@@ -601,6 +601,9 @@ snippet below illustrates the structure of the entire cheatsheet file.
 
 ![image](https://i.ibb.co/mFJ1nDy/xml-Format.png)
 
+> :exclamation: Editing XML files can render CheatLogs incapable of reading your cheatsheets. You should only change
+>or add such files if you an advanced user of CheatLogs.
+
 By following this format, you can manually insert cheatsheet files that are recognized by CheatLogs. The following sections
 explore each segment of this format.
 
@@ -632,18 +635,19 @@ sections you place inside `main` and creates a cheatsheet based on the input giv
 
 > :bulb:  You can rearrange the order of sections within CONTENTS. CheatLogs does not take the ordering of such sections into account when parsing XML files.
 
-> :exclamation: Any section that is not inserted into CONTENTS will not be included in the cheatsheet.
+> :exclamation: Any section that you do not insert into CONTENTS will not be included in the cheatsheet.
 
 ---
 
 <a id="favourite"></a>
 ### 5.1.3. Favourite<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section indicates if the cheatsheet should be marked as [favourite](#favourite-command).
+This section indicates if the cheatsheet should be marked as [favourite](#favourite-command). You can use
+this to mark cheatsheets which you want to view in the list of your favourite cheatsheets.
 
 >Format: `<favourite>STATUS</favourite>`
 
-> :exclamation: STATUS is not case-sensitive. For example, `YES` and `yes` are considered the same.
+> :memo:  STATUS is not case-sensitive. For example, `YES` and `yes` are considered the same.
 
 > :exclamation: If STATUS contains another word than `YES`, the cheatsheet will not be marked as a favourite. 
 
@@ -657,12 +661,17 @@ sheet files by assigning cheatsheets of the same subject to the same folder.
 
 >Format: `<subject>SUBJECT</subject>`
 
+> :exclamation: SUBJECT cannot take in special characters. You will
+>  **not** be able to insert XML files with such subjects into CheatLogs.
+
 ---
 
 <a id="contents"></a>
 ### 5.1.5. Contents<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section includes the contents of the cheatsheet.
+This section includes the contents of the cheatsheet. You can type the notes that you want to see in your cheatsheet
+here.
+
 >Format: `<contents>CONTENTS</contents>`
 
 > :bulb:  You can append the contents on a separate line.
@@ -677,7 +686,7 @@ to retrieve any external cheatsheet file.
 The figure below shows a sample organization of the cheatsheet files in a user's directory.
 
 
-![image](https://i.ibb.co/jbCTyYG/dataOrg.png)
+![image](https://i.ibb.co/zbppwZZ/sample-User-Data.png)
 
 In the example illustrated above, the user currently has cheatsheets which are of
 3 different subjects. Even though some cheatsheets have the same name such as
@@ -688,19 +697,18 @@ based on the subject you are taking.
 <a id="preloaded-data-files"></a>
 ## 5.3. Preloaded data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-
 CheatLogs.jar contains some example cheatsheet files. These files will be moved over to the */data* directory when you run the application for the first time. To differentiate these files from your 
 personally created cheatsheets, they are placed under the */preloaded* subdirectory. By viewing and
 editing these cheatsheets through CheatLogs, you will understand how to operate this program.
 
 The figure below shows a sample organization of the cheatsheet files in a user's directory with
-a few preloaded cheat  included.
+two preloaded cheat cheatsheets included.
 
-![image](https://i.ibb.co/7KS8vqn/preloaded-Org.png)
+![image](https://i.ibb.co/bzp4yJ2/preloaded-Illustration.png)
 
-In the example above, you can see that CheatLogs keeps the organization of such preloaded cheatsheets seperate
-from the other cheatsheet files. This is to help you to better identify which files are marked as
-preloaded.
+In the example above, you can see that CheatLogs keeps the organization of such preloaded cheatsheets separate
+from the other cheatsheet files. This is to help you to better identify files marked as
+preloaded within the */data* directory.
 
 > :exclamation: If you create a new file within any subdirectory of */preloaded*, CheatLogs will assume that these files have been preloaded and will treat them as such.
 
