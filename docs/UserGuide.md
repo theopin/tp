@@ -130,7 +130,6 @@ CheatLogs provides a simple graphical user interface (GUI) text editor that auto
    <img width="500" height="350" src="https://i.ibb.co/3kZ7Xjq/cheatlogs-editor.gif">
 </p>
 
-### 3. Functions
 There are two main group of functions that can be used in out Graphical User Interface. 
 
 Actions tab - Actions that relates to the cheatsheet files
