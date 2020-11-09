@@ -490,7 +490,29 @@ Alternative 2: Save different sections of the cheat sheet using a different file
 
 <a id="appendix-documentation"></a>
 # 6. Appendix: Documentation<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-//Documentation, logging, testing, configuration, dev-ops
+
+**Project Documentation**
+* This project uses **Jekyll**  to manage documentation and stores it into the */docs* folder
+
+> :bulb: Not sure how to manage this project documentation? Have a look at this [guide](https://se-education.org/guides/tutorials/jekyll.html)
+> to understand how **Jekyll** is used to maintain such documents.
+
+**Converting documents to PDF**
+
+This [guide](https://se-education.org/guides/tutorials/savingPdf.html) 
+will guide you through saving your documents in the form of PDF files.
+
+> :exclamation: Please use the recommended guide to save your files! Using other
+>methods to save your files can result in your PDF files being formatted in an undesirable
+>manner.
+
+**Style Guide**
+
+These guides will help you adhere to the style we have used to write the
+various documents of CheatLogs.
+
+* Google developer guide: [guide](https://developers.google.com/style)
+* Java markdown standard: [guide](https://se-education.org/guides/conventions/markdown.html)
 
 <br>
 
