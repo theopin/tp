@@ -78,11 +78,6 @@ public class DataFileReader extends DataFile {
                     + System.lineSeparator()
                     + d.getMessage());
 
-        } catch (IOException f) {
-            readLogger.log(Level.WARNING, "IO File Error");
-            printer.print("The following file could not be read: "
-                    + System.lineSeparator()
-                    + f.getMessage());
         }
     }
 
@@ -193,7 +188,8 @@ public class DataFileReader extends DataFile {
      * @throws DirectoryIsEmptyException Thrown if the /data folder is empty
      */
 
-    protected void loadCheatSheetsAndSettings() throws DirectoryIsEmptyException {
+    protected void loadCheatSheetsAndSettings() throws FileNotFoundException,
+            DirectoryIsEmptyException {
         if (!Files.exists(DATA_DIR)) {
             throw new FileNotFoundException();
         }
