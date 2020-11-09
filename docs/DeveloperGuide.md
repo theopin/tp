@@ -532,7 +532,7 @@ command, where it will store the user-defined settings into *settings.txt*.
 <a id="impln-file-reader"></a>
 ### 5.4.2 Reading files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
-When CheatLogs is launched, this feature looks through the directories present in the /data directory
+When CheatLogs is launched, this feature looks through the directories present in the */data* directory
 recursively to find XML files that can be converted to cheatsheets. After verifying that the XML file has
 the relevant attributes and does not contain any non-alphanumeric characters, the Java DOM parser 
 converts these files into cheatsheets and adds them to the list.
@@ -569,7 +569,7 @@ When you decide to remove a cheat sheet, CheatLogs will delete the relevant chea
 This is done by locating the path of the XML file corresponding to the cheat sheet. Subsequently, this feature
 will delete it provided that the XML file still exists. After deleting a file, this feature performs a recursive
 search through the data directory, to delete any directories that are empty after this operation. This ensures
-that there is no clutter of empty folders existing in the /data directory. 
+that there is no clutter of empty folders existing in the */data* directory. 
 
 Currently, CheatLogs provides two options to remove XML files, which are listed below.
 
