@@ -14,6 +14,7 @@ The table of contents below lets you easily access the documentation for CheatLo
 >|--|--|
 >| :bulb: |Tip on current section  |
 >|:exclamation:|Warning of potential error|
+>|:memo:|Important details to note|
 >|<font size="3"> [:arrow_up_small:](#table-of-contents)</font>| Returns to table of contents on left click|
 >|**bold**|Key terms specific to CheatLogs|
 >|*italics*|Files|
@@ -68,7 +69,7 @@ The table of contents below lets you easily access the documentation for CheatLo
     * [8.2 Types of tests](#appendix-types-of-tests)
 * [9. Appendix: Dev-ops](#appendix-dev-ops)
     * [9.1 Build automation](#appendix-build-automation)
-    * [9.2 Continuous Integration (CI)](#appendix-continuous-integration)
+    * [9.2 Making a new release](#appendix-new-release)
 * [10. Appendix: Requirements](#appendix-requirements)
     * [10.1. Product scope](#product-scope-appendix)
     * [10.2. User stories](#user-stories)
@@ -511,8 +512,8 @@ will guide you through saving your documents in the form of PDF files.
 These guides will help you adhere to the style we have used to write the
 various documents of CheatLogs.
 
-* Google developer guide: [guide](https://developers.google.com/style)
-* Java markdown standard: [guide](https://se-education.org/guides/conventions/markdown.html)
+* Google developer guide: [Guide](https://developers.google.com/style)
+* Java markdown standard: [Guide](https://se-education.org/guides/conventions/markdown.html)
 
 <br>
 
@@ -542,18 +543,18 @@ that match your expectations.
 There are two ways to run tests.
 
 1. Utilizing the test runner on IntelliJ
-  * Run all tests
-     1. Right-click on `src/test/java` folder
-     2. Select this option: `Run 'All Tests'`
-  * Run a subset of tests
-     1. Right-click on the relevant test class or package. This subset of tests will be referred to as TESTS.
-     2. Select this option: `Run TESTS`
+    * Run all tests
+       1. Right-click on `src/test/java` folder
+       2. Select this option: `Run 'All Tests'`
+    * Run a subset of tests
+       1. Right-click on the relevant test class or package. This subset of tests will be referred to as TESTS.
+       2. Select this option: `Run TESTS`
         
 
 2. Using Gradle
-  * Open a terminal and run the following command based on your Operating System.
-    * Windows: `gradlew clean test`
-    * Mac/Linux: `./gradlew clean test`
+    * Open a terminal and run the following command based on your Operating System.
+       * Windows: `gradlew clean test`
+       * Mac/Linux: `./gradlew clean test`
 
 > :bulb: Unfamiliar with navigating Gradle? Check out [this guide](https://se-education.org/guides/tutorials/gradle.html)
 > to understand how to use it.
@@ -564,10 +565,10 @@ There are two ways to run tests.
 
 This project provides two types of tests:
 
-  1. Unit tests 
+1. Unit tests 
     * They test the lowest level methods within a class and look out for any abnormalities arising within them.
     * e.g. `testGetSize()` in `CheatSheetListTest.java`
-  2. Integration tests 
+2. Integration tests 
     * They test the integration of multiple classes.
     * e.g. `readFile_details_success()` in `DataFileReaderTest.java`
 
@@ -576,17 +577,65 @@ This project provides two types of tests:
 
 <a id="appendix-dev-ops"></a>
 # 9. Appendix: Dev-ops<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-//Documentation, logging, testing, configuration, dev-ops
+
+This project uses various tools to build and maintain CheatLogs.
+Utilizing them helps you to develop CheatLogs more easily and effectively.
 
 
 <a id="appendix-build-automation"></a>
 ## 9.1 Build automation<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-//Documentation, logging, testing, configuration, dev-ops
+
+This project uses [Gradle](https://se-education.org/guides/tutorials/gradle.html)
+to automate builds and manage dependencies required for this project. 
 
 
-<a id="appendix-continuous-integration"></a>
-## 9.2 Continuous Integration (CI)<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-//Documentation, logging, testing, configuration, dev-ops
+The following commands from Gradle are used to develop this project. You can
+execute this commands by launching a terminal and typing them based on the specified
+format.
+
+> :exclamation: If you are using Mac or Linux, add a `./` before entering any command!
+
+1. `checkstyleMain`
+    * Checks all code within the `src/main` directory of this project
+      for any issues regarding syntax and code quality.
+    > Format: `gradlew checkstyleMain`
+    
+2. `checkstyleTest`
+    * Checks all code within the `src/test` directory of this project
+      for any issues regarding syntax and code quality
+    > Format: `gradlew checkstyleTest`
+
+3. `clean`
+    * Clears all files created in the `build` directory of this project from 
+      previous build operations.
+
+    > Format: `gradlew clean`
+
+4. `run`
+    * Builds and runs the application
+
+    > Format: `gradlew run`
+
+5. `shadowJar`
+    * Uses the ShadowJar plugin to create a fat JAR file in the `build/lib` 
+    directory.
+
+    > Format: `gradlew shadowjar`
+                                                                                               
+    > :exclamation: This operation only replaces the JAR file if the current file is not present or outdated.
+                                
+
+<a id="appendix-new-release"></a>
+## 9.2 Making a Release<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+
+This project allows you to create multiple releases of CheatLogs. Follow these steps to create a new release.
+
+1. Generate a fat JAR file using [Gradle](https://se-education.org/guides/tutorials/gradle.html).
+   
+> :bulb: `gradlew shadowjar` should help you with this step.
+
+2. Create a new release on [Github](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository). 
+> :memo: Upload the JAR file you just created when prompted.
 
 <br>
 
