@@ -81,6 +81,15 @@ The table of contents below lets you easily access the documentation for CheatLo
     * [10.1. Product scope](#product-scope-appendix)
     * [10.2. User stories](#user-stories)
     * [10.3. Use cases](#use-cases)
+        * [10.3.1 Use cases](#use-cases-add)
+        * [10.3.2 Use cases](#use-cases-edit)
+        * [10.3.3 Use cases](#use-cases-delete)
+        * [10.3.4 Use cases](#use-cases-clear)
+        * [10.3.5 Use cases](#use-cases-favourite)
+        * [10.3.6 Use cases](#use-cases-find)
+        * [10.3.7 Use cases](#use-cases-view)
+        * [10.3.8 Use cases](#use-cases-list)
+        * [10.3.9 Use cases](#use-cases-exit) 
     * [10.4. Non-Functional Requirements](#non-functional-requirements)
 * [11. Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
     * [11.1. Start-up with preloaded data and restart with save data](#manual-test-1)
@@ -258,11 +267,11 @@ Below is the class diagram for the command package.
 ![image](https://i.ibb.co/phXS1Z6/image.png)
 
 <a id="findercommand"></a>
-##### 4.2.3.1 FinderCommand
+##### 4.2.3.1 FinderCommand <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 `FinderCommand` provides the capability to search for the desired cheatsheet using the `getCheatSheetFromNameOrIndex()` method. Upon method calls, the sub-class of `FinderCommand` will first call this method to get the desired cheatsheet, then it proceeds to process this cheatsheet object based on its own functionality. A sequence diagram will be given for each commands to better illustrate the interaction between this class with its sub-classes.
 
 <a id="add"></a>
-##### 4.2.3.2 Add
+##### 4.2.3.2 Add <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 The AddCommand is used to add cheatsheets into CheatLogs.
 The picture bellow shows how the AddCommand is executed.
 ![AddCommand Sequence Diagram](https://i.ibb.co/GtFKP7V/Add-Command-4.png)
@@ -277,7 +286,7 @@ The picture bellow shows how the AddCommand is executed.
 9. Finally, once the cheatSheet has been added into the cheatSheetList, the AddCommand will invoke the `printAddNewCheatSheetMessage(cheatSheet,cheatSheetList)` to print the confirmation message.
 
 <a id="edit"></a>
-##### 4.2.3.3 Edit
+##### 4.2.3.3 Edit <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 The edit command allows the user to edit the content of the CheatSheet object.
 The image bellow is how the EditCommand is executed.
 ![EditCommand Sequence Diagram](https://i.ibb.co/tPg1pjL/Edit-Command-4.png)
@@ -293,7 +302,7 @@ The image bellow is how the EditCommand is executed.
 10. To reflect the change, the EditCommand object will invoke `cheatsheet.setDetail(editor.getContent())` method to get the content of the cheatsheet and also change the content of the cheatsheet.
 
 <a id="view"></a>
-##### 4.2.3.4 View
+##### 4.2.3.4 View <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 The view command is used to view the content of the cheatsheet in tht command line interface.
 The sequence diagram bellow demonstrates how tht view command is executed.
 ![ViewCommand_Sequence_Diagram](https://i.ibb.co/GF4LZYy/View-Command-3.png)
@@ -305,7 +314,7 @@ The sequence diagram bellow demonstrates how tht view command is executed.
 6. Afterwards, it will call the `printViewCheatSheetMessage` of the printer class to print the cheatsheet into the command line.
 
 <a id="exit"></a>
-##### 4.2.3.5 Exit
+##### 4.2.3.5 Exit <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 The exit command is used to exit the CheatLogs program.
 The sequence digaram bellow will demonstrate how it is executed.
 ![ExitCommand_Sequence-Diagram](https://i.ibb.co/4SxcnL5/Exit-Command-1.png)
@@ -314,7 +323,7 @@ The sequence digaram bellow will demonstrate how it is executed.
 
 <a id="list"></a>
 
-##### 4.2.3.5 List
+##### 4.2.3.6 List <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 The `list` command lists all the cheatsheets in `cheatSheetList`.
 
 The image below shows the sequence diagram for `list` command.
@@ -332,7 +341,7 @@ These steps explain the sequence diagram for `list` command and how `list` comma
 
 
 <a id="find"></a>
-##### 4.2.3.6 Find
+##### 4.2.3.7 Find <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 The `find` command searches through `cheatSheetList` to find matching cheatsheets.
 
 The image below shows the sequence diagram for `find` command.
@@ -356,7 +365,7 @@ These steps explain the sequence diagram for `find` command and how `find` comma
         2. new `SortFilter` object would be created and `SortFilter#execute()` would be called to enter Sorting Mode. More details on Sorting Mode in [Section 5.3](#53-sorting-featurefont-size5-arrow_up_smalltable-of-contentsfont)
 
 <a id="setting"></a>
-##### 4.2.3.7 Setting 
+##### 4.2.3.8 Setting <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 The `setting` command allows user to change color scheme and either turn off or on help messages for commands.
 
 The image below shows the sequence diagram for `settings` command.
@@ -377,7 +386,7 @@ These steps explain the sequence diagram for `find` command and how `find` comma
     3. Else, a CommandException will be thrown
     
 <a id="delete"></a>
-##### 4.2.3.9 Delete
+##### 4.2.3.9 Delete <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 Delete command removes one cheatsheet from the CheatSheetList and deletes the corresponding file in the */data* directory.
 
 Here is an example of the usage of `/delete` command and how it works:
@@ -393,7 +402,7 @@ Here is an example of the usage of `/delete` command and how it works:
 The following sequence diagram illustrates how steps 4 - 8 are executed by DeleteCommand.
 ![](https://i.ibb.co/BGgTVgb/image.png)
 <a id="clear"></a>
-##### 4.2.3.10 Clear
+##### 4.2.3.10 Clear <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 Clear command deletes all user-defined cheatsheets while maintaining the preloaded cheatsheets.
 
 Here is an example of the usage of `/clear` command and how it works:
@@ -410,7 +419,7 @@ The following sequence diagram illustrates how steps 4 - 7 are executed by Clear
 ![](https://i.ibb.co/CVRZ9dZ/image.png)
 
 <a id="favourite"></a>
-##### 4.2.3.11 Favourite
+##### 4.2.3.11 Favourite <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 Favourite command adds/removes the cheatsheet from/to favourites.
 
 Here is an example of the usage of `/fav` command and how it works:
@@ -424,7 +433,7 @@ Here is an example of the usage of `/fav` command and how it works:
 The following sequence diagram illustrates how steps 4 - 6 are executed by FavouriteCommand.
 ![](https://i.ibb.co/zszqCSf/image.png)
 <a id="help"></a>
-##### 4.2.3.12 Help
+##### 4.2.3.12 Help <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 Help command prints the descriptions and examples for all commands.
 
 Here is an example of the usage of `/help` command and how it works:
@@ -435,8 +444,8 @@ Here is an example of the usage of `/help` command and how it works:
 The following sequence diagram illustrates how step 4 is executed by HelpCommand.
 ![](https://i.ibb.co/zmGSZhG/image.png)
 <a id="cheat-sheet-structure"></a>
+
 #### 4.2.4. Cheat Sheet Structure <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-//Aldo
 
 To further understand our cheatsheet management application, it is important to understand the inner workings of the CheatSheet class. 
 CheatLogs comes with preloaded cheat sheets and the application has an in-built ability for the user to add, edit, and delete their own cheat sheets. 
@@ -903,7 +912,7 @@ This project allows you to create multiple releases of CheatLogs. Follow these s
 <br>
 
 <a id="appendix-requirements"></a>
-# 10. Appendix: Requirements<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+# 10. Appendix: Requirements <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 <br>
 
@@ -945,7 +954,8 @@ versions of CheatLogs was designed to solve.
 
 <a id="use-cases"></a>
 ## 10.3 Use cases<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-### 10.3.1 Use Case: Add CheatSheet
+<a id="use-cases-add"></a>
+### 10.3.1 Use Case: Add CheatSheet <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 #### MSS
 
 1. User request to add a cheatsheet
@@ -986,7 +996,8 @@ versions of CheatLogs was designed to solve.
 
 *Use case resumes at step 5*
 
-### 10.3.2 Use Case: Edit CheatSheet
+<a id="use-cases-edit"></a>
+### 10.3.2 Use Case: Edit CheatSheet <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 #### MSS
 
 1. User request to edit a cheatsheet
@@ -1027,7 +1038,8 @@ versions of CheatLogs was designed to solve.
 
 *6b.2. Use case resumes at 5*
 
-### 10.3.3 Use Case: Delete CheatSheet
+<a id="use-cases-delete"></a>
+### 10.3.3 Use Case: Delete CheatSheet <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 #### MSS
 
 1. User request to delete a cheatsheet
@@ -1061,7 +1073,8 @@ versions of CheatLogs was designed to solve.
 
 *Use case ends*
 
-### 10.3.4 Use Case: Clear CheatSheet
+<a id="use-cases-clear"></a>
+### 10.3.4 Use Case: Clear CheatSheet <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 #### MSS
 
 1. User request to clear the cheatsheet list
@@ -1075,7 +1088,8 @@ versions of CheatLogs was designed to solve.
     
 *3a.1. Use case returns to step 1*
 
-### 10.3.5 Use Case: Favorite CheatSheet
+<a id="use-cases-favourite"></a>
+### 10.3.5 Use Case: Favourite CheatSheet <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 #### MSS
 
 1. User request to favourite a cheatsheet
@@ -1107,7 +1121,8 @@ versions of CheatLogs was designed to solve.
 
 *Use case ends*
 
-### 10.3.6 Use Case: Find CheatSheet
+<a id="use-cases-find"></a>
+### 10.3.6 Use Case: Find CheatSheet <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 #### MSS
 
 1. User request to find a cheatsheet
@@ -1133,7 +1148,8 @@ versions of CheatLogs was designed to solve.
 
 *Use case ends*
 
-### 10.3.7 Use Case: View CheatSheet
+<a id="use-cases-view"></a>
+### 10.3.7 Use Case: View CheatSheet <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 #### MSS
 
 1. User request to find a cheatsheet
@@ -1159,7 +1175,8 @@ versions of CheatLogs was designed to solve.
 
 *Use case ends*
 
-### 10.3.8 Use Case: List CheatSheet
+<a id="use-cases-list"></a>
+### 10.3.8 Use Case: List CheatSheet <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 #### MSS
 
 1. User request to list the cheatsheet
@@ -1180,7 +1197,8 @@ versions of CheatLogs was designed to solve.
 
 *Use case ends*
 
-### 10.3.9 Use Case: Exit Program
+<a id="use-cases-exit"></a>
+### 10.3.9 Use Case: Exit Program <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 #### MSS
 
 1. User request to exit the program.
