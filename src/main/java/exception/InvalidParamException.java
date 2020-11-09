@@ -2,7 +2,8 @@ package exception;
 
 public class InvalidParamException extends Exception {
 
-    String contentSection;
+    private final String contentSection;
+
     public InvalidParamException(String contentSection) {
         this.contentSection = contentSection;
     }
