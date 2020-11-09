@@ -62,7 +62,8 @@ The table of contents below lets you easily access the documentation for CheatLo
         * [5.4.1 Writing files](#file-writer)
         * [5.4.2 Reading files](#file-reader)
         * [5.4.3 Deleting files](#file-destroyer)
-    * [5.5. \[Proposed\] Colour coding for code snippet](#colour-coding-for-code-snippet)
+    * [5.5. Changing default settings](#settings-implementation)
+    * [5.6. \[Proposed\] Colour coding for code snippet](#colour-coding-for-code-snippet)
 * [6. Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [7. Appendix: Requirements](#appendix-requirements)
     * [7.1. Product scope](#product-scope-appendix)
@@ -217,10 +218,15 @@ The steps below explain the sequence diagram:
 
 <a id="command"></a>
 ### 4.2.3. Commands	<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-//Aldo
+All commands in CheatLogs inherit from an abstract `Command` class. Furthermore, classes which accept `NAME` or `INDEX` as its flag inherit from a sub-class of `Command` class, namely the `FinderCommand` class.
+
+Below is the class diagram for the command package.
+
+![image](https://i.ibb.co/phXS1Z6/image.png)
 
 <a id="findercommand"></a>
 ##### 4.2.3.1 FinderCommand
+`FinderCommand` provides the capability to search for the desired cheatsheet using the `getCheatSheetFromNameOrIndex()` method. Upon method calls, the sub-class of `FinderCommand` will first call this method to get the desired cheatsheet, then it proceeds to process this cheatsheet object based on its own functionality. A sequence diagram will be given for each commands to better illustrate the interaction between this class with its sub-classes.
 
 <a id="add"></a>
 ##### 4.2.3.2 Add
@@ -273,6 +279,7 @@ Here is an example of the usage of `/delete` command and how it works:
 8. Lastly, it calls `printer.printDeleteCheatSheetMessage` to give feedback message to the user.
 
 The following sequence diagram illustrates how steps 4 - 8 are executed by DeleteCommand.
+![](https://i.ibb.co/BGgTVgb/image.png)
 <a id="clear"></a>
 ##### 4.2.3.10 Clear
 Clear command deletes all user-defined cheatsheets while maintaining the preloaded cheatsheets.
@@ -287,6 +294,9 @@ Here is an example of the usage of `/clear` command and how it works:
 7. Lastly, it calls `printer.printClearCheatSheetMessage` to give feedback message to the user.
 
 The following sequence diagram illustrates how steps 4 - 7 are executed by ClearCommand.
+
+![](https://i.ibb.co/CVRZ9dZ/image.png)
+
 <a id="favourite"></a>
 ##### 4.2.3.11 Favourite
 Favourite command adds/removes the cheatsheet from/to favourites.
@@ -295,11 +305,12 @@ Here is an example of the usage of `/fav` command and how it works:
 1. User type `/fav /i 1` to add the first cheatsheet to favourites. `UserSession` class reads the input and passes this to the `Parser` class.
 2. The parser parses the user command which results in a `FavouriteCommand` object.
 3. This object is passed back to `UserSession` class and it calls `FavouriteCommand.execute()`.
-4. `FavouriteCommand.execute()` checks the existence of the delete flag `/d`.
-5. Next, it invokes `cheatSheetToFavourite.setFavourite(isAddFav)` to add/remove the cheatsheet to/from favourites based on the existence of the delete flag.
+4. `FavouriteCommand.execute()` invokes `getCheatSheetFromNameOrIndex()` method from the `FinderCommand` class to find the desired cheatsheet. If the cheatsheet does not exist, it throws an exception.
+5. Next, it checks the existence of the delete flag `/d` and invokes `cheatSheetToFavourite.setFavourite(isAddFav)` to add/remove the cheatsheet to/from favourites based on the existence of the delete flag.
 6. Lastly, it calls `printer.printFavouritedCheatSheetMessage` to give feedback message to the user.
 
-The following sequence diagram illustrates how steps 4 - 6 are executed by ClearCommand.
+The following sequence diagram illustrates how steps 4 - 6 are executed by FavouriteCommand.
+![](https://i.ibb.co/zszqCSf/image.png)
 <a id="help"></a>
 ##### 4.2.3.12 Help
 Help command prints the descriptions and examples for all commands.
@@ -310,7 +321,7 @@ Here is an example of the usage of `/help` command and how it works:
 3. This object is passed back to `UserSession` class and it calls `HelpCommand.execute()`.
 4. `HelpCommand.execute()` invokes `printer.printHelpSheet()` method and it prints the help sheet to the user.
 The following sequence diagram illustrates how step 4 is executed by HelpCommand.
-
+![](https://i.ibb.co/zmGSZhG/image.png)
 <a id="cheat-sheet-structure"></a>
 #### 4.2.4. Cheat Sheet Structure <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 //Aldo
@@ -341,14 +352,13 @@ Image 6: class diagram of the cheatsheet class
 
 <a id="cheat-sheet-management"></a>
 ### 4.2.5. Cheat Sheet Management<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-//Adhy
-All cheat sheets, both pre-loaded and user-defined, are stored in a class called `CheatSheetList` during runtime. 
+
+All cheat sheets, both pre-loaded and user-defined, are stored in a class called `CheatSheetList` during runtime. Here is a class diagram to illustrate the relation between CheatSheet and CheatSheetList.
+
+![](https://i.ibb.co/t3gR5RV/image.png)
+
 Upon receiving a valid input from the user, the `execute()` method from `Command` class will invoke the mutation of `CheatSheetList`, 
 and then `DataFileWriter` will use the information in `CheatSheetList` to save it to the memory in the form of a `xml` file.
-
-![](Images/Image10.PNG)
-
-Image 8: Class diagram of CheatSheetList class
 
 The cheatSheets ArrayList is of type private, and setter/getter methods must be invoked to access the list. 
 For these setter and getter methods, it accepts both accessing by its index and accessing by its name to allow the user to easily search and fetch the cheat sheet.
@@ -356,6 +366,7 @@ Here is the list of `Commands` that invokes a method call of CheatSheetList:
 - `/add`
 - `/clear`
 - `/delete`
+- `/edit`
 - `/fav`
 - `/find`
 - `/list`
@@ -485,9 +496,25 @@ operation, it will perform a search through the /data directory and delete any s
 This ensures that your /data file is not cluttered with empty directories.
 
 
+<a id="settings-implementation"></a>
+## 5.5. Changing default settings<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+
+Settings class allows users to customize the application to fit their preference. The user can change the color scheme of the output and also change the behavior of help messages attached to each command. 
+The reason we chose color scheme and help messages to be customizable are as follows:
+1. The color scheme of the terminal for each system may differ. The might be scenarios where the color scheme of the terminal and the application does not match and the text became not readable.
+2. The help messages are designed to help new users familiarize themselves with the commands available in CheatLogs. For more experienced users who are already familiar with all the commands, these help messages can be removed.
+
+Design consideration:
+Alternative 1 (current choice): Saves the file using a txt file
+* Pros: The txt file is simple and the parser used does not interfere with the one used to parse the cheatsheets
+* Cons: Needs to create another parser for the settings file
+
+Alternative 2: Uses xml file to save the settings
+* Pros: Standardizes the save file to xml for both cheatsheets and settings file
+* Cons: Needs to tamper with the existing cheatsheet parsers and not very straightforward to implement
 
 <a id="colour-coding-for-code-snippet"></a>
-## 5.5. \[Proposed\] Colour coding for code snippet<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+## 5.6. \[Proposed\] Colour coding for code snippet<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 The idea of this feature is to improve the readability of the code snippets (if present) inside the cheat sheet. 
 To make this possible, several adjustments must be made to the save data format to allow more information to be stored inside a single file instead of scattered across multiple files. 
 Thus, instead of saving to a txt file, the program will write the cheat sheet data into a xml file, for easier parsing and sectioning. 
