@@ -621,12 +621,3 @@ versions of CheatLogs was designed to solve.
 
 <a id="appendix-instructions-for-manual-testing"></a>
 # 9. Appendix: Instructions for manual testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
-<!---
-There are few major components inside the code, and those components are broken down into separate classes. 
-All components can be accessed from the CheatLogs class.
-### CheatSheetList
-All cheatsheets are stored inside a static class CheatSheetList to allow other classes to easily access and write data to the list.
--->
