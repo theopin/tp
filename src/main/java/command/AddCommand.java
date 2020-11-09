@@ -49,6 +49,10 @@ public class AddCommand extends Command {
             throw new CommandException("Name cannot be blank");
         }
 
+        if (name.length() > 250) {
+            throw new CommandException("The name exceeds the maximum character limit");
+        }
+
         name = name.trim();
         if (cheatSheetList.exists(name)) {
             throw new CommandException("Name already existed, please enter another name");
@@ -60,9 +64,13 @@ public class AddCommand extends Command {
         }
 
         String subject = flagsToDescriptions.get(CommandFlag.SUBJECT);
+
         if (subject != null) {
             if (!subject.matches(ALPHA_NUMERIC)) {
                 throw new CommandException("Subject can only contain alphanumeric characters");
+            }
+            if (subject.length() > 250) {
+                throw new CommandException("Subject cannot be more than 250 characters");
             }
             subject = convertToPascalCaseNoSpace(subject);
         } else {
@@ -100,7 +108,7 @@ public class AddCommand extends Command {
         if (input.length() == 0) {
             return "Unsorted";
         }
-        String[] splitInput = input.split("\\p{IsWhite_Space}+");
+        String[] splitInput = input.trim().split("\\p{IsWhite_Space}+");
         for (int i = 0; i < splitInput.length; i++) {
             splitInput[i] = splitInput[i].substring(0, 1).toUpperCase() + splitInput[i].substring(1).toLowerCase();
         }
