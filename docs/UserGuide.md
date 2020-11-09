@@ -601,6 +601,9 @@ snippet below illustrates the structure of the entire cheatsheet file.
 
 ![image](https://i.ibb.co/mFJ1nDy/xml-Format.png)
 
+> :exclamation: Editing XML files can render CheatLogs incapable of reading your cheatsheets. You should only change
+>or add such files if you an advanced user of CheatLogs.
+
 By following this format, you can manually insert cheatsheet files that are recognized by CheatLogs. The following sections
 explore each segment of this format.
 
@@ -632,14 +635,15 @@ sections you place inside `main` and creates a cheatsheet based on the input giv
 
 > :bulb:  You can rearrange the order of sections within CONTENTS. CheatLogs does not take the ordering of such sections into account when parsing XML files.
 
-> :exclamation: Any section that is not inserted into CONTENTS will not be included in the cheatsheet.
+> :exclamation: Any section that you do not insert into CONTENTS will not be included in the cheatsheet.
 
 ---
 
 <a id="favourite"></a>
 ### 5.1.3. Favourite<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section indicates if the cheatsheet should be marked as [favourite](#favourite-command).
+This section indicates if the cheatsheet should be marked as [favourite](#favourite-command). You can use
+this to mark cheatsheets which you want to view in the list of your favourite cheatsheets.
 
 >Format: `<favourite>STATUS</favourite>`
 
@@ -657,12 +661,15 @@ sheet files by assigning cheatsheets of the same subject to the same folder.
 
 >Format: `<subject>SUBJECT</subject>`
 
+>> :exclamation: SUBJECT cannot take in special characters. You will
+>  **not** be able to insert XML files with such subjects into CheatLogs.
+
 ---
 
 <a id="contents"></a>
 ### 5.1.5. Contents<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-This section includes the contents of the cheatsheet.
+This section includes the contents of the cheatsheet. You can add 
 >Format: `<contents>CONTENTS</contents>`
 
 > :bulb:  You can append the contents on a separate line.
