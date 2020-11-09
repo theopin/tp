@@ -412,7 +412,7 @@ This prevents the user from having to repeatedly create new cheatsheets and upda
 The following class UML diagram illustrates the major interactions between the classes present in the 
 *storage* package. 
 
-[!Image](https://i.ibb.co/tqsXqjb/storage-Uml.png)
+![!Image](https://i.ibb.co/tqsXqjb/storage-Uml.png)
 
 As we can see from the diagram above, the following 3 classes are subclasses of the *DataFile* class, which is an abstract class.
 * *DataFileReader*
@@ -521,7 +521,7 @@ in a subdirectory whose name matches the subject name of each cheatsheets.
 
 The sequence diagram below illustrates the general process when writing files to the */data* directory.
 
-[!Image](https://i.ibb.co/k2ZPZTN/file-Writer.png)
+![Image](https://i.ibb.co/k2ZPZTN/file-Writer.png)
 
 From the sequence diagram above, the *DataWriter* class invokes a number of methods when the
 *executeFunction* class is called. First, it obtains a list of all the cheatsheets present
@@ -539,7 +539,7 @@ converts these files into cheatsheets and adds them to the list.
 
 The sequence diagram below illustrates the general process when reading preloaded cheatsheets from CheatLogs.jar.
 
-[!Image](https://i.ibb.co/F36bKhr/preloaded-Extract.png)
+![!Image](https://i.ibb.co/F36bKhr/preloaded-Extract.png)
 
 From the diagram above, when the *extractPreloadedCheatSheets()* method is called, *DataFileReader* calls a 
 few methods in order to execute this method. First, it creates a new JarFile object by calling its constructor,
@@ -551,7 +551,7 @@ it is not required anymore.
 
 The sequence diagram below illustrates the general process when reading files from the */data* directory. 
 
-[!Image](https://i.ibb.co/2shSvBS/file-Reader.png)
+![!Image](https://i.ibb.co/2shSvBS/file-Reader.png)
 
 As you can see in the diagram above, when the *executeFunction()* method is called, *DataFileReader* invokes
 a number of methods in order to complete this operation. First, it iterates through every directory
@@ -580,7 +580,7 @@ Currently, CheatLogs provides two options to remove XML files, which are listed 
 
 The sequence diagram below illustrates the general process when deleting a single file.
 
-[!Image](https://i.ibb.co/JRj5F1n/destroyer-Single.png)
+![!Image](https://i.ibb.co/JRj5F1n/destroyer-Single.png)
 
 As you can see in the diagram above, when the *executeFunction(String)* method is called, *DataFileDestroyer*
 self invokes 2 methods to implement this function. The first function is *deleteFile(String)*, where the XML file
@@ -591,7 +591,7 @@ within the */data* folder.
 
 The sequence diagram below illustrates the general process when clearing all files.
 
-[!Image](https://i.ibb.co/58r7BcR/destroyer-Full.png)
+![!Image](https://i.ibb.co/58r7BcR/destroyer-Full.png)
 
 As you can see in the diagram above, when the *executeFunction()* method is called, *DataFileDestroyer*
 invokes a number of methods in order to complete this operation. First, it iterates through every
