@@ -29,7 +29,7 @@ The table of contents below lets you easily access the documentation for CheatLo
 * [3. Setting Up, Getting Started](#setting-up-getting-started)
     * [3.1. Prerequisites](#prerequisites)
     * [3.2. Running the Project](#running-the-project)
-    * [3.3 Importing into IntelliJ \[optional\]](#importing-into-intellij)
+    * [3.3 Importing into IntelliJ \[optional\]](#importing-to-intellij)
 * [4. Design](#design)
     * [4.1. Architecture](#architecture)
     * [4.2. Components](#components)
@@ -51,18 +51,17 @@ The table of contents below lets you easily access the documentation for CheatLo
         * [4.2.4. Cheat Sheet Structure](#cheat-sheet-structure)
         * [4.2.5. Cheat Sheet Management](#cheat-sheet-management)
         * [4.2.6. Data Storage](#data-storage)
-            * [4.2.6.1 Overview](#overview-design)
-            * [4.2.6.2 Writing files](#file-writer-design)
-            * [4.2.6.3 Reading files](#file-reader-design)
-            * [4.2.6.4 Deleting files](#file-destroyer-design)
+            * [4.2.6.1 Writing files](#file-writer-design)
+            * [4.2.6.2 Reading files](#file-reader-design)
+            * [4.2.6.3 Deleting files](#file-destroyer-design)
 * [5. Implementation](#implementation)
     * [5.1. Parsing of Data to Construct Commands](#parsing-of-data-to-construct-commands)
     * [5.2. Editing Feature](#editing-feature)
     * [5.3. Sorting Feature](#sorting-feature)
     * [5.4. Data Management](#data-management)
-        * [5.4.1 Writing files](#file-writer)
-        * [5.4.2 Reading files](#file-reader)
-        * [5.4.3 Deleting files](#file-destroyer)
+        * [5.4.1 Writing files](#impln-file-writer)
+        * [5.4.2 Reading files](#impln-file-reader)
+        * [5.4.3 Deleting files](#impln-file-destroyer)
     * [5.5. Changing default settings](#settings-implementation)
     * [5.6. Colour coding for code snippet](#colour-coding-for-code-snippet)
 * [6. Appendix: Documentation](#appendix-documentation)
@@ -105,7 +104,6 @@ This document specifies the high-level architecture and software design decision
 
 <a id="setting-up-getting-started"></a>
 # 3. Setting Up, Getting Started<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-xx
 
 
 <a id="prerequisites"></a>
@@ -465,7 +463,7 @@ This prevents the user from having to repeatedly create new cheatsheets and upda
 The following class UML diagram illustrates the major interactions between the classes present in the 
 *storage* package. 
 
-[!Image](https://i.ibb.co/tqsXqjb/storage-Uml.png)
+![!Image](https://i.ibb.co/tqsXqjb/storage-Uml.png)
 
 As we can see from the diagram above, the following 3 classes are subclasses of the *DataFile* class, which is an abstract class.
 * *DataFileReader*
@@ -487,15 +485,9 @@ As we can see from the diagram above, the following 3 classes are subclasses of 
   * Depending on the option stated by you, this feature can either delete a single file or all
     XML files currently stored in the user directory.
 
-<a id="file-writer"></a>
-## 4.2.6.1 Overview<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-
-Whenever you give a command to *add* or *edit* a cheatsheet, this feature will be activated. Through this
-feature, CheatLogs will attempt to update all cheatsheet files, creating a new cheat sheet file if a new 
-cheat sheet is created. To ensure that your cheat sheet files
 
 <a id="file-writer-design"></a>
-#### 4.2.6.2 Writing files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+#### 4.2.6.1 Writing files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 Whenever you give a command to *add* or *edit* a cheatsheet, this feature will be activated. Through this
 feature, CheatLogs will attempt to update all cheatsheet files, creating a new cheat sheet file if a new 
@@ -575,7 +567,7 @@ By using the sort() method present in `java.util. Collections` class, we would h
 This feature stores cheat sheets on the hard-drive in the form of XML file. 
 When the application loads, data from these files will be converted and loaded into the application.
 
-<a id="file-writer"></a>
+<a id="impln-file-writer"></a>
 ### 5.4.1 Writing files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 Whenever you give a command to *add* or *edit* a cheatsheet, this feature will be activated. Through this
@@ -585,7 +577,7 @@ in a subdirectory whose name matches the subject name of each cheatsheets.
 
 The sequence diagram below illustrates the general process when writing files to the */data* directory.
 
-[!Image](https://i.ibb.co/k2ZPZTN/file-Writer.png)
+![Image](https://i.ibb.co/k2ZPZTN/file-Writer.png)
 
 From the sequence diagram above, the *DataWriter* class invokes a number of methods when the
 *executeFunction* class is called. First, it obtains a list of all the cheatsheets present
@@ -593,17 +585,17 @@ in CheatLogs from *CheatSheetList*. Next, it iterates through each cheatsheet, a
 them as XML files by invoking the *storeCheatSheet()* command. Finally, it will call its own *saveSettings()*
 command, where it will store the user-defined settings into *settings.txt*.
 
-<a id="file-reader"></a>
+<a id="impln-file-reader"></a>
 ### 5.4.2 Reading files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
-When CheatLogs is launched, this feature looks through the directories present in the /data directory
+When CheatLogs is launched, this feature looks through the directories present in the */data* directory
 recursively to find XML files that can be converted to cheatsheets. After verifying that the XML file has
 the relevant attributes and does not contain any non-alphanumeric characters, the Java DOM parser 
 converts these files into cheatsheets and adds them to the list.
 
 The sequence diagram below illustrates the general process when reading preloaded cheatsheets from CheatLogs.jar.
 
-[!Image](https://i.ibb.co/F36bKhr/preloaded-Extract.png)
+![!Image](https://i.ibb.co/F36bKhr/preloaded-Extract.png)
 
 From the diagram above, when the *extractPreloadedCheatSheets()* method is called, *DataFileReader* calls a 
 few methods in order to execute this method. First, it creates a new JarFile object by calling its constructor,
@@ -615,7 +607,7 @@ it is not required anymore.
 
 The sequence diagram below illustrates the general process when reading files from the */data* directory. 
 
-[!Image](https://i.ibb.co/2shSvBS/file-Reader.png)
+![!Image](https://i.ibb.co/2shSvBS/file-Reader.png)
 
 As you can see in the diagram above, when the *executeFunction()* method is called, *DataFileReader* invokes
 a number of methods in order to complete this operation. First, it iterates through every directory
@@ -626,14 +618,14 @@ out of it by invoking the method *createNewCheatSheet()*. However, if the file i
 will now inoke *loadUserSettings()* to transfer the data stored within it to configure the respective settings
 of CheatLogs.
 
-<a id="file-destroyer"></a>
+<a id="impln-file-destroyer"></a>
 ### 5.4.3 Deleting files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 When you decide to remove a cheat sheet, CheatLogs will delete the relevant cheat sheet files immediately.
 This is done by locating the path of the XML file corresponding to the cheat sheet. Subsequently, this feature
 will delete it provided that the XML file still exists. After deleting a file, this feature performs a recursive
 search through the data directory, to delete any directories that are empty after this operation. This ensures
-that there is no clutter of empty folders existing in the /data directory. 
+that there is no clutter of empty folders existing in the */data* directory. 
 
 Currently, CheatLogs provides two options to remove XML files, which are listed below.
 
@@ -644,7 +636,7 @@ Currently, CheatLogs provides two options to remove XML files, which are listed 
 
 The sequence diagram below illustrates the general process when deleting a single file.
 
-[!Image](https://i.ibb.co/JRj5F1n/destroyer-Single.png)
+![!Image](https://i.ibb.co/JRj5F1n/destroyer-Single.png)
 
 As you can see in the diagram above, when the *executeFunction(String)* method is called, *DataFileDestroyer*
 self invokes 2 methods to implement this function. The first function is *deleteFile(String)*, where the XML file
@@ -655,7 +647,7 @@ within the */data* folder.
 
 The sequence diagram below illustrates the general process when clearing all files.
 
-[!Image](https://i.ibb.co/58r7BcR/destroyer-Full.png)
+![!Image](https://i.ibb.co/58r7BcR/destroyer-Full.png)
 
 As you can see in the diagram above, when the *executeFunction()* method is called, *DataFileDestroyer*
 invokes a number of methods in order to complete this operation. First, it iterates through every
