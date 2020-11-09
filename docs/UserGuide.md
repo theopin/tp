@@ -100,11 +100,11 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
 6. On the terminal,  navigate to the directory.
 > :memo:  If you are running CheatLogs for the first time, proceed to step 7.1. Otherwise, proceed to step 7.2.
 
-7a. Invoke `java -jar cheatlogs.jar first` to run the program. Through this command, CheatLogs will import [preloaded
+7. 
+    1. Invoke `java -jar cheatlogs.jar first` to run the program. Through this command, CheatLogs will import [preloaded
 cheatsheet files](#preloaded-data-files) for you to use.
-
-7b. Invoke `java -jar cheatlogs.jar` to run the program. 
-
+    
+    2. Invoke `java -jar cheatlogs.jar` to run the program. 
 
 > :exclamation: If a welcome message appears as shown below after running step 7.1 or 7.2, then great! CheatLogs is up and running.
 
