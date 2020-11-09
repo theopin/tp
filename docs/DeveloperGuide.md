@@ -522,27 +522,52 @@ When the application loads, data from these files will be converted and loaded i
 <a id="file-writer"></a>
 ### 5.4.1 Writing files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
-[!Image](https://i.ibb.co/k2ZPZTN/file-Writer.png)
+
 
 Whenever you give a command to *add* or *edit* a cheatsheet, this feature will be activated. Through this
 feature, CheatLogs will attempt to update all cheatsheet files, creating a new cheat sheet file if a new 
 cheat sheet is created. To ensure the organization of your cheatsheet files, these files are created 
 in a subdirectory whose name matches the subject name of each cheatsheets. 
 
+The sequence diagram below illustrates the general process when writing files to the */data* directory.
+
+[!Image](https://i.ibb.co/k2ZPZTN/file-Writer.png)
+
+xx
 
 <a id="file-reader"></a>
 ### 5.4.2 Reading files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-
-[!Image](https://i.ibb.co/2shSvBS/file-Reader.png)
-
-[!Image](https://i.ibb.co/dkKdsfD/preloaded-Extract.png)
 
 When CheatLogs is launched, this feature looks through the directories present in the /data directory
 recursively to find XML files that can be converted to cheatsheets. After verifying that the XML file has
 the relevant attributes and does not contain any non-alphanumeric characters, the Java DOM parser 
 converts these files into cheatsheets and adds them to the list.
 
+The sequence diagram below illustrates the general process when reading preloaded cheatsheets from CheatLogs.jar.
 
+[!Image](https://i.ibb.co/F36bKhr/preloaded-Extract.png)
+
+From the diagram above, when the *extractPreloadedCheatSheets()* method is called, *DataFileReader* calls a 
+few methods in order to execute this method. First, it creates a new JarFile object by calling its constructor,
+*JarFile*, with its parameter being CheatLogs.jar. Next, it iterates through
+each file present in this *JarFile*, looking out for XML files which are the preloaded cheatsheets. If such 
+a file is found, *createNewFile* method is called, which copies it over into the */data* directory to be
+parsed by CheatLogs. Finally, *DataFileReader* will close the JarFile with the close() command since
+it is not required anymore.
+
+
+The sequence diagram below illustrates the general process when reading files from the */data* directory. 
+
+[!Image](https://i.ibb.co/2shSvBS/file-Reader.png)
+
+As you can see in the diagram above, when the *executeFunction()* method is called, *DataFileReader* invokes
+a number of methods in order to complete this operation. First, it iterates through every directory
+present within the */data* directory, including itself. For each directory, a file object is constructed 
+from their respective paths, and a list of files within it is produced. For each file within this newly created
+list, 2 checks are done. If the file is an XML File, *DataFileReader* will attempt to create a new cheatsheet 
+out of it by invoking the method *createNewCheatSheet()*. However, if the file is the *settings.txt*, *DataFileReader*
+will now inoke *loadUserSettings()* to transfer the data stored within it to configure the respective settings
+of CheatLogs.
 
 <a id="file-destroyer"></a>
 ### 5.4.3 Deleting files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -574,13 +599,14 @@ within the */data* folder.
 The sequence diagram below illustrates the general process when clearing all files.
 
 [!Image](https://i.ibb.co/58r7BcR/destroyer-Full.png)
+
 As you can see in the diagram above, when the *executeFunction()* method is called, *DataFileDestroyer*
-invokes a number of methods in order to complete this operation. First, it starts off by iterating through every
+invokes a number of methods in order to complete this operation. First, it iterates through every
 directory present within the */data* directory, including itself. For each directory, a file object is constructed 
-from the path of them and a list of strings of each file within it is produced. Based on this secondary list of 
+from their respective paths a list of strings of each file within it is produced. Based on this secondary list of the names of
 files generated, *DataFileDestroyer* iterates through each of them and proceeds to delete the files which
-are identified as XML files. 
-Finally,*updateDirectory(File)* is invoked as well. This method runs recursively, looking out for empty directories as well 
+are identified as XML files. <br>
+Finally, *updateDirectory(File)* is also called. This method runs recursively, looking out for empty directories as well 
 as XML files who have been placed in the directory. They will be removed to maintain the organization of the files
 within the */data* folder.
 
