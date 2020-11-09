@@ -511,7 +511,7 @@ Example:
  *  `/list`
 
 <a id="general-command-type"></a>
-## 4.4. General Commands: (Adhy)  <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
+## 4.4. General Commands: <font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 These are useful general purpose commands that don't fit into the other categories but are still very useful for you to know.
 
 ---
@@ -520,7 +520,7 @@ These are useful general purpose commands that don't fit into the other categori
 ### 4.4.1. Viewing help: `/help`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 >Format: `/help`
 >
-If you forgot the syntax of a certain command, you can simply type `/help`. It will list all the possible commands that can be executed in the application together with its format and example. Below is what you should expect to see.
+If you forgot the syntax of a certain command, you can simply type `/help`. It lists all the possible commands that can be executed in the application together with its format and example. Below is what you should expect to see.
 
 ![image](https://i.ibb.co/n7gWdpQ/image.png)
 
@@ -531,7 +531,7 @@ Example:
 <a id="settings-command"></a>
 ### 4.4.2. Change program settings: `/set`<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 CheatLogs is highly customizable. By using the `/set` command, you can choose to enable/disable the help messages on each command and change the color scheme of the output text. 
-The settings will be saved automatically and the next time you lauch CheatLogs, it will be exactly the same as the last time you opened it!
+The settings will be saved automatically and the next time you launch CheatLogs, it will be exactly the same as the last time you opened it!
 
 <a id="settings-color"></a>
 #### 4.4.2.1. Change color scheme<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
@@ -545,7 +545,7 @@ CheatLogs provides 3 additional color scheme options numbered from 1 to 3. Upon 
 
 If your flag description `COLORSCHEME` does not fall in the range mentioned above, it will change the color scheme to the default setting (option 0).
 
-> :exclamation: The colors will likely vary depending on the terminal that you use and differ from the one shown. We suggest simply picking the most readable one.
+> :bulb: The colors will likely vary depending on the terminal that you use and differ from the one shown. We suggest simply picking the most readable one.
  
   Example:   
  * `/set /c 2`
@@ -729,9 +729,9 @@ Add | /add /n <CHEATSHEET_NAME> /s \<SUBJECT> | /add /n List /s Java
 Delete | /delete /i <CHEATSHEET_INDEX> <br> /delete /n <CHEATSHEET_NAME> | /delete /n List <br> /delete /i 1
 Clear | /clear | /clear
 Edit | /edit /i <CHEATSHEET_INDEX> <br> /edit /n <CHEATSHEET_NAME> | /edit /i 1 <br> /edit /n List
-Favourite | /fav /i <CHEATSHEET_INDEX> <br> /fav /n <CHEATSHEET_NAME> | /fav /i 2 <br> /fav /n Cheat
+Favourite | /fav /i <CHEATSHEET_INDEX> \[/d\] <br> /fav /n <CHEATSHEET_NAME> \[/d\]| /fav /i 2 <br> /fav /i 3 /d <br> /fav /n Cheat <br> /fav /n arrays /d 
 Find | /find /s \<SUBJECT> /k \<KEYWORD> | /find /s Java <br> /find /s Java /k cheater
-View | /view /i <CHEATSHEET_INDEX> <br>/view /n <CHEATSHEET_NAME> | /fav /i 3 <br> /fav /n List
+View | /view /i <CHEATSHEET_INDEX> <br>/view /n <CHEATSHEET_NAME> | /view /i 3 <br> /view /n List
 List | /list | /list
 Help | /help | /help
 Settings | /set /c <OPTION_NUMBER> <br> /set /m \<OPTION> | /set /c 1 <br> /set /m on <br> /set /m off
