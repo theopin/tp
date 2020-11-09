@@ -1,4 +1,6 @@
 
+
+
 <h1 align="center">  CheatLogs Developer Guide </h1>
 
 
@@ -33,7 +35,10 @@ The table of contents below lets you easily access the documentation for CheatLo
 * [4. Design](#design)
     * [4.1. Architecture](#architecture)
     * [4.2. Components](#components)
-        * [4.2.1. User Interface](#user-interface)
+         * [4.2.1. User Interface](#user-interface)
+	        * [4.2.1.1. UserSesssion](#user-sesh)
+	        * [4.2.1.2. Input](#in)
+	        * [4.2.1.3. Output](#out)
         * [4.2.2. Command Parser](#command-parser)
         * [4.2.3. Command](#command)
             * [4.2.3.1. FinderCommand](#findercommand)
@@ -156,29 +161,28 @@ This section will elaborate on the architecture and component design of CheatLog
 <a id="architecture"></a>
 ## 4.1. Architecture<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
-The image below illustrates the high-level design of CheatLogs.
-
+The following diagram describes the high-level architecture of CheatLogs' major components.
 ![](Images/Image3.PNG)
 
 Image 1: General Architecture of CheatLogs
 
 CheatLogs is split into 5 major components, each handling distinct features of the application. The components and a brief description of them is listed below.
+
 * `UI`: The user interface of the app.
 * `CheatSheet`: The structure of each cheat sheet
 * `CheatSheetList`: A collection of every cheat sheet.
 * `Parser`: Builds a data structure based on user inputs.
 * `Command`: An encapsulation of data and methods to execute each command
-* `Storage`: Updates application data based on relevant external files.
+* `Storage`: Reads and Writes data between CheatLogs and the system.
 
 The UML diagram below illustrates an extensive version of the various classes present in CheatLogs as well as their interactions with each other.
 
 
-![](https://i.ibb.co/Cb8GckB/image.png)
+![Architecture-2113](https://i.ibb.co/jgGzmMw/Architecture-2113.png)
 
 Image 2: In-Depth Architecture of CheatLogs
 
-For each component, it can be further split into different classes which have a unique responsibility. They will be further elaborated upon in the next section.
-
+For each component, it can be further split into different subclasses which have a unique responsibility. They will be further elaborated upon in the next section.
 
 <a id="components"></a>
 ## 4.2. Components<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -190,22 +194,40 @@ Each component has a unique function and contributes to the functionality of thi
 
 <a id="user-interface"></a>
 ### 4.2.1. User Interface<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+
 //Abner
-This component handles interactions with the user and manages the input and output of the programme. 
+This component handles interactions with the user. These interactions include providing a REPL style interface and managing input and output of the program.  
 
-![](Images/Image5.PNG)
+<a id="user-sesh"></a>
+####  4.2.1.1 UserSession<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
-Image 3: User Session class fields and methods
+One of the classes is `UserSession` which contains the main loop of the program. Below is the class in UML.
+![usersessionclass](https://i.ibb.co/C9s21vk/usersessionclass.png)
+Image 3: User Session class fields and methods 
 
-One of the classes is UserSession which contains the main loop of the program. 
-Every loop it reads and parses the user input to get a Command object which encapsulates all the necessary information needed to execute the command. 
-After execution, it handles potential exceptions thrown.
+The constructor of this class calls the constructors of the required objects used by **CheatLogs**. Method calls from these objects are later called in the `start()` method.
+ 
+The main loop of the program is in `runProgramSequence()`. Every loop it reads and parses user input, which is then used to create an executable `Command` object which encapsulates all the necessary information needed to execute the command. 
+After execution, it handles potential exceptions thrown. Lastly, it saves the file between every command.
 
+When exiting the program, the `exit` command ensures all objects that require manual closing are closed.
 
-A single instance of common objects are usually created in UserSession, such as Ui and Printer objects. 
+Below is a sequence diagram of the events occurring in a valid command.
+
+![User-Session](https://i.ibb.co/ryM7jR4/User-Session.png)
+
+A single instance of common objects is usually created in `UserSession`, such as `Ui` and `Printer` objects. 
 These common objects are injected into other objects that need them via the class constructor instead of static methods.
-The common objects include the Ui and  Printer helper classes which provide an organized way to read and write data. 
-Most of the programmes’ output is made via calls to the same common printer object.
+The `Ui` and `Printer` helper classes which provide an organized way to read and write data. 
+
+<a id="in"></a>
+ #### 4.2.1.2. Input<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+ The `Ui` class controls the input into **CheatLogs**, it currently acts exactly like `java.util.Scanner` but will be extended in the future.
+
+<a id="out"></a>
+ #### 4.2.1.3. Output<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+ The `ConsoleColorsEnum`, `Printer` and `TablePrinterClasses` are all used to control and centralize the output of **CheatLogs**.  They provide various helper methods to make the code of `Command` subclasses less verbose. In addition, `ConsoleColorsEnum` this class provides various ANSI escape characters that is used to format the colors of the output.
+  
 
 <a id="command-parser"></a>
 ### 4.2.2. Command Parser<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -527,11 +549,12 @@ This section describes some noteworthy details on how certain features are imple
 <a id="parsing-of-data-to-construct-commands"></a>
 ## 5.1. Parsing of Data to Construct Commands<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
-The command classes follow the command pattern. 
-During construction in Parser.parse() they get the information they need to execute from parsed data based on the user input. 
-Flags in the input are used to separate the different information. (e.g. `/add /n if /l python /k is nice`, has 3 flags, /n /l and /k and the String “python" is associated with the flag /l). 
-This information is stored in a HashMap where the descriptor (defined in ArgumentEnum) of the flag is the key and the information associated with it is the value.
-The command can execute at a random time later via commandObj.execute().12
+
+The current implementation to construct commands begins with the user input, which is taken in by ` ui.getUserInput()`.  The `Parser` then parser this through `Parser.parse()` which will construct the command based on the user input and provide the command which everything it needs to execute.
+
+`Parser` first derives the kind of command being executed, which is always the very first word typed. More important is how the parser parses the relevant flags. Each command has fields called `alternativeFlags` and `neccesaryFlags`. `alternativeFlags` have an "at least one property" which means that at least one of these flags needs to be filled for the command to execute. `neccesaryFlags` require all of the flags need to be filled for the command to execute. Parser references these two fields two know if the flags inputted are required by the command itself. It also uses this information to know which flags are missing. These flags are then stored in a `LinkedHashMap<CommandFlag, String>` in the command itself where the flag itself is the key, and the information associated with it is the value.
+
+The command can execute at a random time later via `commandObj.execute()`.
 
 
 <a id="editing-feature"></a>
