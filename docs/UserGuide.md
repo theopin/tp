@@ -97,7 +97,7 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
 
 5. Move *CheatLogs.jar* to the new directory.
 6. On the terminal,  navigate to the directory.
-> :memo:  If you are running CheatLogs for the first time, proceed to step 7a. Otherwise, proceed to step 7b.
+> :memo:  If you are running CheatLogs for the first time, proceed to step 7.1. Otherwise, proceed to step 7.2.
 
 7. 
     1. Invoke `java -jar cheatlogs.jar first` to run the program. Through this command, CheatLogs will import [preloaded
