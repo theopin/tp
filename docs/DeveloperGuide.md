@@ -61,14 +61,18 @@ The table of contents below lets you easily access the documentation for CheatLo
         * [5.4.2 Reading files](#file-reader)
         * [5.4.3 Deleting files](#file-destroyer)
     * [5.5. Colour coding for code snippet](#colour-coding-for-code-snippet)
-* [6. Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-* [7. Appendix: Requirements](#appendix-requirements)
-    * [7.1. Product scope](#product-scope-appendix)
-    * [7.2. User stories](#user-stories)
-    * [7.3. Use cases](#use-cases)
-    * [7.4. Non-Functional Requirements](#non-functional-requirements)
-* [8. Glossary](#glossary)
-* [9. Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+* [6. Appendix: Documentation](#appendix-documentation)
+* [7. Appendix: Logging](#appendix-logging)
+* [8. Appendix: Testing](#appendix-testing)
+* [9. Appendix: Configuration](#appendix-configuration)
+* [10. Appendix: Dev-ops](#appendix-dev-ops)
+* [11. Appendix: Requirements](#appendix-requirements)
+    * [11.1. Product scope](#product-scope-appendix)
+    * [11.2. User stories](#user-stories)
+    * [11.3. Use cases](#use-cases)
+    * [11.4. Non-Functional Requirements](#non-functional-requirements)
+* [12. Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+* [13. Glossary](#glossary)
 <br>
 
 <a id="introduction"></a>
@@ -481,31 +485,31 @@ Alternative 2: Save different sections of the cheat sheet using a different file
 
 <br>
 
-<a id="documentation-logging-testing-configuration-dev-ops"></a>
+<a id="appendix-documentation"></a>
 # 6. Appendix: Documentation<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 //Documentation, logging, testing, configuration, dev-ops
 
 <br>
 
-<a id="documentation-logging-testing-configuration-dev-ops"></a>
+<a id="appendix-logging"></a>
 # 7. Appendix: Logging<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 //Documentation, logging, testing, configuration, dev-ops
 
 <br>
 
-<a id="documentation-logging-testing-configuration-dev-ops"></a>
+<a id="appendix-testing"></a>
 # 8. Appendix: Testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 //Documentation, logging, testing, configuration, dev-ops
 
 <br>
 
-<a id="documentation-logging-testing-configuration-dev-ops"></a>
+<a id="appendix-configuration"></a>
 # 9. Appendix: Configuration<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 //Documentation, logging, testing, configuration, dev-ops
 
 <br>
 
-<a id="documentation-logging-testing-configuration-dev-ops"></a>
+<a id="appendix-dev-ops"></a>
 # 10. Dev-ops: Logging<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 //Documentation, logging, testing, configuration, dev-ops
 
