@@ -57,7 +57,7 @@ The table of contents below lets you easily access the documentation for CheatLo
     * [5.1. Parsing of Data to Construct Commands](#parsing-of-data-to-construct-commands)
     * [5.2. Editing Feature](#editing-feature)
     * [5.3. Sorting Feature](#sorting-feature)
-    * [5.4. Storage & Reading of Cheatsheet files](#data-storage)
+    * [5.4. Data Management](#data-management)
         * [5.4.1 Writing files](#file-writer)
         * [5.4.2 Reading files](#file-reader)
         * [5.4.3 Deleting files](#file-destroyer)
@@ -342,15 +342,30 @@ This feature allows the application to read and update data in the form of [XML 
 Having an external source to store data will allow the application to retrieve it when it is relaunched at another instance. 
 This prevents the user from having to repeatedly create new cheatsheets and update the application settings each time he opens up CheatLogs. 
 
-The following UML diagram illustrates the major interactions between the classes present in the 
+The following class UML diagram illustrates the major interactions between the classes present in the 
 *storage* package. 
 
-[!Image]()
+[!Image](https://i.ibb.co/tqsXqjb/storage-Uml.png)
 
-As we can see from the diagram above, the following 3 classes are subclasses of the *DataFile* class.
+As we can see from the diagram above, the following 3 classes are subclasses of the *DataFile* class, which is an abstract class.
 * *DataFileReader*
+  * This class is responsible for converting XML files present in your data directory into cheatsheets.
+  * Since it is a child of DataFile, it is capable of utilizing a common CheatSheetList node to store
+    created cheatsheets.  
+  * This class also reads your defined settings from the *settings.txt* file and writes it to the
+    settings class. This allows you to apply customization options to certain features of CheatLogs.
+  
 * *DataFileWriter*
+  * This class is responsible for converting your cheatsheets in CheatLogs into XML files.
+  * Based on the number of cheatsheets present in CheatSheetList, it will store that number of cheatsheets
+    in its class in the form of an arrayList. This is shown by the * multiplicity.
+    * This class also writes your defined settings to the *settings.txt* file by reading them from the
+      settings class. This allows you to store your preferences for certain features of CheatLogs.  
+    
 * *DataFileDestroyer*
+  * This class is responsible for deleting XML files corresponding to the relevant cheatsheet.
+  * Depending on the option stated by you, this feature can either delete a single file or all
+    XML files currently stored in the user directory.
 
 <a id="file-writer"></a>
 ## 4.2.6.1 Overview<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
@@ -429,8 +444,8 @@ Con: There would be many duplicate code and not good for reusability.
 By using the sort() method present in java. util. Collections class, we would have better flexibility as the sort method could be reused with different functions just by including a new class that implements comparable.
 
 
-<a id="data-storage"></a>
-## 5.4. Data storage<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+<a id="data-management"></a>
+## 5.4. Data management<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 This feature stores cheat sheets on the hard-drive in the form of XML file. 
 When the application loads, data from these files will be converted and loaded into the application.
