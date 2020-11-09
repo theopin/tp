@@ -79,6 +79,14 @@ The table of contents below lets you easily access the documentation for CheatLo
     * [10.3. Use cases](#use-cases)
     * [10.4. Non-Functional Requirements](#non-functional-requirements)
 * [11. Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    * [11.1. Start-up with preloaded data and restart with save data](#manual-test-1)
+    * [11.2. Adding cheatsheets](#manual-test-2)
+    * [11.3. Editing cheatsheets](#manual-test-3)
+    * [11.4. Viewing cheatsheets](#manual-test-4)
+    * [11.5. Finding cheatsheets](#manual-test-5)
+    * [11.6. Deleting cheatsheets](#manual-test-6)
+    * [11.7. Clearing cheatsheets](#manual-test-7)
+    * [11.8. Add/remove cheatsheets to favourites](#manual-test-8)
 * [12. Glossary](#glossary)
 
 <br>
@@ -349,7 +357,7 @@ These steps explain the sequence diagram for `find` command and how `find` comma
     3. Else, a CommandException will be thrown
     
 <a id="delete"></a>
-##### 3.2.3.9 Delete
+##### 4.2.3.9 Delete
 Delete command removes one cheatsheet from the CheatSheetList and deletes the corresponding file in the */data* directory.
 
 Here is an example of the usage of `/delete` command and how it works:
@@ -911,7 +919,7 @@ versions of CheatLogs was designed to solve.
 
 <a id="appendix-instructions-for-manual-testing"></a>
 # 11. Appendix: Instructions for manual testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-<a id="appendix-instructions-for-manual-testing"></a>
+<a id="manual-test-1"></a>
 ## 11.1 Start-up with preloaded data and restart with save data
 1. Initial launch
     1. Download the latest release of CheatLogs from [here](https://github.com/AY2021S1-CS2113T-W11-3/tp/releases)
@@ -939,7 +947,8 @@ versions of CheatLogs was designed to solve.
     
     Expected output:
     Identical to Step 2 (List the preloaded cheatsheets)
-    
+
+<a id="manual-test-2"></a>
 ## 11.2 Adding cheatsheets
 1. Adding cheatsheets using **easy mode**
     1. Test case: `/add` - Expected output: Prompts the user to fill `NAME` and `SUBJECT`
@@ -957,6 +966,7 @@ versions of CheatLogs was designed to solve.
     Expected output:
     Successfully adds the new cheatsheet, prints the current number of cheatsheets
     
+<a id="manual-test-3"></a>
 ## 11.3 Editing cheatsheets
 1. Editing cheatsheets by name
     1. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
@@ -974,6 +984,7 @@ versions of CheatLogs was designed to solve.
     Expected output:
     Successfully saves the new cheatsheet. Prints the name, subject, and description of the cheatsheet
 
+<a id="manual-test-4"></a>
 ## 11.4 Viewing cheatsheets
 1. Viewing cheatsheets by name
     1. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
@@ -989,6 +1000,7 @@ versions of CheatLogs was designed to solve.
     Expected output:
     Prints the name, subject, and description of the cheatsheet
 
+<a id="manual-test-5"></a>
 ## 11.5 Finding cheatsheets
 1. Finding cheatsheets by subject
     1. Prerequisites: Non-empty cheatsheet list.
@@ -1012,6 +1024,7 @@ versions of CheatLogs was designed to solve.
     Prints a table containing cheatsheets with **C** as its subject and contains **"arrays"** keyword in its description, prompts the user to sort the result.
     Press any characters excluding 1 - 4 to exit the sorting mode 
 
+<a id="manual-test-6"></a>
 ## 11.6 Deleting cheatsheets
 1. Deleting cheatsheets by name
     1. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
@@ -1027,7 +1040,8 @@ versions of CheatLogs was designed to solve.
     
     Expected output:
     The cheatsheet with index 1 is removed from the list.  
-    
+ 
+<a id="manual-test-7"></a>    
 ## 11.7 Clearing cheatsheets
 1. Clearing all cheatsheets
     1. Test case: `/clear` - Expected output: Asks the user for confirmation
@@ -1036,6 +1050,7 @@ versions of CheatLogs was designed to solve.
     Expected output:
     No cheatsheet on the list
 
+<a id="manual-test-8"></a>
 ## 11.8 Add/remove cheatsheets to favourites
 1. Adding cheatsheets to favourites
     1. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
