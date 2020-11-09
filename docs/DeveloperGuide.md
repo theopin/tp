@@ -453,6 +453,8 @@ When the application loads, data from these files will be converted and loaded i
 <a id="file-writer"></a>
 ### 5.4.1 Writing files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
+[!Image](https://i.ibb.co/k2ZPZTN/file-Writer.png)
+
 Whenever you give a command to *add* or *edit* a cheatsheet, this feature will be activated. Through this
 feature, CheatLogs will attempt to update all cheatsheet files, creating a new cheat sheet file if a new 
 cheat sheet is created. To ensure the organization of your cheatsheet files, these files are created 
@@ -461,6 +463,10 @@ in a subdirectory whose name matches the subject name of each cheatsheets.
 
 <a id="file-reader"></a>
 ### 5.4.2 Reading files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+
+[!Image](https://i.ibb.co/2shSvBS/file-Reader.png)
+
+[!Image](https://i.ibb.co/dkKdsfD/preloaded-Extract.png)
 
 When CheatLogs is launched, this feature looks through the directories present in the /data directory
 recursively to find XML files that can be converted to cheatsheets. After verifying that the XML file has
@@ -472,6 +478,9 @@ converts these files into cheatsheets and adds them to the list.
 <a id="file-destroyer"></a>
 ### 5.4.3 Deleting files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
+[!Image](https://i.ibb.co/JRj5F1n/destroyer-Single.png)
+
+[!Image](https://i.ibb.co/58r7BcR/destroyer-Full.png)
 When you decide to remove a cheat sheet, CheatLogs will delete the relevant cheat sheet files immediately.
 This is done by locating the path of the XML file corresponding to the cheat sheet. Subsequently, this feature
 will delete it provided that the XML file still exists. After deleting a file, this feature performs a recursive
