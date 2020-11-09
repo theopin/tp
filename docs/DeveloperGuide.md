@@ -547,14 +547,42 @@ converts these files into cheatsheets and adds them to the list.
 <a id="file-destroyer"></a>
 ### 5.4.3 Deleting files<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
-[!Image](https://i.ibb.co/JRj5F1n/destroyer-Single.png)
-
-[!Image](https://i.ibb.co/58r7BcR/destroyer-Full.png)
 When you decide to remove a cheat sheet, CheatLogs will delete the relevant cheat sheet files immediately.
 This is done by locating the path of the XML file corresponding to the cheat sheet. Subsequently, this feature
 will delete it provided that the XML file still exists. After deleting a file, this feature performs a recursive
 search through the data directory, to delete any directories that are empty after this operation. This ensures
-that there is no clutter of empty folders existing in the /data directory.
+that there is no clutter of empty folders existing in the /data directory. 
+
+Currently, CheatLogs provides two options to remove XML files, which are listed below.
+
+1. Deleting a single file
+2. Clearing all files 
+
+> :memo: Regardless of the method chosen, *settings.txt* will still remain in your directory.
+
+The sequence diagram below illustrates the general process when deleting a single file.
+
+[!Image](https://i.ibb.co/JRj5F1n/destroyer-Single.png)
+
+As you can see in the diagram above, when the *executeFunction(String)* method is called, *DataFileDestroyer*
+self invokes 2 methods to implement this function. The first function is *deleteFile(String)*, where the XML file
+that matches the file name of the deleted cheatsheet is removed permanently from the directory. After that method,
+*updateDirectory(File)* is invoked as well. This method runs recursively, looking out for empty directories as well 
+as XML files who have been placed in the directory. They will be removed to maintain the organization of the files
+within the */data* folder.
+
+The sequence diagram below illustrates the general process when clearing all files.
+
+[!Image](https://i.ibb.co/58r7BcR/destroyer-Full.png)
+As you can see in the diagram above, when the *executeFunction()* method is called, *DataFileDestroyer*
+invokes a number of methods in order to complete this operation. First, it starts off by iterating through every
+directory present within the */data* directory, including itself. For each directory, a file object is constructed 
+from the path of them and a list of strings of each file within it is produced. Based on this secondary list of 
+files generated, *DataFileDestroyer* iterates through each of them and proceeds to delete the files which
+are identified as XML files. 
+Finally,*updateDirectory(File)* is invoked as well. This method runs recursively, looking out for empty directories as well 
+as XML files who have been placed in the directory. They will be removed to maintain the organization of the files
+within the */data* folder.
 
 
 <a id="settings-implementation"></a>
