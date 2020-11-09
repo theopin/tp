@@ -13,7 +13,7 @@ import ui.Printer;
  */
 public class AddCommand extends Command {
     private final Editor editor;
-    private static final String ALPHA_NUMERIC = "[A-Za-z0-9 ]+";
+    private static final String ALPHA_NUMERIC = "[A-Za-z0-9 \t\n\r]+";
     public static final String invoker = "/add";
 
     /**
