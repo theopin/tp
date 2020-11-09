@@ -29,8 +29,8 @@ public class UserSession {
     Ui ui;
     Settings settings;
 
+    public boolean isEditorEnabled;
     public boolean isFirstRun;
-
     /**
      * Constructor for the UserSession. Creates a single instance of all
      * common objects that are passed to the commands.
@@ -46,6 +46,7 @@ public class UserSession {
         fileDestroyer = new DataFileDestroyer(printer, cheatSheetList);
         userCommandParser = new Parser(cheatSheetList, editor, fileDestroyer, printer, ui, settings, fileReader);
 
+        isEditorEnabled = true;
         isFirstRun = false;
     }
 
@@ -58,12 +59,14 @@ public class UserSession {
         } catch (Exception e) {
             printer.print(e.getMessage());
         }
-
+        if(isEditorEnabled) {
+            editor.init();
+        }
         if (isFirstRun) {
             fileReader.extractPreloadedCheatSheets();
         }
+
         fileReader.executeFunction();
-        editor.init();
         printer.printWelcomeScreen();
         if (settings.getDisplayingHelpMessages()) {
             printer.printStartHelpMessage();

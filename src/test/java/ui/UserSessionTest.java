@@ -35,6 +35,8 @@ class UserSessionTest {
         userSession.settings =  settings;
         userSession.fileReader = fileReader;
         userSession.fileWriter = fileWriter;
+
+        userSession.isEditorEnabled = false;
     }
 
     @Test
