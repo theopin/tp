@@ -621,3 +621,73 @@ versions of CheatLogs was designed to solve.
 
 <a id="appendix-instructions-for-manual-testing"></a>
 # 9. Appendix: Instructions for manual testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
+## 11.1 Start-up with preloaded data and restart with save data
+1. Initial launch
+    1. Download the latest release of CheatLogs from [here](https://github.com/AY2021S1-CS2113T-W11-3/tp/releases)
+    1. Move the jar file to an empty folder
+    1. Open Command Prompt/Terminal
+    1. Move the directory containing the jar file
+    1. Invoke `java -jar CheatLogs.jar FIRST`
+    
+    Expected output: 
+    Shows the welcome message of CheatLogs
+    ![](https://i.ibb.co/c14qrXf/image.png)
+2. List the preloaded cheatsheets
+    2. Test case: `/list`
+    
+    Expected output:
+    Prints a table containing **12** cheatsheets, prompts the user to sort the result.
+    Press any characters excluding 1 - 4 to exit the sorting mode 
+3. Exit and restart the application
+    3. Test case: 
+        - `/exit`
+        - `java -jar CheatLogs.jar`
+        - `/list`
+    
+    Expected output:
+    Identical to Step 2 (List the preloaded cheatsheets)
+    
+## 11.2 Adding cheatsheets
+1. Adding cheatsheets using **easy mode**
+    1. Run the jar file
+    1. Test case: `/add` - Expected output: Prompts the user to fill `NAME` and `SUBJECT`
+    1. Test case: `dummyName0`
+    1. Test case: `dummySubject0` - Expected output: A text editor pops up
+    1. Test case: `dummyDescription0`, then click `save`
+    
+    Expected output:
+    Successfully adds the new cheatsheet, prints the current number of cheatsheets
+
+2. Adding cheatsheets using **advanced mode**
+    2. Run the jar file
+    2. Test case: `/add /n dummyName1 /s dummySubject1` - Expected output: A text editor pops up
+    2. Test case: `dummyDescription1`, then click `save`
+    
+    Expected output:
+    Successfully adds the new cheatsheet, prints the current number of cheatsheets
+    
+## 11.3 Editing cheatsheets
+1. Editing cheatsheets by name
+    1. Run the jar file
+    1. Test case: `/edit /n dummyName0` - Expected output: A text editor pops up
+    1. Test case: `dummyDescription0edit`, then click `save`
+    
+    Expected output:
+    Successfully saves the new cheatsheet. Prints the name, subject, and description of the cheatsheet
+
+2. Adding cheatsheets by index
+    2. Run the jar file
+    2. Test case: `/edit /i 1` - Expected output: A text editor pops up
+    2. Test case: `dummyDescription1edit`, then click `save`
+     
+    Expected output:
+    Successfully saves the new cheatsheet. Prints the name, subject, and description of the cheatsheet
+
+## 11.4 Clearing cheatsheets
+1. Clearing all cheatsheets
+    1. Run the jar file
+    1. Test case: `/clear` - Expected output: Asks the user for confirmation
+    1. Test case: `/list`
+    
+    Expected output:
+    No cheatsheet on the list
