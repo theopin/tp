@@ -184,15 +184,14 @@ CheatLogs is split into 5 major components, each handling distinct features of t
 * `Command`: An encapsulation of data and methods to execute each command
 * `Storage`: Reads and Writes data between CheatLogs and the system.
 
-The UML diagram below illustrates an extensive version of the various classes present in CheatLogs as well as their interactions with each other.
 
+For a more an extensive version of the various classes present in CheatLogs as well as their interactions with each other, you can refer to the diagram below.
 
 ![Architecture-2113](https://i.ibb.co/jgGzmMw/Architecture-2113.png)
 
 Image 2: In-Depth Architecture of CheatLogs
 
-For each component, it can be further split into different subclasses which have a unique responsibility. They will be further elaborated upon in the next section.
-
+Notice that for each component, it can be further split into different subclasses which have a unique responsibility. They will be further elaborated upon in the next section.
 <a id="components"></a>
 ## 4.2. Components<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
@@ -211,6 +210,7 @@ This component handles interactions with the user. These interactions include pr
 ####  4.2.1.1 UserSession<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 
 One of the classes is `UserSession` which contains the main loop of the program. Below is the class in UML.
+
 ![usersessionclass](https://i.ibb.co/C9s21vk/usersessionclass.png)
 Image 3: User Session class fields and methods 
 
