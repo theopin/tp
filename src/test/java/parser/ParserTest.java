@@ -68,21 +68,18 @@ class ParserTest {
     }
 
     @Test
-    void parse_findCommandLargeInputIndex_pass() {
-        final String userInput = "/set";
+    void parse_editCommandLargeInputIndex_pass() {
+        final String userInput = "/edit /i " + String.valueOf(Integer.MAX_VALUE);
         try {
-            ui.clearUserInput();
-            ui.pushUserInput("123@1!!\t! ");
-
             Command result = parser.parse(userInput);
-
-            String description = result.getFlagsToDescriptionsMap().get(CommandFlag.COLORSCHEME);
-            assertEquals(true, result instanceof SettingsCommand);
-            assertEquals("123@1!!\t!", description);
+            String description = result.getFlagsToDescriptionsMap().get(CommandFlag.INDEX);
+            assertEquals(true, result instanceof EditCommand);
+            assertEquals(String.valueOf(Integer.MAX_VALUE), description);
         } catch (CommandException e) {
             fail(e.getMessage());
         }
     }
+
     @Test
     void parse_editCommandSpecialChar_pass() {
         final String userInput = "/edit /n @@ASD''s.&*()(*&^%+P{AS";
@@ -91,6 +88,19 @@ class ParserTest {
             String description = result.getFlagsToDescriptionsMap().get(CommandFlag.NAME);
             assertEquals(true, result instanceof EditCommand);
             assertEquals("@@ASD''s.&*()(*&^%+P{AS", description);
+        } catch (CommandException e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    void parse_findCommandCharAfterCommand_pass() {
+        final String userInput = "/find  s /s 123 ";
+        try {
+            Command result = parser.parse(userInput);
+            String description = result.getFlagsToDescriptionsMap().get(CommandFlag.SUBJECT);
+            assertEquals(true, result instanceof FindCommand);
+            assertEquals("123", description);
         } catch (CommandException e) {
             fail(e.getMessage());
         }

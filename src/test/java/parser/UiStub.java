@@ -16,7 +16,7 @@ public class UiStub extends Ui {
     }
 
     public String getUserInput() {
-        return userInput.pop();
+        return userInput.removeLast();
     }
 
     protected void clearUserInput() {
