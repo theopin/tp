@@ -677,7 +677,7 @@ to retrieve any external cheatsheet file.
 The figure below shows a sample organization of the cheatsheet files in a user's directory.
 
 
-![image](https://i.ibb.co/jbCTyYG/dataOrg.png)
+![image](https://i.ibb.co/zbppwZZ/sample-User-Data.png)
 
 In the example illustrated above, the user currently has cheatsheets which are of
 3 different subjects. Even though some cheatsheets have the same name such as
@@ -688,19 +688,18 @@ based on the subject you are taking.
 <a id="preloaded-data-files"></a>
 ## 5.3. Preloaded data files<font size="5"> [:arrow_up_small:](#table-of-contents)</font> 
 
-
 CheatLogs.jar contains some example cheatsheet files. These files will be moved over to the */data* directory when you run the application for the first time. To differentiate these files from your 
 personally created cheatsheets, they are placed under the */preloaded* subdirectory. By viewing and
 editing these cheatsheets through CheatLogs, you will understand how to operate this program.
 
 The figure below shows a sample organization of the cheatsheet files in a user's directory with
-a few preloaded cheat  included.
+two preloaded cheat cheatsheets included.
 
-![image](https://i.ibb.co/7KS8vqn/preloaded-Org.png)
+![image](https://i.ibb.co/bzp4yJ2/preloaded-Illustration.png)
 
-In the example above, you can see that CheatLogs keeps the organization of such preloaded cheatsheets seperate
-from the other cheatsheet files. This is to help you to better identify which files are marked as
-preloaded.
+In the example above, you can see that CheatLogs keeps the organization of such preloaded cheatsheets separate
+from the other cheatsheet files. This is to help you to better identify files marked as
+preloaded within the */data* directory.
 
 > :exclamation: If you create a new file within any subdirectory of */preloaded*, CheatLogs will assume that these files have been preloaded and will treat them as such.
 
