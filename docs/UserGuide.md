@@ -88,14 +88,13 @@ CheatLogs is easy to get running. You can follow the  steps below to do so.
 3. Download only the *CheatLogs.jar* file highlighted in the orange box below.
 
 	![](https://i.ibb.co/C24vhGg/image.png)
-5. Create a new directory anywhere on your PC, This is the home folder where CheatLogs will be creating its own subdirectories to store cheatsheets. 
+4. Create a new directory anywhere on your PC, This is the home folder where CheatLogs will be creating its own subdirectories to store cheatsheets. 
 
 > :bulb: Unfamiliar with navigating the terminal? Click [here](https://www.digitaltrends.com/computing/how-to-use-command-prompt/) for a basic introduction for Windows cmd and [here](https://www.pluralsight.com/guides/beginner-linux-navigation-manual) for macOS/Linux bash terminal.
 
-6. Move *CheatLogs.jar* to the new directory.
-7. On the terminal,  navigate to the directory.
-
-> :exclamation: If you are running CheatLogs for the first time, proceed to step 8a. Otherwise, proceed to step 8b.
+5. Move *CheatLogs.jar* to the new directory.
+6. On the terminal,  navigate to the directory.
+7. If you are running CheatLogs for the first time, proceed to step 8a. Otherwise, proceed to step 8b.
 
 8a. Invoke `java -jar cheatlogs.jar first` to run the program. Through this command, CheatLogs will import [preloaded
 cheatsheet files](#preloaded-data-files) for you to use.
