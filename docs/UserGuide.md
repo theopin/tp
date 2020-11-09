@@ -41,7 +41,7 @@ The table of contents below lets you easily access the documentation for install
    	    * [4.1.1.2. Adding a cheatsheet using the advanced mode](#add-command-advanced)
 	  * [4.1.2. Deleting a cheatsheet: `/delete`](#delete-command)
 	    * [4.1.2.1. Deleting a cheatsheet using the easy mode](#delete-command-easy)
-            * [4.1.2.2. Deleting a cheatsheet using the advanced mode](delete-command-advanced)
+        * [4.1.2.2. Deleting a cheatsheet using the advanced mode](#delete-command-advanced)
 	  * [4.1.3. Clearing all entries: `/clear`](#clear-command)
   * [4.2.  Manipulation commands (Abner)](#manipulation-command-type)
 	  * [4.2.1. Editing a cheatsheet: `/edit` ](#edit-command)

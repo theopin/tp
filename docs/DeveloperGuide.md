@@ -100,7 +100,6 @@ The table of contents below lets you easily access the documentation for CheatLo
     * [11.6. Deleting cheatsheets](#manual-test-6)
     * [11.7. Clearing cheatsheets](#manual-test-7)
     * [11.8. Add/remove cheatsheets to favourites](#manual-test-8)
-* [12. Glossary](#glossary)
 
 <br>
 
@@ -1219,7 +1218,7 @@ versions of CheatLogs was designed to solve.
 <a id="appendix-instructions-for-manual-testing"></a>
 # 11. Appendix: Instructions for manual testing<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 <a id="manual-test-1"></a>
-## 11.1 Start-up with preloaded data and restart with save data
+## 11.1 Start-up with preloaded data and restart with save data <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 1. Initial launch
     1. Download the latest release of CheatLogs from [here](https://github.com/AY2021S1-CS2113T-W11-3/tp/releases)
     1. Move the jar file to an empty folder
@@ -1248,7 +1247,7 @@ versions of CheatLogs was designed to solve.
     Identical to Step 2 (List the preloaded cheatsheets)
 
 <a id="manual-test-2"></a>
-## 11.2 Adding cheatsheets
+## 11.2 Adding cheatsheets <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 1. Adding cheatsheets using **easy mode**
     1. Test case: `/add` - Expected output: Prompts the user to fill `NAME` and `SUBJECT`
     1. Test case: `dummyName0`
@@ -1266,7 +1265,7 @@ versions of CheatLogs was designed to solve.
     Successfully adds the new cheatsheet, prints the current number of cheatsheets
     
 <a id="manual-test-3"></a>
-## 11.3 Editing cheatsheets
+## 11.3 Editing cheatsheets <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 1. Editing cheatsheets by name
     1. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
     1. Test case: `/edit /n dummyName0` - Expected output: A text editor pops up
@@ -1284,7 +1283,7 @@ versions of CheatLogs was designed to solve.
     Successfully saves the new cheatsheet. Prints the name, subject, and description of the cheatsheet
 
 <a id="manual-test-4"></a>
-## 11.4 Viewing cheatsheets
+## 11.4 Viewing cheatsheets <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 1. Viewing cheatsheets by name
     1. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
     1. Test case: `/view /n arrays` 
@@ -1300,7 +1299,7 @@ versions of CheatLogs was designed to solve.
     Prints the name, subject, and description of the cheatsheet
 
 <a id="manual-test-5"></a>
-## 11.5 Finding cheatsheets
+## 11.5 Finding cheatsheets <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 1. Finding cheatsheets by subject
     1. Prerequisites: Non-empty cheatsheet list.
     1. Test case: `/find /s C` 
@@ -1324,7 +1323,7 @@ versions of CheatLogs was designed to solve.
     Press any characters excluding 1 - 4 to exit the sorting mode 
 
 <a id="manual-test-6"></a>
-## 11.6 Deleting cheatsheets
+## 11.6 Deleting cheatsheets <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 1. Deleting cheatsheets by name
     1. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
     1. Test case: `/delete /n arrays` - Expected output: Asks the user for confirmation. If the cheatsheet does not exist in the first place, prints "Please enter a valid name".
@@ -1341,7 +1340,7 @@ versions of CheatLogs was designed to solve.
     The cheatsheet with index 1 is removed from the list.  
  
 <a id="manual-test-7"></a>    
-## 11.7 Clearing cheatsheets
+## 11.7 Clearing cheatsheets <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 1. Clearing all cheatsheets
     1. Test case: `/clear` - Expected output: Asks the user for confirmation
     1. Test case: `/list`
@@ -1350,7 +1349,7 @@ versions of CheatLogs was designed to solve.
     No cheatsheet on the list
 
 <a id="manual-test-8"></a>
-## 11.8 Add/remove cheatsheets to favourites
+## 11.8 Add/remove cheatsheets to favourites <font size="5"> [:arrow_up_small:](#table-of-contents)</font>
 1. Adding cheatsheets to favourites
     1. Prerequisites: List all cheatsheets using the `/list` command, non-empty list.
     1. Test case: `/fav /i 3` 
@@ -1366,8 +1365,4 @@ versions of CheatLogs was designed to solve.
     Expected output:
     The cheatsheet with index 1 does not have \[\*\] next to its name anymore.  
     
-<a id="glossary"></a>
-# 12. Glossary<font size="5"> [:arrow_up_small:](#table-of-contents)</font>
-* *glossary item* - Definition
-
 <br>
